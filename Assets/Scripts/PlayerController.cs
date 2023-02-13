@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
- 
-
     [SerializeField] float speed = 2f;
-    [SerializeField] float rotationSpeed = 5f;
+  //  [SerializeField] float rotationSpeed = 5f;
     private Animator myAnimator;
 
     //float xMaxRange = 19f;
@@ -17,7 +14,7 @@ public class PlayerController : MonoBehaviour
     //float zMinRange = -10f;
 
     float verticalInput;
-    float horizontalInput;
+   // float horizontalInput;
 
     void Awake()
     {
@@ -27,10 +24,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //   KeepInBoundaries();
-        RotateAfterMouseCoursor();
         MoveForwardBackward();
         Clean();
-
     }
 
     void Clean()
@@ -41,29 +36,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void RotateAfterMouseCoursor() //WORKS BUT NOT 100% like i want
-    {
-        //Get the Screen positions of the object
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-
-        //Get the Screen position of the mouse
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-        //Get the angle between the points
-        float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-
-        //Ta Daaa
-        transform.rotation = Quaternion.Euler(new Vector3(0f, -angle , 0f));
-    }
-
-    float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
-    {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg; //WORKS BUT NOT 100% like i want
-    }
+  
     void MoveForwardBackward()
     {
         // horizontalInput = Input.GetAxis("Horizontal");
         // transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * rotationSpeed);
+
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
         myAnimator.SetBool("isWalking", true);
@@ -79,5 +57,29 @@ public class PlayerController : MonoBehaviour
     {
         myAnimator.SetBool(_animName, _isPlaying);
     }
+
+    //void KeepInBoundaries()
+    //{
+    //    if (transform.position.x > xMaxRange) //Keeps the player inbounds
+    //    {
+    //        transform.position = new Vector3(xMaxRange, transform.position.y, transform.position.z);
+    //    }
+
+    //    if (transform.position.x < xMinRange)//Keeps the player inbounds
+    //    {
+    //        transform.position = new Vector3(xMinRange, transform.position.y, transform.position.z);
+    //    }
+
+    //    if (transform.position.z > zMaxRange) //Keeps the player inbounds
+    //    {
+    //        transform.position = new Vector3(transform.position.x, transform.position.y, zMaxRange);
+    //    }
+
+    //    if (transform.position.z < zMinRange)//Keeps the player inbounds
+    //    {
+    //        transform.position = new Vector3(transform.position.x, transform.position.y, zMinRange);
+    //    }
+
+    //}
 
 }
