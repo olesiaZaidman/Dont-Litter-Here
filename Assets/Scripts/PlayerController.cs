@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed = 2f;
-  //  [SerializeField] float rotationSpeed = 5f;
     private Animator myAnimator;
+    float timeForCleaningAnimation = 3f;
+    public static bool IsCleaningState { get; private set; }
 
     //float xMaxRange = 19f;
     //float xMinRange = -7f;
@@ -14,14 +15,14 @@ public class PlayerController : MonoBehaviour
     //float zMinRange = -10f;
 
     float verticalInput;
-   // float horizontalInput;
 
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
+        IsCleaningState = false;
     }
 
-    void Update()
+    void Update() //FixedUpdate?
     {
         //   KeepInBoundaries();
         MoveForwardBackward();
@@ -31,26 +32,59 @@ public class PlayerController : MonoBehaviour
     void Clean()
     {
         if ((Input.GetKey(KeyCode.Space)))
-        {
-            PlayAnimationIfNeeded("isCleaning", true);
+        {          
+            StartCoroutine(StartCleaningRoutine(timeForCleaningAnimation));
         }
     }
 
-  
+    IEnumerator StartCleaningRoutine(float _delay)
+    {
+        IsCleaningState = true;
+        PlayAnimationIfNeeded("isCleaning", true);
+        yield return new WaitForSeconds(_delay);
+        IsCleaningState = false;
+        PlayAnimationIfNeeded("isCleaning", false);
+    }
+
+
+
     void MoveForwardBackward()
     {
-        // horizontalInput = Input.GetAxis("Horizontal");
-        // transform.Rotate(Vector3.up, Time.deltaTime * horizontalInput * rotationSpeed);
-
+        float customEpsilon = 0.001f;
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
-        myAnimator.SetBool("isWalking", true);
 
-        if (verticalInput > 0 || verticalInput < 0)
-        { PlayAnimationIfNeeded("isWalking", true); }
-        //figure how to walk backwards with animation
-        else
-        { PlayAnimationIfNeeded("isWalking", false); }
+        if (verticalInput > customEpsilon) //or verticalInput !=0
+        {
+            PlayAnimationIfNeeded("isWalkingForward", true);
+           // PlayAnimationIfNeeded("isCleaning", false);
+        }
+
+        if (verticalInput < -customEpsilon)
+        {
+            PlayAnimationIfNeeded("isWalkingBackward", true);
+           // PlayAnimationIfNeeded("isCleaning", false);
+        }
+        else if(verticalInput == 0)
+        {
+            PlayAnimationIfNeeded("isWalkingBackward", false);
+            PlayAnimationIfNeeded("isWalkingForward", false);
+        }
+        Debug.Log(verticalInput);
+
+        //if (verticalInput != 0)
+        //{
+        //    PlayAnimationIfNeeded("isWalkingBackward", true);
+        //    PlayAnimationIfNeeded("isCleaning", false);
+        //    Debug.Log(verticalInput);
+
+        //}
+
+        //else
+        //{
+        //    PlayAnimationIfNeeded("isWalkingBackward", false);
+        //}
+
     }
 
     public void PlayAnimationIfNeeded(string _animName, bool _isPlaying)
