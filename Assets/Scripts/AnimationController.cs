@@ -20,6 +20,11 @@ public class AnimationController
         PlayAnimationIfNeeded("isWalkingForward", true);
     }
 
+    public void Swim()
+    {
+        PlayAnimationIfNeeded("isSwimming", true);
+    }
+
     public void StopWalking()
     {
         PlayAnimationIfNeeded("isWalkingForward", false);

@@ -31,4 +31,12 @@ public class MoveForward : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         myAnimationController.WalkForward();
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Sea"))
+        {
+            myAnimationController.Swim();
+        }
+    }
 }
