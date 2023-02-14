@@ -10,7 +10,6 @@ public class LookAtMouse : MonoBehaviour
     {
         if (!PlayerController.IsCleaningState)
         { RotateAfterMouseCoursor(); }
-
     }
 
     void RotateAfterMouseCoursor()

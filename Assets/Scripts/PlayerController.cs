@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour
     void Update() //FixedUpdate?
     {
         //   KeepInBoundaries();
-        MoveForwardBackward();
+        if (!PlayerController.IsCleaningState)
+        { MoveForwardBackward(); }
+
         Clean();
     }
 
@@ -57,20 +59,18 @@ public class PlayerController : MonoBehaviour
         if (verticalInput > customEpsilon) //or verticalInput !=0
         {
             PlayAnimationIfNeeded("isWalkingForward", true);
-           // PlayAnimationIfNeeded("isCleaning", false);
         }
 
         if (verticalInput < -customEpsilon)
         {
             PlayAnimationIfNeeded("isWalkingBackward", true);
-           // PlayAnimationIfNeeded("isCleaning", false);
         }
         else if(verticalInput == 0)
         {
             PlayAnimationIfNeeded("isWalkingBackward", false);
             PlayAnimationIfNeeded("isWalkingForward", false);
         }
-        Debug.Log(verticalInput);
+     //   Debug.Log(verticalInput);
 
         //if (verticalInput != 0)
         //{
