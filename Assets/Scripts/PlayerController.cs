@@ -6,25 +6,22 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed = 2f;
     private Animator myAnimator;
+     PlayerAnimationController myAnimationController;
     float timeForCleaningAnimation = 3f;
     public static bool IsCleaningState { get; private set; }
-
-    //float xMaxRange = 19f;
-    //float xMinRange = -7f;
-    //float zMaxRange = 1f;
-    //float zMinRange = -10f;
 
     float verticalInput;
 
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
+        myAnimationController = new PlayerAnimationController(myAnimator);
         IsCleaningState = false;
     }
 
     void Update() //FixedUpdate?
     {
-        //   KeepInBoundaries();
+        
         if (!PlayerController.IsCleaningState)
         { MoveForwardBackward(); }
 
@@ -42,10 +39,10 @@ public class PlayerController : MonoBehaviour
     IEnumerator StartCleaningRoutine(float _delay)
     {
         IsCleaningState = true;
-        PlayAnimationIfNeeded("isCleaning", true);
+        myAnimationController.CleanPickUpIfNeeded(IsCleaningState);      // PlayAnimationIfNeeded("isCleaning", true);
         yield return new WaitForSeconds(_delay);
         IsCleaningState = false;
-        PlayAnimationIfNeeded("isCleaning", false);
+        myAnimationController.CleanPickUpIfNeeded(IsCleaningState); //       PlayAnimationIfNeeded("isCleaning", false);
     }
 
 
@@ -54,21 +51,21 @@ public class PlayerController : MonoBehaviour
     {
         float customEpsilon = 0.001f;
         verticalInput = Input.GetAxis("Vertical");
+
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
 
         if (verticalInput > customEpsilon) //or verticalInput !=0
         {
-            PlayAnimationIfNeeded("isWalkingForward", true);
+            myAnimationController.WalkForward();
         }
 
-        if (verticalInput < -customEpsilon)
+        else if (verticalInput < -customEpsilon)
         {
-            PlayAnimationIfNeeded("isWalkingBackward", true);
+            myAnimationController.WalkBackward();
         }
         else if(verticalInput == 0)
         {
-            PlayAnimationIfNeeded("isWalkingBackward", false);
-            PlayAnimationIfNeeded("isWalkingForward", false);
+            myAnimationController.Idle();
         }
      //   Debug.Log(verticalInput);
 
@@ -86,34 +83,4 @@ public class PlayerController : MonoBehaviour
         //}
 
     }
-
-    public void PlayAnimationIfNeeded(string _animName, bool _isPlaying)
-    {
-        myAnimator.SetBool(_animName, _isPlaying);
-    }
-
-    //void KeepInBoundaries()
-    //{
-    //    if (transform.position.x > xMaxRange) //Keeps the player inbounds
-    //    {
-    //        transform.position = new Vector3(xMaxRange, transform.position.y, transform.position.z);
-    //    }
-
-    //    if (transform.position.x < xMinRange)//Keeps the player inbounds
-    //    {
-    //        transform.position = new Vector3(xMinRange, transform.position.y, transform.position.z);
-    //    }
-
-    //    if (transform.position.z > zMaxRange) //Keeps the player inbounds
-    //    {
-    //        transform.position = new Vector3(transform.position.x, transform.position.y, zMaxRange);
-    //    }
-
-    //    if (transform.position.z < zMinRange)//Keeps the player inbounds
-    //    {
-    //        transform.position = new Vector3(transform.position.x, transform.position.y, zMinRange);
-    //    }
-
-    //}
-
 }
