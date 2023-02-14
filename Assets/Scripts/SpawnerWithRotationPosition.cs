@@ -2,41 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour, ISpawner
+public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosition
 {
-    public GameObject[] prefab;
-    int index;
+
+    //How to make inheritance for serialized field (not public like now)?
+    //change variables in children
+
     [SerializeField] float xRotation = 0;
     [SerializeField] float yRotation = 90;
     [SerializeField] float zRotation = 0;
 
     [Header("InstancePositonVectorCoordinates")]
-    [SerializeField] float xMaxRange = 16;
+    [SerializeField] float xMaxRange = 19;
     [SerializeField] float xMinRange = -16f;
-    [SerializeField] float yCoordinate = 22f;
-    [SerializeField] float zMaxRange = 20;
-    [SerializeField] float zMinRange = 0;
+    [SerializeField] float yCoordinate = 0f;
+    [SerializeField] float zMaxRange = 4;
+    [SerializeField] float zMinRange = -14;
 
 
-    //  Interval & Delay:
-    [SerializeField] float startDelay = 2.0f;
-     float spawnInterval;
-    [SerializeField] float spawnIntervalMin = 2f;
-    [SerializeField] float spawnIntervalMax = 4f;
-
-    void Start()
-    {
-        spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
-        InvokeRepeating("Spawn", startDelay, spawnInterval);
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
-    public void Spawn()
+    public override void Spawn()
     {
         Quaternion prefabRotation = GetRotation(xRotation, yRotation, zRotation);
         Vector3 pos = GetRandomSpawnPosition();
