@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.48605168
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07683575
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24696505
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_Name
-      value: Girl-beach
+      value: Girl-beach Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

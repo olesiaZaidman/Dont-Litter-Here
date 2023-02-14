@@ -26,15 +26,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2379102009419517933, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.4549168
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2379102009419517933, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07835078
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2379102009419517933, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.0996069
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2379102009419517933, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048818203450807639, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
       propertyPath: m_Name
-      value: Boy-beach Variant
+      value: Boy-beach Variant Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

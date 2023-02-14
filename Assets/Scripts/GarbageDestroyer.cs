@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class GarbageDestroyer : MonoBehaviour
 {
-    void OnTriggerStay(Collider other) //OnTriggerEnter
+    void OnTriggerStay(Collider other) 
     {
-        if (other.gameObject.CompareTag("Garbage") && PlayerController.IsCleaningState)       // 
+        DestroyGarbageOnTriggerStay(other);
+    }   
+
+    public void DestroyGarbageOnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Garbage"))      
         {
             Destroy(other.gameObject);
             Debug.Log("We destroyed: " + other.gameObject.name);
         }
-    }   
+    }
 }
