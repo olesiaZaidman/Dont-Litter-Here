@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5135774748822345046}
   - component: {fileID: 5145132655298262170}
   - component: {fileID: 5177634842974731110}
+  - component: {fileID: 752459797347884953}
   m_Layer: 0
   m_Name: pizza-box
   m_TagString: Garbage
@@ -107,3 +108,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4000002, y: 0.35144317, z: 0.42841542}
   m_Center: {x: 0, y: 0.17572159, z: -0.014207594}
+--- !u!114 &752459797347884953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5131444241767938852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f058b0f0a2fef478674009a786c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

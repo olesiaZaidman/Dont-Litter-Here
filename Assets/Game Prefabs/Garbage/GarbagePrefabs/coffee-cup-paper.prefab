@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3441380460879400628}
   - component: {fileID: 3441380460880366708}
   - component: {fileID: 5879884232607494864}
+  - component: {fileID: 9205013406050487628}
   m_Layer: 0
   m_Name: coffee-cup-paper
   m_TagString: Garbage
@@ -108,3 +109,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: ada03b2081c4ae743a53326f5b0ddd6c, type: 3}
+--- !u!114 &9205013406050487628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441380460878107316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f058b0f0a2fef478674009a786c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

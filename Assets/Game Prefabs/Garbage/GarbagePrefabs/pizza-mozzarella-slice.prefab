@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7363465489680718249}
   - component: {fileID: 7358052442138017451}
   - component: {fileID: 7395564340297783991}
+  - component: {fileID: -8879702285562175422}
   m_Layer: 0
   m_Name: pizza-mozzarella-slice
   m_TagString: Garbage
@@ -108,3 +109,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.18555579, y: 0.022451825, z: 0.22174671}
   m_Center: {x: -0.0052498914, y: 0.011225913, z: -0.02099803}
+--- !u!114 &-8879702285562175422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371766373676682647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f058b0f0a2fef478674009a786c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

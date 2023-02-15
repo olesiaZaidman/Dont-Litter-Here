@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class KeepInBoundaries : MonoBehaviour
 {
-    [Header("Boundaries")]
+    GameBoundariesChecker myBoundariesChecker;
 
-    [SerializeField] float xMaxRange = 19f;
-    [SerializeField] float xMinRange = -7f;
-    [SerializeField] float zMaxRange = 1f;
-    [SerializeField] float zMinRange = -10f;
-
+    private void Awake()
+    {
+        myBoundariesChecker = new GameBoundariesChecker(transform.position);
+    }
     void Update()
     {
         StayInGameSpaceBoundaries();
@@ -18,24 +17,24 @@ public class KeepInBoundaries : MonoBehaviour
 
     void StayInGameSpaceBoundaries()
     {
-        if (transform.position.x > xMaxRange) //Keeps the player inbounds
+        if (transform.position.x > GamePlayBoundaries.XRightBound) //Keeps the player inbounds
         {
-            transform.position = new Vector3(xMaxRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(GamePlayBoundaries.XRightBound, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.x < xMinRange)//Keeps the player inbounds
+        if (transform.position.x < GamePlayBoundaries.XLeftBound)//Keeps the player inbounds
         {
-            transform.position = new Vector3(xMinRange, transform.position.y, transform.position.z);
+            transform.position = new Vector3(GamePlayBoundaries.XLeftBound, transform.position.y, transform.position.z);
         }
 
-        if (transform.position.z > zMaxRange) //Keeps the player inbounds
+        if (transform.position.z > GamePlayBoundaries.ZTopBound) //Keeps the player inbounds
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zMaxRange);
+            transform.position = new Vector3(transform.position.x, transform.position.y, GamePlayBoundaries.ZTopBound);
         }
 
-        if (transform.position.z < zMinRange)//Keeps the player inbounds
+        if (transform.position.z < GamePlayBoundaries.ZBottomBound)//Keeps the player inbounds
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zMinRange);
+            transform.position = new Vector3(transform.position.x, transform.position.y, GamePlayBoundaries.ZBottomBound);
         }
 
     }

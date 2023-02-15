@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6077226846209663815}
   - component: {fileID: 6077226846210630023}
   - component: {fileID: 6077226846212667898}
+  - component: {fileID: -8379667111259325723}
   m_Layer: 0
   m_Name: fish-bone
   m_TagString: Garbage
@@ -106,3 +107,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 0007772c21b8e0d4f9d971bf4ff1a4bd, type: 3}
+--- !u!114 &-8379667111259325723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077226846212636487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f058b0f0a2fef478674009a786c065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

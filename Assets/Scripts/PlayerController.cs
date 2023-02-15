@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float speed = 2f;
     private Animator myAnimator;
-     PlayerAnimationController myAnimationController;
+    PlayerAnimationController myAnimationController;
     float timeForCleaningAnimation = 3f;
     public static bool IsCleaningState { get; private set; }
 

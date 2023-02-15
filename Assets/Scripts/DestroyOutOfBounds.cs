@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOutOfBounds : MonoBehaviour
+public class DestroyOutOfBounds : MonoBehaviour, IDestroyable
+//DestroyOutOfWalkingAreaBounds
 {
-    [SerializeField] float topBound = 15f;
-    [SerializeField] float bottomBound = -15f;
-    [SerializeField] float rightBound = 30f;
-    [SerializeField] float leftBound = -15f;
     void Update()
     {
-        if (transform.position.z > topBound)
-        {
-            Destroy(gameObject);
-        }
-        if (transform.position.z < bottomBound)
-        {
-            Destroy(gameObject);
-        }
-        if (transform.position.x > rightBound)
+        DestroyIfOutOfGamePlayBounds();
+    }
+    public virtual void DestroyIfOutOfGamePlayBounds()
+    {
+        if (transform.position.z > GamePlayBoundaries.ZTopBound)
         {
             Destroy(gameObject);
         }
 
-        if (transform.position.x < leftBound)
+        if (transform.position.x > GamePlayBoundaries.XRightBound)
+        {
+            Destroy(gameObject);
+        }
+        if (transform.position.z < GamePlayBoundaries.ZBottomBound)
+        {
+            Destroy(gameObject);
+        }
+
+        if  (transform.position.x < GamePlayBoundaries.XLeftBound)
         {
             Destroy(gameObject);
         }

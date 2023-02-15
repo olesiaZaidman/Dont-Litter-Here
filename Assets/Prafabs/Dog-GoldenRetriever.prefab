@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 5454366067003455975}
   - component: {fileID: -3583349297058130126}
   - component: {fileID: -6916150399534462204}
+  - component: {fileID: -4573290731222647990}
   m_Layer: 0
   m_Name: Dog-GoldenRetriever
   m_TagString: Untagged
@@ -182,9 +183,23 @@ MonoBehaviour:
   - {fileID: 373840145030590413, guid: c4564bba939cc7443a28d758fc24ac8e, type: 3}
   - {fileID: 1424148855291218910, guid: 0ce897fa6fc52ac4bb748e5c64f2ac6f, type: 3}
   - {fileID: 6077226846212636487, guid: 05716a058565b17449d9b25352f1660f, type: 3}
+  index: 0
   startDelay: 2
+  spawnInterval: 0
   spawnIntervalMin: 2
   spawnIntervalMax: 4
+--- !u!114 &-4573290731222647990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454366066996021799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5454366066996021801
 GameObject:
   m_ObjectHideFlags: 0

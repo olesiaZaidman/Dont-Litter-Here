@@ -956,6 +956,9 @@ GameObject:
   - component: {fileID: 4455229383660522480}
   - component: {fileID: 7835896306559865371}
   - component: {fileID: 3167719059763845158}
+  - component: {fileID: -3901124877043599163}
+  - component: {fileID: 5443295905206008520}
+  - component: {fileID: 5931340360435560938}
   m_Layer: 0
   m_Name: Woman-1-beach
   m_TagString: Untagged
@@ -971,14 +974,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6953518229796571952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0061798, y: -0.07988596, z: -0.12745714}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2838492196989333790}
   - {fileID: 8288104731345486331}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4455229383660522480
 Animator:
@@ -990,7 +993,7 @@ Animator:
   m_GameObject: {fileID: 6953518229796571952}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: eeefa0131335af44b983fba77455e151, type: 3}
-  m_Controller: {fileID: 9100000, guid: 196c30cf9eccb8745b6cebbebf90b7e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 952715ab145baad4aaefa4571bf44c97, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1045,6 +1048,68 @@ MonoBehaviour:
   spawnInterval: 0
   spawnIntervalMin: 2
   spawnIntervalMax: 4
+--- !u!114 &-3901124877043599163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &5443295905206008520
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.9207191
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.95366, z: 0}
+--- !u!54 &5931340360435560938
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &7186534100564158571
 GameObject:
   m_ObjectHideFlags: 0
