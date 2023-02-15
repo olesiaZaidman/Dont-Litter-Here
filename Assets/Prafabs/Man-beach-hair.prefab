@@ -1067,8 +1067,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1800653690552845081}
   - component: {fileID: 8472822111100666660}
-  - component: {fileID: 2781493020678099163}
-  - component: {fileID: 2781493020678099156}
   m_Layer: 0
   m_Name: man-beach
   m_TagString: Untagged
@@ -1181,39 +1179,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.043632537, y: -0.095294, z: 0.04523301}
     m_Extent: {x: 0.39091116, y: 0.9630084, z: 0.3087477}
   m_DirtyAABB: 0
---- !u!114 &2781493020678099163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522937753350115590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2781493020678099156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522937753350115590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bb0ff890d15c643b45c391ce6e174e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  index: 0
-  startDelay: 2
-  spawnInterval: 0
-  spawnIntervalMin: 2
-  spawnIntervalMax: 4
 --- !u!1 &5580925954036300999
 GameObject:
   m_ObjectHideFlags: 0

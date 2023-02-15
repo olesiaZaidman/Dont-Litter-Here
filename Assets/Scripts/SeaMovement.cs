@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sea : MonoBehaviour
+public class SeaMovement : MonoBehaviour
 {
     //protected const float xCoord = 3.3f;
 

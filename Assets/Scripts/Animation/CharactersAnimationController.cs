@@ -8,4 +8,15 @@ public class CharactersAnimationController : AnimationController
     {
 
     }
+
+    public void Swim()
+    {
+        PlayAnimationIfNeeded("isSwimming", true);
+    }
+
+    public void StopSwim()
+    {
+        PlayAnimationIfNeeded("isSwimming", false);
+    }
+
 }

@@ -8,7 +8,6 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
     {
         DestroyGarbageOnCleaningAnimationState(other);
     }
-
     void DestroyGarbageOnCleaningAnimationState(Collider other)
     {
         if (PlayerController.IsCleaningState)

@@ -1002,10 +1002,10 @@ MonoBehaviour:
   - {fileID: 196292293064346204, guid: 0d4be0add600b244fa6cbb7c85cce14b, type: 3}
   - {fileID: 9033456160405610175, guid: f1573f1615adb404ca11c1a7d21e9f93, type: 3}
   index: 0
-  startDelay: 2
+  startDelay: 1
   spawnInterval: 0
-  spawnIntervalMin: 2
-  spawnIntervalMax: 4
+  spawnIntervalMin: 1
+  spawnIntervalMax: 2
 --- !u!114 &2863995648039679073
 MonoBehaviour:
   m_ObjectHideFlags: 0

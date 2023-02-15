@@ -7,13 +7,13 @@ public class MoveForward : MonoBehaviour
    [SerializeField] float speedMin = 1.0f;
    [SerializeField] float speedMax = 6.0f;
     private Animator myAnimator;
-    AnimationController myAnimationController;
+    CharactersAnimationController myAnimationController;
     float speed;
 
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        myAnimationController = new AnimationController(myAnimator);
+        myAnimationController = new CharactersAnimationController(myAnimator);
     }
     void Start()
     {
@@ -37,6 +37,14 @@ public class MoveForward : MonoBehaviour
         if (other.gameObject.CompareTag("Sea"))
         {
             myAnimationController.Swim();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Sea"))
+        {
+            myAnimationController.StopSwim();
         }
     }
 }

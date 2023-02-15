@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class KeepInBoundaries : MonoBehaviour
 {
-    GameBoundariesChecker myBoundariesChecker;
-
-    private void Awake()
-    {
-        myBoundariesChecker = new GameBoundariesChecker(transform.position);
-    }
     void Update()
     {
         StayInGameSpaceBoundaries();
     }
-
     void StayInGameSpaceBoundaries()
     {
         if (transform.position.x > GamePlayBoundaries.XRightBound) //Keeps the player inbounds
@@ -36,6 +29,5 @@ public class KeepInBoundaries : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, GamePlayBoundaries.ZBottomBound);
         }
-
     }
 }

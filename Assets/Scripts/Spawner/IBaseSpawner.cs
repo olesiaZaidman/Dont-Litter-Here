@@ -6,6 +6,7 @@ public interface IBaseSpawner
 {
       void Spawn();
       void CreateTimeIntervalBetweenSpawning();
+      void CreateRandomStartTime();
 }
 
 public interface ISpawnerWithRotationPosition : IBaseSpawner
