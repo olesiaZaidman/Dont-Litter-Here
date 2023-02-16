@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
-    ObjectPool objectPooler;
+    ObjectPoolDictionary objectPooler;
 
     public GameObject[] prefab;
     //   [HideInInspector]
@@ -35,7 +35,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     void Start()
     {
-        objectPooler = ObjectPool.Instance;
+        objectPooler = ObjectPoolDictionary.Instance;
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();

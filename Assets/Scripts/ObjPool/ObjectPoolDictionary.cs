@@ -1,34 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectPooler;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPoolDictionary : MonoBehaviour
 {
-    [System.Serializable]
-    public class Pool 
-    {
-        public string tag;
-        public GameObject prefab;
-        public int size;
-    }
-    public List<Pool> poolGarbageList;
-    public List<Pool> poolCharactersList;
+    ObjectPooler objectPooler;
     public Dictionary<string, Queue<GameObject>> objPoolDictionary;
 
+    //[System.Serializable]
+    //public class Pool
+    //{
+    //    public string tag;
+    //    public GameObject prefab;
+    //    public int size;
+    //}
+    //public List<Pool> poolGarbageList;
+    //public List<Pool> poolCharactersList;
     #region Singelton
-    public static ObjectPool Instance;
+    public static ObjectPoolDictionary Instance;
 
     private void Awake()
     {
         Instance = this;
+        objectPooler = ObjectPooler.Instance;
     }
     #endregion
 
     void Start()
     {
+        objectPooler = ObjectPooler.Instance;
         objPoolDictionary = new Dictionary<string, Queue<GameObject>>();
-        AddPoolListToDictionary(poolGarbageList, objPoolDictionary);
-        AddPoolListToDictionary(poolCharactersList, objPoolDictionary);
-
+        AddPoolListToDictionary(objectPooler.poolGarbageList, objPoolDictionary);
+        AddPoolListToDictionary(objectPooler.poolCharactersList, objPoolDictionary);
         //CreateNewDictionaryWithQueuesOfPoolList();
     }
 

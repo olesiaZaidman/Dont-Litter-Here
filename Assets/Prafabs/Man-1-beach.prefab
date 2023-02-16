@@ -577,8 +577,9 @@ GameObject:
   - component: {fileID: 1817144179902984791}
   - component: {fileID: 5047888412787877341}
   - component: {fileID: 5047888412787877340}
+  - component: {fileID: 2033591860503665512}
   m_Layer: 0
-  m_Name: Man-beach
+  m_Name: Man-1-beach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -657,11 +658,8 @@ MonoBehaviour:
   - {fileID: 3441380460878107316, guid: 5c73402ef2737e843befb97115c56963, type: 3}
   - {fileID: 196292293064346204, guid: 0d4be0add600b244fa6cbb7c85cce14b, type: 3}
   - {fileID: 7717856624743174793, guid: c9f585009b01ded47a24173eaf8e88c6, type: 3}
-  index: 0
-  startDelay: 2
-  spawnInterval: 0
-  spawnIntervalMin: 2
-  spawnIntervalMax: 4
+  _startDelay: 0
+  _spawnInterval: 0
 --- !u!114 &1817144179902984791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,6 +724,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &2033591860503665512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258280862677865154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objtag: 
 --- !u!1 &5421564123987571097
 GameObject:
   m_ObjectHideFlags: 0

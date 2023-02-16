@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class ObjectReturn : MonoBehaviour, IPooledObject
 {
-    ObjectPool objectPooler;
+    ObjectPoolDictionary objectPooler;
     [SerializeField] string objtag; //we set it in the Inspector
     //  public string ObjTag { get { return objtag; } set { objtag = value; } }
     void Start()
     {
-        objectPooler = ObjectPool.Instance;
+        objectPooler = ObjectPoolDictionary.Instance;      
+    }
+    void SetObjTag()
+    {
+        objtag = this.gameObject.name;
+        //Instead setting it in the Inspector, we set it when we  need it in GetObjTag()
     }
 
     public string GetObjTag()
     {
+       // SetObjTag();
+
         if (string.IsNullOrEmpty(objtag))
         {
             Debug.LogWarning(this.gameObject + " requires the tag"); //LogWarning

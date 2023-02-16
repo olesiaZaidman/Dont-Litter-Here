@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: -3901124877043599163}
   - component: {fileID: 5443295905206008520}
   - component: {fileID: 5931340360435560938}
+  - component: {fileID: -1592982493693131951}
   m_Layer: 0
   m_Name: Woman-1-beach
   m_TagString: Untagged
@@ -1043,11 +1044,8 @@ MonoBehaviour:
   - {fileID: 490968682491164934, guid: c120977a1a858864eb19d9618d4d6f00, type: 3}
   - {fileID: 9033456160405610175, guid: f1573f1615adb404ca11c1a7d21e9f93, type: 3}
   - {fileID: 5879903818168797679, guid: 5d07155b5cbe97543b07efa5739e3b37, type: 3}
-  index: 0
-  startDelay: 2
-  spawnInterval: 0
-  spawnIntervalMin: 2
-  spawnIntervalMax: 4
+  _startDelay: 0
+  _spawnInterval: 0
 --- !u!114 &-3901124877043599163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1110,6 +1108,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-1592982493693131951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objtag: 
 --- !u!1 &7186534100564158571
 GameObject:
   m_ObjectHideFlags: 0
