@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface IBaseSpawner
 {
-      void Spawn();
+ //   int StartDelayMin { get; set; }
+    void Spawn();
       void CreateTimeIntervalBetweenSpawning();
       void CreateRandomStartTime();
 }

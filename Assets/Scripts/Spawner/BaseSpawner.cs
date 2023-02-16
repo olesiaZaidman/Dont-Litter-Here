@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
+    ObjectPool objectPooler;
+
     public GameObject[] prefab;
     //   [HideInInspector]
     protected int index;
@@ -17,11 +19,46 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected virtual float StartDelayMin { get { return 0.5f; } }
     // [SerializeField] protected float _startDelayMin; // = 2.0f
     protected virtual float StartDelayMax { get { return 10f; } }
-    // [SerializeField] protected float _startDelayMax; // = 2.0f
     protected virtual float SpawnIntervalMin { get { return 1f; } }    
-    //  [SerializeField] protected float _spawnIntervalMin; // = 2f
     protected virtual float SpawnIntervalMax { get { return 4f; } }
-    //  [SerializeField] protected float _spawnIntervalMax; // = 4f
+
+
+    public void CreateRandomStartTime()
+    {
+        _startDelay = Random.Range(StartDelayMin, StartDelayMax);
+    }
+
+    public void CreateTimeIntervalBetweenSpawning()
+    {
+        _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
+    }
+
+    void Start()
+    {
+        objectPooler = ObjectPool.Instance;
+        CreateRandomStartTime();
+        CreateTimeIntervalBetweenSpawning();
+        StartSpawningWithIntervals();
+    }
+
+    public void StartSpawningWithIntervals()
+    {
+        InvokeRepeating("Spawn", _startDelay, _spawnInterval);
+    }
+
+    public virtual void Spawn()
+    {
+        Vector3 pos = transform.position;
+        objectPooler.SpawnObjFromPool("apple-core", pos);
+        CreateTimeIntervalBetweenSpawning();
+
+        //Create Array of Tag String and take a random one
+        //USED TO BE:
+        //  index = Random.Range(0, prefab.Length);
+        //   Instantiate(prefab[index], pos, prefab[index].transform.rotation);
+    }
+
+
 
     //protected virtual float StartDelay
     //{
@@ -37,48 +74,4 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     //        //_startDelay = value;
     //    }
     //}
-    //protected virtual float SpawnInterval
-    //{
-    //    get { return _spawnInterval; }
-    //    private set
-    //    {
-    //        if (value <= 0)
-    //        {
-    //            Debug.Log("Out of range!");
-    //            return;
-    //        }
-    //        _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
-    //        //_spawnInterval = value;
-    //    }
-    //}
-    public void CreateRandomStartTime()
-    {
-        _startDelay = Random.Range(StartDelayMin, StartDelayMax);
-    }
-
-    public void CreateTimeIntervalBetweenSpawning()
-    {
-        _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
-    }
-
-    void Start()
-    {
-        CreateRandomStartTime();
-        CreateTimeIntervalBetweenSpawning();
-        StartSpawningWithIntervals();
-    }
-
-    public void StartSpawningWithIntervals()
-    {
-       // InvokeRepeating("Spawn", StartDelay, SpawnInterval);
-        InvokeRepeating("Spawn", _startDelay, _spawnInterval);
-    }
-
-    public virtual void Spawn()
-    {
-        Vector3 pos = transform.position;
-        index = Random.Range(0, prefab.Length);
-        Instantiate(prefab[index], pos, prefab[index].transform.rotation);
-        CreateTimeIntervalBetweenSpawning();
-    }
 }
