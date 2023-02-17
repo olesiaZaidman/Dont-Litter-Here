@@ -13,7 +13,7 @@ public class GarbageDestroyer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Garbage"))      
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);          // Destroy(other.gameObject);
             Debug.Log("We destroyed: " + other.gameObject.name);
         }
     }

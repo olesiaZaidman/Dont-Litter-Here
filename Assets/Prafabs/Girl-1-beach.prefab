@@ -202,12 +202,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1336076081552255919}
   - component: {fileID: 4929927334891139541}
-  - component: {fileID: 1461559745361720892}
   - component: {fileID: -8326642916771942106}
   - component: {fileID: 1498809758670792267}
   - component: {fileID: 7956955394821676343}
   - component: {fileID: 8317593550261103452}
   - component: {fileID: 6572382362563989499}
+  - component: {fileID: 9022223804389701660}
   m_Layer: 0
   m_Name: Girl-1-beach
   m_TagString: Untagged
@@ -252,27 +252,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1461559745361720892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855873040569676053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bb0ff890d15c643b45c391ce6e174e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab:
-  - {fileID: 3879078859485280611, guid: e7ae63b2f823e184e8ea2fccd9e0cc5c, type: 3}
-  - {fileID: 8573138365528617718, guid: e0c9f7460b0fa19438882e0a8c1cc506, type: 3}
-  - {fileID: 591997984813753267, guid: 9f293461640aea845ab26fac858c21f3, type: 3}
-  - {fileID: 4343495777821356322, guid: a4d62753295c75c4a9e691eae361a522, type: 3}
-  - {fileID: 490968682491164934, guid: c120977a1a858864eb19d9618d4d6f00, type: 3}
-  - {fileID: 7371766373676682647, guid: b89f73a8ba88a8949a7d5cab33453f54, type: 3}
-  _startDelay: 0
-  _spawnInterval: 0
 --- !u!114 &-8326642916771942106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +340,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: 
+  objtag: Girl-1-beach
+--- !u!114 &9022223804389701660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855873040569676053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2082542a1c12438907630fda2a10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDelay: 0
+  _spawnInterval: 0
 --- !u!1 &1874918013187183182
 GameObject:
   m_ObjectHideFlags: 0

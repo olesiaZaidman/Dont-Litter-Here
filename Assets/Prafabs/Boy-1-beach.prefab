@@ -205,10 +205,10 @@ GameObject:
   - component: {fileID: 5728046445220498299}
   - component: {fileID: 271831005227037586}
   - component: {fileID: -3595846601036627426}
-  - component: {fileID: 6996834164521297957}
   - component: {fileID: 8882630676859230519}
   - component: {fileID: 1477178523708606715}
   - component: {fileID: 4524387512518247913}
+  - component: {fileID: -5083592617386479587}
   m_Layer: 0
   m_Name: Boy-1-beach
   m_TagString: Untagged
@@ -279,26 +279,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6996834164521297957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357245522733370299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bb0ff890d15c643b45c391ce6e174e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab:
-  - {fileID: 4343495777821356322, guid: a4d62753295c75c4a9e691eae361a522, type: 3}
-  - {fileID: 3879078859485280611, guid: e7ae63b2f823e184e8ea2fccd9e0cc5c, type: 3}
-  - {fileID: 8573138365528617718, guid: e0c9f7460b0fa19438882e0a8c1cc506, type: 3}
-  - {fileID: 4844124300188776142, guid: 97932abdb3978304e935c86bf4b4b814, type: 3}
-  - {fileID: 591997984813753267, guid: 9f293461640aea845ab26fac858c21f3, type: 3}
-  _startDelay: 0
-  _spawnInterval: 0
 --- !u!136 &8882630676859230519
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -361,7 +341,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: 
+  objtag: Boy-1-beach
+--- !u!114 &-5083592617386479587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357245522733370299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2082542a1c12438907630fda2a10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDelay: 0
+  _spawnInterval: 0
 --- !u!1 &2020898209543976108
 GameObject:
   m_ObjectHideFlags: 0

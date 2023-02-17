@@ -66,32 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_Name
-      value: Girl-beach Variant
+      value: Girl-beach-2-Var
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572382362563989499, guid: 5df16641faee522478d05a79bd28495a, type: 3}
+      propertyPath: objtag
+      value: Girl-beach-2-Var
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7169955153719545097}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df16641faee522478d05a79bd28495a, type: 3}
---- !u!1 &5602977888973501610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
-  m_PrefabInstance: {fileID: 6053018248482588095}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7169955153719545097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5602977888973501610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objtag: 

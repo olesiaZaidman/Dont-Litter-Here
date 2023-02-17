@@ -12,11 +12,17 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
+    [Header("Pools")]
     public List<Pool> poolGarbageList;
+    public List<Pool> poolGarbageKidsList;
     public List<Pool> poolCharactersList;
+    public List<Pool> poolGarbageDogsList;
 
+    [Header("Tags")]
     public List<string> charactersTagList;
     public List<string> garbageTagList;
+    public List<string> garbageKidsTagList;
+    public List<string> garbageDogsTagList;
 
     #region Singelton
     public static ObjectPooler Instance;
@@ -25,6 +31,8 @@ public class ObjectPooler : MonoBehaviour
         Instance = this;
         garbageTagList = CreateListOfPoolTags(poolGarbageList);
         charactersTagList = CreateListOfPoolTags(poolCharactersList);
+        garbageKidsTagList = CreateListOfPoolTags(poolGarbageKidsList);
+        garbageDogsTagList = CreateListOfPoolTags(poolGarbageDogsList);
     }
     #endregion
 

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
-    ObjectPoolDictionary objectPooler;
-
-    public GameObject[] prefab;
+   // public GameObject[] prefab;
     //   [HideInInspector]
     protected int index;
 
@@ -35,7 +33,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     void Start()
     {
-        objectPooler = ObjectPoolDictionary.Instance;
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();
@@ -46,13 +43,15 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         InvokeRepeating("Spawn", _startDelay, _spawnInterval);
     }
 
-    public virtual void Spawn()
+    public virtual void Spawn() // Spawn(List<string> tagList)
     {
         Vector3 pos = transform.position;
-        objectPooler.SpawnObjFromPool("apple-core", pos);
+        index = Random.Range(0, ObjectPooler.Instance.garbageTagList.Count);
+        string tag = ObjectPooler.Instance.garbageTagList[index];
+
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(tag, pos);
         CreateTimeIntervalBetweenSpawning();
 
-        //Create Array of Tag String and take a random one
         //USED TO BE:
         //  index = Random.Range(0, prefab.Length);
         //   Instantiate(prefab[index], pos, prefab[index].transform.rotation);

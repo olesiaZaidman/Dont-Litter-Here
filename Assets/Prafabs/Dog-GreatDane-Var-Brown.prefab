@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: bottomBound
       value: -20
       objectReference: {fileID: 0}
+    - target: {fileID: 7592845152083752943, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
+      propertyPath: objtag
+      value: Dog-GreatDane-Var-Brown
+      objectReference: {fileID: 0}
     - target: {fileID: 8062630504472748002, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -70,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8062630504472773506, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
       propertyPath: m_Name
-      value: Dog-GreatDane Variant_Brown
+      value: Dog-GreatDane-Var-Brown
       objectReference: {fileID: 0}
     - target: {fileID: 8062630504475954914, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -81,26 +85,5 @@ PrefabInstance:
     - {fileID: -8806314695042459899, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8062630504472773506, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -4314320482608306081}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
---- !u!1 &8316355373127703613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8062630504472773506, guid: e60230aca25a21d41b959c8eb999fc70, type: 3}
-  m_PrefabInstance: {fileID: 2057466216693637055}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &-4314320482608306081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8316355373127703613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objtag: 

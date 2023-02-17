@@ -13,21 +13,21 @@ public class DestroyOutOfBounds : MonoBehaviour, IDestroyable
     {
         if (transform.position.z > GamePlayBoundaries.ZTopBound)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);          // Destroy(gameObject);
         }
 
         if (transform.position.x > GamePlayBoundaries.XRightBound)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);          // Destroy(gameObject);
         }
         if (transform.position.z < GamePlayBoundaries.ZBottomBound)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);          // Destroy(gameObject);
         }
 
         if  (transform.position.x < GamePlayBoundaries.XLeftBound)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);          // Destroy(gameObject);
         }
     }
 }

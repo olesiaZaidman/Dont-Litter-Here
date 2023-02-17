@@ -24,10 +24,16 @@ public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosi
     public override void Spawn()
     {
         Quaternion prefabRotation = GetRotation(xRotation, yRotation, zRotation);
-        Vector3 pos = GetRandomSpawnPosition();
-        index = Random.Range(0, prefab.Length);
-        Instantiate(prefab[index], pos, prefabRotation);
+        Vector3 pos = GetRandomSpawnPosition();        
+        index = Random.Range(0, ObjectPooler.Instance.charactersTagList.Count);
+        string tag = ObjectPooler.Instance.charactersTagList[index];
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionaryWithRotation(tag, pos, prefabRotation);
         CreateTimeIntervalBetweenSpawning();
+
+        //index = Random.Range(0, prefab.Length);
+        //Instantiate(prefab[index], pos, prefabRotation);
+        //CreateTimeIntervalBetweenSpawning();
+
     }
 
     public Quaternion GetRotation(float _xRotation, float _yRotation, float _zRotation)

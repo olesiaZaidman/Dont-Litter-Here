@@ -1190,7 +1190,7 @@ GameObject:
   - component: {fileID: 6363240076865369455}
   - component: {fileID: 3938067276458514787}
   - component: {fileID: 5519444346569978505}
-  - component: {fileID: 3792142607773111165}
+  - component: {fileID: -5004921187769845613}
   m_Layer: 0
   m_Name: Woman-4-beach
   m_TagString: Untagged
@@ -1339,7 +1339,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &3792142607773111165
+--- !u!114 &-5004921187769845613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
