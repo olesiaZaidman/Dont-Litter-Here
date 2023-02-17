@@ -11,7 +11,7 @@ public class ObjectReturn : MonoBehaviour, IPooledObject
     {
         objectPooler = ObjectPoolDictionary.Instance;      
     }
-    void SetObjTag()
+    public void SetObjTag()
     {
         objtag = this.gameObject.name;
         //Instead setting it in the Inspector, we set it when we  need it in GetObjTag()
