@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectPooler;
 
 public class GarbageSpawner : BaseSpawner
 {
@@ -11,5 +12,10 @@ public class GarbageSpawner : BaseSpawner
     public GarbageSpawner() : base()
     {
         // _startDelay = 3.0f;
+    }
+
+    public override List<Pool> GetPoolPrefabList()
+    {
+        return Instance.poolGarbageBaseList;
     }
 }

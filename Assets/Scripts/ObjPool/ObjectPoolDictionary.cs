@@ -21,18 +21,19 @@ public class ObjectPoolDictionary : MonoBehaviour
     {
         objectPooler = ObjectPooler.Instance;
         objPoolDictionary = new Dictionary<string, Queue<GameObject>>();
-        AddPoolListToDictionary(objectPooler.poolGarbageList); //        AddPoolListToDictionary(objectPooler.poolGarbageList, objPoolDictionary);
-        AddPoolListToDictionary(objectPooler.poolCharactersList);
-        AddPoolListToDictionary(objectPooler.poolGarbageDogsList); 
+
+    AddPoolListToDictionary(objectPooler.poolGarbageBaseList);
+    AddPoolListToDictionary(objectPooler.poolGarbageAdultList);
+    AddPoolListToDictionary(objectPooler.poolCharactersList);
+    AddPoolListToDictionary(objectPooler.poolGarbageDogsList); 
     }
 
     void AddPoolListToDictionary(List<Pool> _poolList)
-    //(List<Pool> _poolList, Dictionary<string, Queue<GameObject>> _objPoolDictionar)
     {
         foreach (Pool pool in _poolList)
         {
             Queue<GameObject> objectPoolQueue = CreateNewQueue(pool);
-            objPoolDictionary.Add(pool.prefab.name, objectPoolQueue);
+            objPoolDictionary.Add(pool.Tag, objectPoolQueue);
         }
     }
 
@@ -49,11 +50,11 @@ public class ObjectPoolDictionary : MonoBehaviour
         {
             GameObject obj = CreateNewObject(_pool);
 
-            IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
-            if (pooledObj != null)
-            {
-                _pool.tag = pooledObj.GetObjTag();             
-            }
+            //IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
+            //if (pooledObj != null)
+            //{
+            //    _pool.tag = pooledObj.GetObjTag();             
+            //}
 
             obj.SetActive(false);
             _objectPoolQueue.Enqueue(obj);
@@ -63,57 +64,59 @@ public class ObjectPoolDictionary : MonoBehaviour
     private GameObject CreateNewObject(Pool _pool)
     {
         GameObject newObj = Instantiate(_pool.prefab);
-        // obj.name = pool.prefab.name;
+        newObj.name = _pool.prefab.name;
         // we are naming same as the incoming prefab - its important for key-search we can use it this way
         return newObj;
     }
 
     #region Spawn
-    public GameObject SpawnObjFromPoolDictionaryWithRotation(string _tag, Vector3 _position, Quaternion _rotation)
+    public GameObject SpawnObjFromPoolDictionaryWithRotation(Pool _pool, Vector3 _position, Quaternion _rotation)
     {
-        if (!objPoolDictionary.ContainsKey(_tag))
-        {
-            Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
-            return null;
-        }
-        GameObject objToSpawn = GetObjectFromPoolDictionary(_tag);
+        //if (!objPoolDictionary.ContainsKey(_tag))
+        //{
+        //    Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
+        //    return null;
+        //}
+        GameObject objToSpawn = GetObjectFromPoolDictionary(_pool); //_pool.Tag
         SpawnActiveObjectFromPoolDictionary(objToSpawn, _position, _rotation);
         return objToSpawn;
     }
 
-    public GameObject SpawnObjFromPoolDictionary(string _tag, Vector3 _position)
+    public GameObject SpawnObjFromPoolDictionary(Pool _pool, Vector3 _position)
     {
-        if (!objPoolDictionary.ContainsKey(_tag))
-        {
-            Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
-            return null;
-        }
-        GameObject objToSpawn = GetObjectFromPoolDictionary(_tag);
+    //    if (!objPoolDictionary.ContainsKey(_tag))
+    //    {
+    //        Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
+    //        return null;
+    //    }
+        GameObject objToSpawn = GetObjectFromPoolDictionary(_pool);
         SpawnActiveObjectFromPoolDictionary(objToSpawn, _position, GetPrefabRotation(objToSpawn));
         return objToSpawn;
     }
 
 
     public Quaternion GetPrefabRotation(GameObject _objToSpawn)
-    { return _objToSpawn.transform.rotation; }
+    { 
+    return _objToSpawn.transform.rotation; 
+}
 
-    public GameObject GetObjectFromPoolDictionary(string _tag)
+    public GameObject GetObjectFromPoolDictionary(Pool _pool)
     {
-        if (!objPoolDictionary.ContainsKey(_tag))
+        //if (!objPoolDictionary.ContainsKey(_tag))
+        //{
+        //    Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
+        //    return null;
+        //}
+        if (objPoolDictionary[_pool.Tag].Count > 0)
         {
-            Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
-            return null;
-        }
-        //if (objPoolDictionary[_tag].Count > 0)
-        //{
-            GameObject objToSpawn = objPoolDictionary[_tag].Dequeue();
+            GameObject objToSpawn = objPoolDictionary[_pool.Tag].Dequeue();
             return objToSpawn;
-        //}
-        //else // if the dictionary is empty
-        //{
-        //    GameObject objToSpawn = CreateNewObject();
-        //    return objToSpawn;
-        //}
+        }
+        else // if the dictionary is empty
+        {
+            GameObject objToSpawn = CreateNewObject(_pool);
+           return objToSpawn;
+        }
     }
 
     public void SpawnActiveObjectFromPoolDictionary(GameObject _objToSpawn, Vector3 _position, Quaternion _rotation)
@@ -126,17 +129,17 @@ public class ObjectPoolDictionary : MonoBehaviour
     #endregion
 
     #region Return To Dictionary
-    public void ReturnDeactivatedObjectToPoolDictionary(GameObject _objToSpawn, string _tag)
+    public void ReturnDeactivatedObjectToPoolDictionary(GameObject _spawnedObject)
     //we call it on Object Disable when  gameObject.SetActive(false);   
     {
-        Debug.Log("The Key: " + _tag);
-        if (!objPoolDictionary.ContainsKey(_tag))
+        Debug.Log("The Key: " + _spawnedObject.name);
+        if (!objPoolDictionary.ContainsKey(_spawnedObject.name))
         {
-            Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _tag);
+            Debug.LogWarning("objPoolDictionary doesn't contains this Key: " + _spawnedObject.name);
             return;
         }
-        objPoolDictionary[_tag].Enqueue(_objToSpawn);
-        _objToSpawn.SetActive(false);
+        objPoolDictionary[_spawnedObject.name].Enqueue(_spawnedObject);
+        _spawnedObject.SetActive(false);
     }
     #endregion
 }

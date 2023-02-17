@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectPooler;
 
 public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosition
 {
@@ -24,10 +25,18 @@ public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosi
     public override void Spawn()
     {
         Quaternion prefabRotation = GetRotation(xRotation, yRotation, zRotation);
-        Vector3 pos = GetRandomSpawnPosition();        
-        index = Random.Range(0, ObjectPooler.Instance.charactersTagList.Count);
-        string tag = ObjectPooler.Instance.charactersTagList[index];
-        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionaryWithRotation(tag, pos, prefabRotation);
+        Vector3 pos = GetRandomSpawnPosition();
+
+        //   index = Random.Range(0, ObjectPooler.Instance.poolGarbageList.Count);
+        //  Pool pool = ObjectPooler.Instance.poolGarbageList[index];
+
+        List<Pool> list = GetPoolPrefabList();
+        index = Random.Range(0, list.Count);
+        Pool pool = list[index];
+
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionaryWithRotation(pool, pos, prefabRotation);
+
+
         CreateTimeIntervalBetweenSpawning();
 
         //index = Random.Range(0, prefab.Length);

@@ -932,12 +932,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5818343526645817085}
   - component: {fileID: 459020028970730631}
-  - component: {fileID: 6015972408970973512}
   - component: {fileID: 2863995648039679073}
   - component: {fileID: 3275733642797162921}
   - component: {fileID: 5664125853123927739}
   - component: {fileID: 5664125853123927738}
   - component: {fileID: -631954155447937306}
+  - component: {fileID: -8902147648196333079}
   m_Layer: 0
   m_Name: Man-Drunk-beach
   m_TagString: Untagged
@@ -982,28 +982,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &6015972408970973512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6626264209117840455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71bb0ff890d15c643b45c391ce6e174e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab:
-  - {fileID: 9033456160405610175, guid: f1573f1615adb404ca11c1a7d21e9f93, type: 3}
-  - {fileID: 196292293064346204, guid: 0d4be0add600b244fa6cbb7c85cce14b, type: 3}
-  - {fileID: 3580758401151209997, guid: d476c0baba33afd469a7ba774820c152, type: 3}
-  - {fileID: 373840145030590413, guid: c4564bba939cc7443a28d758fc24ac8e, type: 3}
-  - {fileID: 1424148855291218910, guid: 0ce897fa6fc52ac4bb748e5c64f2ac6f, type: 3}
-  - {fileID: 196292293064346204, guid: 0d4be0add600b244fa6cbb7c85cce14b, type: 3}
-  - {fileID: 9033456160405610175, guid: f1573f1615adb404ca11c1a7d21e9f93, type: 3}
-  _startDelay: 0
-  _spawnInterval: 0
 --- !u!114 &2863995648039679073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1070,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: 
+  objtag: Man-Drunk-beach
+--- !u!114 &-8902147648196333079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626264209117840455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419095ad4e76bbd4cba5b4b3405ea375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDelay: 0
+  _spawnInterval: 0
 --- !u!1 &6922836336705356298
 GameObject:
   m_ObjectHideFlags: 0

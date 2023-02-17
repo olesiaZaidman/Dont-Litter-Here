@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectPooler;
 
 public class CharactersSpawner : SpawnerWithRotationPosition
 {
@@ -13,4 +14,11 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     {
         //_startDelay = 2f;  
     }
+
+    public override List<Pool> GetPoolPrefabList()
+    {
+        return Instance.poolCharactersList;
+    }
+
+
 }

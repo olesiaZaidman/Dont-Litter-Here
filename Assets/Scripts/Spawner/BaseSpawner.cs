@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectPooler;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
@@ -43,13 +44,19 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         InvokeRepeating("Spawn", _startDelay, _spawnInterval);
     }
 
+    public virtual List<Pool> GetPoolPrefabList()
+    {
+        return null; // new List<Pool>();
+    }
+
     public virtual void Spawn() // Spawn(List<string> tagList)
     {
         Vector3 pos = transform.position;
-        index = Random.Range(0, ObjectPooler.Instance.garbageTagList.Count);
-        string tag = ObjectPooler.Instance.garbageTagList[index];
+        List<Pool> list = GetPoolPrefabList();
+        index = Random.Range(0, list.Count);
+        Pool pool = list[index];
 
-        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(tag, pos);
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
         CreateTimeIntervalBetweenSpawning();
 
         //USED TO BE:

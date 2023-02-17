@@ -5,6 +5,6 @@ public interface IPooledObject
 {
     // void OnObjectSpawn();
     // string ObjTag { get; set; }
-    void SetObjTag();
-    string GetObjTag();
+    //void SetObjTag();
+   // string GetObjTag();
 }
