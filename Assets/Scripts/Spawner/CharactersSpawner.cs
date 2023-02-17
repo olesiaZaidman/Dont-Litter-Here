@@ -12,12 +12,17 @@ public class CharactersSpawner : SpawnerWithRotationPosition
 
     public CharactersSpawner() : base()
     {
-        //_startDelay = 2f;  
+       // yCoordinate = transform.position;
     }
 
     public override List<Pool> GetPoolPrefabList()
     {
         return Instance.poolCharactersList;
+
+        //List<Pool> combinedList = new List<Pool>();
+        //combinedList.AddRange(Instance.poolCharactersList);
+        //combinedList.AddRange(Instance.poolBirdsList);
+        //return combinedList;
     }
 
 

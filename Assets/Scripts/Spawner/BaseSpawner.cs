@@ -5,8 +5,6 @@ using static ObjectPooler;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
-   // public GameObject[] prefab;
-    //   [HideInInspector]
     protected int index;
 
     //  Interval & Delay:
@@ -49,7 +47,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         return null; // new List<Pool>();
     }
 
-    public virtual void Spawn() // Spawn(List<string> tagList)
+    public virtual void Spawn() 
     {
         Vector3 pos = transform.position;
         List<Pool> list = GetPoolPrefabList();
@@ -58,10 +56,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
         ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
         CreateTimeIntervalBetweenSpawning();
-
-        //USED TO BE:
-        //  index = Random.Range(0, prefab.Length);
-        //   Instantiate(prefab[index], pos, prefab[index].transform.rotation);
     }
 
 

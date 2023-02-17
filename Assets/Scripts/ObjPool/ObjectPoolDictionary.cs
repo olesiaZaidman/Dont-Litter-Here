@@ -25,7 +25,10 @@ public class ObjectPoolDictionary : MonoBehaviour
     AddPoolListToDictionary(objectPooler.poolGarbageBaseList);
     AddPoolListToDictionary(objectPooler.poolGarbageAdultList);
     AddPoolListToDictionary(objectPooler.poolCharactersList);
-    AddPoolListToDictionary(objectPooler.poolGarbageDogsList); 
+    AddPoolListToDictionary(objectPooler.poolGarbageDogsList);
+    AddPoolListToDictionary(objectPooler.poolDogsList);
+    AddPoolListToDictionary(objectPooler.poolBirdsList);
+
     }
 
     void AddPoolListToDictionary(List<Pool> _poolList)
@@ -49,13 +52,6 @@ public class ObjectPoolDictionary : MonoBehaviour
         for (int i = 0; i < _pool.size; i++)
         {
             GameObject obj = CreateNewObject(_pool);
-
-            //IPooledObject pooledObj = obj.GetComponent<IPooledObject>();
-            //if (pooledObj != null)
-            //{
-            //    _pool.tag = pooledObj.GetObjTag();             
-            //}
-
             obj.SetActive(false);
             _objectPoolQueue.Enqueue(obj);
         }
@@ -65,7 +61,6 @@ public class ObjectPoolDictionary : MonoBehaviour
     {
         GameObject newObj = Instantiate(_pool.prefab);
         newObj.name = _pool.prefab.name;
-        // we are naming same as the incoming prefab - its important for key-search we can use it this way
         return newObj;
     }
 

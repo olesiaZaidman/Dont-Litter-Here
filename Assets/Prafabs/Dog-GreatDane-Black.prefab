@@ -430,10 +430,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8062630504472748002}
   - component: {fileID: 8062630504480206882}
-  - component: {fileID: 529927187494081547}
   - component: {fileID: -5058510818558064543}
   - component: {fileID: 7592845152083752943}
   - component: {fileID: 3294075806989166294}
+  - component: {fileID: -8060502665267934783}
   m_Layer: 0
   m_Name: Dog-GreatDane-Black
   m_TagString: Untagged
@@ -478,20 +478,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &529927187494081547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062630504472773506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 6
 --- !u!114 &-5058510818558064543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -516,7 +502,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: Dog-GreatDane-Black
 --- !u!114 &3294075806989166294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +516,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+--- !u!114 &-8060502665267934783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062630504472773506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 6
 --- !u!1 &8062630504472773508
 GameObject:
   m_ObjectHideFlags: 0

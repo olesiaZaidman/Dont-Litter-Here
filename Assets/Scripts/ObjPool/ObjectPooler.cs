@@ -12,27 +12,21 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
-    [Header("Pools")]
+    [Header("Pools Garbage")]
     public List<Pool> poolGarbageBaseList;
     public List<Pool> poolGarbageAdultList;
-    public List<Pool> poolCharactersList;
     public List<Pool> poolGarbageDogsList;
 
-    //[Header("Tags")]
-    //public List<string> charactersTagList;
-    //public List<string> garbageTagList;
-    //public List<string> garbageKidsTagList;
-    //public List<string> garbageDogsTagList;
+    [Header("Pools Characters")]
+    public List<Pool> poolCharactersList;
+    public List<Pool> poolDogsList;
+    public List<Pool> poolBirdsList;
 
     #region Singelton
     public static ObjectPooler Instance;
     private void Awake()
     {
         Instance = this;
-        //garbageTagList = CreateListOfPoolTags(poolGarbageList);
-        //charactersTagList = CreateListOfPoolTags(poolCharactersList);
-        //garbageKidsTagList = CreateListOfPoolTags(poolGarbageKidsList);
-        //garbageDogsTagList = CreateListOfPoolTags(poolGarbageDogsList);
     }
     #endregion
 
@@ -44,22 +38,5 @@ public class ObjectPooler : MonoBehaviour
         return combinedList;
         // return a.Concat(b);
     }
-
-    //List<string> CreateListOfPoolTags(List<Pool> _poolList)
-    //{
-    //    List<string> tagList = new List<string>();
-
-    //    foreach (Pool pool in _poolList)
-    //    {
-    //        IPooledObject pooledObj = pool.prefab.GetComponent<IPooledObject>();
-
-    //        if (pooledObj != null)
-    //        {
-    //            pooledObj.SetObjTag();
-    //            tagList.Add(pooledObj.GetObjTag());
-    //        }         
-    //    }
-    //    return tagList;
-    //}
 }
 
