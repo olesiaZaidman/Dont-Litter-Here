@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectReturn : MonoBehaviour
-    //, IPooledObject
+//, IPooledObject
 {
     ObjectPoolDictionary objectPooler;
 
     void Start()
     {
-        objectPooler = ObjectPoolDictionary.Instance;      
+        objectPooler = ObjectPoolDictionary.Instance;
     }
 
     void OnDisable()
     {
         if (objectPooler != null)
         {
-            objectPooler.ReturnDeactivatedObjectToPoolDictionary(this.gameObject); 
+            objectPooler.ReturnDeactivatedObjectToPoolDictionary(this.gameObject);
         }
     }
 }

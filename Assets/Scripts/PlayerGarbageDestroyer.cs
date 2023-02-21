@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerGarbageDestroyer : GarbageDestroyer
 {
+ //   ScoreManager scoreManager;
+    CleanIndicator cleanIndicator;
+    AudioManager audioManager;
+    void Start()
+    {
+       // scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
+        cleanIndicator = FindObjectOfType<CleanIndicator>();
+        audioManager = FindObjectOfType<AudioManager>();
+    }
     void OnTriggerStay(Collider other) //OnTriggerEnter
     {
         DestroyGarbageOnCleaningAnimationState(other);
@@ -13,6 +22,9 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
         if (PlayerController.IsCleaningState)
         {
             DestroyGarbageOnTriggerStay(other);
+            audioManager.PlaySigh();
+           // scoreManager.DecreaseScorePoints(scoreManager.DirtLevelPoints);
+            cleanIndicator.IncreaseFill();
         }
     }
 }

@@ -6,6 +6,9 @@ using static ObjectPooler;
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
     protected int index;
+ //   ScoreManager scoreManager;
+  //  UIManager uiManager;
+    CleanIndicator cleanIndicator;
 
     //  Interval & Delay:
     [Header("StartTimeDelay")]
@@ -18,7 +21,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected virtual float StartDelayMax { get { return 10f; } }
     protected virtual float SpawnIntervalMin { get { return 1f; } }    
     protected virtual float SpawnIntervalMax { get { return 4f; } }
-
 
     public void CreateRandomStartTime()
     {
@@ -35,6 +37,9 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();
+    //    scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
+    //    uiManager = FindObjectOfType<UIManager>();
+        cleanIndicator = FindObjectOfType<CleanIndicator>();
     }
 
     public void StartSpawningWithIntervals()
@@ -53,8 +58,11 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         List<Pool> list = GetPoolPrefabList();
         index = Random.Range(0, list.Count);
         Pool pool = list[index];
-
         ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
+        cleanIndicator.DecreaseFill();
+
+     //   scoreManager.IncreaseScorePoints(scoreManager.DirtLevelPoints);
+      //  uiManager.SetScoreTextUI();
         CreateTimeIntervalBetweenSpawning();
     }
 

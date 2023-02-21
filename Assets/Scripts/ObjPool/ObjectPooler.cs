@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,8 @@ public class ObjectPooler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        //aaa = new List<List<Pool>> { poolGarbageBaseList, poolGarbageAdultList };
     }
     #endregion
 
