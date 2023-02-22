@@ -8,7 +8,8 @@ public class ScoreManager : MonoBehaviour
 
     static int scorePoints = 0;
    // public int DirtLevelPoints { get { return 1; } }
-    public int MaxCleaningnessLevelPoints { get { return 200; } }
+    public int MaxCleaningnessLevelPoints { get { return 300; } }
+    public int MaxEnergyLevelPoints { get { return 100; } }
     public int GetScorePoints()
     { return scorePoints; }
 

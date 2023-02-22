@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CleanIndicatorUI : MonoBehaviour
+public class CleanIndicatorUI : IndicatorUI
 {
-    [Header("UI elements")]
-    [SerializeField] Image imageFill;
-    [SerializeField] Image imageShadow_l;
+    [Header("UI Extra elements")]
     [SerializeField] Image imageShadow_d;
 
     [Header("Rating State")]
@@ -15,16 +13,7 @@ public class CleanIndicatorUI : MonoBehaviour
     [SerializeField] Sprite goodRating;
     [SerializeField] Sprite badRating;
 
-    [Header("Colors")]
-    //64E5FF blue
-    [SerializeField] Gradient gradient;
-    [SerializeField] Color red;
     ScoreManager scoreManager;
-
-    [SerializeField] float maxFillValue;
-    float normalizedMaxValue;
-    [SerializeField] float fillValue;
-    float normalizedValue;
 
     void Start()
     {
@@ -34,7 +23,7 @@ public class CleanIndicatorUI : MonoBehaviour
         SetImageFillAmountAndColor(normalizedMaxValue);
     }
 
-    void SetStartValues(float _maxValue)
+   public override void SetStartValues(float _maxValue)
     {
         maxFillValue = _maxValue; 
         fillValue = maxFillValue;
@@ -47,20 +36,8 @@ public class CleanIndicatorUI : MonoBehaviour
         imageRatingIcon.sprite = _sprite;
     }
 
-    void SetImageFillAmountAndColor(float _value)
-    {
-        imageFill.fillAmount = _value;
-        imageFill.color = gradient.Evaluate(_value);
-    }
 
-    float CalculateNormalizedValue(float _fillValue, float _maxValue)
-    {
-        float _normalizedValue = _fillValue / _maxValue;
-        return _normalizedValue;
-    }
- 
-
-    public void UpdateFill()
+    public override void UpdateFill()
     {
         normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue);
         SetImageFillAmountAndColor(normalizedValue);
@@ -73,7 +50,7 @@ public class CleanIndicatorUI : MonoBehaviour
             SetIconSprite(goodRating);
     }
 
-    public void DecreaseFill()
+    public override void DecreaseFill()
     {
         float dirtPoint = 1f;
 
@@ -89,7 +66,7 @@ public class CleanIndicatorUI : MonoBehaviour
         UpdateFill();
     }
 
-    public void IncreaseFill()
+    public override void IncreaseFill()
     {
         float cleanPoint = 20f;
 
@@ -114,11 +91,17 @@ public class CleanIndicatorUI : MonoBehaviour
         UpdateFill();
     }
 
-    public void ZeroFill()
+    public override void ZeroFill()
     {
-        fillValue = 0;
+        base.ZeroFill();
         UIManager.isGameOver = true;
-        imageShadow_l.color = red;
-        imageShadow_d.color = red;
+        ColorShadow(red);
+    }
+
+    public override void ColorShadow(Color _color)
+    {
+         base.ColorShadow(_color);
+       // imageShadow_l.color = _color;
+        imageShadow_d.color = _color;
     }
 }
