@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 102498746}
   - component: {fileID: 102498745}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Fill_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2191,6 +2191,82 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ee91736fb95e42ba6adea45c89181, type: 3}
+--- !u!1 &550848693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 550848694}
+  - component: {fileID: 550848696}
+  - component: {fileID: 550848695}
+  m_Layer: 5
+  m_Name: Fatigue Icon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &550848694
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550848693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1550192243}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 699, y: -478}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &550848695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550848693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0afc3d0bfa0e5884292821ef92ffaab5, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &550848696
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550848693}
+  m_CullTransparentMesh: 1
 --- !u!4 &561638144 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623948336518808507, guid: e08ee91736fb95e42ba6adea45c89181, type: 3}
@@ -3599,7 +3675,7 @@ GameObject:
   - component: {fileID: 960931442}
   - component: {fileID: 960931441}
   m_Layer: 5
-  m_Name: Fatigue Image
+  m_Name: Filll_Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4503,7 +4579,7 @@ GameObject:
   - component: {fileID: 1133114085}
   - component: {fileID: 1133114084}
   m_Layer: 5
-  m_Name: Rim (1)
+  m_Name: 'Shadow Light Image '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5805,6 +5881,7 @@ RectTransform:
   - {fileID: 960931440}
   - {fileID: 2112331460}
   - {fileID: 245817448}
+  - {fileID: 550848694}
   m_Father: {fileID: 1709867273}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6401,6 +6478,7 @@ GameObject:
   - component: {fileID: 1745842077}
   - component: {fileID: 1745842079}
   - component: {fileID: 1745842080}
+  - component: {fileID: 1745842081}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -6451,10 +6529,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageFill: {fileID: 102498745}
   imageShadow_l: {fileID: 1814041080}
-  imageShadow_d: {fileID: 1860446823}
-  imageRatingIcon: {fileID: 341347749}
-  goodRating: {fileID: 21300000, guid: 84c29be5eb409f444b57a593deba7105, type: 3}
-  badRating: {fileID: 21300000, guid: 49ccef2f9d5c7854a832c3fa5978bd1e, type: 3}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.43529412, b: 0.39215687, a: 1}
@@ -6488,6 +6562,10 @@ MonoBehaviour:
   red: {r: 1, g: 0.43529412, b: 0.39215687, a: 1}
   maxFillValue: 0
   fillValue: 0
+  imageShadow_d: {fileID: 1860446823}
+  imageRatingIcon: {fileID: 341347749}
+  goodRating: {fileID: 21300000, guid: 84c29be5eb409f444b57a593deba7105, type: 3}
+  badRating: {fileID: 21300000, guid: 49ccef2f9d5c7854a832c3fa5978bd1e, type: 3}
 --- !u!114 &1745842080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6500,6 +6578,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6004fd1bff1b2704881533a65bd93d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1745842081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745842076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6a4f6958134504dba3540ac45f45cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageFill: {fileID: 960931441}
+  imageShadow_l: {fileID: 1133114084}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.7418483, b: 0.032075405, a: 1}
+    key1: {r: 1, g: 0.25442845, b: 0, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 19275
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0}
+  maxFillValue: 0
+  fillValue: 0
+  temperatureModifier: 0
 --- !u!1001 &1745947775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8077,7 +8203,7 @@ GameObject:
   - component: {fileID: 2112331462}
   - component: {fileID: 2112331461}
   m_Layer: 5
-  m_Name: Shadow Image (1)
+  m_Name: 'ShadowDark Image '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
