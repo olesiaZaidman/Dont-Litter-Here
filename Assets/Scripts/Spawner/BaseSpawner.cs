@@ -8,7 +8,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected int index;
  //   ScoreManager scoreManager;
   //  UIManager uiManager;
-    CleanIndicator cleanIndicator;
+    CleanIndicatorUI cleanIndicator;
 
     //  Interval & Delay:
     [Header("StartTimeDelay")]
@@ -39,7 +39,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         StartSpawningWithIntervals();
     //    scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
     //    uiManager = FindObjectOfType<UIManager>();
-        cleanIndicator = FindObjectOfType<CleanIndicator>();
+        cleanIndicator = FindObjectOfType<CleanIndicatorUI>();
     }
 
     public void StartSpawningWithIntervals()

@@ -14,7 +14,7 @@ public class GarbageDestroyer : MonoBehaviour
         if (other.gameObject.CompareTag("Garbage"))      
         {
             other.gameObject.SetActive(false);          // Destroy(other.gameObject);
-            Debug.Log("We destroyed: " + other.gameObject.name);
+            //Debug.Log("We destroyed: " + other.gameObject.name);
         }
     }
 }

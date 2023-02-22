@@ -38,7 +38,7 @@ Transform:
   - {fileID: 3984663461576474117}
   - {fileID: 4789861943185909306}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6397781183890037972
 Animator:
@@ -156,8 +156,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5973711, y: 1.8469307, z: 0.95171285}
-  m_Center: {x: -0.013440132, y: 0.9165782, z: 0.26894176}
+  m_Size: {x: 1.8451831, y: 1.8469307, z: 1.6222153}
+  m_Center: {x: 0.011018634, y: 0.9165782, z: 0.21448612}
 --- !u!1 &432212661356167669
 GameObject:
   m_ObjectHideFlags: 0
