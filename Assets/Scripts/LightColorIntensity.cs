@@ -26,7 +26,7 @@ public class LightColorIntensity : MonoBehaviour
     [SerializeField] float crazyHotDayIntensity = 2.3f;
 
     Color color0;
-    Color color1 = Color.blue;
+    Color color1;
     float duration = 10.0f;
     float t = 0f;
     //FFA9A0
@@ -34,6 +34,7 @@ public class LightColorIntensity : MonoBehaviour
     {
         lt = GetComponent<Light>();
         lt.color = morningColor;
+        color1 = Color.blue;
         color0 = defaultColor;
     }
 
@@ -43,9 +44,9 @@ public class LightColorIntensity : MonoBehaviour
         //   DarkenLight(2.0f);
         //BrightenLight(2.0f);
         // set light color
-        // InterpolateLightBetweenColorsBackForth();
+       // InterpolateLightBetweenColorsBackForth(Color.blue, defaultColor);
         InterpolateLightBetweenColorsOnce(Color.blue, defaultColor);
-       // InterpolateLightIntensityOnce();
+      //  InterpolateLightIntensityOnce();
     }
    
 
@@ -56,8 +57,6 @@ public class LightColorIntensity : MonoBehaviour
         float duration = 3f;
         float t = Mathf.PingPong(Time.time, duration);
         lt.intensity = t;
-        //PingPong returns a value that will increment and decrement between the value 0 and length.
-        //   PingPong requires the value t to be a self-incrementing value, for example Time.time, and Time.unscaledTime.
     }
 
     void InterpolateLightIntensityOnce()
@@ -76,18 +75,14 @@ public class LightColorIntensity : MonoBehaviour
     {
         // Interpolate light color between two colors back and forth
        float t = Mathf.PingPong(Time.time, duration) / duration;
-        //PingPong returns a value that will increment and decrement between the value 0 and length.
-        //   PingPong requires the value t to be a self-incrementing value, for example Time.time, and Time.unscaledTime.
-
-        lt.color = Color.Lerp(_startColor, _startColor, t);
-        //t is clamped between 0 and 1. When t is 0 returns a. When t is 1 returns b.
+       lt.color = Color.Lerp(_startColor, _endColor, t);
     }
 
     void InterpolateLightBetweenColorsOnce(Color _startColor, Color _endColor)
     {
         // Interpolate light color between two colors ONCE
-        lt.color = Color.Lerp(_startColor, _startColor, t);
-        //t is clamped between 0 and 1. When t is 0 returns a. When t is 1 returns b.
+
+        lt.color = Color.Lerp(_startColor, _endColor, t);
         if (t < 1)
         {
             // increment it at the desired rate every update:

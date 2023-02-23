@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
+    [SerializeField] AudioClip whistleSound;
     // [Header("SoundFX")]
 
     float audioVolume = 0.5f;
@@ -34,5 +35,24 @@ public class AudioManager : MonoBehaviour
     {
         int index = Random.Range(0, sighSound.Length);
         sfx.PlayOneShot(sighSound[index], audioVolume);
+    }
+
+    public void PlaySighOnce()
+    {
+        StartCoroutine(PlaySighRoutine());
+    }
+
+    IEnumerator PlaySighRoutine()
+    {
+        bool sighed = false;
+        if (!sighed)
+        { PlaySigh(); }
+        yield return new WaitForSeconds(0.1f);
+        sighed = true;
+    }
+
+    public void PlayWhistle()
+    {
+        sfx.PlayOneShot(whistleSound, audioVolume);
     }
 }

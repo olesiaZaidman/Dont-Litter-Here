@@ -6,7 +6,7 @@ using static ObjectPooler;
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
     protected int index;
- //   ScoreManager scoreManager;
+    ScoreManager scoreManager;
   //  UIManager uiManager;
     CleanIndicatorUI cleanIndicator;
 
@@ -37,7 +37,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();
-    //    scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
+       scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
     //    uiManager = FindObjectOfType<UIManager>();
         cleanIndicator = FindObjectOfType<CleanIndicatorUI>();
     }
@@ -61,7 +61,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
         cleanIndicator.DecreaseFill();
 
-     //   scoreManager.IncreaseScorePoints(scoreManager.DirtLevelPoints);
+        scoreManager.IncreaseScorePoints(1);
       //  uiManager.SetScoreTextUI();
         CreateTimeIntervalBetweenSpawning();
     }

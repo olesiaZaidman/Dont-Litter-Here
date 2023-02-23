@@ -14,6 +14,11 @@ public class PlayerAnimationController : AnimationController
         PlayAnimationIfNeeded("isCleaning", _isPlaying);
     }
 
+    public void SitAndRestIfNeeded(bool _isPlaying)
+    {
+        PlayAnimationIfNeeded("isSitting", _isPlaying);
+    }
+
     public void StartCleanPickUp()
     {
         PlayAnimationIfNeeded("isCleaning", true);

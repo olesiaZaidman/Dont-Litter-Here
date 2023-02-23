@@ -16,27 +16,48 @@ public class FatigueIndicatorUI : IndicatorUI
 
     ScoreManager scoreManager;
     float startMinValue = 0f;
-    [SerializeField] float temperatureModifier;
+    [SerializeField] int temperatureModifier;
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
-        temperatureModifier = 1f;
-        SetStartValues((float)scoreManager.MaxEnergyLevelPoints);
+        temperatureModifier = 1;
+        SetStartValues(); //(float)scoreManager.MaxEnergyLevelPoints
         SetImageFillAmountAndColor(startMinValue);
     }
 
-    public override void SetStartValues(float _maxValue)
+    private void Update()
     {
-        maxFillValue = _maxValue;
-        fillValue = startMinValue;
-        normalizedMaxValue = CalculateNormalizedValue(maxFillValue, maxFillValue); //=1
-        normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue); //=0
+        fillValue = ScoreManager.Instance.GetFatiguePoints(); //ForDebug in the Inspector
+        maxFillValue = ScoreManager.Instance.MaxEnergyLevelPoints;  //ForDebug in the Inspector
+        if (Input.GetKey(KeyCode.I))
+        {
+            IncreaseFill();
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            DecreaseFill();
+        }
+    }
+
+    public void SetStartValues()
+    {
+        normalizedMaxValue = CalculateNormalizedValue((float)ScoreManager.Instance.MaxEnergyLevelPoints, (float)ScoreManager.Instance.MaxEnergyLevelPoints); //=1
+        normalizedValue = CalculateNormalizedValue((float)ScoreManager.Instance.GetFatiguePoints(), (float)ScoreManager.Instance.MaxEnergyLevelPoints); //=0
+     //  Debug.Log("SetStartValues: normalizedValue" + normalizedValue);
     }
 
     public override void UpdateFill()
     {
-        normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue);
+        normalizedValue = CalculateNormalizedValue((float)ScoreManager.Instance.GetFatiguePoints(), (float)ScoreManager.Instance.MaxEnergyLevelPoints);
+        //  Debug.Log("UpdateFill: normalizedValue" + normalizedValue);
         SetImageFillAmountAndColor(normalizedValue);
+    }
+
+    public void GraduallyDecreaseFill(float time)
+    {
+        //Decreease with timer
+        UpdateFill();
     }
 
     public override void IncreaseFill() //In Update?
@@ -45,47 +66,38 @@ public class FatigueIndicatorUI : IndicatorUI
         //20-30 avarage
         //30+ fast
 
-        float points = 1f;
+        int points = 1;
 
-        if (fillValue <= 0) //startMinValue
-        {
-            fillValue += points *temperatureModifier;
+      //  if (ScoreManager.Instance.GetFatiguePoints() < ScoreManager.Instance.MaxEnergyLevelPoints) //startMinValue
+     //   {
+            ScoreManager.Instance.IncreaseFatiguePoints(points * temperatureModifier);
             //the higher the temperature the faster it increases
-            if (fillValue >= maxFillValue)
-            {
-                ReachFatigueMax();
-            }
-
-            if (fillValue < 0) //startMinValue
-            {
-                ZeroFill();
-            }
+       // }
+        if (ScoreManager.Instance.GetFatiguePoints() >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        {
+            ReachFatigueMax();
         }
+
         UpdateFill();
     }
     public override void DecreaseFill()
     {
-        float dirtPoint = 1f;
+        int points = 1;
 
-        if (fillValue >= 0)
-        {
-            fillValue -= dirtPoint;
-        }
-        else
-        {
-            ZeroFill();
-        }
-
+       // if (ScoreManager.Instance.GetFatiguePoints() >= 0)
+     //   {
+            ScoreManager.Instance.DecreaseFatiguePoints(points);
+      //  }
         UpdateFill();
     }
 
 
     void ReachFatigueMax()
     {
-        fillValue = maxFillValue;
         Debug.Log("I am tired");
         //bool isTired == true > animation sit and timer od resting
         //  UIManager.isTired = true;
+
         ColorShadow(red);
     }
 

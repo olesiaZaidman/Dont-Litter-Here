@@ -23,7 +23,7 @@ public class CleanIndicatorUI : IndicatorUI
         SetImageFillAmountAndColor(normalizedMaxValue);
     }
 
-   public override void SetStartValues(float _maxValue)
+   public void SetStartValues(float _maxValue)
     {
         maxFillValue = _maxValue; 
         fillValue = maxFillValue;
@@ -68,7 +68,7 @@ public class CleanIndicatorUI : IndicatorUI
 
     public override void IncreaseFill()
     {
-        float cleanPoint = 20f;
+        float cleanPoint = 2f;
 
         if (fillValue >= 0)
         {

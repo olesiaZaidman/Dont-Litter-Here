@@ -7,25 +7,68 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 2f;
     private Animator myAnimator;
     PlayerAnimationController myAnimationController;
-    float timeForCleaningAnimation = 3f;
+    float timeForCleaningAnimation = 1.5f;
+    float timeForSittingTiredAnimation = 5f;
+    float cleaningSpeed = 4f;
+    AudioManager audioManager;
     public static bool IsCleaningState { get; private set; }
+    public static bool IsTiredState { get; private set; }
 
     float verticalInput;
+
+    FatigueIndicatorUI fatigueIndicator;
 
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
+        fatigueIndicator = FindObjectOfType<FatigueIndicatorUI>();
+        audioManager = FindObjectOfType<AudioManager>();
+
         IsCleaningState = false;
     }
 
     void Update() //FixedUpdate?
     {
         
-        if (!PlayerController.IsCleaningState)
+        if (!IsCleaningState || !IsTiredState)
         { MoveForwardBackward(); }
 
         Clean();
+        SetTimeForCleaningAnimation(ScoreManager.Instance.GetFatiguePoints());
+    }
+
+    void SetTimeForCleaningAnimation(float fatigue)
+    {
+        if (fatigue < 30) //Input.GetKey(KeyCode.I)
+        {
+            timeForCleaningAnimation = 1.5f;
+            cleaningSpeed = 4f;
+            myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
+         //   IsTiredState = false;
+        }
+
+        if (fatigue >= 30 && fatigue < 70) //
+        {
+            timeForCleaningAnimation = 2.5f;
+            cleaningSpeed = 2f;
+            myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
+         //   IsTiredState = false;
+        }
+
+        if (fatigue >= 70) // && fatigue < 95
+        {
+            timeForCleaningAnimation = 4f;
+            cleaningSpeed = 1f;
+            myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
+        //    IsTiredState = false;
+        }
+        if (fatigue >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        {
+            //    IsTiredState = true;
+            StartCoroutine(StartSeatAndRestRoutine(timeForSittingTiredAnimation));
+        }
+           
     }
 
     void Clean()
@@ -43,6 +86,19 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(_delay);
         IsCleaningState = false;
         myAnimationController.CleanPickUpIfNeeded(IsCleaningState); //       PlayAnimationIfNeeded("isCleaning", false);
+    }
+
+    IEnumerator StartSeatAndRestRoutine(float _delay)
+    {
+        audioManager.PlaySighOnce();
+        IsTiredState = true;
+        myAnimationController.SitAndRestIfNeeded(IsTiredState);      // PlayAnimationIfNeeded("isCleaning", true);
+        fatigueIndicator.GraduallyDecreaseFill(_delay);
+         yield return new WaitForSeconds(_delay);
+        ScoreManager.Instance.ZeroDownFatigue();
+        fatigueIndicator.UpdateFill();
+        IsTiredState = false;
+        myAnimationController.SitAndRestIfNeeded(IsTiredState); //       PlayAnimationIfNeeded("isCleaning", false);
     }
 
 

@@ -24,13 +24,13 @@ public class IndicatorUI : MonoBehaviour, IUIIndicator
         
     }
 
-    public virtual void SetStartValues(float _maxValue)
-    {
-        maxFillValue = _maxValue;
-        normalizedMaxValue = CalculateNormalizedValue(maxFillValue, maxFillValue); //=1
-        // fillValue = maxFillValue;
-        //  normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue); //=1
-    }
+    //public virtual void SetStartValues(float _maxValue)
+    //{
+    //    maxFillValue = _maxValue;
+    //    normalizedMaxValue = CalculateNormalizedValue(maxFillValue, maxFillValue); //=1
+    //}
+
+
 
     public virtual float CalculateNormalizedValue(float _fillValue, float _maxValue)
     {

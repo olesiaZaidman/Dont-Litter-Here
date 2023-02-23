@@ -7,8 +7,8 @@ public class CharactersSpawner : SpawnerWithRotationPosition
 {
     protected override float StartDelayMin { get { return 1f; } }
     protected override float StartDelayMax { get { return 10f; } }
-    protected override float SpawnIntervalMin { get { return 2f; } }
-    protected override float SpawnIntervalMax { get { return 15; } }
+    protected override float SpawnIntervalMin { get { return 5f; } }
+    protected override float SpawnIntervalMax { get { return 30; } }
 
     public CharactersSpawner() : base()
     {
