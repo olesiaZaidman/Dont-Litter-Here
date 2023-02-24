@@ -26,14 +26,30 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
         //    Debug.Log("We hadsome water!");
         //}
     }
+
+    //WaterBottle
+
+     void DrinkWater(int points)
+    {
+            Debug.Log("Water!");
+            fatigueIndicator.DecreaseFillOnWater(points);
+    }
+
+
     void DestroyGarbageOnCleaningAnimationState(Collider other)
     {
+        int recoveryPoints = 20;
+        float delay = 3f; 
+
         if (PlayerController.IsCleaningState)
         {
+            if (other.gameObject.GetComponent<WaterBottle>())
+            {
+                DrinkWater(recoveryPoints);
+            }
+
             DestroyGarbageOnTriggerStay(other);
-            audioManager.PlaySigh();
-           // scoreManager.DecreaseScorePoints(scoreManager.DirtLevelPoints);
-            cleanIndicator.IncreaseFill();
+            audioManager.PlaySighOnce(delay);       
         }
     }
 }

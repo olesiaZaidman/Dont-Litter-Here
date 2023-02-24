@@ -5,8 +5,13 @@ using UnityEngine.UI;
 
 public class FatigueIndicatorUI : IndicatorUI
 {
-    //Tiredness of player that affect cleaning speed
-    //the higher the temperature the faster Fatigue increases
+    //TODO:
+    //1- Gradually Decrese Fatigue in GraduallyDecreaseFill() && 
+    //ScoreManager.Instance.RestDown(time);
+    //OR SpeedDown() in PlayerController
+
+
+    //2-the higher the temperature the faster Fatigue increases
     //15-20 slow
     //20-30 avarage
     //30+ fast
@@ -17,11 +22,12 @@ public class FatigueIndicatorUI : IndicatorUI
     ScoreManager scoreManager;
     float startMinValue = 0f;
     [SerializeField] int temperatureModifier;
+    [SerializeField]  Color whiteShadow;
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
         temperatureModifier = 1;
-        SetStartValues(); //(float)scoreManager.MaxEnergyLevelPoints
+        SetStartValues();
         SetImageFillAmountAndColor(startMinValue);
     }
 
@@ -29,6 +35,15 @@ public class FatigueIndicatorUI : IndicatorUI
     {
         fillValue = ScoreManager.Instance.GetFatiguePoints(); //ForDebug in the Inspector
         maxFillValue = ScoreManager.Instance.MaxEnergyLevelPoints;  //ForDebug in the Inspector
+
+        //BUG!
+        //
+        //if(ScoreManager.Instance.GetFatiguePoints() >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        if (Input.GetKey(KeyCode.Z))
+        {
+            GraduallyDecreaseFill(5);
+        }
+
         if (Input.GetKey(KeyCode.I))
         {
             IncreaseFill();
@@ -38,25 +53,33 @@ public class FatigueIndicatorUI : IndicatorUI
         {
             DecreaseFill();
         }
+
     }
 
     public void SetStartValues()
     {
         normalizedMaxValue = CalculateNormalizedValue((float)ScoreManager.Instance.MaxEnergyLevelPoints, (float)ScoreManager.Instance.MaxEnergyLevelPoints); //=1
         normalizedValue = CalculateNormalizedValue((float)ScoreManager.Instance.GetFatiguePoints(), (float)ScoreManager.Instance.MaxEnergyLevelPoints); //=0
-     //  Debug.Log("SetStartValues: normalizedValue" + normalizedValue);
+                                                                                                                                                        //  Debug.Log("SetStartValues: normalizedValue" + normalizedValue);
     }
 
     public override void UpdateFill()
     {
         normalizedValue = CalculateNormalizedValue((float)ScoreManager.Instance.GetFatiguePoints(), (float)ScoreManager.Instance.MaxEnergyLevelPoints);
-        //  Debug.Log("UpdateFill: normalizedValue" + normalizedValue);
         SetImageFillAmountAndColor(normalizedValue);
+
+        if (ScoreManager.Instance.GetFatiguePoints() >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        {
+            ColorShadow(red); 
+        }
+        else
+            ColorShadow(whiteShadow);
     }
 
     public void GraduallyDecreaseFill(float time)
     {
-        //Decreease with timer
+        //Decrease with timer
+        ScoreManager.Instance.RestDown(time);
         UpdateFill();
     }
 
@@ -68,38 +91,44 @@ public class FatigueIndicatorUI : IndicatorUI
 
         int points = 1;
 
-      //  if (ScoreManager.Instance.GetFatiguePoints() < ScoreManager.Instance.MaxEnergyLevelPoints) //startMinValue
-     //   {
-            ScoreManager.Instance.IncreaseFatiguePoints(points * temperatureModifier);
-            //the higher the temperature the faster it increases
-       // }
-        if (ScoreManager.Instance.GetFatiguePoints() >= ScoreManager.Instance.MaxEnergyLevelPoints)
-        {
-            ReachFatigueMax();
-        }
+        //  if (ScoreManager.Instance.GetFatiguePoints() < ScoreManager.Instance.MaxEnergyLevelPoints) //startMinValue
+        //   {
+        ScoreManager.Instance.IncreaseFatiguePoints(points * temperatureModifier);
+        //the higher the temperature the faster it increases
+        // }
+        //if (ScoreManager.Instance.GetFatiguePoints() >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        //{
+        //    ReachFatigueMax();
+        //}
 
         UpdateFill();
     }
     public override void DecreaseFill()
     {
         int points = 1;
-
-       // if (ScoreManager.Instance.GetFatiguePoints() >= 0)
-     //   {
-            ScoreManager.Instance.DecreaseFatiguePoints(points);
-      //  }
+        ScoreManager.Instance.DecreaseFatiguePoints(points);
         UpdateFill();
     }
 
-
-    void ReachFatigueMax()
-    {
-        Debug.Log("I am tired");
-        //bool isTired == true > animation sit and timer od resting
-        //  UIManager.isTired = true;
-
-        ColorShadow(red);
+    public void DecreaseFillOnWater(int points)
+    {       
+        ScoreManager.Instance.DecreaseFatiguePoints(points);
+        UpdateFill();
     }
+
+    //void ReachFatigueMax()
+    //{
+    // //   Debug.Log("I am tired");
+    //    //bool isTired == true > animation sit and timer od resting
+    //    //  UIManager.isTired = true;
+
+    //    ColorShadow(red);
+    //}
+
+    //void Rested()
+    //{
+    //    ColorShadow(whiteShadow);
+    //}
 
 }
 

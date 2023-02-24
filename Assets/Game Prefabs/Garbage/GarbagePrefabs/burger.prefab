@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7781994508623988359}
   - component: {fileID: -4953040259198901560}
   - component: {fileID: -5820832510049499213}
+  - component: {fileID: 4234306590073904871}
   m_Layer: 0
   m_Name: burger
   m_TagString: Garbage
@@ -135,4 +136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: burger
+--- !u!114 &4234306590073904871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717856624743174793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

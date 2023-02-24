@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8573138365528585257}
   - component: {fileID: 992083355249788197}
   - component: {fileID: 357055638171201433}
+  - component: {fileID: 2298162370110357947}
   m_Layer: 0
   m_Name: apple-core
   m_TagString: Garbage
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &8573138365529517814
 MeshFilter:
@@ -134,4 +135,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: apple-core
+--- !u!114 &2298162370110357947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573138365528617718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

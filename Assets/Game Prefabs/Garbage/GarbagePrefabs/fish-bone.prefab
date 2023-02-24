@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6077226846212667898}
   - component: {fileID: -8379667111259325723}
   - component: {fileID: 3785266844814497405}
+  - component: {fileID: 1296408737810045241}
   m_Layer: 0
   m_Name: fish-bone
   m_TagString: Garbage
@@ -132,4 +133,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: fish-bone
+--- !u!114 &1296408737810045241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077226846212636487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

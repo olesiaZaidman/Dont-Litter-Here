@@ -1962,6 +1962,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a3db183420d2864984a279cc854542b, type: 3}
   - {fileID: 8300000, guid: 8f5fcb9fb70950549a1dcf0df6f55bc4, type: 3}
   - {fileID: 8300000, guid: 85ebb934fa69b944c8432c1976754272, type: 3}
+  whistleSound: {fileID: 0}
 --- !u!81 &486509914
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5287,6 +5288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1310639916}
   - component: {fileID: 1310639915}
+  - component: {fileID: 1310639917}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -5306,6 +5308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d483c26fa6a294f8c636d5a47895ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  amGarbInScene: 0
 --- !u!4 &1310639916
 Transform:
   m_ObjectHideFlags: 0
@@ -5319,8 +5322,21 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1310639917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310639914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ff4153d1b9b0e4e8675fb81759c090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gradualPoints: 100
 --- !u!4 &1313363429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623948336518808507, guid: e08ee91736fb95e42ba6adea45c89181, type: 3}
@@ -5804,7 +5820,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1526285792
 PrefabInstance:
@@ -6259,7 +6275,7 @@ GameObject:
   - component: {fileID: 1709867271}
   - component: {fileID: 1709867270}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6345,7 +6361,7 @@ RectTransform:
   - {fileID: 1695820282}
   - {fileID: 1550192243}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6536,7 +6552,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1745842079
 MonoBehaviour:
@@ -6582,7 +6598,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 1}
+  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.6117647}
   maxFillValue: 0
   fillValue: 0
   imageShadow_d: {fileID: 1860446823}
@@ -6645,10 +6661,11 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0}
+  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.6745098}
   maxFillValue: 0
   fillValue: 0
   temperatureModifier: 0
+  whiteShadow: {r: 0.8352941, g: 0.89411765, b: 0.99215686, a: 0.5686275}
 --- !u!1001 &1745947775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8421,7 +8438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
       propertyPath: poolBirdsList.Array.data[0].size
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
       propertyPath: poolDogsList.Array.data[0].prefab
@@ -8657,6 +8674,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7935241566920440179, guid: 19d4b8a58fa544348a378416f043ef9b, type: 3}
+      propertyPath: accelerator
+      value: 
+      objectReference: {fileID: 1310639917}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

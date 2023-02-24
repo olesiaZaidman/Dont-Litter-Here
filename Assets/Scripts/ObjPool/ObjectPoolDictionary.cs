@@ -30,6 +30,7 @@ public class ObjectPoolDictionary : MonoBehaviour
         AddPoolListToDictionary(objectPooler.poolGarbageDogsList);
         AddPoolListToDictionary(objectPooler.poolDogsList);
         AddPoolListToDictionary(objectPooler.poolBirdsList);
+        AddPoolListToDictionary(objectPooler.poolWaterList);
     }
 
     #region Create Object Pool

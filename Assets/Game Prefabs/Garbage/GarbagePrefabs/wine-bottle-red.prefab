@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6872466838552052101}
   - component: {fileID: -8398137622805720682}
   - component: {fileID: -7170876185514291946}
+  - component: {fileID: 4083774512221416566}
   m_Layer: 0
   m_Name: wine-bottle-red
   m_TagString: Garbage
@@ -133,4 +134,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: wine-bottle-red
+--- !u!114 &4083774512221416566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9033456160405610175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

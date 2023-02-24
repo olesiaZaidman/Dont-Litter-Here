@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ObjectPooler;
 public class BirdsSpawner : CharactersSpawner
+//WaterSpawner
 {
     public BirdsSpawner() : base()
     {

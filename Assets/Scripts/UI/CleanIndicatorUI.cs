@@ -18,17 +18,33 @@ public class CleanIndicatorUI : IndicatorUI
     void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
-        SetStartValues((float)scoreManager.MaxCleaningnessLevelPoints);
+        SetStartValues();
         SetIconSprite(goodRating);
         SetImageFillAmountAndColor(normalizedMaxValue);
+
+        maxFillValue = ScoreManager.Instance.MaxCleaningnessLevelPoints; //ForDebug in the Inspector
+        fillValue = ScoreManager.Instance.GetCleanRatingPoints(); //ForDebug in the Inspector
     }
 
-   public void SetStartValues(float _maxValue)
+     void Update()
     {
-        maxFillValue = _maxValue; 
-        fillValue = maxFillValue;
-        normalizedMaxValue = CalculateNormalizedValue(maxFillValue, maxFillValue); //=1
-        normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue); //=1
+        if(UIManager.isGameOver)
+        { return; }
+            fillValue = ScoreManager.Instance.GetCleanRatingPoints();//ForDebug in the Inspector
+        ScoreManager.Instance.UpdateCleanRatingPoints();
+        if (ScoreManager.Instance.GetCleanRatingPoints() <= 0)
+        {
+            ZeroFill();
+        }
+        UpdateFill();
+
+
+    }
+
+    public void SetStartValues()
+    {
+        normalizedMaxValue = CalculateNormalizedValue((float)ScoreManager.Instance.MaxCleaningnessLevelPoints, (float)ScoreManager.Instance.MaxCleaningnessLevelPoints); //=1
+        normalizedValue = CalculateNormalizedValue((float)ScoreManager.Instance.GetCleanRatingPoints(), (float)ScoreManager.Instance.MaxCleaningnessLevelPoints); //=1
     }
 
     void SetIconSprite(Sprite _sprite)
@@ -39,7 +55,7 @@ public class CleanIndicatorUI : IndicatorUI
 
     public override void UpdateFill()
     {
-        normalizedValue = CalculateNormalizedValue(fillValue, maxFillValue);
+        normalizedValue = CalculateNormalizedValue((float)scoreManager.GetCleanRatingPoints(), (float)scoreManager.MaxCleaningnessLevelPoints);
         SetImageFillAmountAndColor(normalizedValue);
 
         if (normalizedValue < (normalizedMaxValue*0.5f))
@@ -50,15 +66,11 @@ public class CleanIndicatorUI : IndicatorUI
             SetIconSprite(goodRating);
     }
 
-    public override void DecreaseFill()
+    public override void DecreaseFill() //Spawn() in Spawn() 
     {
-        float dirtPoint = 1f;
+        ScoreManager.Instance.UpdateCleanRatingPoints();
 
-        if (fillValue >= 0)
-        {
-            fillValue -= dirtPoint;
-        }
-        else
+        if (ScoreManager.Instance.GetCleanRatingPoints() <= 0)
         {
             ZeroFill();
         }
@@ -68,32 +80,37 @@ public class CleanIndicatorUI : IndicatorUI
 
     public override void IncreaseFill()
     {
-        float cleanPoint = 2f;
-
-        if (fillValue >= 0)
-        {
-            if (fillValue < maxFillValue)
-            {
-                fillValue += cleanPoint;
-
-                if (fillValue > maxFillValue)
-                { fillValue = maxFillValue; }
-            }
-            else //(fillValue > maxFillValue)
-            {
-                fillValue = maxFillValue;
-            }
-        }
-        else
-        {
-            ZeroFill();
-        }
-        UpdateFill();
+           ScoreManager.Instance.UpdateCleanRatingPoints();
+           UpdateFill();
     }
+
+        //    //DestroyGarbageOnCleaningAnimationState() in PlayerGarbageDestroyer:
+        //    //float cleanPoint = 2f;
+
+        //    //if (fillValue >= 0)
+        //    //{
+        //    //    if (fillValue < maxFillValue)
+        //    //    {
+        //    //        fillValue += cleanPoint;
+
+        //    //        if (fillValue > maxFillValue)
+        //    //        { fillValue = maxFillValue; }
+        //    //    }
+        //    //    else //(fillValue > maxFillValue)
+        //    //    {
+        //    //        fillValue = maxFillValue;
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    ZeroFill();
+        //    //}
+
+        //}
 
     public override void ZeroFill()
     {
-        base.ZeroFill();
+    //    base.ZeroFill();
         UIManager.isGameOver = true;
         ColorShadow(red);
     }

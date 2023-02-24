@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
     // [Header("SoundFX")]
 
     float audioVolume = 0.5f;
-
+    bool sighed = false;
     private void Start()
     {
       //  backgroundSFXAudio.PlayOneShot(wavesSound, audioVolume);
@@ -37,18 +37,20 @@ public class AudioManager : MonoBehaviour
         sfx.PlayOneShot(sighSound[index], audioVolume);
     }
 
-    public void PlaySighOnce()
+    public void PlaySighOnce(float _delay)
     {
-        StartCoroutine(PlaySighRoutine());
+        StartCoroutine(PlaySighRoutine(_delay));
     }
 
-    IEnumerator PlaySighRoutine()
+    IEnumerator PlaySighRoutine(float _delay)
     {
-        bool sighed = false;
         if (!sighed)
-        { PlaySigh(); }
-        yield return new WaitForSeconds(0.1f);
-        sighed = true;
+        {
+            sighed = true;
+            PlaySigh();
+        }
+        yield return new WaitForSeconds(_delay);
+        sighed = false;
     }
 
     public void PlayWhistle()

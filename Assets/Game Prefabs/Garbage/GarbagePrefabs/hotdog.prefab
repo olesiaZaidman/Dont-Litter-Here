@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2086548969548893931}
   - component: {fileID: 5045651209000353634}
   - component: {fileID: 3073709049575893360}
+  - component: {fileID: -5301493283105859489}
   m_Layer: 0
   m_Name: hotdog
   m_TagString: Garbage
@@ -135,4 +136,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: hotdog
+--- !u!114 &-5301493283105859489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4844124300188776142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

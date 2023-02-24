@@ -23,6 +23,9 @@ public class ObjectPooler : MonoBehaviour
     public List<Pool> poolDogsList;
     public List<Pool> poolBirdsList;
 
+    [Header("Props")]
+    public List<Pool> poolWaterList;
+
     #region Singelton
     public static ObjectPooler Instance;
     private void Awake()
