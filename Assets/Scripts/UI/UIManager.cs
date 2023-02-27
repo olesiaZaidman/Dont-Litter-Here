@@ -34,6 +34,6 @@ public class UIManager : MonoBehaviour
 
     public void SetScoreTextUI()
     {
-        score.SetText(scoreManager.GetCleanRatingPoints().ToString());
+       // score.SetText(scoreManager.GetCleanRatingPoints().ToString());
     }
 }

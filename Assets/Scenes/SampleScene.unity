@@ -1416,7 +1416,7 @@ Transform:
   - {fileID: 1937869344}
   - {fileID: 2147226125}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &296986465 stripped
 Transform:
@@ -1940,7 +1940,7 @@ Transform:
   - {fileID: 576567197}
   - {fileID: 97274220}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &486509913
 MonoBehaviour:
@@ -1962,7 +1962,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a3db183420d2864984a279cc854542b, type: 3}
   - {fileID: 8300000, guid: 8f5fcb9fb70950549a1dcf0df6f55bc4, type: 3}
   - {fileID: 8300000, guid: 85ebb934fa69b944c8432c1976754272, type: 3}
+  - {fileID: 8300000, guid: fab42a09570541d49a557a985a08f4af, type: 3}
   whistleSound: {fileID: 0}
+  gulpSound: {fileID: 8300000, guid: 59403c85b337eb447b08f2ffc1a200d0, type: 3}
 --- !u!81 &486509914
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3425,6 +3427,60 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3270572cfbaa5345b3fd82ac94a3cc3, type: 3}
+--- !u!1 &882298868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 882298870}
+  - component: {fileID: 882298869}
+  m_Layer: 0
+  m_Name: PropsSpawnerInScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &882298869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882298868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804f7078453388b458dd2d0ad4eefe53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startDelay: 0
+  _spawnInterval: 0
+  xRotation: 0
+  yRotation: 0
+  zRotation: 0
+  xMaxRange: 11
+  xMinRange: -11
+  yCoordinate: 0
+  zMaxRange: 4
+  zMinRange: -14
+--- !u!4 &882298870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882298868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.34526172, y: 0.159, z: 1.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &890295086
 GameObject:
   m_ObjectHideFlags: 0
@@ -4183,7 +4239,7 @@ Transform:
   - {fileID: 1192446261}
   - {fileID: 1960418270}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1025579537
 PrefabInstance:
@@ -5322,7 +5378,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1310639917
 MonoBehaviour:
@@ -5820,7 +5876,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1526285792
 PrefabInstance:
@@ -6361,7 +6417,7 @@ RectTransform:
   - {fileID: 1695820282}
   - {fileID: 1550192243}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6552,7 +6608,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1745842079
 MonoBehaviour:
@@ -8413,6 +8469,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
+      propertyPath: poolWaterList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
       propertyPath: poolCharactersList.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -8441,6 +8501,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
+      propertyPath: poolWaterList.Array.data[0].size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
       propertyPath: poolDogsList.Array.data[0].prefab
       value: 
       objectReference: {fileID: 5454366066996021799, guid: 69dd7edf588c9ed44be4f8be78a91989, type: 3}
@@ -8456,6 +8520,10 @@ PrefabInstance:
       propertyPath: poolBirdsList.Array.data[0].prefab
       value: 
       objectReference: {fileID: 844515051614586153, guid: 209524f366715ca45bbe07273a4cc4a4, type: 3}
+    - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
+      propertyPath: poolWaterList.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 5879903818168797679, guid: 5d07155b5cbe97543b07efa5739e3b37, type: 3}
     - target: {fileID: 540540314889148165, guid: 093b1fa4d5e0d9041985314396da9d0b, type: 3}
       propertyPath: poolGarbageBaseList.Array.data[0].size
       value: 5

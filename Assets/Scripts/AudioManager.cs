@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
     [SerializeField] AudioClip whistleSound;
+    [SerializeField] AudioClip gulpSound;
     // [Header("SoundFX")]
 
     float audioVolume = 0.5f;
@@ -56,5 +57,10 @@ public class AudioManager : MonoBehaviour
     public void PlayWhistle()
     {
         sfx.PlayOneShot(whistleSound, audioVolume);
+    }
+
+    public void PlayGulp()
+    {
+        sfx.PlayOneShot(gulpSound, audioVolume);
     }
 }

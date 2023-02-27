@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerGarbageDestroyer : GarbageDestroyer
 {
- //   ScoreManager scoreManager;
+    //   ScoreManager scoreManager;
     CleanIndicatorUI cleanIndicator;
     FatigueIndicatorUI fatigueIndicator;
     AudioManager audioManager;
     void Start()
     {
-       // scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
+        // scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
         cleanIndicator = FindObjectOfType<CleanIndicatorUI>();
         fatigueIndicator = FindObjectOfType<FatigueIndicatorUI>();
         audioManager = FindObjectOfType<AudioManager>();
@@ -29,27 +29,32 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
 
     //WaterBottle
 
-     void DrinkWater(int points)
+    void DrinkWater(int points)
     {
-            Debug.Log("Water!");
-            fatigueIndicator.DecreaseFillOnWater(points);
+      //  Debug.Log("Water!");
+        Fatigue.Instance.DecreaseFillOnDrinkingWater(points);
     }
 
 
     void DestroyGarbageOnCleaningAnimationState(Collider other)
     {
         int recoveryPoints = 20;
-        float delay = 3f; 
+        float delay = 3f;
 
         if (PlayerController.IsCleaningState)
         {
             if (other.gameObject.GetComponent<WaterBottle>())
             {
                 DrinkWater(recoveryPoints);
+                audioManager.PlayGulp();
+            }
+            if (other.gameObject.GetComponent<Litter>())
+            { 
+                audioManager.PlaySighOnce(delay); 
             }
 
             DestroyGarbageOnTriggerStay(other);
-            audioManager.PlaySighOnce(delay);       
+           
         }
     }
 }

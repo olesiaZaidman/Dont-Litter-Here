@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     //[SerializeField] IncreaseValueOverTime accelerator;
     // bool isSpeedDown = false;
+    
+
 
      [SerializeField] float speed = 2f;
     float verticalInput;
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public static bool IsTiredState { get; private set; }
     float timeForSittingTiredAnimation = 5f;
     FatigueIndicatorUI fatigueIndicator;
+    bool isResting = false;
 
     void Awake()
     {
@@ -39,15 +42,12 @@ public class PlayerController : MonoBehaviour
 
         MoveForwardBackward();
         Clean();
-        SetTimeForCleaningAnimation(ScoreManager.Instance.GetFatiguePoints());
+        SetTimeForCleaningAnimation(Fatigue.Instance.GetFatiguePoints());
 
-        //if (isSpeedDown)//isSpeedDown
-        //{
-        //    accelerator.SpeedDown(timeForSittingTiredAnimation);
-        //    //if value = 0 > isSpeedDown = false;
-        //}
-
-
+        if (isResting)
+        {
+            Fatigue.Instance.GraduallyDecreaseFill(timeForSittingTiredAnimation);
+        }
     }
 
     #region Clean
@@ -81,15 +81,11 @@ public class PlayerController : MonoBehaviour
             cleaningSpeed = 1f;
             myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
         }
-        if (fatigue >= ScoreManager.Instance.MaxEnergyLevelPoints)
+        if (fatigue >= Fatigue.Instance.MaxEnergyLevelPoints)
         {
-          //  Debug.Log("1-fatigue >= 100 & isSpeedDown: "+ isSpeedDown);
-          //  isSpeedDown = true; 
-          //  Debug.Log("2-fatigue >= 100 & isSpeedDown: " + isSpeedDown);
-            //if (isSpeedDown)
-            //{
-                StartCoroutine(StartSeatAndRestRoutine(timeForSittingTiredAnimation));
-          //  }
+            isResting = true;
+            StartCoroutine(StartSeatAndRestRoutine(timeForSittingTiredAnimation));
+
         }
 
     }
@@ -111,12 +107,10 @@ public class PlayerController : MonoBehaviour
         IsTiredState = true;
         myAnimationController.SitAndRestIfNeeded(IsTiredState);      // PlayAnimationIfNeeded("isCleaning", true);
 
-
-
-        fatigueIndicator.GraduallyDecreaseFill(_delay);
+       // Fatigue.Instance.GraduallyDecreaseFill(_delay);
          yield return new WaitForSeconds(_delay);
-        ScoreManager.Instance.ZeroDownFatigue();
-        fatigueIndicator.UpdateFill();
+        isResting = false;
+        Fatigue.Instance.ZeroDownFatigue();
         IsTiredState = false;
         myAnimationController.SitAndRestIfNeeded(IsTiredState); //       PlayAnimationIfNeeded("isCleaning", false);
     }
