@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //[SerializeField] IncreaseValueOverTime accelerator;
-    // bool isSpeedDown = false;
-    
-
-
-     [SerializeField] float speed = 2f;
+    float walkingSpeed = 2f;
+    float runningSpeed = 4f;
+    float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
     float verticalInput;
 
     private Animator myAnimator;
@@ -21,43 +18,56 @@ public class PlayerController : MonoBehaviour
     float cleaningSpeed = 4f;
 
     public static bool IsTiredState { get; private set; }
-    float timeForSittingTiredAnimation = 5f;
-    FatigueIndicatorUI fatigueIndicator;
-    bool isResting = false;
+    public static bool IsResting { get; private set; }
+    public static float TimeSittingTiredAnimation { get { return 5f; } }
+
 
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
-        fatigueIndicator = FindObjectOfType<FatigueIndicatorUI>();
         audioManager = FindObjectOfType<AudioManager>();
 
         IsCleaningState = false;
     }
 
     void Update() //FixedUpdate?
-    {       
-        if (IsCleaningState || IsTiredState)
-        { return;  }
+    {
+        if (IsCleaningState || IsTiredState) //|| IsResting
+        { return; }
 
         MoveForwardBackward();
-        Clean();
+        CleanOnIput();
+        SitOnIput();
         SetTimeForCleaningAnimation(Fatigue.Instance.GetFatiguePoints());
-
-        if (isResting)
-        {
-            Fatigue.Instance.GraduallyDecreaseFill(timeForSittingTiredAnimation);
-        }
     }
 
     #region Clean
-    void Clean()
+    void CleanOnIput()
     {
         if ((Input.GetKey(KeyCode.Space)))
-        {          
+        {
             StartCoroutine(StartCleaningRoutine(timeForCleaningAnimation));
         }
     }
+
+    void SitOnIput()
+    {
+        if (Input.GetKey(KeyCode.Z) && Fatigue.Instance.GetFatiguePoints() < Fatigue.Instance.MaxEnergyLevelPoints && Fatigue.Instance.GetFatiguePoints() > 0)
+        {
+           // IsResting = true;
+            audioManager.PlaySighOnce(TimeSittingTiredAnimation);
+            myAnimationController.SitAndRestIfNeeded(true);
+            Fatigue.Instance.GraduallyDecreaseFill(TimeSittingTiredAnimation);
+        }
+        else
+        {
+            myAnimationController.SitAndRestIfNeeded(false);
+         //   IsResting = false;
+           // Debug.Log("NOT RESTING");
+        }
+    }
+
 
     void SetTimeForCleaningAnimation(float fatigue)
     {
@@ -83,9 +93,7 @@ public class PlayerController : MonoBehaviour
         }
         if (fatigue >= Fatigue.Instance.MaxEnergyLevelPoints)
         {
-            isResting = true;
-            StartCoroutine(StartSeatAndRestRoutine(timeForSittingTiredAnimation));
-
+            StartCoroutine(StartSeatAndRestRoutine(TimeSittingTiredAnimation));
         }
 
     }
@@ -106,13 +114,14 @@ public class PlayerController : MonoBehaviour
         audioManager.PlaySighOnce(_delay);
         IsTiredState = true;
         myAnimationController.SitAndRestIfNeeded(IsTiredState);      // PlayAnimationIfNeeded("isCleaning", true);
-
-       // Fatigue.Instance.GraduallyDecreaseFill(_delay);
-         yield return new WaitForSeconds(_delay);
-        isResting = false;
+        Debug.Log("IsTiredState"+IsTiredState);
+        // Fatigue.Instance.GraduallyDecreaseFill(_delay);
+        yield return new WaitForSeconds(_delay);
+        // isResting = false;
         Fatigue.Instance.ZeroDownFatigue();
         IsTiredState = false;
         myAnimationController.SitAndRestIfNeeded(IsTiredState); //       PlayAnimationIfNeeded("isCleaning", false);
+        Debug.Log("IsTiredState" + IsTiredState);
     }
 
     #endregion
@@ -123,36 +132,43 @@ public class PlayerController : MonoBehaviour
         float customEpsilon = 0.001f;
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
+        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * walkingSpeed);
 
-        if (verticalInput > customEpsilon) //or verticalInput !=0
+        if (verticalInput > customEpsilon) 
         {
             myAnimationController.WalkForward();
+            myAnimator.SetFloat("moveSpeed", walkingSpeed);              
+
+            if (Input.GetKey(KeyCode.LeftShift) && Fatigue.Instance.GetFatiguePoints()< Fatigue.Instance.MaxEnergyLevelPoints)
+            {
+                myAnimationController.WalkForward();
+                myAnimator.SetFloat("moveSpeed", runningSpeed); 
+               Fatigue.Instance.GraduallyIncreaseFill(maxTimeOfRunning);
+            }       
         }
 
         else if (verticalInput < -customEpsilon)
         {
             myAnimationController.WalkBackward();
+            myAnimator.SetFloat("moveSpeed", walkingSpeed);
         }
-        else if(verticalInput == 0)
+
+
+        else if (verticalInput == 0)
         {
             myAnimationController.Idle();
         }
-     //   Debug.Log(verticalInput);
-
-        //if (verticalInput != 0)
-        //{
-        //    PlayAnimationIfNeeded("isWalkingBackward", true);
-        //    PlayAnimationIfNeeded("isCleaning", false);
-        //    Debug.Log(verticalInput);
-
-        //}
-
-        //else
-        //{
-        //    PlayAnimationIfNeeded("isWalkingBackward", false);
-        //}
-
     }
+
+    //void Run()
+    //{
+    //    if (Input.GetKey(KeyCode.LeftShift) && Fatigue.Instance.GetFatiguePoints() < Fatigue.Instance.MaxEnergyLevelPoints)
+    //    {
+    //        myAnimationController.WalkForward();
+    //        myAnimator.SetFloat("moveSpeed", runningSpeed); // float runningSpeed = 4f;}
+    //        Fatigue.Instance.GraduallyIncreaseFill(5);
+    //    }
+    //}
+
     #endregion
 }

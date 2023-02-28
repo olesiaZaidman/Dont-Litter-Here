@@ -40,5 +40,10 @@ public class PlayerAnimationController : AnimationController
         PlayAnimationIfNeeded("isWalkingBackward", true);
     }
 
-    
+    //public void Run()
+    //{
+    //    PlayAnimationIfNeeded("isWalkingForward", true); //isRunning
+    //}
+
+
 }

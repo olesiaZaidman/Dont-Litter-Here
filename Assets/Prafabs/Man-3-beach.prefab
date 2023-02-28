@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMin: 1
-  speedMax: 6
+  speedMax: 3
 --- !u!114 &2781493021094026018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: Man-3-beach
 --- !u!114 &-5811737594546151686
 MonoBehaviour:
   m_ObjectHideFlags: 0

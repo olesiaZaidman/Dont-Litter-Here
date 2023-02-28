@@ -5,11 +5,6 @@ using UnityEngine;
 public class Fatigue : MonoBehaviour
 {
     //TODO:
-    //1- Gradually Decrese Fatigue in GraduallyDecreaseFill() && 
-    //ScoreManager.Instance.RestDown(time);
-    //OR SpeedDown() in PlayerController
-
-
     //2-the higher the temperature the faster Fatigue increases
     //15-20 slow
     //20-30 avarage
@@ -24,9 +19,10 @@ public class Fatigue : MonoBehaviour
 
     FatigueIndicatorUI fatigueUI;
 
-    [SerializeField] int temperatureModifier = 1;
-    [SerializeField] int points = 1;
-    [SerializeField] float time = 5;
+    int temperatureModifier = 1;
+    int points = 1;
+    float time = 5;
+
     float NormalizeValue(float _fillValue)
     {
         float _normalizedValue = _fillValue / MaxEnergyLevelPoints;
@@ -45,37 +41,46 @@ public class Fatigue : MonoBehaviour
         fatigueUI = FindObjectOfType<FatigueIndicatorUI>();
         FatiguePoints.Initialize(OnUpdateFatigue);
     }
-    private void Update()
+    void Update()
     {
-        ChangeFatigueOnButtonPressed();
+        if (PlayerController.IsTiredState)
+        {
+            Debug.Log("GraduallyDecreaseFill");
+            GraduallyDecreaseFill(PlayerController.TimeSittingTiredAnimation);
+        }
     }
 
-    void ChangeFatigueOnButtonPressed()
-    {
-        if (Input.GetKey(KeyCode.Z))
-        {
-            GraduallyDecreaseFill(time);
-        }
+    //void ChangeFatigueOnButtonPressed() //Tested in Update
+    //{
+    //    //if (Input.GetKey(KeyCode.Z))
+    //    //{
+    //    //    GraduallyDecreaseFill(time);
+    //    //}
 
-        if (Input.GetKey(KeyCode.I))
-        {
-            IncreaseFillAccordingToTemperature(points, temperatureModifier);
-        }
+    //    //if (Input.GetKey(KeyCode.LeftShift))
+    //    //{
+    //    //    GraduallyIncreaseFill(time);
+    //    //}
 
-        if (Input.GetKey(KeyCode.P))
-        {
-            DecreaseFatiguePoints(points);
-        }
-    }
+    //    //if (Input.GetKey(KeyCode.I))
+    //    //{
+    //    //    IncreaseFatiguePoints(points* temperatureModifier);
+    //    //}
+
+    //    //if (Input.GetKey(KeyCode.P))
+    //    //{
+    //    //    DecreaseFatiguePoints(points);
+    //    //}
+    //}
 
     public class FatiguePoints
     {
         static float fatiguePoints = 0;
-        public delegate void OnUpdateDelegate(float _fatiguePoints); //step 1
+        public delegate void OnUpdateDelegate(float _fatiguePoints);
 
-        static OnUpdateDelegate onUpdateDelegateInstance;  //instance - step 2
+        static OnUpdateDelegate onUpdateDelegateInstance;
 
-        public static void Initialize(OnUpdateDelegate _onUpdate) //step 3: equal to the function OnUpdateFatigue(float newFatigue)
+        public static void Initialize(OnUpdateDelegate _onUpdate)
         {
             onUpdateDelegateInstance = _onUpdate;
         }
@@ -88,17 +93,10 @@ public class Fatigue : MonoBehaviour
         public static float Set(float _fatiguePoints)
         {
             fatiguePoints = _fatiguePoints;
-            onUpdateDelegateInstance(_fatiguePoints); //step 4: give a value to delegate that passes it to the function OnUpdateFatigue(float newFatigue)
-            //that normalizes it and passes it to UpdateFill
+            onUpdateDelegateInstance(_fatiguePoints);
             //each time we set the value the whole logic flows: fatigueValue >delegate> to functiomc> Notrmalize & Update fill
             return fatiguePoints;
         }
-
-
-        //USUAL DELEGATE STEPS:
-        //delegate void OnUpdateFill(float _fatiguePoints); //step 1
-        //OnUpdateFill myDelegateUpdateFill = fatigueUI.UpdateFill; //step 2 & 3
-        //  myDelegateUpdateFill(normalizedValue);   //OR myDelegateUpdateFill.Invoke(normalizedValue); //step4
     }
 
 
@@ -113,27 +111,14 @@ public class Fatigue : MonoBehaviour
     public float IncreaseFatiguePoints(float num)
     {
         return FatiguePoints.Set(Mathf.Clamp(FatiguePoints.Get() + num, 0, MaxEnergyLevelPoints));
-        // FatiguePoints.MaxEnergyLevelPoints
-
-        //if (FatiguePoints.Get() >= FatiguePoints.MaxEnergyLevelPoints)
-        //{
-        //    return FatiguePoints.Set(FatiguePoints.MaxEnergyLevelPoints);
-        //}
-
     }
 
     public float DecreaseFatiguePoints(float num)
     {
         return FatiguePoints.Set(Mathf.Clamp(FatiguePoints.Get() - num, 0, MaxEnergyLevelPoints));
-        //if (fatiguePoints <= 0)
-        //{
-        //    fatiguePoints = 0;
-        //    return fatiguePoints;
-        //}
-
     }
 
-    public void RestDown(float _time) //works in Update
+    public void GraduallyDecreaseFill(float _time) //works in Update
     {
         if (FatiguePoints.Get() > 0)
         {
@@ -144,30 +129,16 @@ public class Fatigue : MonoBehaviour
             ZeroDownFatigue();
     }
 
+    public void GraduallyIncreaseFill(float _time) //works in Update
+    {
+        if (FatiguePoints.Get() < MaxEnergyLevelPoints)
+        {
+            float acceleration = (MaxEnergyLevelPoints - 0) / _time;
+            FatiguePoints.Set(FatiguePoints.Get() + acceleration * Time.deltaTime);   //  fatiguePoints -= acceleration * Time.deltaTime;
+        }
+        else
+            FatiguePoints.Set(MaxEnergyLevelPoints);
+    }
+
     #endregion
-
-    public void GraduallyDecreaseFill(float time)
-    {
-        //Decrease with timer
-        Fatigue.Instance.RestDown(time);
-    }
-
-    public void IncreaseFillAccordingToTemperature(float _points, float _temperatureModifier)
-    {
-        //15-20 slow
-        //20-30 avarage
-        //30+ fast
-        Fatigue.Instance.IncreaseFatiguePoints(_points * _temperatureModifier);
-    }
-    //public  void DecreaseFill()
-    //{
-    //    int points = 1;
-    //    Fatigue.Instance.DecreaseFatiguePoints(points);
-    //}
-
-    public void DecreaseFillOnDrinkingWater(int points)
-    {
-        Fatigue.Instance.DecreaseFatiguePoints(points);
-    }
-
 }

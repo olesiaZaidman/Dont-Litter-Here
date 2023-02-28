@@ -50,9 +50,9 @@ public class Cleanliness : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        SetStartCleanRatingPoints();
         cleanlinessUI = FindObjectOfType<CleanIndicatorUI>();
         CleanRatingPoints.Initialize(OnUpdateCleanRating);
+        SetStartCleanRatingPoints();
     }
 
     void Update()

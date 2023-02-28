@@ -5345,6 +5345,8 @@ GameObject:
   - component: {fileID: 1310639916}
   - component: {fileID: 1310639915}
   - component: {fileID: 1310639917}
+  - component: {fileID: 1310639918}
+  - component: {fileID: 1310639919}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -5364,7 +5366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d483c26fa6a294f8c636d5a47895ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amGarbInScene: 0
 --- !u!4 &1310639916
 Transform:
   m_ObjectHideFlags: 0
@@ -5393,6 +5394,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gradualPoints: 100
+--- !u!114 &1310639918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310639914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2687e31677208364085be41facdfb433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1310639919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310639914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34b5ba93c731b104baedf1eafcb9375a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amGarbInScene: 0
 --- !u!4 &1313363429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7623948336518808507, guid: e08ee91736fb95e42ba6adea45c89181, type: 3}
@@ -6654,9 +6680,8 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.6117647}
-  maxFillValue: 0
-  fillValue: 0
+  redShadow: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.69411767}
+  whiteShadow: {r: 0.8352941, g: 0.89411765, b: 0.99215686, a: 0.48235294}
   imageShadow_d: {fileID: 1860446823}
   imageRatingIcon: {fileID: 341347749}
   goodRating: {fileID: 21300000, guid: 84c29be5eb409f444b57a593deba7105, type: 3}
@@ -6717,10 +6742,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  red: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.6745098}
-  maxFillValue: 0
-  fillValue: 0
-  temperatureModifier: 0
+  redShadow: {r: 1, g: 0.43529412, b: 0.39215687, a: 0.6392157}
   whiteShadow: {r: 0.8352941, g: 0.89411765, b: 0.99215686, a: 0.5686275}
 --- !u!1001 &1745947775
 PrefabInstance:

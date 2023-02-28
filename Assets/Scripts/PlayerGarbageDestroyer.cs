@@ -32,7 +32,7 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
     void DrinkWater(int points)
     {
       //  Debug.Log("Water!");
-        Fatigue.Instance.DecreaseFillOnDrinkingWater(points);
+        Fatigue.Instance.DecreaseFatiguePoints(points);
     }
 
 

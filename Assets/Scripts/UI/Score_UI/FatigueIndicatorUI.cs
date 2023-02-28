@@ -13,7 +13,7 @@ public class FatigueIndicatorUI : IndicatorUI
     public override void UpdateFill(float _normValue) //
     {
       SetImageFillAmountAndColor(_normValue);
-        ChangeShadowColorIfNeeded(Fatigue.Instance.GetFatiguePoints() >= Fatigue.Instance.MaxEnergyLevelPoints);
+      ChangeShadowColorIfNeeded(Fatigue.Instance.GetFatiguePoints() >= Fatigue.Instance.MaxEnergyLevelPoints);
     }
 
     //   Patent Content IndicatorUI: 

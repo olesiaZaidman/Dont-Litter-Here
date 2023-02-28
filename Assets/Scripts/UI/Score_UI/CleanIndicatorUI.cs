@@ -30,17 +30,17 @@ public class CleanIndicatorUI : IndicatorUI
         if (UIManager.isGameOver)
         { return; }
 
-        ChangeShadowColorIfNeeded(Cleanliness.Instance.GetCleanRatingPoints() >= 0);
+        ChangeShadowColorIfNeeded(Cleanliness.Instance.GetCleanRatingPoints() <= 0);
         SetImageFillAmountAndColor(_normValue);
-        ChangeIconSpriteIfNeeded(_normValue < (_normValue * 0.5f));
+        ChangeIconSpriteIfNeeded(_normValue <=  0.5f);
     }
 
 
     void ChangeIconSpriteIfNeeded(bool _isTrue)
     {
-
         if (_isTrue)
         {
+            Debug.Log("badRating");
             SetIconSprite(badRating);
         }
         else
