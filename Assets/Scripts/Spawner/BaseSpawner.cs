@@ -59,10 +59,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         index = Random.Range(0, list.Count);
         Pool pool = list[index];
         ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
-      //  cleanIndicator.DecreaseFill();
-
-      //  scoreManager.IncreaseCleanRatingPoints(1);
-      //  uiManager.SetScoreTextUI();
         CreateTimeIntervalBetweenSpawning();
     }
 

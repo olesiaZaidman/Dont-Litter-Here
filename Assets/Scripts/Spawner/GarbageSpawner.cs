@@ -20,4 +20,10 @@ public class GarbageSpawner : BaseSpawner
     {
         return Instance.poolGarbageBaseList;
     }
+
+    public override void Spawn()
+    {
+        base.Spawn();
+      //  Cleanliness.Instance.RecalculateCleanRatingPoints();       // Cleanliness.Instance.DecreaseCleanRatingPoints(Cleanliness.Points);
+    }
 }

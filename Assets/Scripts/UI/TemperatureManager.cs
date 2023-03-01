@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class TemperatureManager : MonoBehaviour
 {
-   
-    void Start()
-    {
-        
-    }
+    int temperature;
 
-    
-    void Update()
-    {
-        
-    }
+
+    public static bool isNormalTemp = false;
+    public static bool isHighTemp = false;
 }

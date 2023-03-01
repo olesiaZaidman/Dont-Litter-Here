@@ -23,13 +23,8 @@ public class CleanIndicatorUI : IndicatorUI
     {
         imageRatingIcon.sprite = _sprite;
     }
-
-
     public override void UpdateFill(float _normValue)
     {
-        if (UIManager.isGameOver)
-        { return; }
-
         ChangeShadowColorIfNeeded(Cleanliness.Instance.GetCleanRatingPoints() <= 0);
         SetImageFillAmountAndColor(_normValue);
         ChangeIconSpriteIfNeeded(_normValue <=  0.5f);
@@ -40,18 +35,12 @@ public class CleanIndicatorUI : IndicatorUI
     {
         if (_isTrue)
         {
-            Debug.Log("badRating");
+           // Debug.Log("badRating");
             SetIconSprite(badRating);
         }
         else
             SetIconSprite(goodRating);
     }
-
-    //public override void ZeroFill()
-    //{
-    //    //    base.ZeroFill();
-    //    UIManager.isGameOver = true;
-    //}
 
     public override void ColorShadow(Color _color)
     {

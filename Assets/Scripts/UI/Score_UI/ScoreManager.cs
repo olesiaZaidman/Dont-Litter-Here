@@ -6,9 +6,6 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    //Cleaningness
-
-
     //Money
     static float moneyScore = 0;
 

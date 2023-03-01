@@ -21,10 +21,7 @@ public class IndicatorUI : MonoBehaviour, IUIIndicator
    // [SerializeField] protected float fillValue;
   //  protected float normalizedValue;
 
-    void Start()
-    {
-        
-    }
+
     public void ChangeShadowColorIfNeeded(bool _isTrue)
     {
         if (_isTrue)

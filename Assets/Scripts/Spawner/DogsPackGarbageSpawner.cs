@@ -12,6 +12,14 @@ public class DogsPackGarbageSpawner : GarbageSpawner
     }
 
 
+    //public override void Spawn()
+    //{
+    //    base.Spawn();
+    //    Debug.Log("Current Rating: " + Cleanliness.Instance.GetCleanRatingPoints());
+    //    Cleanliness.Instance.DecreaseCleanRatingPointsPoints(Cleanliness.Points);
+    //    Debug.Log("Decreased. Current Rating: " + Cleanliness.Instance.GetCleanRatingPoints());
+    //    Debug.Log("Dog spawned");
+    //}
 
     //public override void Spawn() 
     //{

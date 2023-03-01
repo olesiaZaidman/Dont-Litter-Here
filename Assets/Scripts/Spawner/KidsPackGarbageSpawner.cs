@@ -9,4 +9,13 @@ public class KidsPackGarbageSpawner : GarbageSpawner
     {
         return Instance.poolGarbageBaseList;
     }
+
+    //public override void Spawn()
+    //{
+    //    base.Spawn();
+    //    Debug.Log("Current Rating: " + Cleanliness.Instance.GetCleanRatingPoints());
+    //    Cleanliness.Instance.DecreaseCleanRatingPointsPoints(Cleanliness.Points);
+    //    Debug.Log("Decreased. Current Rating: " + Cleanliness.Instance.GetCleanRatingPoints());
+    //    Debug.Log("Kids spawned");
+    //}
 }

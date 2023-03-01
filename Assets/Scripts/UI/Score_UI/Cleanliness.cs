@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Cleanliness : MonoBehaviour
 {
+    //TODO:
+    //GET RID OF FLICKERING INDICATOR
     public static Cleanliness Instance;
     CleanIndicatorUI cleanlinessUI;
     public float MaxCleaningnessLevelPoints { get { return 10; } }
-    static float amountOfGarbageInScene; //Make it private with getter!
-    public float amGarbInScene;
+    public static float Points{ get { return 1f; } }
+    private static float AmountOfGarbageInScene { get; set; } 
+
 
     float NormalizeValue(float _fillValue)
     {
@@ -52,114 +55,79 @@ public class Cleanliness : MonoBehaviour
         Instance = this;
         cleanlinessUI = FindObjectOfType<CleanIndicatorUI>();
         CleanRatingPoints.Initialize(OnUpdateCleanRating);
-        SetStartCleanRatingPoints();
+    }
+
+     void Start()
+    {
+        CleanRatingPoints.Set(MaxCleaningnessLevelPoints);
     }
 
     void Update()
     {
-        amountOfGarbageInScene = FindGarbageInScene();
-        amGarbInScene = amountOfGarbageInScene;
+        if (UIManager.isGameOver)
+        { return; }
 
-        UpdateCleanRatingPoints();
+        //if (Input.GetKey(KeyCode.I))
+        //{
+        //    IncreaseCleanRatingPoints(1);
+        //}
 
-        if (GetCleanRatingPoints() <= 0)
+        //if (Input.GetKey(KeyCode.P))
+        //{
+        //    DecreaseCleanRatingPoints(1);
+        //}
+
+
+        if (CleanRatingPoints.Get() <= 0)
         {
-            ZeroDownCleanRating();
+            UIManager.isGameOver = true;
+            Debug.Log("isGameOver" + UIManager.isGameOver);
         }
-       // UpdateFill(1);
+
 
     }
 
-
-    public float ZeroDownCleanRating()
+    private void FixedUpdate()
     {
-        //TODO: call ZeroFill() from CleanIndicatorUI with delegate with GAME OVER
-        return CleanRatingPoints.Set(0);
+        RecalculateCleanRatingPoints();
     }
-
 
     #region FindGarbage
     int FindGarbageInScene()
     {
-        //Calculate Amount of garbage in the scene:
         var foundGarbageObjects = FindObjectsOfType<Litter>();
-        //   Debug.Log(foundGarbageObjects + " : " + foundGarbageObjects.Length);
         return foundGarbageObjects.Length;
     }
 
     #endregion
 
     #region CleanRating
-    void SetStartCleanRatingPoints()
-    {
-        CleanRatingPoints.Set(MaxCleaningnessLevelPoints - amountOfGarbageInScene);
-        //Debug.Log("Start for cleanRatingPoints: " + cleanRatingPoints);
-    }
 
     public float GetCleanRatingPoints()
     { return CleanRatingPoints.Get(); }
-
-    public void UpdateCleanRatingPoints()
+    public float ZeroDownCleanRating()
     {
-        if (CleanRatingPoints.Get() < 0)
-        {
-            ZeroDownCleanRating(); //gameover should be inside?
-
-            //GAMEOVER
-            //   return cleanRatingPoints;
-        }
-        else
-        {
-            CleanRatingPoints.Set(MaxCleaningnessLevelPoints - amountOfGarbageInScene);
-            //  Debug.Log("damn garbage!: " + cleanRatingPoints);
-            // return cleanRatingPoints;
-        }
+        return CleanRatingPoints.Set(0);
     }
+
+
+    public float IncreaseCleanRatingPoints(float num)
+    {
+        return CleanRatingPoints.Set(Mathf.Clamp(CleanRatingPoints.Get() + num, 0, MaxCleaningnessLevelPoints));
+    }
+
+    public float DecreaseCleanRatingPoints(float num)
+    {
+        return CleanRatingPoints.Set(Mathf.Clamp(CleanRatingPoints.Get() - num, 0, MaxCleaningnessLevelPoints));
+    }
+
+    public float RecalculateCleanRatingPoints()
+    {
+       AmountOfGarbageInScene = FindGarbageInScene();
+       float curPoints = MaxCleaningnessLevelPoints - AmountOfGarbageInScene;
+       return CleanRatingPoints.Set(Mathf.Clamp(curPoints, 0, MaxCleaningnessLevelPoints));
+    }
+
     #endregion
-
-    public void DecreaseFill() //Spawn() in Spawn() 
-    {
-       UpdateCleanRatingPoints();
-
-        if (CleanRatingPoints.Get() <= 0)
-        {
-            ZeroDownCleanRating();
-        }
-
-      //  UpdateFill(1);
-    }
-
-    public void IncreaseFill()
-    {
-       UpdateCleanRatingPoints();
-      //  UpdateFill(1);
-    }
-
-
-
-
-    //    //DestroyGarbageOnCleaningAnimationState() in PlayerGarbageDestroyer:
-    //    //float cleanPoint = 2f;
-
-    //    //if (fillValue >= 0)
-    //    //{
-    //    //    if (fillValue < maxFillValue)
-    //    //    {
-    //    //        fillValue += cleanPoint;
-
-    //    //        if (fillValue > maxFillValue)
-    //    //        { fillValue = maxFillValue; }
-    //    //    }
-    //    //    else //(fillValue > maxFillValue)
-    //    //    {
-    //    //        fillValue = maxFillValue;
-    //    //    }
-    //    //}
-    //    //else
-    //    //{
-    //    //    ZeroFill();
-    //    //}
-
-    //}
 
 }

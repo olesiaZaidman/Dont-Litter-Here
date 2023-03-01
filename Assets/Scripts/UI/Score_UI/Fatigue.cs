@@ -115,6 +115,7 @@ public class Fatigue : MonoBehaviour
 
     public float DecreaseFatiguePoints(float num)
     {
+
         return FatiguePoints.Set(Mathf.Clamp(FatiguePoints.Get() - num, 0, MaxEnergyLevelPoints));
     }
 

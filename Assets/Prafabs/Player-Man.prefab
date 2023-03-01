@@ -1111,6 +1111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SI_WheelIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 158218, guid: a944b274bfd301b42b27d3f5e92757e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 441988, guid: a944b274bfd301b42b27d3f5e92757e4, type: 3}
       propertyPath: m_RootOrder
       value: 0
