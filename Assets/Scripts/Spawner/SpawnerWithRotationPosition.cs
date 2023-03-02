@@ -24,6 +24,7 @@ public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosi
 
     public override void Spawn()
     {
+        Debug.Log("SpawnerWithRotationPosition Hello");
         Quaternion prefabRotation = GetRotation(xRotation, yRotation, zRotation);
         Vector3 pos = GetRandomSpawnPosition();
 

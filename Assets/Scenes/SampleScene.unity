@@ -1957,13 +1957,14 @@ MonoBehaviour:
   backgroundMusic: {fileID: 420005535}
   sfx: {fileID: 576567196}
   wavesSound: {fileID: 8300000, guid: 4ca64e0495cf4504faf91484ccc9f57e, type: 3}
+  moneySound: {fileID: 8300000, guid: a06b8d10184a2de4b8fc31c4ecfde7b9, type: 3}
   sighSound:
   - {fileID: 8300000, guid: 4a3db183420d2864984a279cc854542b, type: 3}
   - {fileID: 8300000, guid: 8f5fcb9fb70950549a1dcf0df6f55bc4, type: 3}
   - {fileID: 8300000, guid: 85ebb934fa69b944c8432c1976754272, type: 3}
   - {fileID: 8300000, guid: fab42a09570541d49a557a985a08f4af, type: 3}
   whistleSound: {fileID: 0}
-  gulpSound: {fileID: 8300000, guid: 59403c85b337eb447b08f2ffc1a200d0, type: 3}
+  gulpSound: {fileID: 8300000, guid: f99c2124724b55a489de988b64c94810, type: 3}
 --- !u!81 &486509914
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2916,17 +2917,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b6831ab985cf64f9b1b9b79f97dd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultPos: {x: 0, y: 3, z: 0}
-  defaultRotation: {x: 50, y: -30, z: 0}
   defaultYellowColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  morningPos: {x: 0, y: 0, z: 0}
-  morningRotation: {x: 0, y: 0, z: 0}
   morningBlueColor: {r: 0.41568628, g: 0.30980393, b: 0.98039216, a: 1}
   eveningPinkColor: {r: 1, g: 0.35686275, b: 0.34509805, a: 1}
   defaultIntensity: 1
   hotDayIntensity: 1.6
   crazyHotDayIntensity: 2.3
-  speed: 0.1
 --- !u!1001 &724333753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3050,7 +3046,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Monday,
+  m_text: Mon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
   m_sharedMaterial: {fileID: 4835089367266696174, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
@@ -3407,6 +3403,144 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 102816415349592024, guid: 8a03ef992eb36f74aa398f9fa3c237ee, type: 3}
   m_PrefabInstance: {fileID: 1485862841}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &864675686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 864675687}
+  - component: {fileID: 864675689}
+  - component: {fileID: 864675688}
+  m_Layer: 5
+  m_Name: 'Salary Text (TMP) '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &864675687
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864675686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1709867273}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -635, y: 200}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &864675688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864675686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'You''ve got the money!
+
+
+    We''ve all got to earn our daily bread somehow'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
+  m_sharedMaterial: {fileID: 4835089367266696174, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 72
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -234.23306, y: 0, z: -1477.5547, w: -326.97037}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &864675689
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864675686}
+  m_CullTransparentMesh: 1
 --- !u!1001 &868868362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4808,7 +4942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -442, y: -345}
+  m_AnchoredPosition: {x: -691, y: -351}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1148073083
@@ -6622,6 +6756,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 277161644}
+  - {fileID: 864675687}
   - {fileID: 1884619678}
   - {fileID: 1695820282}
   - {fileID: 1550192243}
@@ -6806,7 +6941,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 115330920}
   time: {fileID: 1148073083}
-  gameOvertext: {fileID: 277161643}
+  day: {fileID: 735942794}
+  gameOverText: {fileID: 277161643}
+  salaryText: {fileID: 864675686}
 --- !u!4 &1745842078
 Transform:
   m_ObjectHideFlags: 0
@@ -7510,7 +7647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -442, y: -346.47488}
+  m_AnchoredPosition: {x: -543, y: -346.47488}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1866608506
@@ -7533,7 +7670,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: mornig,
+  m_text: ','
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
   m_sharedMaterial: {fileID: 4835089367266696174, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
@@ -7596,7 +7733,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -215.55344, y: 90.58706, z: 221.94908, w: -109.05506}
+  m_margin: {x: -215.55344, y: 90.58706, z: 383.38583, w: -109.05506}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

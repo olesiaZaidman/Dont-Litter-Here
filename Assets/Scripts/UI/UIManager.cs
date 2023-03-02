@@ -10,19 +10,23 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI score;
     [SerializeField] TextMeshProUGUI time;
-    ScoreManager scoreManager;
-    [SerializeField] GameObject gameOvertext;
+    [SerializeField] TextMeshProUGUI day;
+    [SerializeField] GameObject gameOverText;
+    [SerializeField] GameObject salaryText;
     public static bool isGameOver;
+
+    AudioManager audioManager;
     void Awake()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();//ScoreManager.Instance;
         isGameOver = false;
-        gameOvertext.SetActive(isGameOver);
-
+        audioManager = FindObjectOfType<AudioManager>();
+        gameOverText.SetActive(isGameOver);
+        salaryText.SetActive(false);
     }
+
     private void Start()
     {
-        SetScoreTextUI();
+        SetScoreTextUI(0);
     }
 
 
@@ -30,18 +34,31 @@ public class UIManager : MonoBehaviour
     {
         if (isGameOver)
         {
-            gameOvertext.SetActive(isGameOver);
+            ShowGameOverText();
         }
     }
 
-    public void SetScoreTextUI()
+    public IEnumerator ShowSalaryTextRoutine()
     {
-       // score.SetText(scoreManager.GetCleanRatingPoints().ToString());
+        float _delay = 3f;
+        audioManager.PlayMoneySFXOnce();
+        salaryText.SetActive(true);
+        yield return new WaitForSeconds(_delay);
+        salaryText.SetActive(false);
+    }
+
+    public void ShowGameOverText()
+    {
+        gameOverText.SetActive(isGameOver);
+    }
+    public void SetScoreTextUI(int _money)
+    {
+       score.SetText(_money.ToString());
     }
 
     public void SetTimeTextUI(DateTime _time)
     {
         time.SetText(_time.ToString("HH : mm")); // HH : mm "mm : ss"
-        // score.SetText(scoreManager.GetCleanRatingPoints().ToString());
+        day.SetText(_time.ToString("ddd"));
     }
 }

@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour
-{
-    private float timeMultiplier = 1000;    //it controlls how fast time passes in the game
+{   
+    private float timeMultiplier = 1000;    //it controls how fast time passes in the game
     private float startHour = 5;
-    private float endHour = 00;
-    private DateTime currentTime; //using System; namespace
+    private DateTime currentTime;  //using System; namespace
+    private DateTime currentDate = new DateTime(2023, 5, 1); //(int year, int month, int day);
+    // DateTime startDate = DayOfWeek.Thursday;
+
+    //currentTime.DayOfWeek ==
+
     UIManager ui;
     [SerializeField] Light sunLight;
+
+    private float endWorkingDayHour = 21;
 
     private float sunriseHour = 5;
     private float blueHour = 7;
@@ -24,7 +30,8 @@ public class TimeController : MonoBehaviour
     private TimeSpan dayTime;
     private TimeSpan goldenHourTime;
     private TimeSpan sunsetTime;
-    private TimeSpan nighTime;
+    private TimeSpan nightTime;
+    private TimeSpan endDayTime;
 
     public static bool isMorning = false;
     public static bool isDay = false;
@@ -37,14 +44,31 @@ public class TimeController : MonoBehaviour
     }
     void Start()
     {
-        currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
+        currentTime = currentDate + TimeSpan.FromHours(startHour);
+        endDayTime = TimeSpan.FromHours(endWorkingDayHour);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         blueHourTime = TimeSpan.FromHours(blueHour);
         dayTime = TimeSpan.FromHours(dayHour);
         goldenHourTime = TimeSpan.FromHours(goldenHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
-        nighTime = TimeSpan.FromHours(nightHour);
+        nightTime = TimeSpan.FromHours(nightHour);
     }
+
+    public bool IsEndOfWorkingDay()
+    {
+     //   return currentTime.TimeOfDay == endDayTime;
+        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < nightTime;
+    }
+
+    //public DateTime BuildDate(int day, int hour)
+    //{
+    //    var now = DateTime.Now;
+
+    //    var initialDate = now.AddDays(((int)now.DayOfWeek + 1) * -1);
+
+    //    return new DateTime(initialDate.Year, initialDate.Month, initialDate.AddDays(day).Day, hour, 0, 0);
+    //}
+
 
     void Update()
     {
@@ -76,7 +100,7 @@ public class TimeController : MonoBehaviour
 
     public bool IsNight()
     {
-        return currentTime.TimeOfDay > nighTime && currentTime.TimeOfDay < sunriseTime;
+        return currentTime.TimeOfDay > nightTime && currentTime.TimeOfDay < sunriseTime;
     }
 
     private void RotateSun()

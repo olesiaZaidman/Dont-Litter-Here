@@ -7,14 +7,10 @@ public class LightColorIntensity : MonoBehaviour
     Light lt;
 
     [Header("Default")]
-    [SerializeField] Vector3 defaultPos; //(0,3,0)
-    [SerializeField] Vector3 defaultRotation; //(50,-30,0)
     [SerializeField] Color defaultYellowColor; //FFF4D6 
 
 
     [Header("Morning")]
-    [SerializeField] Vector3 morningPos;
-    [SerializeField] Vector3 morningRotation;
     [SerializeField] Color morningBlueColor; //6A4FFA
 
     [Header("Evening")]
@@ -26,16 +22,8 @@ public class LightColorIntensity : MonoBehaviour
     [SerializeField] float hotDayIntensity = 1.6f;
     [SerializeField] float crazyHotDayIntensity = 2.3f;
 
-   // Color color0;
- //   Color color1;
-    float duration = 4.0f;
+    float duration = 6.0f;
     float t = 0f;
-    float xAngle = 0f;
-    float yAngle = -30f;
-    float minXAngle = 30f;
-    float maxXAngle = 155f;
-
-    public float speed = 0.1F;
 
     TimeController timeController;
 
@@ -50,17 +38,6 @@ public class LightColorIntensity : MonoBehaviour
      //  color0 = defaultYellowColor;
     }
 
-    void ChangeSunPosition(float _time)
-    {
-        if (xAngle < maxXAngle)
-        {
-            float acceleration = (maxXAngle - minXAngle) / _time;
-            xAngle += acceleration * Time.deltaTime;
-            //transform.rotation = 
-        }
-        else
-            xAngle = maxXAngle;
-    }
 
 
     void Update()
@@ -108,7 +85,7 @@ public class LightColorIntensity : MonoBehaviour
 
         if (timeController.IsMorning())
         {
-            Debug.Log("IsMorning(): "+ timeController.IsMorning());
+          //  Debug.Log("IsMorning(): "+ timeController.IsMorning());
             InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor);
         }
 
@@ -119,7 +96,7 @@ public class LightColorIntensity : MonoBehaviour
 
         if (timeController.IsEvening())
         {
-            Debug.Log("IsEvening(): " + timeController.IsEvening());
+          //  Debug.Log("IsEvening(): " + timeController.IsEvening());
             InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);
         }
 

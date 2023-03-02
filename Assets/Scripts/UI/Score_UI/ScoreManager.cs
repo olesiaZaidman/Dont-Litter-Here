@@ -5,19 +5,42 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
+    TimeController timeController;
+    UIManager ui;
 
-    //Money
-    static float moneyScore = 0;
+    static int moneyScore = 0;
+    static int dailyWage = 100;
+    bool isSalaryTime = true;
 
- 
 
     private void Awake()
     {
         Instance = this;
+        timeController = FindObjectOfType<TimeController>();
+        ui = FindObjectOfType<UIManager>();
     }
 
+    private void Update()
+    {
+        if (timeController.IsEndOfWorkingDay() && !UIManager.isGameOver)
+        {
+          //  Debug.Log("IsEndOfWorkingDay: " + timeController.IsEndOfWorkingDay());
+            if (isSalaryTime)
+            {
+                IncreaseMoneyScore(dailyWage);
+                ui.SetScoreTextUI(moneyScore);
+                isSalaryTime = false;
+                StartCoroutine(ui.ShowSalaryTextRoutine());
+            }
+        }
 
- 
+        if (timeController.IsMorning())
+        {
+
+            isSalaryTime = true;
+        }
+    }
+
 
 
     #region MoneyScore
@@ -26,67 +49,12 @@ public class ScoreManager : MonoBehaviour
 
     public float IncreaseMoneyScore(int num)
     {
-        return moneyScore += num; 
+        return moneyScore += num;
     }
     public float DecreaseMoneyScore(int num)
     {
         return moneyScore -= num;
     }
     #endregion
-
-   
-   
-
-    //public int IncreaseCleanRatingPoints(int num)
-    //{
-    //    //MaxCleaningnessLevelPoints
-    //    //cleanRatingPoints
-    //    //amountOfGarbageInScene
-    //    Debug.Log("cleaned a little: " + cleanRatingPoints);
-    //    if (cleanRatingPoints >= MaxCleaningnessLevelPoints)
-    //    {
-    //        cleanRatingPoints = MaxCleaningnessLevelPoints;
-    //        return cleanRatingPoints;
-    //    }
-    //    else
-    //    {
-    //        return cleanRatingPoints = MaxCleaningnessLevelPoints + amountOfGarbageInScene;
-    //    }
-
-    //}
-
-
-
-
-
-
-    //public int IncreaseScorePoints(int num)
-    //{
-    //    //Debug.Log("current scorePoints: " + scorePoints);
-
-    //    return scorePoints += num;
-    //}
-
-    //public int DecreaseScorePoints(int num)
-    //{
-    //    // Debug.Log("cleaned a little: "+ scorePoints);
-    //    return scorePoints -= num;
-    //}
-
-
-    //public int IncreasePoints(int points, int num)
-    //{
-    //    Debug.Log("current points: " + points);
-
-    //    return points += num;
-    //}
-
-    //public int DecreasePoints(int points, int num)
-    //{
-    //    Debug.Log("current points: " + points);
-    //    return points -= num;
-    //}
-
-
 
 }

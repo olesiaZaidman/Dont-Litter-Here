@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Background")]
     [SerializeField] AudioClip wavesSound;
-
+    [SerializeField] AudioClip moneySound;
 
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
     // [Header("SoundFX")]
 
     float audioVolume = 0.5f;
-    bool sighed = false;
+    bool isPlayed = false;
     private void Start()
     {
       //  backgroundSFXAudio.PlayOneShot(wavesSound, audioVolume);
@@ -45,22 +45,47 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator PlaySighRoutine(float _delay)
     {
-        if (!sighed)
+        if (!isPlayed)
         {
-            sighed = true;
+            isPlayed = true;
             PlaySigh();
         }
         yield return new WaitForSeconds(_delay);
-        sighed = false;
+        isPlayed = false;
     }
 
-    public void PlayWhistle()
-    {
-        sfx.PlayOneShot(whistleSound, audioVolume);
-    }
+
 
     public void PlayGulp()
     {
         sfx.PlayOneShot(gulpSound, audioVolume);
     }
+    public void PlayWhistle()
+    {
+        sfx.PlayOneShot(whistleSound, audioVolume);
+    }
+
+    public void PlayMoneySFXOnce()
+    {
+        StartCoroutine(PlayMoneySFXRoutine());
+    }
+
+    public void PlayMoneySFX()
+    {
+        sfx.PlayOneShot(moneySound, audioVolume);
+    }
+    IEnumerator PlayMoneySFXRoutine()
+    {
+        float _delay = 5f;
+
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlayMoneySFX();
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+
+
 }
