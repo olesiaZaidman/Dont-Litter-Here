@@ -19,4 +19,19 @@ public class CharactersAnimationController : AnimationController
         PlayAnimationIfNeeded("isSwimming", false);
     }
 
+    public void Sit()
+    {
+        PlayAnimationIfNeeded("isSitting", true);
+    }
+
+    public void StopSit()
+    {
+        PlayAnimationIfNeeded("isSitting", false);
+    }
+
+    //public void LayAndSunbath()
+    //{
+    //    PlayAnimationIfNeeded("isSwimming", true);
+    //}
+
 }

@@ -83,7 +83,7 @@ public class LightColorIntensity : MonoBehaviour
         // InterpolateLightBetweenColorsBackForth(Color.blue, defaultColor);
         //  InterpolateLightIntensityOnce();
 
-        if (timeController.IsMorning())
+        if (timeController.IsEarlyMorning())
         {
           //  Debug.Log("IsMorning(): "+ timeController.IsMorning());
             InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor);
@@ -94,7 +94,7 @@ public class LightColorIntensity : MonoBehaviour
             t = 0;
         }
 
-        if (timeController.IsEvening())
+        if (timeController.IsEarlyEvening())
         {
           //  Debug.Log("IsEvening(): " + timeController.IsEvening());
             InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);

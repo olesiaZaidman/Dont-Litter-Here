@@ -8,10 +8,89 @@ public class MoveForwardWithAnimationController : MoveForwardBase
     private Animator myAnimator;
     CharactersAnimationController myAnimationController;
 
+    private float timerValue;
+    float timeToSit;
+    float timeToWalk;
+
+    bool isWalking = true;
     void Awake()
     {
         GetAnimatorControler();
     }
+
+    //private void Start()
+    //{
+    //    SetTimeToSitAndWalk();
+    //    timerValue = timeToWalk;
+    //}
+
+    //private void Update()
+    //{
+    //    UpdateTimer();
+
+    //    //  Sit();
+    //}
+    //private void SetTimeToSitAndWalk()
+    //{
+    //    timeToSit = Random.Range(1f, 10f);
+    //    timeToWalk = Random.Range(5f, 30f);
+    //}
+
+    //private void CancelTimer()
+    //{
+    //    timerValue = 0;
+    //}
+
+    //private void UpdateTimer()
+    //{
+
+    //    if (isWalking)
+    //    {
+    //        if (timerValue > 0)
+    //        {
+    //         //   timerValue -= Time.deltaTime;
+    //        }
+
+    //        else  //(timerValue <= 0)
+    //        {
+    //            isWalking = false;
+    //            isSitting = true;
+    //            timerValue = timeToSit;
+    //        }
+    //    }
+    //    else //if  isSitting = true;
+    //    {
+    //        if (timerValue > 0)
+    //        {
+    //           // timerValue -= Time.deltaTime;
+    //        }
+
+    //        else 
+    //        {
+    //            isSitting = false;
+    //            isWalking = true;
+    //            timerValue = timeToWalk;
+    //            SetTimeToSitAndWalk();
+    //        }
+    //    }
+    //    Debug.Log("timerValue: "+ timerValue);
+    //    Debug.Log("isWalking: " + isWalking);
+    //    Debug.Log("isSitting: " + isSitting);
+
+    //     timerValue -= Time.deltaTime;
+    //}
+    //private void Sit()
+    //{
+    //    SetTimeToSitAndWalk();
+    //    timerValue = timeToSit;
+    //    isSitting = true;
+    //    myAnimationController.Sit();
+
+    //    ///timer
+    //    /// isSitting = false;
+    //    /// myAnimationController.StopSit();
+
+    //}
 
     public void GetAnimatorControler()
     {

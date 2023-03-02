@@ -70,9 +70,14 @@ public class TimeController : MonoBehaviour
         { ui.SetTimeTextUI(currentTime); }
     }
 
-    public bool IsMorning()
+    public bool IsEarlyMorning()
     {
         return currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < blueHourTime ;
+    }
+
+    public bool IsLateMorning()
+    {
+        return currentTime.TimeOfDay > blueHourTime && currentTime.TimeOfDay < dayTime;
     }
 
     public bool IsDay()
@@ -80,9 +85,14 @@ public class TimeController : MonoBehaviour
         return currentTime.TimeOfDay > dayTime && currentTime.TimeOfDay < goldenHourTime;
     }
 
-    public bool IsEvening()
+    public bool IsEarlyEvening()
     {
         return currentTime.TimeOfDay > goldenHourTime && currentTime.TimeOfDay < sunsetTime;
+    }
+
+    public bool IsLateEvening()
+    {
+        return currentTime.TimeOfDay > sunsetTime && currentTime.TimeOfDay < nightTime;
     }
 
     public bool IsNight()

@@ -16,24 +16,28 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected virtual float StartDelayMin { get { return 0.5f; } }
     // [SerializeField] protected float _startDelayMin; // = 2.0f
     protected virtual float StartDelayMax { get { return 10f; } }
-    protected virtual float SpawnIntervalMin { get { return 1f; } }    
-    protected virtual float SpawnIntervalMax { get { return 4f; } }
+    protected virtual float SpawnIntervalMin { get { return 1f; } } //{ get; set; }    //{ return 1f; } 
+    protected virtual float SpawnIntervalMax { get { return 4f; } } //{ return 4f; } 
+
+    void Start()
+    {
+        StartSettings();
+        //SpawnIntervalMin = 1f;
+        //SpawnIntervalMax = 4f;
+    }
+
 
     public void CreateRandomStartTime()
     {
         _startDelay = Random.Range(StartDelayMin, StartDelayMax);
     }
 
-    public void CreateTimeIntervalBetweenSpawning()
+    public virtual void CreateTimeIntervalBetweenSpawning()
     {
         _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
     }
 
-    void Start()
-    {
-        StartSettings();
-    }
-
+ 
     public virtual void StartSettings()
     {
         CreateRandomStartTime();
@@ -66,7 +70,17 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         CreateTimeIntervalBetweenSpawning();
     }
 
+    //public virtual float SetSpawnIntervalMin(float _value)
+    //{
+    //    spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
+    //    return spawnIntervalMin;
+    //}
 
+    //public virtual SetSpawnIntervalMax(float _value)
+    //{
+    //    spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
+    //    return spawnIntervalMax;
+    //}
 
     //protected virtual float StartDelay
     //{

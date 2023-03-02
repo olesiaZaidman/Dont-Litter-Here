@@ -36,7 +36,7 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        if (timeController.IsMorning())
+        if (timeController.IsEarlyMorning())
         {
 
             isSalaryTime = true;

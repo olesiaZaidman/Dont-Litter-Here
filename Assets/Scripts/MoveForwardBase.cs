@@ -6,9 +6,9 @@ public class MoveForwardBase : MonoBehaviour
 {
     [SerializeField] protected float speedMin = 1.0f;
     [SerializeField] protected float speedMax = 6.0f;
-
+    protected bool isSitting = false;
     //protected virtual float SpeedMin { get { return 1f; } }
- //   protected virtual float SpeedMax { get { return 6f; } }
+    //   protected virtual float SpeedMax { get { return 6f; } }
     protected float speed;
 
     void Start()
@@ -18,6 +18,8 @@ public class MoveForwardBase : MonoBehaviour
 
     void Update() //our prefab will alway move forward:
     {
+        if (isSitting)
+        { return; }
         Move();
     }
 

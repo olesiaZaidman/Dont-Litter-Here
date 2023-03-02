@@ -7,40 +7,40 @@ public class IncreaseValueOverTime : MonoBehaviour
     //How to increase number/value over time
 
 
-    public float gradualPoints = 100;
-    float maxSpeed = 100;
-    float minSpeed = 0; //or1
-    float time = 3f;
-    void Update()
-    {
-        //if (Input.GetKey(KeyCode.Z))          
-        //{
-        //   // Acceleration();
-        //    //  SpeedUpOne();
-        //   SpeedDown(time);
-        //}
-    }
-   public void SpeedDown(float _time)
-    {
-        if (gradualPoints > 0)
-        {
-            float acceleration = (maxSpeed - minSpeed) / _time;
-            gradualPoints -= acceleration * Time.deltaTime;
-        }
-        else
-            gradualPoints = 0;
-    }
+   // public float gradualPoints = 100;
+   // float maxSpeed = 100;
+   // float minSpeed = 0; //or1
+   // float time = 3f;
+   // void Update()
+   // {
+   //     //if (Input.GetKey(KeyCode.Z))          
+   //     //{
+   //     //   // Acceleration();
+   //     //    //  SpeedUpOne();
+   //     //   SpeedDown(time);
+   //     //}
+   // }
+   //public void SpeedDown(float _time)
+   // {
+   //     if (gradualPoints > 0)
+   //     {
+   //         float acceleration = (maxSpeed - minSpeed) / _time;
+   //         gradualPoints -= acceleration * Time.deltaTime;
+   //     }
+   //     else
+   //         gradualPoints = 0;
+   // }
 
-    public void SpeedDown(float value, float maxvalue, float minValue, float _time)
-    {
-        if (value > 0)
-        {
-            float acceleration = (maxvalue - minValue) / _time;
-            value -= acceleration * Time.deltaTime;
-        }
-        else
-            value = 0;
-    }
+   // public void SpeedDown(float value, float maxvalue, float minValue, float _time)
+   // {
+   //     if (value > 0)
+   //     {
+   //         float acceleration = (maxvalue - minValue) / _time;
+   //         value -= acceleration * Time.deltaTime;
+   //     }
+   //     else
+   //         value = 0;
+   // }
 
 
     //void SpeedUp()
