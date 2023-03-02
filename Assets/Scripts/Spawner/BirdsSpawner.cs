@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static ObjectPooler;
-public class BirdsSpawner : CharactersSpawner
+public class BirdsSpawner : SpawnerWithRotationPosition
 //WaterSpawner
 {
     public BirdsSpawner() : base()

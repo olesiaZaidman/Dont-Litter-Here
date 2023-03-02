@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 8317593550261103452}
   - component: {fileID: 6572382362563989499}
   - component: {fileID: 9022223804389701660}
+  - component: {fileID: -8386760469890797071}
   m_Layer: 0
   m_Name: Girl-1-beach
   m_TagString: Untagged
@@ -354,6 +355,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+--- !u!114 &-8386760469890797071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855873040569676053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1874918013187183182
 GameObject:
   m_ObjectHideFlags: 0

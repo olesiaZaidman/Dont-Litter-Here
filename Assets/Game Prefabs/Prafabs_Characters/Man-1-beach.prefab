@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 5047888412787877340}
   - component: {fileID: 2033591860503665512}
   - component: {fileID: 6589624571534512023}
+  - component: {fileID: -3943268772663997765}
   m_Layer: 0
   m_Name: Man-1-beach
   m_TagString: Untagged
@@ -710,7 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: Man-1-beach
 --- !u!114 &6589624571534512023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,6 +725,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+--- !u!114 &-3943268772663997765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258280862677865154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5421564123987571097
 GameObject:
   m_ObjectHideFlags: 0

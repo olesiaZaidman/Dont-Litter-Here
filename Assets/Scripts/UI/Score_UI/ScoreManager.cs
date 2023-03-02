@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     TimeController timeController;
     UIManager ui;
 
+    static int days = 0;
     static int moneyScore = 0;
     static int dailyWage = 100;
     bool isSalaryTime = true;
@@ -29,6 +30,7 @@ public class ScoreManager : MonoBehaviour
             {
                 IncreaseMoneyScore(dailyWage);
                 ui.SetScoreTextUI(moneyScore);
+                IncreaseDaysByOne();
                 isSalaryTime = false;
                 StartCoroutine(ui.ShowSalaryTextRoutine());
             }
@@ -50,6 +52,14 @@ public class ScoreManager : MonoBehaviour
     public float IncreaseMoneyScore(int num)
     {
         return moneyScore += num;
+    }
+
+    public float GetDays()
+    { return days; }
+
+    public float IncreaseDaysByOne()
+    {
+        return days += 1;
     }
     public float DecreaseMoneyScore(int num)
     {

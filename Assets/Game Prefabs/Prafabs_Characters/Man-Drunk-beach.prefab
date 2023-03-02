@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 5664125853123927738}
   - component: {fileID: -631954155447937306}
   - component: {fileID: -8902147648196333079}
+  - component: {fileID: -7667866960970117385}
   m_Layer: 0
   m_Name: Man-Drunk-beach
   m_TagString: Untagged
@@ -1070,7 +1071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da3ca311c8ebf24faad2c94fabdd000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objtag: Man-Drunk-beach
 --- !u!114 &-8902147648196333079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,6 +1085,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+--- !u!114 &-7667866960970117385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626264209117840455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6922836336705356298
 GameObject:
   m_ObjectHideFlags: 0

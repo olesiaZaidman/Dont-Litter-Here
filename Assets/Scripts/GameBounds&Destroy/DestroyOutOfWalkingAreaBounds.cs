@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DestroyOutOfWalkingAreaBounds : DestroyOutOfBounds
 {
+
     public override void DestroyIfOutOfGamePlayBounds()
     {
         if ((transform.position.z > GamePlayBoundaries.XRighZToptWalkingAreaBound) ||
@@ -17,4 +18,5 @@ public class DestroyOutOfWalkingAreaBounds : DestroyOutOfBounds
             gameObject.SetActive(false);          // Destroy(gameObject);
         }
     }
+  
 }

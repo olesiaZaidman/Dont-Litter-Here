@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 7592845152083752943}
   - component: {fileID: 3294075806989166294}
   - component: {fileID: -8060502665267934783}
+  - component: {fileID: -238987528195085242}
   m_Layer: 0
   m_Name: Dog-GreatDane-Black
   m_TagString: Untagged
@@ -530,6 +531,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 6
+--- !u!114 &-238987528195085242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062630504472773506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8062630504472773508
 GameObject:
   m_ObjectHideFlags: 0

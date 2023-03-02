@@ -9,9 +9,7 @@ public class TimeController : MonoBehaviour
     private float startHour = 5;
     private DateTime currentTime;  //using System; namespace
     private DateTime currentDate = new DateTime(2023, 5, 1); //(int year, int month, int day);
-    // DateTime startDate = DayOfWeek.Thursday;
-
-    //currentTime.DayOfWeek ==
+    //starts on monday
 
     UIManager ui;
     [SerializeField] Light sunLight;
@@ -56,19 +54,8 @@ public class TimeController : MonoBehaviour
 
     public bool IsEndOfWorkingDay()
     {
-     //   return currentTime.TimeOfDay == endDayTime;
         return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < nightTime;
     }
-
-    //public DateTime BuildDate(int day, int hour)
-    //{
-    //    var now = DateTime.Now;
-
-    //    var initialDate = now.AddDays(((int)now.DayOfWeek + 1) * -1);
-
-    //    return new DateTime(initialDate.Year, initialDate.Month, initialDate.AddDays(day).Day, hour, 0, 0);
-    //}
-
 
     void Update()
     {
@@ -140,4 +127,14 @@ public class TimeController : MonoBehaviour
         }
         return timeDifference;
     }
+
+    //public DateTime BuildDate(int day, int hour)
+    //{
+    //    var now = DateTime.Now;
+
+    //    var initialDate = now.AddDays(((int)now.DayOfWeek + 1) * -1);
+
+    //    return new DateTime(initialDate.Year, initialDate.Month, initialDate.AddDays(day).Day, hour, 0, 0);
+    //}
+
 }

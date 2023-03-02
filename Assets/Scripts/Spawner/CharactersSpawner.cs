@@ -9,28 +9,60 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     protected override float StartDelayMax { get { return 10f; } }
     protected override float SpawnIntervalMin { get { return 5f; } }
     protected override float SpawnIntervalMax { get { return 30; } }
-   // TimeController timeController;
+
+    TimeController timeController;
+    bool isTimeForSpawning = true;
     public CharactersSpawner() : base()
     {
-       // yCoordinate = transform.position;
+        // yCoordinate = transform.position;
     }
-    //void Start()
-    //{
-    //    timeController = FindObjectOfType<TimeController>();
-    //}
+    void Awake()
+    {
+        timeController = FindObjectOfType<TimeController>();
+    }
 
     public override List<Pool> GetPoolPrefabList()
     {
         return Instance.poolCharactersList;
     }
 
-    //public override void Spawn()
-    //{
-    //    //if (timeController.IsNight())
-    //    //{ return; }
-    //    //base.Spawn();
-        
-    //}
+    private void Update()
+    {
+        if (timeController.IsEndOfWorkingDay())
+        {
+            CancelSpawning();
+            isTimeForSpawning = true;
+        }
+        if (timeController.IsMorning())
+        {
+            if (isTimeForSpawning)
+            {
+                isTimeForSpawning = false;
+                StartSpawningWithIntervals();
+            }
+        }
+    }
+    public override void StartSettings()
+    {
+        CreateRandomStartTime();
+        CreateTimeIntervalBetweenSpawning();
+    }
+
+    public override void StartSpawningWithIntervals()
+    {
+        base.StartSpawningWithIntervals();
+        Debug.Log("CharactersSpawner: StartSpawningWithIntervals");
+
+    }
+
+    public override void CancelSpawning()
+    {
+        base.CancelSpawning();
+        Debug.Log("CharactersSpawner: CancelSpawning");
+    }
+
+
+
 
 
 }
