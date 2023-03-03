@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] bool isSitting = false;
-    [SerializeField] bool isWalking = true;
-
-    [SerializeField] float timerValue;
+    public float timerValue;
     float timeToSit;
     float timeToWalk;
 
+    private bool m_isWalking;
+    private bool m_isSitting;
 
+
+    //  [SerializeField] MoveForwardWithAnimationController moveController;
+    public Timer(bool isWalking, bool isSitting) 
+    {
+        //    timer = new Timer(isWalking, isSitting);
+        m_isWalking = isWalking;
+        m_isSitting = isSitting;
+    }
     private void Start()
     {
         SetTimeToSitAndWalk();
@@ -21,13 +28,37 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         UpdateTimer();
-
-        //  Sit();
     }
-    private void SetTimeToSitAndWalk()
+    public void SetTimeToSitAndWalk()
     {
         timeToSit = Random.Range(1f, 10f);
         timeToWalk = Random.Range(5f, 30f);
+    }
+
+
+    public void UpdateTimer()
+    {
+        if (m_isWalking)
+        {
+            if (timerValue <= 0)
+            {
+                m_isWalking = false;
+                m_isSitting = true;
+                timerValue = timeToSit;
+            }
+
+        }
+        else //if  isSitting = true;
+        {
+            if (timerValue <= 0)
+            {
+                m_isSitting = false;
+                m_isWalking = true;
+                timerValue = timeToWalk;
+                SetTimeToSitAndWalk();
+            }
+        }
+        timerValue -= Time.deltaTime;
     }
 
     //private void CancelTimer()
@@ -35,42 +66,4 @@ public class Timer : MonoBehaviour
     //    timerValue = 0;
     //}
 
-    private void UpdateTimer()
-    {
-
-        if (isWalking)
-        {
-            if (timerValue > 0)
-            {
-                //   timerValue -= Time.deltaTime;
-            }
-
-            else  //(timerValue <= 0)
-            {
-                isWalking = false;
-                isSitting = true;
-                timerValue = timeToSit;
-            }
-        }
-        else //if  isSitting = true;
-        {
-            if (timerValue > 0)
-            {
-                // timerValue -= Time.deltaTime;
-            }
-
-            else
-            {
-                isSitting = false;
-                isWalking = true;
-                timerValue = timeToWalk;
-                SetTimeToSitAndWalk();
-            }
-        }
-        Debug.Log("timerValue: " + timerValue);
-        Debug.Log("isWalking: " + isWalking);
-        Debug.Log("isSitting: " + isSitting);
-
-        timerValue -= Time.deltaTime;
-    }
 }

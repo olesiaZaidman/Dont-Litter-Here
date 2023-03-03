@@ -1019,6 +1019,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 3
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!114 &-3901124877043599163
 MonoBehaviour:
   m_ObjectHideFlags: 0

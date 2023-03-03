@@ -12,6 +12,7 @@ public class AnimationController
     }
     public void PlayAnimationIfNeeded(string _animName, bool _isPlaying)
     {
+      // YES Debug.Log("PlayAnimationIfNeeded");
         m_animator.SetBool(_animName, _isPlaying);
     }
 

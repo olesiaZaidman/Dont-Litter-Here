@@ -68,8 +68,8 @@ public class GarbageSpawner : BaseSpawner
     {
 
         _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
-        Debug.Log("New Interval. Min: " + spawnIntervalMin + " Max: " + spawnIntervalMax);
-        Debug.Log("New Interval itself: " + _spawnInterval);
+      //  Debug.Log("New Interval. Min: " + spawnIntervalMin + " Max: " + spawnIntervalMax);
+      //  Debug.Log("New Interval itself: " + _spawnInterval);
     }
 
     private float SetSpawnIntervalMin(float _value)

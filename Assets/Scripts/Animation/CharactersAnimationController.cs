@@ -6,7 +6,7 @@ public class CharactersAnimationController : AnimationController
 {
     public CharactersAnimationController(Animator myAnimator) : base(myAnimator)
     {
-
+        //15/24/40
     }
 
     public void Swim()
@@ -19,14 +19,9 @@ public class CharactersAnimationController : AnimationController
         PlayAnimationIfNeeded("isSwimming", false);
     }
 
-    public void Sit()
+    public void SitIfNeeded(bool _isPlaying)
     {
-        PlayAnimationIfNeeded("isSitting", true);
-    }
-
-    public void StopSit()
-    {
-        PlayAnimationIfNeeded("isSitting", false);
+        PlayAnimationIfNeeded("isSitting", _isPlaying);
     }
 
     //public void LayAndSunbath()
