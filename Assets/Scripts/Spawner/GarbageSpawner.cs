@@ -14,9 +14,16 @@ public class GarbageSpawner : BaseSpawner
     protected float spawnIntervalMin = 5f;
     protected float spawnIntervalMax = 30f;
 
+   // MoveForwardWithAnimationController moveController;
+
     public GarbageSpawner() : base()
     {
         // _startDelay = 3.0f;
+    }
+
+    private void Start()
+    {
+       // moveController = GetComponent<MoveForwardWithAnimationController>();
     }
     private void Update()
     {
@@ -36,31 +43,46 @@ public class GarbageSpawner : BaseSpawner
 
     private void IncreaseOrDecreseSpawningTime()
     {
+      //  if (moveController != null)
+      //  {
+            //if (moveController.GetIsWalking())
+            //{
+            //    Debug.Log("mid");
+            //    SetSpawnIntervalMin(10);
+            //    SetSpawnIntervalMax(20);
+            //}
 
-        //often:
-        if (Input.GetKey(KeyCode.P))
-        {
-            //  Debug.Log("Set to often");
-            SetSpawnIntervalMin(1);
-            SetSpawnIntervalMax(5);
-        }
+            //if (moveController.GetIsSitting())
+            //{
+            //    Debug.Log("often");
+            //    SetSpawnIntervalMin(1);
+            //    SetSpawnIntervalMax(5);
+            //}
+     //   }
+        ////often:
+        //if (Input.GetKey(KeyCode.P))
+        //{
+        //    //  Debug.Log("Set to often");
+        //    SetSpawnIntervalMin(1);
+        //    SetSpawnIntervalMax(5);
+        //}
 
-        //mid
-        if (Input.GetKey(KeyCode.O))
-        {
-            // Debug.Log("Set to mid");
-            SetSpawnIntervalMin(5);
-            SetSpawnIntervalMax(15);
-        }
+        ////mid
+        //if (Input.GetKey(KeyCode.O))
+        //{
+        //    // Debug.Log("Set to mid");
+        //    SetSpawnIntervalMin(5);
+        //    SetSpawnIntervalMax(15);
+        //}
 
 
-        //rare
-        if (Input.GetKey(KeyCode.I))
-        {
-            //  Debug.Log("Set to rare");
-            SetSpawnIntervalMin(15);
-            SetSpawnIntervalMax(30);
-        }
+        ////rare
+        //if (Input.GetKey(KeyCode.I))
+        //{
+        //    //  Debug.Log("Set to rare");
+        //    SetSpawnIntervalMin(15);
+        //    SetSpawnIntervalMax(30);
+        //}
     }
 
 

@@ -939,9 +939,10 @@ GameObject:
   - component: {fileID: -631954155447937306}
   - component: {fileID: -8902147648196333079}
   - component: {fileID: -7667866960970117385}
+  - component: {fileID: 5863619711586013532}
   m_Layer: 0
   m_Name: Man-Drunk-beach
-  m_TagString: Untagged
+  m_TagString: Crowd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1009,6 +1010,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 3
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!136 &5664125853123927739
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1097,6 +1101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5863619711586013532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626264209117840455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae466481ec27824498fbb784021bc85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveController: {fileID: 3275733642797162921}
 --- !u!1 &6922836336705356298
 GameObject:
   m_ObjectHideFlags: 0

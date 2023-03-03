@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: -6171163617461713827}
   m_Layer: 0
   m_Name: Boy-1-beach
-  m_TagString: Untagged
+  m_TagString: Crowd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -268,6 +268,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 3
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!114 &-3595846601036627426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  moveController: {fileID: 271831005227037586}
 --- !u!114 &-6171163617461713827
 MonoBehaviour:
   m_ObjectHideFlags: 0

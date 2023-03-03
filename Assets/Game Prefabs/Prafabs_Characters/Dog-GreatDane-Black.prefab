@@ -435,9 +435,11 @@ GameObject:
   - component: {fileID: 3294075806989166294}
   - component: {fileID: -8060502665267934783}
   - component: {fileID: -238987528195085242}
+  - component: {fileID: 722293811}
+  - component: {fileID: 722293810}
   m_Layer: 0
   m_Name: Dog-GreatDane-Black
-  m_TagString: Untagged
+  m_TagString: Crowd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -457,7 +459,7 @@ Transform:
   - {fileID: 8062630504472747904}
   - {fileID: 8062630504472747930}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8062630504480206882
 Animator:
@@ -531,6 +533,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 6
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!114 &-238987528195085242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,6 +548,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &722293811
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062630504472773506}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35613498
+  m_Height: 1.2233937
+  m_Direction: 2
+  m_Center: {x: -0.012792528, y: 0.55440307, z: 0.04740882}
+--- !u!54 &722293810
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062630504472773506}
+  serializedVersion: 4
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!1 &8062630504472773508
 GameObject:
   m_ObjectHideFlags: 0

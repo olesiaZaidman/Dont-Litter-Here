@@ -8,12 +8,14 @@ public class MoveForwardWithAnimationController : MoveForwardBase
     private Animator myAnimator;
     CharactersAnimationController myAnimationController;
 
-     bool isSitting = false;
-     bool isWalking = true;
+    [SerializeField] bool isSitting = false;
+    [SerializeField] bool isWalking = true;
 
     [SerializeField] float timerValue;
     float timeToSit;
     float timeToWalk;
+
+
 
     public bool GetIsSitting()
     {
@@ -87,16 +89,30 @@ public class MoveForwardWithAnimationController : MoveForwardBase
 
     private void Sit()
     {
-        myAnimationController.SitIfNeeded(isSitting);
+        if (!isWalking || isSitting)
+        {
+            myAnimationController.SitIfNeeded(true);
+        }
+        else if (isWalking || !isSitting)
+        {
+            myAnimationController.SitIfNeeded(false);
+        }
     }
 
     public override void Move()
     {
-        Debug.Log(gameObject.name + "is moving");
-        
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        myAnimationController.WalkForwardIfNeeded(isWalking);
-        myAnimator.SetFloat("moveSpeed", speed);
+        // Debug.Log(gameObject.name + "is moving");
+        if (isWalking || !isSitting)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            myAnimationController.WalkForwardIfNeeded(true);
+            myAnimator.SetFloat("moveSpeed", speed);
+        }
+        else if (!isWalking || isSitting)
+        {
+            myAnimationController.WalkForwardIfNeeded(false);
+            return;
+        }
     }
 
 
@@ -106,11 +122,19 @@ public class MoveForwardWithAnimationController : MoveForwardBase
         {
             myAnimationController.Swim();
         }
+
+        if (other.gameObject.CompareTag("SeaBeachBorder"))
+        {
+            isWalking = true;
+            isSitting = false;
+            timerValue = timeToWalk;
+       }
+
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Sea"))
+        if (other.gameObject.CompareTag("Sea") || other.gameObject.CompareTag("Crowd"))
         {
             myAnimationController.StopSwim();
         }

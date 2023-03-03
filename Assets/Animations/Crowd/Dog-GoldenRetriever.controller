@@ -92,9 +92,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isSitting
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isWalkingForward
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1006817209561059520}
   m_Solo: 0
@@ -117,9 +114,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: isWalkingForward
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isSitting
     m_EventTreshold: 0
@@ -271,11 +265,11 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: moveSpeed
     m_EventTreshold: 3
-  - m_ConditionMode: 1
-    m_ConditionEvent: isWalkingForward
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isSitting
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isWalkingForward
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7737333471644337071}
@@ -383,6 +377,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isWalkingForward
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: moveSpeed
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5650454673065887741}
   m_Solo: 0

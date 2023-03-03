@@ -961,9 +961,10 @@ GameObject:
   - component: {fileID: -1592982493693131951}
   - component: {fileID: 3032187075519148017}
   - component: {fileID: 4079113931666254392}
+  - component: {fileID: 8818242543103999975}
   m_Layer: 0
   m_Name: Woman-1-beach
-  m_TagString: Untagged
+  m_TagString: Crowd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,8 +983,9 @@ Transform:
   m_Children:
   - {fileID: 2838492196989333790}
   - {fileID: 8288104731345486331}
+  - {fileID: 4823103085868613179}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4455229383660522480
 Animator:
@@ -1122,6 +1124,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8818242543103999975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d760a4a475cb458f539d824f48a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towel: {fileID: 4823103085868900891}
+  moveController: {fileID: 7835896306559865371}
 --- !u!1 &7186534100564158571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,3 +1364,78 @@ Transform:
   m_Father: {fileID: 5487112305905313872}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8166668901047370662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7724811705524031882}
+    m_Modifications:
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.148
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913895357, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_Name
+      value: towel-beach-orange
+      objectReference: {fileID: 0}
+    - target: {fileID: 3727516677913895357, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+--- !u!4 &4823103085868613179 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3727516677913542045, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+  m_PrefabInstance: {fileID: 8166668901047370662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4823103085868900891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3727516677913895357, guid: f4111bd80f67057408c0de92aab74e22, type: 3}
+  m_PrefabInstance: {fileID: 8166668901047370662}
+  m_PrefabAsset: {fileID: 0}

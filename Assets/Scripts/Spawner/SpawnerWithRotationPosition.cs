@@ -13,7 +13,7 @@ public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosi
     [Header("InstancePositonVectorCoordinates")]
     [SerializeField] protected float xMaxRange = 19;
     [SerializeField] protected float xMinRange = -16f;
-    [SerializeField] protected float yCoordinate = 0f;
+    [SerializeField] protected float yCoordinate = -0.1f;
     [SerializeField] protected float zMaxRange = 4;
     [SerializeField] protected float zMinRange = -14;
 

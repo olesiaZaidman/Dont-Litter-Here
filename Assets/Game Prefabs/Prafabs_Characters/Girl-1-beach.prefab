@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: -8386760469890797071}
   m_Layer: 0
   m_Name: Girl-1-beach
-  m_TagString: Untagged
+  m_TagString: Crowd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,6 +279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMin: 1
   speedMax: 3
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!136 &7956955394821676343
 CapsuleCollider:
   m_ObjectHideFlags: 0

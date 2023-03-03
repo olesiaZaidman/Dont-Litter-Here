@@ -2,31 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KinematicSitting : MonoBehaviour
+public class Towel : MonoBehaviour
 {
-    Rigidbody rb;
+    [SerializeField] GameObject towel;
     MoveForwardWithAnimationController moveController;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        towel.SetActive(false);
         moveController = GetComponent<MoveForwardWithAnimationController>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (moveController != null)
         {
             if (moveController.GetIsWalking())
             {
-                rb.isKinematic = false;
+                towel.SetActive(false);
             }
 
             if (moveController.GetIsSitting())
             {
-                rb.isKinematic = true;
+                towel.SetActive(true);
             }
         }
-
-
     }
 }
