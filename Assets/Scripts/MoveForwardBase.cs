@@ -22,9 +22,10 @@ public class MoveForwardBase : MonoBehaviour
         Move();
     }
 
-    public void SetRandomSpeed()
+    public float SetRandomSpeed()
     {
         speed = Random.Range(speedMin, speedMax);
+        return speed;
     }
 
 

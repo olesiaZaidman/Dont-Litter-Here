@@ -24,9 +24,11 @@ public class CharactersAnimationController : AnimationController
         PlayAnimationIfNeeded("isSitting", _isPlaying);
     }
 
-    //public void LayAndSunbath()
-    //{
-    //    PlayAnimationIfNeeded("isSwimming", true);
-    //}
+
+
+    public void Sunbath(bool _isPlaying)
+    {
+        PlayAnimationIfNeeded("isSunBathing", _isPlaying);
+    }
 
 }

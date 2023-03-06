@@ -433,10 +433,10 @@ GameObject:
   - component: {fileID: -5058510818558064543}
   - component: {fileID: 7592845152083752943}
   - component: {fileID: 3294075806989166294}
-  - component: {fileID: -8060502665267934783}
   - component: {fileID: -238987528195085242}
   - component: {fileID: 722293811}
   - component: {fileID: 722293810}
+  - component: {fileID: 8152508763113819032}
   m_Layer: 0
   m_Name: Dog-GreatDane-Black
   m_TagString: Crowd
@@ -459,7 +459,7 @@ Transform:
   - {fileID: 8062630504472747904}
   - {fileID: 8062630504472747930}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8062630504480206882
 Animator:
@@ -481,6 +481,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-5058510818558064543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,23 +520,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
---- !u!114 &-8060502665267934783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8062630504472773506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 6
-  isSitting: 0
-  isWalking: 1
-  timerValue: 0
 --- !u!114 &-238987528195085242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +582,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &8152508763113819032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062630504472773506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97902e266e40af4fbfcbf9d1027b78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 6
+  myAnimator: {fileID: 8062630504480206882}
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!1 &8062630504472773508
 GameObject:
   m_ObjectHideFlags: 0

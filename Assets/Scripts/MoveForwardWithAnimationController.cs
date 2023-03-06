@@ -5,15 +5,15 @@ using UnityEngine;
 public class MoveForwardWithAnimationController : MoveForwardBase
 //MoveForwardWithAnimation
 {
-    private Animator myAnimator;
-    CharactersAnimationController myAnimationController;
+    [SerializeField]  protected Animator myAnimator;
+    protected CharactersAnimationController myAnimationController;
 
-    [SerializeField] bool isSitting = false;
-    [SerializeField] bool isWalking = true;
+    [SerializeField] protected bool isSitting = false;
+    [SerializeField] protected bool isWalking = true;
 
-    [SerializeField] float timerValue;
-    float timeToSit;
-    float timeToWalk;
+    [SerializeField] protected float timerValue;
+    protected float timeToSit;
+    protected float timeToWalk;
 
 
 
@@ -44,25 +44,25 @@ public class MoveForwardWithAnimationController : MoveForwardBase
     private void Start()
     {
         SetRandomSpeed();
-        SetTimeToSitAndWalk();
+        SetTimeActionStates();
         timerValue = timeToWalk;
     }
 
     private void Update()
     {
-        Move();
         UpdateTimer();
-        Sit();
+        Animate();
+        Move();
     }
 
-    public void SetTimeToSitAndWalk()
+    public virtual void SetTimeActionStates()
     {
         timeToSit = Random.Range(3f, 20f);
         timeToWalk = Random.Range(3f, 20f);
     }
 
 
-    public void UpdateTimer()
+    public virtual void UpdateTimer()
     {
         if (isWalking)
         {
@@ -81,38 +81,37 @@ public class MoveForwardWithAnimationController : MoveForwardBase
                 isSitting = false;
                 isWalking = true;
                 timerValue = timeToWalk;
-                SetTimeToSitAndWalk();
+                SetRandomSpeed();
+                SetTimeActionStates();
             }
         }
         timerValue -= Time.deltaTime;
     }
 
-    private void Sit()
-    {
-        if (!isWalking || isSitting)
-        {
-            myAnimationController.SitIfNeeded(true);
-        }
-        else if (isWalking || !isSitting)
-        {
-            myAnimationController.SitIfNeeded(false);
-        }
-    }
+    //public virtual void Sit()
+    //{
+    //    if (isSitting)
+    //    {
+    //        myAnimationController.SitIfNeeded(true);
+    //    }
+    //    else // if (!isSitting)
+    //    {
+    //        myAnimationController.SitIfNeeded(false);
+    //    }
+    //}
 
     public override void Move()
     {
         // Debug.Log(gameObject.name + "is moving");
-        if (isWalking || !isSitting)
+        if (isWalking)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            myAnimationController.WalkForwardIfNeeded(true);
-            myAnimator.SetFloat("moveSpeed", speed);
         }
-        else if (!isWalking || isSitting)
-        {
-            myAnimationController.WalkForwardIfNeeded(false);
-            return;
-        }
+        //else  
+        //{
+        //    transform.Translate(Vector3.forward * 0 * Time.deltaTime);
+        //    return;
+        //}
     }
 
 
@@ -134,9 +133,25 @@ public class MoveForwardWithAnimationController : MoveForwardBase
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Sea") || other.gameObject.CompareTag("Crowd"))
+        if (other.gameObject.CompareTag("Sea"))
         {
             myAnimationController.StopSwim();
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Crowd"))
+        {
+            isWalking = true;
+            isSitting = false;
+            timerValue = timeToWalk;
+        }
+    }
+
+    public virtual void Animate()
+    {
+      myAnimationController.WalkForwardIfNeeded(isWalking);
+      myAnimationController.SitIfNeeded(isSitting);
     }
 }

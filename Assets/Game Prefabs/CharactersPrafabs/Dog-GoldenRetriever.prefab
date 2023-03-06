@@ -109,10 +109,10 @@ GameObject:
   - component: {fileID: -4573290731222647990}
   - component: {fileID: 7450749227828535110}
   - component: {fileID: -8841691049106477972}
-  - component: {fileID: -6800371531586911200}
   - component: {fileID: -7366772711043924659}
   - component: {fileID: 1745519285}
   - component: {fileID: 1745519284}
+  - component: {fileID: 4308701774727613536}
   m_Layer: 0
   m_Name: Dog-GoldenRetriever
   m_TagString: Crowd
@@ -135,7 +135,7 @@ Transform:
   - {fileID: 5454366066995729987}
   - {fileID: 5454366066995730015}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5454366067003455975
 Animator:
@@ -157,6 +157,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-4573290731222647990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,23 +196,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
---- !u!114 &-6800371531586911200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5454366066996021799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 6
-  isSitting: 0
-  isWalking: 1
-  timerValue: 0
 --- !u!114 &-7366772711043924659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +258,24 @@ CapsuleCollider:
   m_Height: 1.105763
   m_Direction: 2
   m_Center: {x: -0.032954723, y: 0.42367196, z: -0.011406541}
+--- !u!114 &4308701774727613536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454366066996021799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a97902e266e40af4fbfcbf9d1027b78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 6
+  myAnimator: {fileID: 5454366067003455975}
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
 --- !u!1 &5454366066996021801
 GameObject:
   m_ObjectHideFlags: 0
