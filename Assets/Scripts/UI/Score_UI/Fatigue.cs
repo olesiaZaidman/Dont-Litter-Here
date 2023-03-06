@@ -20,8 +20,8 @@ public class Fatigue : MonoBehaviour
     FatigueIndicatorUI fatigueUI;
 
     int temperatureModifier = 1;
-    int points = 1;
-    float time = 5;
+  //  int points = 1;
+  //  float time = 5;
 
     float NormalizeValue(float _fillValue)
     {
