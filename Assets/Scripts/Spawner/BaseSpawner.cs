@@ -21,7 +21,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     protected float spawnIntervalMin = 1f;
     protected float spawnIntervalMax = 4f;
-
+    protected Vector3 spawnOffsetPos;
 
     void Start()
     {
@@ -78,16 +78,39 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     public virtual void Spawn() 
     {
         Vector3 pos = transform.position;
+        spawnOffsetPos = SetRandomspawnOffsetPos();
         List<Pool> list = GetPoolPrefabList();
         index = Random.Range(0, list.Count);
         Pool pool = list[index];
-        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos+spawnOffsetPos);
         CreateTimeIntervalBetweenSpawning();
+    }
+
+    private Vector3 SetRandomspawnOffsetPos()
+    {
+        float xPositive = Random.Range(0.4f,1f);
+        float xNegative = Random.Range(-0.5f, -1f);
+        float y = -0.1f;
+        float zPositive = Random.Range(0.8f, 1.3f); ; 
+        float zNegative = Random.Range(-1.1f, -1.5f);
+        
+        int random = Random.Range(1,10);
+        if (random % 2 == 1)
+        {
+            Vector3 _offsetPos = new Vector3(xPositive, y, zPositive);
+            return _offsetPos;
+        }
+        else //(random % 2 == 0)
+        {
+            Vector3 _offsetNeg = new Vector3(xNegative, y, zNegative);
+            return _offsetNeg;
+        }
+            
     }
 
     #endregion
 
-    #region SpawnInterval
+        #region SpawnInterval
     public virtual float SetSpawnIntervalMin(float _value)
     {
         spawnIntervalMin = Mathf.Clamp(_value, 0, 60);

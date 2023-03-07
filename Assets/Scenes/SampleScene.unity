@@ -2530,6 +2530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 2
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: -90
   zRotation: 0
@@ -2552,6 +2553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: -90
   zRotation: 0
@@ -3804,6 +3806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 0
   zRotation: 0
@@ -5390,6 +5393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 2
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 0
   zRotation: 0
@@ -8494,6 +8498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 2
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 180
   zRotation: 0
@@ -8824,6 +8829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 2
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
   zRotation: 0
@@ -8846,6 +8852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
   zRotation: 0
@@ -8868,6 +8875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  spawnOffsetPos: {x: 0, y: 0, z: 0}
   xRotation: 0
   yRotation: 90
   zRotation: 0
