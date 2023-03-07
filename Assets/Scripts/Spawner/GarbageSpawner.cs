@@ -9,7 +9,10 @@ public class GarbageSpawner : BaseSpawner
     protected override float StartDelayMax { get { return 15f; } }
     TimeController timeController;
     MoveForwardWithAnimationController moveController;
-    bool isTimeForSpawning = true;
+    [SerializeField] bool isTimeForSpawning; //= true
+    [SerializeField] bool isSitting; // = false
+    [SerializeField] bool isWalking;
+    [SerializeField] bool isRestart = false;
     #region Constructor
     public GarbageSpawner() : base()
     {
@@ -22,6 +25,13 @@ public class GarbageSpawner : BaseSpawner
     {
         timeController = FindObjectOfType<TimeController>();
         moveController = GetComponent<MoveForwardWithAnimationController>();
+
+        if (moveController != null)
+        {
+            isSitting = moveController.GetIsSitting();
+            isWalking = moveController.GetIsWalking();
+        }
+
     }
 
     void Update()
@@ -31,7 +41,11 @@ public class GarbageSpawner : BaseSpawner
 
         if (moveController != null)
         { //Debug.Log(gameObject.name + "  has moveController");
+            isSitting = moveController.GetIsSitting();
+            isWalking = moveController.GetIsWalking();
+
             ChangeSpawningTimeBasedOnActionState();
+
         }
     }
 
@@ -39,19 +53,19 @@ public class GarbageSpawner : BaseSpawner
     public override void CreateTimeIntervalBetweenSpawning()
     {
         base.CreateTimeIntervalBetweenSpawning();
-        Debug.Log(gameObject.name + " CreateTimeIntervalBetweenSpawning");
+        //Debug.Log(gameObject.name + " CreateTimeIntervalBetweenSpawning");
     }
 
     public override void StartSpawningWithIntervals()
     {
         base.StartSpawningWithIntervals();
-        Debug.Log(gameObject.name + " SpawnInvokeRepeating");
+       // Debug.Log(gameObject.name + " SpawnInvokeRepeating");
     }
 
     public override void CancelSpawning()
     {
         base.CancelSpawning();
-        Debug.Log(gameObject.name + " CancelSpawning");
+       // Debug.Log(gameObject.name + " CancelSpawning");
     }
     #endregion
     #region Pool //& Spawn
@@ -72,12 +86,6 @@ public class GarbageSpawner : BaseSpawner
     {
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
-
-        // base.StartSettings();
-        //base.StartSettings() is:
-        // CreateRandomStartTime();
-        //  CreateTimeIntervalBetweenSpawning();
-        // StartSpawningWithIntervals(); //= InvokeRepeating
     }
     #endregion
 
@@ -98,25 +106,49 @@ public class GarbageSpawner : BaseSpawner
                 StartSpawningWithIntervals();  //sits in BaseSpawner
             }
         }
+
+        if(isSitting && !isWalking)
+        {
+            if (!isTimeForSpawning && !isRestart)
+            {
+              //  Debug.Log(gameObject.name + " isActionStateChanged");
+                isTimeForSpawning = true;
+                CancelSpawning();
+              //  Debug.Log("CancelSpawning & isRestart: " + isRestart);
+                if (isTimeForSpawning)
+                {
+                    isTimeForSpawning = false;
+                    StartSpawningWithIntervals();
+                    isRestart = true;
+                 //   Debug.Log("StartSpawning & isRestart: " + isRestart);
+                }
+            }
+        }
+
+        if (!isSitting && isWalking)
+        {
+            isRestart = false;
+        }
     }
     private void ChangeSpawningTimeBasedOnActionState()
     {
         //often:
         if (moveController.GetIsSitting())
-        {
-             Debug.Log(gameObject.name + " IsSitting.Set to often");
+        {           
+         //   Debug.Log(gameObject.name + " IsSitting.Set to often");
             SetSpawnIntervalMin(1);  //sits in BaseSpawner
             SetSpawnIntervalMax(3); //sits in BaseSpawner
-           
+            CreateTimeIntervalBetweenSpawning();
         }
 
         //mid
         if (moveController.GetIsWalking())
         {
-             Debug.Log(gameObject.name + " IsWalking. Set to mid");
+           
+           // Debug.Log(gameObject.name + " IsWalking. Set to mid");
             SetSpawnIntervalMin(10);
             SetSpawnIntervalMax(18);
-            
+            CreateTimeIntervalBetweenSpawning();
         }
         ////rare
         //if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
@@ -155,73 +187,4 @@ public class GarbageSpawner : BaseSpawner
     }
 
     #endregion
-
-
-
-
-
-    // private void IncreaseOrDecreseSpawningTime()
-    //  {
-    //  if (moveController != null)
-    //  {
-    //if (moveController.GetIsWalking())
-    //{
-    //    Debug.Log("mid");
-    //    SetSpawnIntervalMin(10);
-    //    SetSpawnIntervalMax(20);
-    //}
-
-    //if (moveController.GetIsSitting())
-    //{
-    //    Debug.Log("often");
-    //    SetSpawnIntervalMin(1);
-    //    SetSpawnIntervalMax(5);
-    //}
-    //   }
-    ////often:
-    //if (Input.GetKey(KeyCode.P))
-    //{
-    //    //  Debug.Log("Set to often");
-    //    SetSpawnIntervalMin(1);
-    //    SetSpawnIntervalMax(5);
-    //}
-
-    ////mid
-    //if (Input.GetKey(KeyCode.O))
-    //{
-    //    // Debug.Log("Set to mid");
-    //    SetSpawnIntervalMin(5);
-    //    SetSpawnIntervalMax(15);
-    //}
-
-
-    ////rare
-    //if (Input.GetKey(KeyCode.I))
-    //{
-    //    //  Debug.Log("Set to rare");
-    //    SetSpawnIntervalMin(15);
-    //    SetSpawnIntervalMax(30);
-    //}
-    // }
-
-
-    //public override void CreateTimeIntervalBetweenSpawning()
-    //{
-
-    //    _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
-    //  //  Debug.Log("New Interval. Min: " + spawnIntervalMin + " Max: " + spawnIntervalMax);
-    //  //  Debug.Log("New Interval itself: " + _spawnInterval);
-    //}
-
-    //private float SetSpawnIntervalMin(float _value)
-    //{
-    //    spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
-    //    return spawnIntervalMin;
-    //}
-
-    //private float SetSpawnIntervalMax(float _value)
-    //{
-    //    spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
-    //    return spawnIntervalMax;
-    //}
 }
