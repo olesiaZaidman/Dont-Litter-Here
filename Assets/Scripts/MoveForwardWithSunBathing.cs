@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
 {
-    //TODO:
-    //COLLIDERS
-    //ROtation&Pos
+    //TODO: SetRandomCharacterRotationAndPositionRelativetoSunBed
+    //Take sunbed size collider and calculate numbers from it:
+
     [SerializeField] bool isSunBathing = false;
     float timeToSunBath;
-
     [SerializeField] Vector3 positionSunBedOffset;
-    [SerializeField] Vector3 currentPos;
+    CapsuleCollider capsuleCollider;
     private void Start()
     {
+        capsuleCollider = GetComponent<CapsuleCollider>();
         SetRandomSpeed();
         SetTimeActionStates();
         timerValue = timeToWalk;
@@ -30,9 +30,12 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
     {
         timeToSit = Random.Range(3f, 20f);
         timeToWalk = Random.Range(3f, 20f);
-        timeToSunBath = Random.Range(15f, 70f);
+        timeToSunBath = Random.Range(3f, 10f); //Random.Range(15f, 70f);
     }
-
+    public bool GetIsSunBathing()
+    {
+        return isSunBathing;
+    }
     public override void UpdateTimer()
     {
         if (!isSunBathing)
@@ -44,7 +47,6 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
                     isWalking = false;
                     isSitting = true;
                     timerValue = timeToSit;
-                    Debug.Log("isSitting = true");
                 }
 
             }
@@ -56,7 +58,7 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
                     isWalking = true;
                     timerValue = timeToWalk;
                     SetTimeActionStates();
-                    Debug.Log("isWalking = true");
+                    
                 }
             }
             timerValue -= Time.deltaTime;
@@ -64,21 +66,17 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
 
         else if (isSunBathing)
         {
-            Debug.Log("isSunBathing = true");
+         
             if (timerValue <= 0)
-            {
-                Debug.Log("isSunBathing = false");
+            {               
                 isSitting = false;
-                isWalking = false;
+                isWalking = true;
                 isSunBathing = false;
-                timerValue = timeToSunBath;
+                timerValue = timeToWalk;
                 SetTimeActionStates();
             }
             timerValue -= Time.deltaTime;
         }
-
-
-
     }
 
     void StopMoving()
@@ -89,29 +87,28 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
     void StartMoving()
     {
         speed = SetRandomSpeed();
-
     }
 
-
-    void OnCollisionEnter(Collision other) //OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other) 
     {
         if (other.gameObject.CompareTag("SunBed"))
         {
             Sunbed sunbed = other.gameObject.GetComponent<Sunbed>();
             if (sunbed.isInteractable)
             {
-                Debug.Log("Bumped into a sunbed");
                 sunbed.ChangeUnbrellaState();
+                sunbed.isInteractable = false;
+                capsuleCollider.enabled = false;
                 StartCoroutine(SitStartSunBathingRoutine(other, timeToSunBath));
             }
-            //else if (!isInteractable)
-            //{
-            //    isSunBathing = false;
-            //    isWalking = true;
-            //    isSitting = false;
-            //    timerValue = timeToWalk;
-            //    //Rotate a little?
-            //}
+
+            else if (!sunbed.isInteractable)
+            {
+                isSunBathing = false;
+                isWalking = true;
+                isSitting = false;
+                timerValue = timeToWalk;
+            }
 
         }
     }
@@ -121,46 +118,78 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
         isSitting = false;
         isWalking = false;
         isSunBathing = true;
+        timerValue = timeToSunBath;
         StopMoving();
         myAnimationController.Sunbath(true);
-        currentPos = transform.position;
         PositionOnSunbed(other.gameObject, positionSunBedOffset);
-        Debug.Log("SpeedEnter" + speed);
-
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        
         yield return new WaitForSeconds(_delay);
 
         isSunBathing = false;
         isWalking = true;
-        PositionBehindSunbed();
-        StartMoving();
         isSitting = false;
-        SetTimeActionStates();
         timerValue = timeToWalk;
+
+        capsuleCollider.enabled = true;
+        SetRandomCharacterRotationAndPositionRelativetoSunBed(other.gameObject);
+        
+
+        StartMoving();
+        SetTimeActionStates();
+        Sunbed sunbed = other.gameObject.GetComponent<Sunbed>();
+        StartCoroutine(sunbed.MakeSunbedAvailableRoutine());
+        sunbed.ChangeUnbrellaState();
     }
 
-    void OnCollisionExit(Collision other) //OnTriggerExit(Collider other)//
+    Vector3 PositionNextToSunbed(GameObject other, Vector3 _offset)
     {
-        if (other.gameObject.CompareTag("SunBed"))
+
+        Vector3 newPosition = other.gameObject.transform.position + _offset;
+        return newPosition;
+    }
+
+    //TODO: SetRandomCharacterRotationAndPositionRelativetoSunBed
+    //Take sunbed size collider and calculate numbers from it:
+    void SetRandomCharacterRotationAndPositionRelativetoSunBed(GameObject _other)
+    {
+
+        int random = Random.Range(0, 4);
+        Vector3 rightOffset = new Vector3(1f, 0f, 0f);
+        Vector3 leftOffset = new Vector3(-1f, 0f, 0f);
+        Vector3 frontOffset = new Vector3(0f, 0f, 2f);
+        Vector3 backOffset = new Vector3(0f, 0f, -2f);
+
+        if (random == 0)
         {
-            Sunbed sunbed = other.gameObject.GetComponent<Sunbed>();
-            StartCoroutine(sunbed.MakeSunbedAvailableRoutine());
-            sunbed.ChangeUnbrellaState();
-            Debug.Log("SpeedExit" + speed);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+            transform.position = PositionNextToSunbed(_other, rightOffset);
         }
+        else if (random == 1)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+            transform.position = PositionNextToSunbed(_other, leftOffset);
+        }
+
+        else if (random == 2)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            transform.position = PositionNextToSunbed(_other, backOffset);
+        }
+
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            transform.position = PositionNextToSunbed(_other, frontOffset);
+        }
+
     }
 
     void PositionOnSunbed(GameObject other, Vector3 _offset)
     {
         transform.position = other.gameObject.transform.position + _offset;
     }
-
-    void PositionBehindSunbed()
-    {
-        Vector3 _offset = new Vector3(0.6f, 0, 0);
-        transform.position = currentPos + _offset;
-    }
-
-
+  
     public override void Animate()
     {
         base.Animate();

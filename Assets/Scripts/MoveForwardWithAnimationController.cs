@@ -15,9 +15,7 @@ public class MoveForwardWithAnimationController : MoveForwardBase
     protected float timeToSit;
     protected float timeToWalk;
 
-
-
-    public bool GetIsSitting()
+    public virtual bool GetIsSitting() //HOW TO SUNBATH???
     {
         return isSitting;
     }

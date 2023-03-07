@@ -91,21 +91,29 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         float xPositive = Random.Range(0.4f,1f);
         float xNegative = Random.Range(-0.5f, -1f);
         float y = -0.1f;
-        float zPositive = Random.Range(0.8f, 1.3f); ; 
+        float zPositive = Random.Range(0.8f, 1.3f);  
         float zNegative = Random.Range(-1.1f, -1.5f);
         
-        int random = Random.Range(1,10);
-        if (random % 2 == 1)
+        int random = Random.Range(0,4);
+
+        if (random == 0)
         {
-            Vector3 _offsetPos = new Vector3(xPositive, y, zPositive);
-            return _offsetPos;
+            return new Vector3(xPositive, y, zPositive);
         }
-        else //(random % 2 == 0)
+
+        else if (random == 1)
         {
-            Vector3 _offsetNeg = new Vector3(xNegative, y, zNegative);
-            return _offsetNeg;
+            return new Vector3(xNegative, y, zPositive);
         }
-            
+
+        else if (random == 2)
+        {
+            return new Vector3(xPositive, y, zNegative);
+        }
+        else 
+        {
+            return new Vector3(xNegative, y, zNegative);
+        }
     }
 
     #endregion

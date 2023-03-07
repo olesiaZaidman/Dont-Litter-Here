@@ -191,6 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Halo_blue
       objectReference: {fileID: 0}
+    - target: {fileID: 1505311506249381858, guid: 0100763d732a4c449977bf5d3fcfdce6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7984406115109731907, guid: 0100763d732a4c449977bf5d3fcfdce6, type: 3}
       propertyPath: m_RootOrder
       value: 12

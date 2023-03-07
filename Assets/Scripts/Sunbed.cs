@@ -16,26 +16,6 @@ public class Sunbed : MonoBehaviour
         umbrella_closed.SetActive(isUmbrellaOpen);
     }
 
-    void Update()
-    {
-    //    ChangeUnbrella(isActive);
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            //if (isActive)
-            //{ 
-            //    isActive = false;
-            //}
-            //else if (!isActive)
-            //{ 
-            //    isActive = true;
-            //}
-               
-            ChangeUnbrellaState();
-            
-        }
-    }
-
     public void ChangeUnbrellaState()
     {
         isUmbrellaOpen = !isUmbrellaOpen;
@@ -50,7 +30,7 @@ public class Sunbed : MonoBehaviour
 
     public IEnumerator MakeSunbedAvailableRoutine()
     {
-        yield return new WaitForSeconds(2f);
-        isInteractable = false;
+        yield return new WaitForSeconds(0.5f);
+        isInteractable = true;
     }
 }
