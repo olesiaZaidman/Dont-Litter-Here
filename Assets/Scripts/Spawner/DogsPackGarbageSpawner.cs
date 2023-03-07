@@ -5,12 +5,9 @@ using static ObjectPooler;
 
 public class DogsPackGarbageSpawner : GarbageSpawner
 {
-
     public override List<Pool> GetPoolPrefabList()
     {
         return Instance.poolGarbageDogsList;
     }
-
-
 
 }

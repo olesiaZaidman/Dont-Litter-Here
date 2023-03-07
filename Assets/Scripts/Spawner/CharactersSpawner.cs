@@ -8,52 +8,54 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     protected override float StartDelayMin { get { return 1f; } }
     protected override float StartDelayMax { get { return 10f; } }
 
-    protected float spawnIntervalMin = 5f;
-    protected float spawnIntervalMax = 30f;
+    //protected float spawnIntervalMin = 5f;
+    //protected float spawnIntervalMax = 30f;
 
     TimeController timeController;
 
     bool isTimeForSpawning = true;
+
+    #region Constructor
     public CharactersSpawner() : base()
     {
-        // yCoordinate = transform.position;
+        spawnIntervalMin = 5f;
+        spawnIntervalMax = 30f;
     }
+    #endregion
     void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
     }
 
+    private void Update()
+    {
+        StopOrRestartSpawningIfNeeded();
+        ChangeSpawningTimeBasedOnTimeController();
+    }
+
+    #region Pool
     public override List<Pool> GetPoolPrefabList()
     {
         return Instance.poolCharactersList;
     }
+    #endregion
 
-    public override void CreateTimeIntervalBetweenSpawning()
+    #region Start Functions //called at Start in Base Spawner
+    public override void StartSettings() //called at Start in Base Spawner
     {
-
-        _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
-       // Debug.Log("New Interval. Min: "+ spawnIntervalMin + " Max: "+ spawnIntervalMax);
-      //  Debug.Log("New Interval itself: " + _spawnInterval);
+        CreateRandomStartTime();
+        CreateTimeIntervalBetweenSpawning();
     }
 
-    private float SetSpawnIntervalMin(float _value)
-    {
-        spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
-        return spawnIntervalMin;
-    }
+    #endregion
 
-    private float SetSpawnIntervalMax(float _value)
-    {
-        spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
-        return spawnIntervalMax;
-    }
-
+    #region Update Functions //InvokeRepeating & CancelInvoke  sit in BaseSpawner
 
     private void StopOrRestartSpawningIfNeeded()
     {
         if (timeController.IsEndOfWorkingDay())
         {
-            CancelSpawning();
+            CancelSpawning();  //sits in BaseSpawner
             isTimeForSpawning = true;
         }
         if (timeController.IsEarlyMorning())
@@ -61,24 +63,23 @@ public class CharactersSpawner : SpawnerWithRotationPosition
             if (isTimeForSpawning)
             {
                 isTimeForSpawning = false;
-                StartSpawningWithIntervals();
+                StartSpawningWithIntervals();  //sits in BaseSpawner
             }
         }
     }
 
-    private void IncreaseOrDecreseSpawningTime()
+    private void ChangeSpawningTimeBasedOnTimeController()
     {
-
         //often:
         if (timeController.IsDay())
         {
-          //  Debug.Log("Set to often");
-            SetSpawnIntervalMin(1);
-            SetSpawnIntervalMax(7);
+          //    Debug.Log("Set to often");
+            SetSpawnIntervalMin(1);  //sits in BaseSpawner
+            SetSpawnIntervalMax(7); //sits in BaseSpawner
         }
 
         //mid
-        if (timeController.IsLateMorning() || timeController.IsEarlyEvening()) 
+        if (timeController.IsLateMorning() || timeController.IsEarlyEvening())
         {
            // Debug.Log("Set to mid");
             SetSpawnIntervalMin(10);
@@ -89,23 +90,13 @@ public class CharactersSpawner : SpawnerWithRotationPosition
         //rare
         if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
         {
-          //  Debug.Log("Set to rare");
+           //  Debug.Log("Set to rare");
             SetSpawnIntervalMin(20);
             SetSpawnIntervalMax(40);
         }
     }
 
-    private void Update()
-    {
-        StopOrRestartSpawningIfNeeded();
-        IncreaseOrDecreseSpawningTime();
-    }
-    public override void StartSettings()
-    {
-        CreateRandomStartTime();
-        CreateTimeIntervalBetweenSpawning();
-    }
-
+    //ALL THIS IN BASE SPAWNER:
     //public override void StartSpawningWithIntervals()
     //{
     //    base.StartSpawningWithIntervals();
@@ -118,6 +109,25 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     //    base.CancelSpawning();
     //    Debug.Log("CharactersSpawner: CancelSpawning");
     //}
+
+    #endregion
+
+    #region SpawnInterval //sits in BaseSpawner
+    //private float SetSpawnIntervalMin(float _value)
+    //{
+    //    spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
+    //    return spawnIntervalMin;
+    //}
+
+    //private float SetSpawnIntervalMax(float _value)
+    //{
+    //    spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
+    //    return spawnIntervalMax;
+    //}
+
+    #endregion
+
+
 
 
 

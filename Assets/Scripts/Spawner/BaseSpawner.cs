@@ -16,8 +16,12 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected virtual float StartDelayMin { get { return 0.5f; } }
     // [SerializeField] protected float _startDelayMin; // = 2.0f
     protected virtual float StartDelayMax { get { return 10f; } }
-    protected virtual float SpawnIntervalMin { get { return 1f; } } //{ get; set; }    //{ return 1f; } 
-    protected virtual float SpawnIntervalMax { get { return 4f; } } //{ return 4f; } 
+    //protected virtual float SpawnIntervalMin { get { return 1f; } } //{ get; set; }    //{ return 1f; } 
+    //protected virtual float SpawnIntervalMax { get { return 4f; } } //{ return 4f; } 
+
+    protected float spawnIntervalMin = 1f;
+    protected float spawnIntervalMax = 4f;
+
 
     void Start()
     {
@@ -25,7 +29,13 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         //SpawnIntervalMin = 1f;
         //SpawnIntervalMax = 4f;
     }
-
+    #region Start Functions  //Includ InvokeRepeating
+    public virtual void StartSettings()
+    {
+        CreateRandomStartTime();
+        CreateTimeIntervalBetweenSpawning();
+        StartSpawningWithIntervals(); // //= InvokeRepeating
+    }
 
     public void CreateRandomStartTime()
     {
@@ -34,15 +44,8 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     public virtual void CreateTimeIntervalBetweenSpawning()
     {
-        _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
-    }
-
- 
-    public virtual void StartSettings()
-    {
-        CreateRandomStartTime();
-        CreateTimeIntervalBetweenSpawning();
-        StartSpawningWithIntervals();
+        // _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
+        _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
     }
 
     public virtual void StartSpawningWithIntervals()
@@ -50,11 +53,23 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         InvokeRepeating("Spawn", _startDelay, _spawnInterval);
     }
 
+    #endregion 
+
+    #region Supposed for Update Functions //CancelInvoke
+    //IN START:
+    //public virtual void StartSpawningWithIntervals()
+    //{
+    //    InvokeRepeating("Spawn", _startDelay, _spawnInterval);
+    //}
+
     public virtual void CancelSpawning()
     {
         CancelInvoke("Spawn");
     }
 
+    #endregion
+
+    #region Spawn & Pool
     public virtual List<Pool> GetPoolPrefabList()
     {
         return null; // new List<Pool>();
@@ -70,30 +85,21 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         CreateTimeIntervalBetweenSpawning();
     }
 
-    //public virtual float SetSpawnIntervalMin(float _value)
-    //{
-    //    spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
-    //    return spawnIntervalMin;
-    //}
+    #endregion
 
-    //public virtual SetSpawnIntervalMax(float _value)
-    //{
-    //    spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
-    //    return spawnIntervalMax;
-    //}
+    #region SpawnInterval
+    public virtual float SetSpawnIntervalMin(float _value)
+    {
+        spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
+        return spawnIntervalMin;
+    }
 
-    //protected virtual float StartDelay
-    //{
-    //    get { return _startDelay; }
-    //    private set
-    //    {
-    //        if (value <= 0)
-    //        {
-    //            Debug.Log("Out of range!");
-    //            return;
-    //        }
-    //        _startDelay = Random.Range(StartDelayMin, StartDelayMax);
-    //        //_startDelay = value;
-    //    }
-    //}
+    public virtual float SetSpawnIntervalMax(float _value)
+    {
+        spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
+        return spawnIntervalMax;
+    }
+
+    #endregion
+
 }

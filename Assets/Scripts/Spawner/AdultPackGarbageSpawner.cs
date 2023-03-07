@@ -5,6 +5,7 @@ using static ObjectPooler;
 
 public class AdultPackGarbageSpawner : GarbageSpawner
 {
+    #region Pool
     public override List<Pool> GetPoolPrefabList()
     {
       //  return Instance.JoinLists(Instance.poolGarbageAdultList, Instance.poolGarbageBaseList);
@@ -13,6 +14,8 @@ public class AdultPackGarbageSpawner : GarbageSpawner
         combinedList.AddRange(Instance.poolGarbageBaseList);
         return combinedList;
     }
+
+    #endregion
 
     //public override void Spawn()
     //{
