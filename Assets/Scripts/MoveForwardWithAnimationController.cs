@@ -86,17 +86,6 @@ public class MoveForwardWithAnimationController : MoveForwardBase
         timerValue -= Time.deltaTime;
     }
 
-    //public virtual void Sit()
-    //{
-    //    if (isSitting)
-    //    {
-    //        myAnimationController.SitIfNeeded(true);
-    //    }
-    //    else // if (!isSitting)
-    //    {
-    //        myAnimationController.SitIfNeeded(false);
-    //    }
-    //}
 
     public override void Move()
     {

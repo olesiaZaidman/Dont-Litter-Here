@@ -5,12 +5,25 @@ using static ObjectPooler;
 
 public class GarbageSpawner : BaseSpawner
 {
+    //Events for state machine - time of the day or action state
+    //OBSERVER PATTERN with Events {TELL DONT ASK}
+
+    // toDO:
+    //    moveController.getLitterRate();
+    //instead IsSitting - IsWalking MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
+    
+    //BUG:
+    //When we restar-SitingWalking litter waits to restart and appears when the character walks away?
+    //Invoke Repeating works badly here
+    
     protected override float StartDelayMin { get { return 3f; ; } }
     protected override float StartDelayMax { get { return 15f; } }
     TimeController timeController;
-    MoveForwardWithAnimationController moveController;
+
+    MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
+
     [SerializeField] bool isTimeForSpawning; //= true
-    [SerializeField] bool isSitting; // = false
+   // [SerializeField] bool isSitting; // = false
     [SerializeField] bool isWalking;
     [SerializeField] bool isRestart = false;
     #region Constructor
@@ -28,7 +41,7 @@ public class GarbageSpawner : BaseSpawner
 
         if (moveController != null)
         {
-            isSitting = moveController.GetIsSitting();
+           // isSitting = moveController.GetIsSitting();
             isWalking = moveController.GetIsWalking();
         }
 
@@ -41,10 +54,10 @@ public class GarbageSpawner : BaseSpawner
 
         if (moveController != null)
         { //Debug.Log(gameObject.name + "  has moveController");
-            isSitting = moveController.GetIsSitting();
+         //   isSitting = moveController.GetIsSitting();
             isWalking = moveController.GetIsWalking();
 
-            ChangeSpawningTimeBasedOnActionState();
+            ChangeSpawningRateBasedOnActionState();
 
         }
     }
@@ -107,7 +120,7 @@ public class GarbageSpawner : BaseSpawner
             }
         }
 
-        if(isSitting && !isWalking)
+        if(!isWalking)
         {
             if (!isTimeForSpawning && !isRestart)
             {
@@ -125,13 +138,15 @@ public class GarbageSpawner : BaseSpawner
             }
         }
 
-        if (!isSitting && isWalking)
+        if (isWalking)
         {
             isRestart = false;
         }
     }
-    private void ChangeSpawningTimeBasedOnActionState()
+    private void ChangeSpawningRateBasedOnActionState()
     {
+    //    moveController.getLitterRate();
+
         //often:
         if (moveController.GetIsSitting())
         {           
@@ -150,13 +165,7 @@ public class GarbageSpawner : BaseSpawner
             SetSpawnIntervalMax(18);
             CreateTimeIntervalBetweenSpawning();
         }
-        ////rare
-        //if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
-        //{
-        //    //    Debug.Log("Set to rare");
-        //    SetSpawnIntervalMin(20);
-        //    SetSpawnIntervalMax(40);
-        //}
+
     }
     private void ChangeSpawningTimeBasedOnTimeController()
     {

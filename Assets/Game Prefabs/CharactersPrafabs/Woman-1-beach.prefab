@@ -954,14 +954,15 @@ GameObject:
   m_Component:
   - component: {fileID: 7724811705524031882}
   - component: {fileID: 4455229383660522480}
-  - component: {fileID: 7835896306559865371}
-  - component: {fileID: -3901124877043599163}
   - component: {fileID: 5443295905206008520}
   - component: {fileID: 5931340360435560938}
+  - component: {fileID: -3901124877043599163}
   - component: {fileID: -1592982493693131951}
   - component: {fileID: 3032187075519148017}
   - component: {fileID: 4079113931666254392}
   - component: {fileID: 8818242543103999975}
+  - component: {fileID: 6969769746750502742}
+  - component: {fileID: 5763325634337398354}
   m_Layer: 0
   m_Name: Woman-1-beach
   m_TagString: Crowd
@@ -1007,35 +1008,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &7835896306559865371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953518229796571952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 3
-  isSitting: 0
-  isWalking: 1
-  timerValue: 0
---- !u!114 &-3901124877043599163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953518229796571952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &5443295905206008520
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1055,10 +1028,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3003147
   m_Height: 1.9207191
   m_Direction: 1
-  m_Center: {x: 0, y: 0.95366, z: 0}
+  m_Center: {x: 3.563936e-17, y: 0.95366, z: 0.010320395}
 --- !u!54 &5931340360435560938
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1086,6 +1059,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &-3901124877043599163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-1592982493693131951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1097,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  isTimeForSpawning: 0
+  isWalking: 0
+  isRestart: 0
 --- !u!114 &4079113931666254392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1137,7 +1125,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towel: {fileID: 4823103085868900891}
-  moveController: {fileID: 7835896306559865371}
+--- !u!114 &6969769746750502742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6e16e834d549940995748bbc998f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 2
+  myAnimator: {fileID: 4455229383660522480}
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
+  isSunBathing: 0
+  positionSunBedOffset: {x: 0.1, y: -0.4, z: 0.9}
+  xRotation: 0
+  yRotation: 0
+--- !u!135 &5763325634337398354
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953518229796571952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.17
+  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!1 &7186534100564158571
 GameObject:
   m_ObjectHideFlags: 0

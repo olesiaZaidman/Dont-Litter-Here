@@ -11,6 +11,9 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
     float timeToSunBath;
     [SerializeField] Vector3 positionSunBedOffset;
     CapsuleCollider capsuleCollider;
+
+    [SerializeField] float xRotation = -30;
+    [SerializeField] float yRotation = 0;
     private void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -65,8 +68,7 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
         }
 
         else if (isSunBathing)
-        {
-         
+        {         
             if (timerValue <= 0)
             {               
                 isSitting = false;
@@ -121,9 +123,9 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
         timerValue = timeToSunBath;
         StopMoving();
         myAnimationController.Sunbath(true);
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         PositionOnSunbed(other.gameObject, positionSunBedOffset);
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-        
+
         yield return new WaitForSeconds(_delay);
 
         isSunBathing = false;

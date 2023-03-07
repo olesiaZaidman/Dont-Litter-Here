@@ -573,12 +573,13 @@ GameObject:
   - component: {fileID: 4878236470719432824}
   - component: {fileID: 1536526739955225090}
   - component: {fileID: -735174330133034956}
-  - component: {fileID: 1817144179902984791}
   - component: {fileID: 5047888412787877341}
+  - component: {fileID: 638656789259344841}
   - component: {fileID: 5047888412787877340}
   - component: {fileID: 2033591860503665512}
   - component: {fileID: 6589624571534512023}
   - component: {fileID: -3943268772663997765}
+  - component: {fileID: 7634766240986649369}
   m_Layer: 0
   m_Name: Man-1-beach
   m_TagString: Crowd
@@ -601,7 +602,7 @@ Transform:
   - {fileID: 7371891106183443380}
   - {fileID: 1144663029356964076}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1536526739955225090
 Animator:
@@ -623,6 +624,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-735174330133034956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,23 +637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97395b5a85124264fa1efa1263a0c226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1817144179902984791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5258280862677865154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 3
-  isSitting: 0
-  isWalking: 1
-  timerValue: 0
 --- !u!136 &5047888412787877341
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -671,10 +656,31 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3003147
   m_Height: 1.9207191
   m_Direction: 1
-  m_Center: {x: 0, y: 0.95366, z: 0}
+  m_Center: {x: 3.563936e-17, y: 0.95366, z: 0.010320395}
+--- !u!135 &638656789259344841
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258280862677865154}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.17
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!54 &5047888412787877340
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -728,6 +734,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  isTimeForSpawning: 0
+  isWalking: 0
+  isRestart: 0
 --- !u!114 &-3943268772663997765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +749,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7634766240986649369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258280862677865154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6e16e834d549940995748bbc998f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 2
+  myAnimator: {fileID: 1536526739955225090}
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
+  isSunBathing: 0
+  positionSunBedOffset: {x: 0, y: -0.2, z: 0.6}
+  xRotation: 0
+  yRotation: 0
 --- !u!1 &5421564123987571097
 GameObject:
   m_ObjectHideFlags: 0

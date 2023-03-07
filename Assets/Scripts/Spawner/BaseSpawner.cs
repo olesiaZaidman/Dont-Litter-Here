@@ -5,6 +5,10 @@ using static ObjectPooler;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
+    //TODO Ease Base
+    //Create NEW Children to inherit
+
+
     protected int index;
 
     //  Interval & Delay:

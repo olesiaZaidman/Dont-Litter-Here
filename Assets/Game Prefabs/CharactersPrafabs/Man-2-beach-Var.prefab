@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a09082eea7c87664b9efc7dbae985cf0, type: 2}
     - target: {fileID: 4878236470719432824, guid: 531536a246f69774bbbc5c2c3c71a3cb, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4878236470719432824, guid: 531536a246f69774bbbc5c2c3c71a3cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4878236470719432824, guid: 531536a246f69774bbbc5c2c3c71a3cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.53
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4878236470719432824, guid: 531536a246f69774bbbc5c2c3c71a3cb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -182,15 +182,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towel: {fileID: 5470310648653841021}
-  moveController: {fileID: 5296919656850545817}
---- !u!114 &5296919656850545817 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1817144179902984791, guid: 531536a246f69774bbbc5c2c3c71a3cb, type: 3}
-  m_PrefabInstance: {fileID: 5815760497942032078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750934651233598476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

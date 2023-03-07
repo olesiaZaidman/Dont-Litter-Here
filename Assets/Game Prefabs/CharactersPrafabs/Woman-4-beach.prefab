@@ -1185,13 +1185,14 @@ GameObject:
   m_Component:
   - component: {fileID: 7768587444733630980}
   - component: {fileID: 4408951242153623678}
-  - component: {fileID: 7801686332259296666}
   - component: {fileID: 6363240076865369455}
   - component: {fileID: 3938067276458514787}
   - component: {fileID: 5519444346569978505}
+  - component: {fileID: 9080273016493305269}
   - component: {fileID: -5004921187769845613}
   - component: {fileID: 8341100188733732097}
   - component: {fileID: -7972915006683313638}
+  - component: {fileID: 4030127766153366668}
   m_Layer: 0
   m_Name: Woman-4-beach
   m_TagString: Crowd
@@ -1214,7 +1215,7 @@ Transform:
   - {fileID: 2855216002770549392}
   - {fileID: 8474254555990660109}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4408951242153623678
 Animator:
@@ -1237,24 +1238,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7801686332259296666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6954755964093857982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMin: 1
-  speedMax: 3
-  myAnimator: {fileID: 0}
-  isSitting: 0
-  isWalking: 1
-  timerValue: 0
 --- !u!114 &6363240076865369455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1300,27 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!135 &9080273016493305269
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6954755964093857982}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.17
+  m_Center: {x: 0, y: 0.94, z: 0}
 --- !u!114 &-5004921187769845613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,6 +1347,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  isTimeForSpawning: 0
+  isWalking: 0
+  isRestart: 0
 --- !u!114 &-7972915006683313638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1355,6 +1362,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4416c1280276f3468ebc42469af8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4030127766153366668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6954755964093857982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d6e16e834d549940995748bbc998f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMin: 1
+  speedMax: 2
+  myAnimator: {fileID: 4408951242153623678}
+  isSitting: 0
+  isWalking: 1
+  timerValue: 0
+  isSunBathing: 0
+  positionSunBedOffset: {x: 0.1, y: -0.4, z: 0.8}
+  xRotation: 0
+  yRotation: 0
 --- !u!1 &7073825274960090266
 GameObject:
   m_ObjectHideFlags: 0
