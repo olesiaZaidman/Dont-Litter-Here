@@ -17,8 +17,8 @@ public class WaterSpawner : CharactersSpawner
         xMinRange = GamePlayBoundaries.XLeftBound;
         zMaxRange = GamePlayBoundaries.ZTopBound;
         zMinRange = GamePlayBoundaries.ZBottomBound;
-        spawnIntervalMin = 10f;
-        spawnIntervalMax = 30f;
+        spawnIntervalMin = 20f;
+        spawnIntervalMax = 40f;
     }
     #endregion
 

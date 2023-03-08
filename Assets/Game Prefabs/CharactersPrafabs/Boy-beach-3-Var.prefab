@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boy-beach-3-Var
       objectReference: {fileID: 0}
+    - target: {fileID: 3366083345450809574, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
+      propertyPath: speedMax
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []
@@ -182,15 +186,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towel: {fileID: 5470310648551183944}
-  moveController: {fileID: 8848863268553625744}
---- !u!114 &8848863268553625744 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4278366079162756478, guid: a1a498ee071a37740857a4ab208e54d9, type: 3}
-  m_PrefabInstance: {fileID: 4725037994622828014}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7772404837854587065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

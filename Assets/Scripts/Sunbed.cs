@@ -6,23 +6,24 @@ public class Sunbed : MonoBehaviour
 {
     [SerializeField] GameObject umbrella_open;
     [SerializeField] GameObject umbrella_closed;
-    [SerializeField] bool isUmbrellaOpen = true;
+    [SerializeField] bool isUmbrellaClosed;
 
     public bool isInteractable = true;
-
+   // [SerializeField] GameObject lastVisitor;
     void Start()
     {
-        umbrella_open.SetActive(!isUmbrellaOpen);
-        umbrella_closed.SetActive(isUmbrellaOpen);
+        isUmbrellaClosed = true;
+        umbrella_open.SetActive(!isUmbrellaClosed);
+        umbrella_closed.SetActive(isUmbrellaClosed);
     }
 
     public void ChangeUnbrellaState()
     {
-        isUmbrellaOpen = !isUmbrellaOpen;
-        SetUnbrellaState(isUmbrellaOpen);
+        isUmbrellaClosed = !isUmbrellaClosed;
+        SetUnbrellaState(isUmbrellaClosed);
     }
 
-     void SetUnbrellaState(bool _isActive)
+    void SetUnbrellaState(bool _isActive)
     {
         umbrella_open.SetActive(!_isActive);
         umbrella_closed.SetActive(_isActive);
@@ -33,4 +34,18 @@ public class Sunbed : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isInteractable = true;
     }
+
+    //void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Adult"))
+    //    {
+    //        lastVisitor = other.gameObject;
+    //    }
+    //}
+
+    //bool GetIsFree()
+    //{
+    //    MoveForwardWithSunBathing visitorStatus = lastVisitor.GetComponent<MoveForwardWithSunBathing>();
+    //    return visitorStatus.GetIsSunBathing();
+    //}
 }

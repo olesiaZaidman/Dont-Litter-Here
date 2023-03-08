@@ -9,6 +9,7 @@ TagManager:
   - SeaBeachBorder
   - Crowd
   - SunBed
+  - Adult
   layers:
   - Default
   - TransparentFX

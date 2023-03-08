@@ -828,6 +828,7 @@ MonoBehaviour:
   positionSunBedOffset: {x: 0, y: -0.2, z: 0.6}
   xRotation: 0
   yRotation: 0
+  bed: {fileID: 0}
 --- !u!135 &4002540239421625415
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -771,6 +771,7 @@ MonoBehaviour:
   positionSunBedOffset: {x: 0, y: -0.2, z: 0.6}
   xRotation: 0
   yRotation: 0
+  bed: {fileID: 0}
 --- !u!1 &5421564123987571097
 GameObject:
   m_ObjectHideFlags: 0

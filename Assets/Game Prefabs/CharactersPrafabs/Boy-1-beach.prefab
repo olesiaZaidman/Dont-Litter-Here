@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: -5083592617386479587}
   - component: {fileID: -6171163617461713827}
   - component: {fileID: 3375148337096396343}
-  - component: {fileID: 1597873433488205322}
+  - component: {fileID: 2492219174281349313}
   m_Layer: 0
   m_Name: Boy-1-beach
   m_TagString: Crowd
@@ -317,7 +317,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &4524387512518247913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,8 +379,8 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.09
-  m_Center: {x: 0, y: 0.54, z: 0.04}
---- !u!114 &1597873433488205322
+  m_Center: {x: 0, y: 0.47, z: 0.04}
+--- !u!114 &2492219174281349313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,19 +389,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1357245522733370299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6e16e834d549940995748bbc998f8f, type: 3}
+  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedMin: 1
-  speedMax: 6
+  speedMax: 3
   myAnimator: {fileID: 5728046445220498299}
   isSitting: 0
   isWalking: 1
   timerValue: 0
-  isSunBathing: 0
-  positionSunBedOffset: {x: 0, y: 0, z: 0}
-  xRotation: -30
-  yRotation: 0
 --- !u!1 &2020898209543976108
 GameObject:
   m_ObjectHideFlags: 0

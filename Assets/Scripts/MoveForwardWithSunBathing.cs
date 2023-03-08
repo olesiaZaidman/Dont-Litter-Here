@@ -14,6 +14,8 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
 
     [SerializeField] float xRotation = -30;
     [SerializeField] float yRotation = 0;
+
+    [SerializeField] GameObject bed;
     private void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -95,16 +97,18 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
     {
         if (other.gameObject.CompareTag("SunBed"))
         {
-            Sunbed sunbed = other.gameObject.GetComponent<Sunbed>();
-            if (sunbed.isInteractable)
+            bed = other.gameObject;
+ 
+            if (bed.GetComponent<Sunbed>().isInteractable)
             {
-                sunbed.ChangeUnbrellaState();
-                sunbed.isInteractable = false;
+                bed.GetComponent<Sunbed>().ChangeUnbrellaState();
+                bed.GetComponent<Sunbed>().isInteractable = false;
+
                 capsuleCollider.enabled = false;
                 StartCoroutine(SitStartSunBathingRoutine(other, timeToSunBath));
             }
 
-            else if (!sunbed.isInteractable)
+            else if (!bed.GetComponent<Sunbed>().isInteractable)
             {
                 isSunBathing = false;
                 isWalking = true;
@@ -134,14 +138,12 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
         timerValue = timeToWalk;
 
         capsuleCollider.enabled = true;
-        SetRandomCharacterRotationAndPositionRelativetoSunBed(other.gameObject);
-        
-
+        SetRandomCharacterRotationAndPositionRelativetoSunBed(other.gameObject);        
         StartMoving();
         SetTimeActionStates();
-        Sunbed sunbed = other.gameObject.GetComponent<Sunbed>();
-        StartCoroutine(sunbed.MakeSunbedAvailableRoutine());
-        sunbed.ChangeUnbrellaState();
+
+        StartCoroutine(bed.GetComponent<Sunbed>().MakeSunbedAvailableRoutine());
+        bed.GetComponent<Sunbed>().ChangeUnbrellaState();
     }
 
     Vector3 PositionNextToSunbed(GameObject other, Vector3 _offset)
