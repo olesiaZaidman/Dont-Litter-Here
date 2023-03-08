@@ -658,6 +658,7 @@ GameObject:
   - component: {fileID: -5672842548131164096}
   - component: {fileID: 6114199945473790516}
   - component: {fileID: 4002540239421625415}
+  - component: {fileID: 7735217870044113406}
   m_Layer: 0
   m_Name: Man-3-beach
   m_TagString: Crowd
@@ -793,7 +794,7 @@ MonoBehaviour:
   _spawnInterval: 0
   isTimeForSpawning: 0
   isWalking: 0
-  isRestart: 0
+  isRestartSpawning: 0
 --- !u!114 &-5672842548131164096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +829,6 @@ MonoBehaviour:
   positionSunBedOffset: {x: 0, y: -0.2, z: 0.6}
   xRotation: 0
   yRotation: 0
-  bed: {fileID: 0}
 --- !u!135 &4002540239421625415
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -850,6 +850,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.17
   m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &7735217870044113406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3051383342263207035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3684145450723136913
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveForwardWithAnimationController : MoveForwardBase
+public class MoveForwardWithAnimationController : MoveForwardBase, IWalkSit
 //MoveForwardWithAnimation
 {
     [SerializeField]  protected Animator myAnimator;
@@ -15,7 +15,16 @@ public class MoveForwardWithAnimationController : MoveForwardBase
     protected float timeToSit;
     protected float timeToWalk;
 
+    protected int litterRate;
 
+    public virtual int GetLitterRate()
+      //   _spawnInterval in Basespawner = litterRate
+    {
+        if (isSitting)
+        { return litterRate = Random.Range(1, 5); }
+        else
+        { return litterRate = Random.Range(10, 20); }
+    }
 
     public virtual bool GetIsSitting() //HOW TO SUNBATH???
     {

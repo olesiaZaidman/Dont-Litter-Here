@@ -8,9 +8,6 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     protected override float StartDelayMin { get { return 1f; } }
     protected override float StartDelayMax { get { return 10f; } }
 
-    //protected float spawnIntervalMin = 5f;
-    //protected float spawnIntervalMax = 30f;
-
     TimeController timeController;
 
     bool isTimeForSpawning = true;
@@ -41,15 +38,16 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     #endregion
 
     #region Start Functions //called at Start in Base Spawner
-    public override void StartSettings() //called at Start in Base Spawner
-    {
-        CreateRandomStartTime();
-        CreateTimeIntervalBetweenSpawning();
-    }
+    //public override void StartSettings() //called at Start in Base Spawner
+    //{
+    //    CreateRandomStartTime();
+    //    CreateTimeIntervalBetweenSpawning();
+    //}
 
     #endregion
 
     #region Update Functions //InvokeRepeating & CancelInvoke  sit in BaseSpawner
+
 
     private void StopOrRestartSpawningIfNeeded()
     {
@@ -73,7 +71,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
         //often:
         if (timeController.IsDay())
         {
-          //    Debug.Log("Set to often");
+           //   Debug.Log("Set to often");
             SetSpawnIntervalMin(1);  //sits in BaseSpawner
             SetSpawnIntervalMax(7); //sits in BaseSpawner
         }
@@ -90,7 +88,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
         //rare
         if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
         {
-           //  Debug.Log("Set to rare");
+           // Debug.Log("Set to rare");
             SetSpawnIntervalMin(20);
             SetSpawnIntervalMax(40);
         }

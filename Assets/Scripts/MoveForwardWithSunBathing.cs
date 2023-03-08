@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
+public class MoveForwardWithSunBathing : MoveForwardWithAnimationController, IWalkSit, ISunBath//IWalkSitSunBath
 {
-    //TODO: SetRandomCharacterRotationAndPositionRelativetoSunBed
-    //Take sunbed size collider and calculate numbers from it:
+    //TODO: SetRandomCharacterRotationAndPositionRelativetoSunBed() - Take sunbed size collider and calculate numbers from it:
 
     [SerializeField] bool isSunBathing = false;
     float timeToSunBath;
     [SerializeField] Vector3 positionSunBedOffset;
     CapsuleCollider capsuleCollider;
 
-    [SerializeField] float xRotation = -30;
+    [SerializeField] float xRotation = 0;
     [SerializeField] float yRotation = 0;
 
-    [SerializeField] GameObject bed;
+    GameObject bed;
     private void Start()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -29,6 +28,17 @@ public class MoveForwardWithSunBathing : MoveForwardWithAnimationController
         Move();
         UpdateTimer();
         Animate();
+    }
+
+
+    public override int GetLitterRate()        // _spawnInterval in Basespawner = litterRate
+    {
+        if (isSitting || isSunBathing)
+        { return litterRate = Random.Range(1, 5); }
+
+        else
+        { return litterRate = Random.Range(10, 20); }
+
     }
 
     public override void SetTimeActionStates()

@@ -13,6 +13,7 @@ public class ObjectReturn : MonoBehaviour
 
     void OnDisable()
     {
+       // transform.position = new Vector3(0,0,0);
         if (objectPooler != null)
         {
             objectPooler.ReturnDeactivatedObjectToPoolDictionary(this.gameObject);

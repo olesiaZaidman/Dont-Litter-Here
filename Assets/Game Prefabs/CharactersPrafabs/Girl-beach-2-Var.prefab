@@ -155,17 +155,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 144136268}
   m_SourcePrefab: {fileID: 100100000, guid: 5df16641faee522478d05a79bd28495a, type: 3}
---- !u!114 &4669233967477892084 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1498809758670792267, guid: 5df16641faee522478d05a79bd28495a, type: 3}
-  m_PrefabInstance: {fileID: 6053018248482588095}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5602977888973501610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1f4074bac9bad3469b27ca13fc481f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5082899425501802000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
@@ -189,4 +178,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towel: {fileID: 3727516676583726719}
-  moveController: {fileID: 4669233967477892084}

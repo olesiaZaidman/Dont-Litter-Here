@@ -18,10 +18,8 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     [SerializeField] protected float _spawnInterval;
 
     protected virtual float StartDelayMin { get { return 0.5f; } }
-    // [SerializeField] protected float _startDelayMin; // = 2.0f
     protected virtual float StartDelayMax { get { return 10f; } }
-    //protected virtual float SpawnIntervalMin { get { return 1f; } } //{ get; set; }    //{ return 1f; } 
-    //protected virtual float SpawnIntervalMax { get { return 4f; } } //{ return 4f; } 
+
 
     protected float spawnIntervalMin = 1f;
     protected float spawnIntervalMax = 4f;
@@ -29,24 +27,40 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     void Start()
     {
-        StartSettings();
-        //SpawnIntervalMin = 1f;
-        //SpawnIntervalMax = 4f;
+     //  CreateRandomStartTime();
+      //  CreateTimeIntervalBetweenSpawning();
+     //   StartSpawningWithIntervals();
+        Debug.Log("Start");
     }
-    #region Start Functions  //Includ InvokeRepeating
-    public virtual void StartSettings()
+
+    void OnEnable()
     {
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
-        StartSpawningWithIntervals(); // //= InvokeRepeating
+        StartSpawningWithIntervals();
+        Debug.Log("OnEnable");
     }
+
+    void OnDisable()
+    {
+        CancelSpawning();
+        Debug.Log("OnDisable");
+    }
+
+    #region Start Functions  //Includ InvokeRepeating
+    //public virtual void StartSettings()
+    //{
+
+    //}
 
     public void CreateRandomStartTime()
     {
         _startDelay = Random.Range(StartDelayMin, StartDelayMax);
+
     }
 
-    public virtual void CreateTimeIntervalBetweenSpawning()
+    public virtual void CreateTimeIntervalBetweenSpawning()      
+        //_spawnInterval = lR.GetLitterRate(); ????
     {
         // _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
         _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);

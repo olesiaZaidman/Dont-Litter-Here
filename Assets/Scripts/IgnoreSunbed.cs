@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IgnoreSunbed : MonoBehaviour
 {
+    //Sits on Player to walk through sunbed
     Rigidbody rb;
     void Awake()
     {

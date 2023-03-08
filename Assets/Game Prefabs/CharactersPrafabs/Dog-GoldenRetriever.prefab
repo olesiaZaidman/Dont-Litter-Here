@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1745519285}
   - component: {fileID: 1745519284}
   - component: {fileID: 4308701774727613536}
+  - component: {fileID: -7560858214163571053}
   m_Layer: 0
   m_Name: Dog-GoldenRetriever
   m_TagString: Crowd
@@ -196,6 +197,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startDelay: 0
   _spawnInterval: 0
+  isTimeForSpawning: 0
+  isWalking: 0
+  isRestartSpawning: 0
 --- !u!114 &-7366772711043924659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,6 +280,18 @@ MonoBehaviour:
   isSitting: 0
   isWalking: 1
   timerValue: 0
+--- !u!114 &-7560858214163571053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5454366066996021799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5454366066996021801
 GameObject:
   m_ObjectHideFlags: 0

@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: -6171163617461713827}
   - component: {fileID: 3375148337096396343}
   - component: {fileID: 2492219174281349313}
+  - component: {fileID: -4922183985963069987}
   m_Layer: 0
   m_Name: Boy-1-beach
   m_TagString: Crowd
@@ -346,7 +347,7 @@ MonoBehaviour:
   _spawnInterval: 0
   isTimeForSpawning: 0
   isWalking: 0
-  isRestart: 0
+  isRestartSpawning: 0
 --- !u!114 &-6171163617461713827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +399,18 @@ MonoBehaviour:
   isSitting: 0
   isWalking: 1
   timerValue: 0
+--- !u!114 &-4922183985963069987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357245522733370299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2020898209543976108
 GameObject:
   m_ObjectHideFlags: 0

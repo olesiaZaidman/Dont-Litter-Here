@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 8341100188733732097}
   - component: {fileID: -7972915006683313638}
   - component: {fileID: 4030127766153366668}
+  - component: {fileID: 4544207756266389257}
   m_Layer: 0
   m_Name: Woman-4-beach
   m_TagString: Crowd
@@ -1349,7 +1350,7 @@ MonoBehaviour:
   _spawnInterval: 0
   isTimeForSpawning: 0
   isWalking: 0
-  isRestart: 0
+  isRestartSpawning: 0
 --- !u!114 &-7972915006683313638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1384,7 +1385,18 @@ MonoBehaviour:
   positionSunBedOffset: {x: 0.1, y: -0.4, z: 0.8}
   xRotation: 0
   yRotation: 0
-  bed: {fileID: 0}
+--- !u!114 &4544207756266389257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6954755964093857982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7073825274960090266
 GameObject:
   m_ObjectHideFlags: 0

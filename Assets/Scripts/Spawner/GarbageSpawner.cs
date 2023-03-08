@@ -7,10 +7,6 @@ public class GarbageSpawner : BaseSpawner
 {
     //Events for state machine - time of the day or action state
     //OBSERVER PATTERN with Events {TELL DONT ASK}
-
-    // toDO:
-    //    moveController.getLitterRate();
-    //instead IsSitting - IsWalking MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
     
     //BUG:
     //When we restar-SitingWalking litter waits to restart and appears when the character walks away?
@@ -18,14 +14,14 @@ public class GarbageSpawner : BaseSpawner
     
     protected override float StartDelayMin { get { return 3f; ; } }
     protected override float StartDelayMax { get { return 15f; } }
-    TimeController timeController;
 
-    MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
+    TimeController timeController;
+   // MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
+    LitterRate lR;
 
     [SerializeField] bool isTimeForSpawning; //= true
-   // [SerializeField] bool isSitting; // = false
     [SerializeField] bool isWalking;
-    [SerializeField] bool isRestart = false;
+    [SerializeField] bool isRestartSpawning = false;
     #region Constructor
     public GarbageSpawner() : base()
     {
@@ -37,49 +33,57 @@ public class GarbageSpawner : BaseSpawner
     void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
-        moveController = GetComponent<MoveForwardWithAnimationController>();
-
-        if (moveController != null)
-        {
-           // isSitting = moveController.GetIsSitting();
-            isWalking = moveController.GetIsWalking();
-        }
-
+        lR = GetComponent<LitterRate>();
     }
 
     void Update()
     {
-        StopOrRestartSpawningIfNeeded();
-        // ChangeSpawningTimeBasedOnTimeController();
-
-        if (moveController != null)
-        { //Debug.Log(gameObject.name + "  has moveController");
-         //   isSitting = moveController.GetIsSitting();
-            isWalking = moveController.GetIsWalking();
-
-            ChangeSpawningRateBasedOnActionState();
-
+        if (timeController.IsEndOfWorkingDay())
+        {           
+            CancelSpawning();  //sits in BaseSpawner
+            isTimeForSpawning = true;
         }
+        //if (timeController.IsEarlyMorning())
+        //{
+        //    if (isTimeForSpawning)
+        //    {
+        //        isTimeForSpawning = false;
+        //        StartSpawningWithIntervals();  //sits in BaseSpawner
+        //    }
+        //}
+
+     //   ChangeSpawningTimeBasedOnTimeController();
     }
 
     #region FROM BASE
-    public override void CreateTimeIntervalBetweenSpawning()
-    {
-        base.CreateTimeIntervalBetweenSpawning();
-        //Debug.Log(gameObject.name + " CreateTimeIntervalBetweenSpawning");
-    }
+    //public override void CancelSpawning()
+    //{
+    //    CancelInvoke("Spawn");
+    //    Debug.Log(gameObject.name+" IsEndOfWorkingDay should Cancel from Garbage");
+    //}
+ 
+    //public override void CreateTimeIntervalBetweenSpawning()
+    //{     
+    //    _spawnInterval = lR.GetLitterRate(); //  base.CreateTimeIntervalBetweenSpawning();
+    //}
 
-    public override void StartSpawningWithIntervals()
-    {
-        base.StartSpawningWithIntervals();
-       // Debug.Log(gameObject.name + " SpawnInvokeRepeating");
-    }
+    //public override void StartSpawningWithIntervals()
+    //{
+    //    StartCoroutine(SpawningRoutine(_spawnInterval));
+    //}
+    //public IEnumerator SpawningRoutine(float _delay)
+    //{
+    //    if (isRestartSpawning)
+    //    {
+    //        isRestartSpawning = false;
+    //        Spawn();
+    //        Debug.Log(gameObject.name + "Just Spawned");
+    //        Debug.Log("_spawnInterval: " + _spawnInterval);
+    //    }
+    //    yield return new WaitForSeconds(_delay);
+    //    isRestartSpawning = true;
+    //}
 
-    public override void CancelSpawning()
-    {
-        base.CancelSpawning();
-       // Debug.Log(gameObject.name + " CancelSpawning");
-    }
     #endregion
     #region Pool //& Spawn
     public override List<Pool> GetPoolPrefabList()
@@ -95,84 +99,60 @@ public class GarbageSpawner : BaseSpawner
 
     #region Start Functions //called at Start in Base Spawner
 
-    public override void StartSettings() //called at Start in Base Spawner
-    {
-        CreateRandomStartTime();
-        CreateTimeIntervalBetweenSpawning();
-    }
+    //public override void StartSettings() //called at Start in Base Spawner
+    //{
+    //    base.StartSettings();
+    //    Debug.Log(gameObject.name+" StartSettings from Garbage");
+    //    //CreateRandomStartTime();
+    //    //CreateTimeIntervalBetweenSpawning();
+    //}
     #endregion
 
     #region Update Functions //InvokeRepeating & CancelInvoke  sit in BaseSpawner
 
-    private void StopOrRestartSpawningIfNeeded()
-    {
-        if (timeController.IsEndOfWorkingDay())
-        {
-            CancelSpawning();  //sits in BaseSpawner
-            isTimeForSpawning = true;
-        }
-        if (timeController.IsEarlyMorning())
-        {
-            if (isTimeForSpawning)
-            {
-                isTimeForSpawning = false;
-                StartSpawningWithIntervals();  //sits in BaseSpawner
-            }
-        }
+    //private void StopOrRestartSpawningIfNeeded()
+    //{
+    //    if (timeController.IsEndOfWorkingDay())
+    //    {
+    //        StopCoroutine(SpawningRoutine(_spawnInterval));  //sits in BaseSpawner
+    //        isTimeForSpawning = true;
+    //    }
+    //    if (timeController.IsEarlyMorning())
+    //    {
+    //        if (isTimeForSpawning)
+    //        {
+    //            isTimeForSpawning = false;
+    //            StartSpawningWithIntervals();  //sits in BaseSpawner
+    //        }
+    //    }
 
-        if(!isWalking)
-        {
-            if (!isTimeForSpawning && !isRestart)
-            {
-              //  Debug.Log(gameObject.name + " isActionStateChanged");
-                isTimeForSpawning = true;
-                CancelSpawning();
-              //  Debug.Log("CancelSpawning & isRestart: " + isRestart);
-                if (isTimeForSpawning)
-                {
-                    isTimeForSpawning = false;
-                    StartSpawningWithIntervals();
-                    isRestart = true;
-                 //   Debug.Log("StartSpawning & isRestart: " + isRestart);
-                }
-            }
-        }
+    //    //if(!isWalking)
+    //    //{
+    //    //    //if (!isTimeForSpawning && !isRestart)
+    //    //    //{               
+    //    //    //    isTimeForSpawning = true;
+    //    //    //    CancelSpawning();
+    //    //    //    if (isTimeForSpawning)
+    //    //    //    {
+    //    //    //        isTimeForSpawning = false;
+    //    //    //        StartSpawningWithIntervals();
+    //    //    //        isRestart = true;
+    //    //    //    }
+    //    //    //}
+    //    //}
 
-        if (isWalking)
-        {
-            isRestart = false;
-        }
-    }
-    private void ChangeSpawningRateBasedOnActionState()
-    {
-    //    moveController.getLitterRate();
+    //    //if (isWalking)
+    //    //{
+    //    //    isRestart = false;
+    //    //}
+    //}
 
-        //often:
-        if (moveController.GetIsSitting())
-        {           
-         //   Debug.Log(gameObject.name + " IsSitting.Set to often");
-            SetSpawnIntervalMin(1);  //sits in BaseSpawner
-            SetSpawnIntervalMax(3); //sits in BaseSpawner
-            CreateTimeIntervalBetweenSpawning();
-        }
-
-        //mid
-        if (moveController.GetIsWalking())
-        {
-           
-           // Debug.Log(gameObject.name + " IsWalking. Set to mid");
-            SetSpawnIntervalMin(10);
-            SetSpawnIntervalMax(18);
-            CreateTimeIntervalBetweenSpawning();
-        }
-
-    }
     private void ChangeSpawningTimeBasedOnTimeController()
     {
         //often:
         if (timeController.IsDay())
         {
-            //  Debug.Log("Set to often");
+              Debug.Log("Set to often");
             SetSpawnIntervalMin(1);  //sits in BaseSpawner
             SetSpawnIntervalMax(7); //sits in BaseSpawner
         }
@@ -180,7 +160,7 @@ public class GarbageSpawner : BaseSpawner
         //mid
         if (timeController.IsLateMorning() || timeController.IsEarlyEvening())
         {
-            // Debug.Log("Set to mid");
+             Debug.Log("Set to mid");
             SetSpawnIntervalMin(10);
             SetSpawnIntervalMax(18);
         }
@@ -189,7 +169,7 @@ public class GarbageSpawner : BaseSpawner
         //rare
         if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
         {
-            //    Debug.Log("Set to rare");
+               Debug.Log("Set to rare");
             SetSpawnIntervalMin(20);
             SetSpawnIntervalMax(40);
         }
