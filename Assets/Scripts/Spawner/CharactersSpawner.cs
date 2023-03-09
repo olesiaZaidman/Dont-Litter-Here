@@ -15,8 +15,8 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     #region Constructor
     public CharactersSpawner() : base()
     {
-        spawnIntervalMin = 5f;
-        spawnIntervalMax = 30f;
+        spawnIntervalMin = 10f;
+        spawnIntervalMax = 60f;
     }
     #endregion
     void Awake()
@@ -27,8 +27,14 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     private void Update()
     {
         StopOrRestartSpawningIfNeeded();
-        ChangeSpawningTimeBasedOnTimeController();
+     //   ChangeSpawningTimeBasedOnTimeController();
     }
+
+    //void OnEnable()
+    //{
+    //    timeController = FindObjectOfType<TimeController>();
+    //    ChangeSpawningTimeBasedOnTimeController();
+    //}
 
     #region Pool
     public override List<Pool> GetPoolPrefabList()
@@ -66,33 +72,74 @@ public class CharactersSpawner : SpawnerWithRotationPosition
         }
     }
 
-    private void ChangeSpawningTimeBasedOnTimeController()
-    {
-        //often:
-        if (timeController.IsDay())
-        {
-           //   Debug.Log("Set to often");
-            SetSpawnIntervalMin(1);  //sits in BaseSpawner
-            SetSpawnIntervalMax(7); //sits in BaseSpawner
-        }
+    //public override void CreateRandomStartTime()
+    //{
+    //    // Debug.Log(gameObject.name + " CreateRandomStartTime. _startDelay: "+ _startDelay);
 
-        //mid
-        if (timeController.IsLateMorning() || timeController.IsEarlyEvening())
-        {
-           // Debug.Log("Set to mid");
-            SetSpawnIntervalMin(10);
-            SetSpawnIntervalMax(18);
-        }
+    //    if (timeController.IsDay())
+    //    {
+
+    //        _startDelay = Random.Range(1, 5);
+    //        Mathf.Clamp(_startDelay, 1, 5);
+    //        Debug.Log("IsDay() - Set to often. _startDelay: " + _startDelay);
+    //    }
+
+    //    //mid
+    //    if (timeController.IsLateMorning() || timeController.IsEarlyEvening())
+    //    {
+
+    //        _startDelay = Random.Range(1, 3);
+    //        Mathf.Clamp(_startDelay, 1, 3); //10, 20);
+    //        Debug.Log("IsLateMorning()  or IsEarlyEvening() -Set to often. _startDelay: " + _startDelay);
+    //    }
 
 
-        //rare
-        if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
-        {
-           // Debug.Log("Set to rare");
-            SetSpawnIntervalMin(20);
-            SetSpawnIntervalMax(40);
-        }
-    }
+    //    //rare
+    //    if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
+    //    {
+
+    //        _startDelay = Random.Range(30, 70);
+    //        Mathf.Clamp(_startDelay, 30, 70);
+    //        Debug.Log("IsEarlyMorning()  or  IsLateEvening()- Set to rare. _startDelay: " + _startDelay);
+    //    }
+
+
+    //}
+
+
+
+    //public override void CreateTimeIntervalBetweenSpawning()
+    //{
+    //    //often:
+    //    if (timeController.IsDay())
+    //    {
+
+    //        _spawnInterval = Random.Range(1, 5);
+    //        Mathf.Clamp(_spawnInterval, 1, 5);
+    //        Debug.Log("IsDay() - Set to often. _spawnInterval: " + _spawnInterval);
+    //    }
+
+    //    //mid
+    //    if (timeController.IsLateMorning() || timeController.IsEarlyEvening())
+    //    {
+
+    //        _spawnInterval = Random.Range(1, 3);
+    //        Mathf.Clamp(_spawnInterval, 1, 3); //10, 20);
+    //        Debug.Log("IsLateMorning()  or IsEarlyEvening() -Set to often. _spawnInterval: " + _spawnInterval);
+    //    }
+
+
+    //    //rare
+    //    if (timeController.IsEarlyMorning() || timeController.IsLateEvening())
+    //    {
+
+    //        _spawnInterval = Random.Range(30, 70);
+    //        Mathf.Clamp(_spawnInterval, 30, 70);
+    //        Debug.Log("IsEarlyMorning()  or  IsLateEvening()- Set to rare. _spawnInterval: " + _spawnInterval);
+    //    }
+
+
+    //}
 
     //ALL THIS IN BASE SPAWNER:
     //public override void StartSpawningWithIntervals()

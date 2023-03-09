@@ -34,14 +34,40 @@ public class LightColorIntensity : MonoBehaviour
         lt.color = morningBlueColor;
         lt.intensity = defaultIntensity;
         timeController = FindObjectOfType<TimeController>();
-     //   color1 = Color.blue;
-     //  color0 = defaultYellowColor;
     }
 
 
 
     void Update()
     {
+        if (timeController.IsEarlyMorning())  //sunriseTime = 5; && blueHourTime = 7;
+        {         
+            InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor);
+        }
+
+        if (timeController.IsDay())  // dayTime = 12 && goldenHourTime = 16;
+        {
+            t = 0;
+            InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor);
+        }
+
+        if (timeController.IsEarlyEvening()) // goldenHourTime = 16 &&  sunsetTime= 20;
+        {
+            InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);
+        }
+
+        if (timeController.IsLateEvening()) // sunsetTime= 20; && nightTime = 23
+        {
+            InterpolateLightBetweenColorsOnce(eveningPinkColor, Color.blue);
+        }
+
+        if (timeController.IsNight()) // nightTime = 00 && sunriseTime = 5;
+        {          
+            t = 0;
+          InterpolateLightBetweenColorsOnce(Color.blue, Color.blue);
+           
+        }
+
         //if (Input.GetKey(KeyCode.P))
         //{
         //    xAngle = transform.rotation.eulerAngles.x;
@@ -83,22 +109,7 @@ public class LightColorIntensity : MonoBehaviour
         // InterpolateLightBetweenColorsBackForth(Color.blue, defaultColor);
         //  InterpolateLightIntensityOnce();
 
-        if (timeController.IsEarlyMorning())
-        {
-          //  Debug.Log("IsMorning(): "+ timeController.IsMorning());
-            InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor);
-        }
 
-        if (timeController.IsDay() || timeController.IsNight())
-        {
-            t = 0;
-        }
-
-        if (timeController.IsEarlyEvening())
-        {
-          //  Debug.Log("IsEvening(): " + timeController.IsEvening());
-            InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);
-        }
 
         //if (TemperatureManager.isNight)
         //{
@@ -146,13 +157,13 @@ public class LightColorIntensity : MonoBehaviour
 
 
 
-    public void InterpolateLightIntensityBackForth()
-    {
-        // lt.intensity = Mathf.PingPong(Time.time, 3);
-        float duration = 3f;
-        float t = Mathf.PingPong(Time.time, duration);
-        lt.intensity = t;
-    }
+    //public void InterpolateLightIntensityBackForth()
+    //{
+    //    // lt.intensity = Mathf.PingPong(Time.time, 3);
+    //    float duration = 3f;
+    //    float t = Mathf.PingPong(Time.time, duration);
+    //    lt.intensity = t;
+    //}
 
     public void InterpolateLightIntensityOnceUp()
     {

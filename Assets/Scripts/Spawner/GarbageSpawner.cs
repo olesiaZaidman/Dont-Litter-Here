@@ -26,7 +26,7 @@ public class GarbageSpawner : BaseSpawner
     public GarbageSpawner() : base()
     {
         spawnIntervalMin = 5f;
-        spawnIntervalMax = 30f;
+        spawnIntervalMax = 40f;
     }
     #endregion
 

@@ -21,7 +21,8 @@ public class TimeController : MonoBehaviour
     private float dayHour = 12;
     private float goldenHour = 16;
     private float sunsetHour = 20;
-    private float nightHour = 23;
+    private float nightHour = 00;
+    private float elevenHour =23;
 
     private TimeSpan sunriseTime;
     private TimeSpan blueHourTime;
@@ -29,6 +30,7 @@ public class TimeController : MonoBehaviour
     private TimeSpan goldenHourTime;
     private TimeSpan sunsetTime;
     private TimeSpan nightTime;
+    private TimeSpan elevenTime;
     private TimeSpan endDayTime;
 
     public static bool isMorning = false;
@@ -49,12 +51,13 @@ public class TimeController : MonoBehaviour
         dayTime = TimeSpan.FromHours(dayHour);
         goldenHourTime = TimeSpan.FromHours(goldenHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
+        elevenTime = TimeSpan.FromHours(elevenHour);
         nightTime = TimeSpan.FromHours(nightHour);
     }
 
-    public bool IsEndOfWorkingDay()
+    public bool IsEndOfWorkingDay() //endWorkingDayHour = 21; &&  && elevenTime = 23
     {
-        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < nightTime;
+        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenTime;
     }
 
     void Update()
@@ -70,32 +73,32 @@ public class TimeController : MonoBehaviour
         { ui.SetTimeTextUI(currentTime); }
     }
 
-    public bool IsEarlyMorning()
+    public bool IsEarlyMorning() //sunriseTime = 5; && blueHourTime = 7;
     {
         return currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < blueHourTime ;
     }
 
-    public bool IsLateMorning()
+    public bool IsLateMorning()// blueHourTime = 7 && dayTime = 12;
     {
         return currentTime.TimeOfDay > blueHourTime && currentTime.TimeOfDay < dayTime;
     }
 
-    public bool IsDay()
+    public bool IsDay() // dayTime = 12 && goldenHourTime = 16;
     {
         return currentTime.TimeOfDay > dayTime && currentTime.TimeOfDay < goldenHourTime;
     }
 
-    public bool IsEarlyEvening()
+    public bool IsEarlyEvening() // goldenHourTime = 16 &&  sunsetTime= 20;
     {
         return currentTime.TimeOfDay > goldenHourTime && currentTime.TimeOfDay < sunsetTime;
     }
 
-    public bool IsLateEvening()
+    public bool IsLateEvening() // sunsetTime= 20; && elevenTime = 23
     {
-        return currentTime.TimeOfDay > sunsetTime && currentTime.TimeOfDay < nightTime;
+        return currentTime.TimeOfDay > sunsetTime && currentTime.TimeOfDay < elevenTime;
     }
 
-    public bool IsNight()
+    public bool IsNight()  // nightTime = 00 && sunriseTime = 5;
     {
         return currentTime.TimeOfDay > nightTime && currentTime.TimeOfDay < sunriseTime;
     }

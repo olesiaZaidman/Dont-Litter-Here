@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8879702285562175422}
   - component: {fileID: -1663100125980510138}
   - component: {fileID: 7610696280444259186}
+  - component: {fileID: 4796523409051218296}
   m_Layer: 0
   m_Name: pizza-mozzarella-slice
   m_TagString: Garbage
@@ -147,3 +148,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4796523409051218296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371766373676682647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9b4b24406f6c42a5d1000153b01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  power: 1000

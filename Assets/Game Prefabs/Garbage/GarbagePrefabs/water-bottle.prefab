@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: -103839653518662483}
   - component: {fileID: 2234598968472771596}
   - component: {fileID: 5731071684380345800}
+  - component: {fileID: -1806794456111214853}
   m_Layer: 0
   m_Name: water-bottle
   m_TagString: Garbage
@@ -177,6 +178,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16a43dabb8c5c9d43afe7a3a2d6c5aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1806794456111214853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5879903818168797679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9b4b24406f6c42a5d1000153b01c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3942315407581976984

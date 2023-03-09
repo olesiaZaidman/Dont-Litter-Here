@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6593233940539690750}
   - component: {fileID: -7463605231127704970}
   - component: {fileID: -5625751288800641839}
+  - component: {fileID: 2628446001457123195}
   m_Layer: 0
   m_Name: drink-coconut
   m_TagString: Garbage
@@ -148,3 +149,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2628446001457123195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928392815005746310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9b4b24406f6c42a5d1000153b01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  power: 1000

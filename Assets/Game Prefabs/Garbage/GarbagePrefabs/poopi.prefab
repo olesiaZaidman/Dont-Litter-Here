@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 9185674043782894546}
   - component: {fileID: 1871749801744483066}
   - component: {fileID: 3195847118393545253}
+  - component: {fileID: 837607496514197560}
   m_Layer: 0
   m_Name: poopi
   m_TagString: Garbage
@@ -144,5 +145,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &837607496514197560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4503629643042459808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9b4b24406f6c42a5d1000153b01c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

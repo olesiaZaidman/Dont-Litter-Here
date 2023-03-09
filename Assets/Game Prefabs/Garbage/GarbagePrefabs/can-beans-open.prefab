@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -308468727327589200}
   - component: {fileID: 559264289875222128}
   - component: {fileID: 1543474329261342042}
+  - component: {fileID: 3253397972654980221}
   m_Layer: 0
   m_Name: can-beans-open
   m_TagString: Garbage
@@ -146,3 +147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d9b01ecfb24c34195d09784fb07c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3253397972654980221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196292293064346204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9b4b24406f6c42a5d1000153b01c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  power: 1000

@@ -22,7 +22,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
 
     protected float spawnIntervalMin = 1f;
-    protected float spawnIntervalMax = 4f;
+    protected float spawnIntervalMax = 10f;
     protected Vector3 spawnOffsetPos;
 
     void Start()
@@ -30,7 +30,7 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
      //  CreateRandomStartTime();
       //  CreateTimeIntervalBetweenSpawning();
      //   StartSpawningWithIntervals();
-        Debug.Log("Start");
+      //  Debug.Log("Start");
     }
 
     void OnEnable()
@@ -38,13 +38,13 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();
-        Debug.Log("OnEnable");
+       // Debug.Log("OnEnable");
     }
 
     void OnDisable()
     {
         CancelSpawning();
-        Debug.Log("OnDisable");
+     //   Debug.Log("OnDisable");
     }
 
     #region Start Functions  //Includ InvokeRepeating
@@ -53,18 +53,21 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     //}
 
-    public void CreateRandomStartTime()
+    public virtual void CreateRandomStartTime()
     {
         _startDelay = Random.Range(StartDelayMin, StartDelayMax);
-
+       // Debug.Log(gameObject.name + " CreateRandomStartTime. _startDelay: "+ _startDelay);
     }
 
     public virtual void CreateTimeIntervalBetweenSpawning()      
         //_spawnInterval = lR.GetLitterRate(); ????
     {
-        // _spawnInterval = Random.Range(SpawnIntervalMin, SpawnIntervalMax);
         _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
+        Mathf.Clamp(_spawnInterval, spawnIntervalMin, spawnIntervalMax);
+      //  Debug.Log(gameObject.name + " CreateRandomStartTime. _spawnInterval: " + _spawnInterval);
+
     }
+
 
     public virtual void StartSpawningWithIntervals()
     {
