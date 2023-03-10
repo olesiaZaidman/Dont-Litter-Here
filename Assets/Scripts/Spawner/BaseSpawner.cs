@@ -5,9 +5,6 @@ using static ObjectPooler;
 
 public class BaseSpawner : MonoBehaviour, IBaseSpawner
 {
-    //TODO Ease Base
-    //Create NEW Children to inherit
-
 
     protected int index;
 
@@ -23,7 +20,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
 
     protected float spawnIntervalMin = 1f;
     protected float spawnIntervalMax = 10f;
-    protected Vector3 spawnOffsetPos;
 
     void Start()
     {
@@ -44,19 +40,14 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     void OnDisable()
     {
         CancelSpawning();
-     //   Debug.Log("OnDisable");
     }
 
     #region Start Functions  //Includ InvokeRepeating
-    //public virtual void StartSettings()
-    //{
-
-    //}
+ 
 
     public virtual void CreateRandomStartTime()
     {
         _startDelay = Random.Range(StartDelayMin, StartDelayMax);
-       // Debug.Log(gameObject.name + " CreateRandomStartTime. _startDelay: "+ _startDelay);
     }
 
     public virtual void CreateTimeIntervalBetweenSpawning()      
@@ -64,8 +55,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     {
         _spawnInterval = Random.Range(spawnIntervalMin, spawnIntervalMax);
         Mathf.Clamp(_spawnInterval, spawnIntervalMin, spawnIntervalMax);
-      //  Debug.Log(gameObject.name + " CreateRandomStartTime. _spawnInterval: " + _spawnInterval);
-
     }
 
 
@@ -99,59 +88,13 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     public virtual void Spawn() 
     {
         Vector3 pos = transform.position;
-        spawnOffsetPos = SetRandomspawnOffsetPos();
         List<Pool> list = GetPoolPrefabList();
         index = Random.Range(0, list.Count);
         Pool pool = list[index];
-        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos+spawnOffsetPos);
+        ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionary(pool, pos);
         CreateTimeIntervalBetweenSpawning();
     }
-
-    private Vector3 SetRandomspawnOffsetPos()
-    {
-        float xPositive = Random.Range(0.4f,1f);
-        float xNegative = Random.Range(-0.5f, -1f);
-        float y = -0.1f;
-        float zPositive = Random.Range(0.8f, 1.3f);  
-        float zNegative = Random.Range(-1.1f, -1.5f);
-        
-        int random = Random.Range(0,4);
-
-        if (random == 0)
-        {
-            return new Vector3(xPositive, y, zPositive);
-        }
-
-        else if (random == 1)
-        {
-            return new Vector3(xNegative, y, zPositive);
-        }
-
-        else if (random == 2)
-        {
-            return new Vector3(xPositive, y, zNegative);
-        }
-        else 
-        {
-            return new Vector3(xNegative, y, zNegative);
-        }
-    }
-
-    #endregion
-
-        #region SpawnInterval
-    public virtual float SetSpawnIntervalMin(float _value)
-    {
-        spawnIntervalMin = Mathf.Clamp(_value, 0, 60);
-        return spawnIntervalMin;
-    }
-
-    public virtual float SetSpawnIntervalMax(float _value)
-    {
-        spawnIntervalMax = Mathf.Clamp(_value, 0, 60);
-        return spawnIntervalMax;
-    }
-
+  
     #endregion
 
 }

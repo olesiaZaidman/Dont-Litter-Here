@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cee8cd3645cfef64ab22c8d1c4307e72, type: 2}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -105,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -143,38 +143,26 @@ PrefabInstance:
       propertyPath: objtag
       value: Girl-beach-2-Var
       objectReference: {fileID: 0}
+    - target: {fileID: 6689510442062649168, guid: 5df16641faee522478d05a79bd28495a, type: 3}
+      propertyPath: towel
+      value: 
+      objectReference: {fileID: 3727516676583726719}
+    - target: {fileID: 6689510442062649168, guid: 5df16641faee522478d05a79bd28495a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7345530108106197811, guid: 5df16641faee522478d05a79bd28495a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3727516676583424607}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 144136268}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5df16641faee522478d05a79bd28495a, type: 3}
 --- !u!4 &5082899425501802000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1336076081552255919, guid: 5df16641faee522478d05a79bd28495a, type: 3}
   m_PrefabInstance: {fileID: 6053018248482588095}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5602977888973501610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1855873040569676053, guid: 5df16641faee522478d05a79bd28495a, type: 3}
-  m_PrefabInstance: {fileID: 6053018248482588095}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &144136268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5602977888973501610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f3d760a4a475cb458f539d824f48a86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towel: {fileID: 3727516676583726719}

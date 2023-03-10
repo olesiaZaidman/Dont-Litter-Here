@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 9022223804389701660}
   - component: {fileID: -8386760469890797071}
   - component: {fileID: 3316199159272550903}
+  - component: {fileID: 6689510442062649168}
   m_Layer: 0
   m_Name: Girl-1-beach
   m_TagString: Crowd
@@ -231,8 +232,9 @@ Transform:
   m_Children:
   - {fileID: 8498074127974316383}
   - {fileID: 6835022580024281915}
+  - {fileID: 7345530108106299155}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4929927334891139541
 Animator:
@@ -388,6 +390,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6689510442062649168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855873040569676053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d760a4a475cb458f539d824f48a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towel: {fileID: 7345530108106197811}
 --- !u!1 &1874918013187183182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,3 +1381,78 @@ Transform:
   m_Father: {fileID: 5515948964516543722}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3322216415365458866
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1336076081552255919}
+    m_Modifications:
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.148
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_Name
+      value: towel-beach -blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+--- !u!1 &7345530108106197811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 3322216415365458866}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7345530108106299155 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 3322216415365458866}
+  m_PrefabAsset: {fileID: 0}

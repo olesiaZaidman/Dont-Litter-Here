@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: objtag
       value: Boy-beach-2-Var
       objectReference: {fileID: 0}
+    - target: {fileID: 8255905694431161738, guid: 7846e90efb3f1bb4f82214cb4a5aa4cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
     m_RemovedGameObjects: []

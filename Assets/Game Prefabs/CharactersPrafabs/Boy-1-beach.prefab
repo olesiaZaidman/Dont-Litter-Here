@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 3375148337096396343}
   - component: {fileID: 2492219174281349313}
   - component: {fileID: -4922183985963069987}
+  - component: {fileID: 8255905694431161738}
   m_Layer: 0
   m_Name: Boy-1-beach
   m_TagString: Crowd
@@ -233,8 +234,9 @@ Transform:
   m_Children:
   - {fileID: 2259344437028101020}
   - {fileID: 6182991473697173909}
+  - {fileID: 1391140988711556457}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5728046445220498299
 Animator:
@@ -411,6 +413,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8255905694431161738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357245522733370299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d760a4a475cb458f539d824f48a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towel: {fileID: 1391140988711651657}
 --- !u!1 &2020898209543976108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,3 +1665,78 @@ Transform:
   m_Father: {fileID: 9019070442539749431}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6387267376754977224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1845973577593213185}
+    m_Modifications:
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.174
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_Name
+      value: towel-beach -blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+--- !u!4 &1391140988711556457 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 6387267376754977224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1391140988711651657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 6387267376754977224}
+  m_PrefabAsset: {fileID: 0}

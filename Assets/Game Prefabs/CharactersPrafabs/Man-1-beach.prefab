@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: -3943268772663997765}
   - component: {fileID: 7634766240986649369}
   - component: {fileID: -2131450863071702676}
+  - component: {fileID: 5436631580299523620}
   m_Layer: 0
   m_Name: Man-1-beach
   m_TagString: Crowd
@@ -600,6 +601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3331757798359512110}
   - {fileID: 7371891106183443380}
   - {fileID: 1144663029356964076}
   m_Father: {fileID: 0}
@@ -784,6 +786,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a01f3d26e6457438a0659efca74417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5436631580299523620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5258280862677865154}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d760a4a475cb458f539d824f48a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towel: {fileID: 3331757798359607310}
 --- !u!1 &5421564123987571097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,3 +1406,78 @@ Transform:
   m_Father: {fileID: 2162897235858799184}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7338257830154307727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4878236470719432824}
+    m_Modifications:
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.335
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_Name
+      value: towel-beach -blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+--- !u!4 &3331757798359512110 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5470310648724896929, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 7338257830154307727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3331757798359607310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+  m_PrefabInstance: {fileID: 7338257830154307727}
+  m_PrefabAsset: {fileID: 0}

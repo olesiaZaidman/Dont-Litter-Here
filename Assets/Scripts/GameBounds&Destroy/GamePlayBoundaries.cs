@@ -4,11 +4,11 @@ public static class GamePlayBoundaries
     //Boundaries:
     public static float XRightBound
     {
-        get { return 11.4f; }  // return private float xMaxRange = 11.4f;
+        get { return 15.4f; }  // return private float xMaxRange = 11.4f;
     }
     public static float XLeftBound
     {
-        get { return -11.8f; }  // return private float xMinRange = -11.8f;
+        get { return -15f; }  // return private float xMinRange = -11.8f;
     }
     public static float ZTopBound
     {

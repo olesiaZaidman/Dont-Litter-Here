@@ -22,7 +22,7 @@ public class TimeController : MonoBehaviour
     private float goldenHour = 16;
     private float sunsetHour = 20;
     private float nightHour = 00;
-    private float elevenHour =23;
+    private float elevenEveningHour =23;
 
     private TimeSpan sunriseTime;
     private TimeSpan blueHourTime;
@@ -30,7 +30,7 @@ public class TimeController : MonoBehaviour
     private TimeSpan goldenHourTime;
     private TimeSpan sunsetTime;
     private TimeSpan nightTime;
-    private TimeSpan elevenTime;
+    private TimeSpan elevenEveningTime;
     private TimeSpan endDayTime;
 
     public static bool isMorning = false;
@@ -38,6 +38,8 @@ public class TimeController : MonoBehaviour
     public static bool isEvening = false;
     public static bool isNight = false;
 
+    DateTime dt11AM;
+    DateTime timeNow;
     void Awake()
     {
         ui = FindObjectOfType<UIManager>();
@@ -51,19 +53,42 @@ public class TimeController : MonoBehaviour
         dayTime = TimeSpan.FromHours(dayHour);
         goldenHourTime = TimeSpan.FromHours(goldenHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
-        elevenTime = TimeSpan.FromHours(elevenHour);
+        elevenEveningTime = TimeSpan.FromHours(elevenEveningHour);
         nightTime = TimeSpan.FromHours(nightHour);
+
+        //  dt11AM = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 0, 0);
+        // timeNow = currentTime.TimeOfDay;
+        //  dt11AM = Convert.ToDateTime("11:00:00 AM");
+        //   DateTime dt11AM = DateTime.Today.AddHours(11D);  
+
     }
 
+
+  
     public bool IsEndOfWorkingDay() //endWorkingDayHour = 21; &&  && elevenTime = 23
     {
-        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenTime;
+        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenEveningTime;
     }
 
     void Update()
     {
         UpdateTime();
         RotateSun();
+
+       // Debug.Log(currentTime.TimeOfDay);
+
+        //if (DateTime.Now < dt11AM)
+        //    Console.WriteLine("It's not 11 AM yet");
+        //else
+        //    Console.WriteLine("It's past 11 AM");
+
+
+
+        // int i = DateTime.Compare(timeNow, dt11AM);
+        //if (timeNow < dt11AM)
+        //{
+        //    Debug.Log("timeNow < dt11AM. I=" + i);
+        //}       
     }
 
     private void UpdateTime()
@@ -95,7 +120,7 @@ public class TimeController : MonoBehaviour
 
     public bool IsLateEvening() // sunsetTime= 20; && elevenTime = 23
     {
-        return currentTime.TimeOfDay > sunsetTime && currentTime.TimeOfDay < elevenTime;
+        return currentTime.TimeOfDay > sunsetTime && currentTime.TimeOfDay < elevenEveningTime;
     }
 
     public bool IsNight()  // nightTime = 00 && sunriseTime = 5;

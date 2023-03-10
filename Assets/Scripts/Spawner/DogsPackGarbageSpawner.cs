@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ObjectPooler;
 
-public class DogsPackGarbageSpawner : GarbageSpawner
+public class DogsPackGarbageSpawner : PoopSpawner
 {
     public override List<Pool> GetPoolPrefabList()
     {

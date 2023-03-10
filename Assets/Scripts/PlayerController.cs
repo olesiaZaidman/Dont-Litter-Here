@@ -9,29 +9,40 @@ public class PlayerController : MonoBehaviour
     float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
     float verticalInput;
 
-    private Animator myAnimator;
+    Animator myAnimator;
     PlayerAnimationController myAnimationController;
+
+    [SerializeField] RuntimeAnimatorController dayRuntimeAnim;
+    [SerializeField] RuntimeAnimatorController nightRuntimeAnim;
+    [SerializeField] GameObject goldScanner;
+
+    TimeController timeController;
+
     AudioManager audioManager;
 
     public static bool IsCleaningState { get; private set; }
-    float timeForCleaningAnimation = 1.5f;
+    float timeForCleaningAnimation = 0.8f;
     float cleaningSpeed = 4f;
 
     public static bool IsTiredState { get; private set; }
     public static bool IsResting { get; private set; }
     public static float TimeSittingTiredAnimation { get { return 5f; } }
 
-
+    [SerializeField]  bool isScanning;
+    [SerializeField]  bool isWorking;
     void Awake()
     {
+        timeController = FindObjectOfType<TimeController>();
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
         audioManager = FindObjectOfType<AudioManager>();
 
         IsCleaningState = false;
+        goldScanner.SetActive(false);
+        myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
     }
 
-    void Update() //FixedUpdate?
+    void Update() 
     {
         if (IsCleaningState || IsTiredState) //|| IsResting
         { return; }
@@ -40,6 +51,42 @@ public class PlayerController : MonoBehaviour
         CleanOnIput();
         SitOnIput();
         SetTimeForCleaningAnimation(Fatigue.Instance.GetFatiguePoints());
+
+
+        DetermineWorkingOsScanningState();
+
+        if (isWorking)
+        {         
+            goldScanner.SetActive(false);
+            myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
+        }
+
+        if (isScanning)
+        {
+            myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;
+            if (IsCleaningState)
+            {
+                goldScanner.SetActive(false);
+            }
+            else
+                goldScanner.SetActive(true);
+
+        }
+    }
+
+    void DetermineWorkingOsScanningState()
+    {
+        if (timeController.IsEarlyMorning())
+        {
+            isScanning = false;
+            isWorking = true;
+        }
+
+        if (timeController.IsEndOfWorkingDay())
+        {
+            isScanning = true;
+            isWorking = false;
+        }
     }
 
     #region Clean
@@ -73,21 +120,21 @@ public class PlayerController : MonoBehaviour
     {
         if (fatigue < 30) //Input.GetKey(KeyCode.I)
         {
-            timeForCleaningAnimation = 1.5f;
+            timeForCleaningAnimation = 0.8f;
             cleaningSpeed = 4f;
             myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
         }
 
         if (fatigue >= 30 && fatigue < 70) //
         {
-            timeForCleaningAnimation = 2.5f;
+            timeForCleaningAnimation = 1.7f;
             cleaningSpeed = 2f;
             myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
         }
 
         if (fatigue >= 70) // && fatigue < 95
         {
-            timeForCleaningAnimation = 4f;
+            timeForCleaningAnimation = 3.2f;
             cleaningSpeed = 1f;
             myAnimator.SetFloat("pickUpSpeed", cleaningSpeed);
         }
@@ -99,7 +146,7 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator StartCleaningRoutine(float _delay)
-    {
+    {        
         IsCleaningState = true;
         myAnimationController.CleanPickUpIfNeeded(IsCleaningState);      // PlayAnimationIfNeeded("isCleaning", true);
         yield return new WaitForSeconds(_delay);

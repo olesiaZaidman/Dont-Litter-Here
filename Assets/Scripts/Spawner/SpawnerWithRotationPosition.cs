@@ -5,6 +5,7 @@ using static ObjectPooler;
 
 public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosition
 {
+    //SpawnWithOffset
     [Header("Rotation")]
     [SerializeField] protected float xRotation = 0;
     [SerializeField] protected float yRotation = 90;

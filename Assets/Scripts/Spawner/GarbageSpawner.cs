@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ObjectPooler;
 
-public class GarbageSpawner : BaseSpawner
+public class GarbageSpawner : SpawnWithOffset
 {
     //Events for state machine - time of the day or action state
     //OBSERVER PATTERN with Events {TELL DONT ASK}
@@ -19,7 +19,7 @@ public class GarbageSpawner : BaseSpawner
    // MoveForwardWithAnimationController moveController;//   MoveForwardWithSunBathing moveControllerSun;
     LitterRate lR;
 
-    [SerializeField] bool isTimeForSpawning; //= true
+  //  [SerializeField] bool isTimeForSpawning; //= true
     [SerializeField] bool isWalking;
     [SerializeField] bool isRestartSpawning = false;
     #region Constructor
@@ -41,7 +41,7 @@ public class GarbageSpawner : BaseSpawner
         if (timeController.IsEndOfWorkingDay())
         {           
             CancelSpawning();  //sits in BaseSpawner
-            isTimeForSpawning = true;
+          //  isTimeForSpawning = true;
         }
         //if (timeController.IsEarlyMorning())
         //{
