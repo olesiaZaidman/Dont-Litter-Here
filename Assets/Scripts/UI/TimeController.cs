@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour
-{   
+{
+
     private float timeMultiplier = 800;    //it controls how fast time passes in the game
     private float startHour = 5;
+
     private DateTime currentTime;  //using System; namespace
     private DateTime currentDate = new DateTime(2023, 5, 1); //(int year, int month, int day);
     //starts on monday
@@ -56,12 +58,6 @@ public class TimeController : MonoBehaviour
         sunsetTime = TimeSpan.FromHours(sunsetHour);
         elevenEveningTime = TimeSpan.FromHours(elevenEveningHour);
         nightTime = TimeSpan.FromHours(nightHour);
-
-        //  dt11AM = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 11, 0, 0);
-        // timeNow = currentTime.TimeOfDay;
-        //  dt11AM = Convert.ToDateTime("11:00:00 AM");
-        //   DateTime dt11AM = DateTime.Today.AddHours(11D);  
-
     }
 
 
@@ -75,22 +71,7 @@ public class TimeController : MonoBehaviour
     {
         UpdateTime();
         RotateSun();
-        CreateCrowdNoise();
-
-       // Debug.Log(currentTime.TimeOfDay);
-
-        //if (DateTime.Now < dt11AM)
-        //    Console.WriteLine("It's not 11 AM yet");
-        //else
-        //    Console.WriteLine("It's past 11 AM");
-
-
-
-        // int i = DateTime.Compare(timeNow, dt11AM);
-        //if (timeNow < dt11AM)
-        //{
-        //    Debug.Log("timeNow < dt11AM. I=" + i);
-        //}       
+        CreateCrowdNoise();   
     }
 
     private void UpdateTime()
@@ -201,13 +182,5 @@ public class TimeController : MonoBehaviour
         return timeDifference;
     }
 
-    //public DateTime BuildDate(int day, int hour)
-    //{
-    //    var now = DateTime.Now;
-
-    //    var initialDate = now.AddDays(((int)now.DayOfWeek + 1) * -1);
-
-    //    return new DateTime(initialDate.Year, initialDate.Month, initialDate.AddDays(day).Day, hour, 0, 0);
-    //}
 
 }

@@ -45,7 +45,7 @@ public class Fatigue : MonoBehaviour
     {
         if (PlayerController.IsTiredState)
         {
-            Debug.Log("GraduallyDecreaseFill");
+           // Debug.Log("GraduallyDecreaseFill");
             GraduallyDecreaseFill(PlayerController.TimeSittingTiredAnimation);
         }
     }

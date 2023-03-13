@@ -24,6 +24,7 @@ public class LightColorIntensity : MonoBehaviour
 
     float duration = 7.0f;
     float t = 0f;
+    float t_intensity = 0f;
 
     TimeController timeController;
 
@@ -47,7 +48,26 @@ public class LightColorIntensity : MonoBehaviour
             // increment it at the desired rate every update:
             t += Time.deltaTime / _duration;
         }
+    }
 
+    public void InterpolateLightIntensityOnceUp(float _duration)
+    {
+        lt.intensity = t_intensity;
+        if (t < _duration)
+        {
+            // increment it at the desired rate every update:
+            t += Time.deltaTime / _duration;
+        }
+    }
+
+    public void InterpolateLightIntensityOnceDown(float _duration)
+    {
+        lt.intensity = t_intensity;
+        if (t < _duration)
+        {
+            // increment it at the desired rate every update:
+            t -= Time.deltaTime / _duration;
+        }
     }
 
     void Update()
@@ -60,11 +80,13 @@ public class LightColorIntensity : MonoBehaviour
         if (timeController.IsDay())  // dayTime = 12 && goldenHourTime = 16;
         {
             t = 0;
+           // InterpolateLightIntensityOnceUp(2f);
             InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor, duration);
         }
 
         if (timeController.IsEarlyEvening()) // goldenHourTime = 16 &&  sunsetTime= 20;
         {
+          //  InterpolateLightIntensityOnceDown(2f);
             InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor, duration);
         }
 
@@ -177,27 +199,7 @@ public class LightColorIntensity : MonoBehaviour
     //    lt.intensity = t;
     //}
 
-    public void InterpolateLightIntensityOnceUp()
-    {
-        float duration = 2f;
-        lt.intensity = t;
-        if (t < duration)
-        {
-            // increment it at the desired rate every update:
-            t += Time.deltaTime / duration;
-        }
-    }
-
-    public void InterpolateLightIntensityOnceDown()
-    {
-        float duration = 2f;
-        lt.intensity = t;
-        if (t < duration)
-        {
-            // increment it at the desired rate every update:
-            t -= Time.deltaTime / duration;
-        }
-    }
+ 
 
     //void SpeedUp()
     //{

@@ -8,7 +8,7 @@ public class Cleanliness : MonoBehaviour
     //GET RID OF FLICKERING INDICATOR
     public static Cleanliness Instance;
     CleanIndicatorUI cleanlinessUI;
-    public float MaxCleaningnessLevelPoints { get { return 50; } }
+    public float MaxCleaningnessLevelPoints { get { return 40; } }
     public static float Points{ get { return 1f; } }
     private static float AmountOfGarbageInScene { get; set; } 
 

@@ -36,10 +36,16 @@ public class UIManager : MonoBehaviour
         {
             ShowGameOverText();
         }
+
+        if ((Input.GetKey(KeyCode.Space)))
+        {
+            StopCoroutine(ShowSalaryTextRoutine());
+            salaryText.SetActive(false);
+        }
     }
 
     public IEnumerator ShowSalaryTextRoutine()
-    {
+    {//We've all got to earn our daily bread somehow
         float _delay = 3f;
         audioManager.PlayMoneySFXOnce();
         salaryText.SetActive(true);

@@ -12,7 +12,7 @@ public class GarbageSpawner : SpawnWithOffset
     //When we restar-SitingWalking litter waits to restart and appears when the character walks away?
     //Invoke Repeating works badly here
   
-    protected override float StartDelayMin { get { return 3f; ; } }
+    protected override float StartDelayMin { get { return 1f; ; } }
     protected override float StartDelayMax { get { return 15f; } }
 
     TimeController timeController;
@@ -25,7 +25,7 @@ public class GarbageSpawner : SpawnWithOffset
     #region Constructor
     public GarbageSpawner() : base()
     {
-        spawnIntervalMin = 5f;
+        spawnIntervalMin = 1f;
         spawnIntervalMax = 40f;
     }
     #endregion

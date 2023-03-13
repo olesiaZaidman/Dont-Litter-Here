@@ -41,7 +41,7 @@ public class Loot : MonoBehaviour
         {
 
             points = Random.Range(50, 300);
-            float delay = 1f;            
+            float delay = 0.5f;            
             StartCoroutine(StartLootPickingRoutine(delay));           
         }
     }

@@ -16,6 +16,11 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
         DestroyGarbageOnCleaningAnimationState(other);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        DestroyGarbageOnCleaningAnimationState(other);
+    }
+
     void DrinkWater(int points)
     {
         Fatigue.Instance.DecreaseFatiguePoints(points);
@@ -24,7 +29,7 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
 
     void DestroyGarbageOnCleaningAnimationState(Collider other)
     {
-        int recoveryPoints = 20;
+        int recoveryPoints = 30;
         float delay = 3f;
 
         if (PlayerController.IsCleaningState)

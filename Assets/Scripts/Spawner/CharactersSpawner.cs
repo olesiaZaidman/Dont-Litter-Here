@@ -15,7 +15,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     #region Constructor
     public CharactersSpawner() : base()
     {
-        spawnIntervalMin = 10f;
+        spawnIntervalMin = 1f;
         spawnIntervalMax = 60f;
     }
     #endregion
@@ -36,6 +36,65 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     //    ChangeSpawningTimeBasedOnTimeController();
     //}
 
+//    public override void CreateTimeIntervalBetweenSpawning()
+//    //_spawnInterval = lR.GetLitterRate(); ????
+//    {
+//        int _spawnIntervalMax = SetSpawnIntervalMax();
+//        int _spawnIntervalMin = SetSpawnIntervalMin();
+//        _spawnInterval = Random.Range(_spawnIntervalMin, _spawnIntervalMax);
+//        Mathf.Clamp(_spawnInterval, _spawnIntervalMin, _spawnIntervalMax);
+//        Debug.Log("_spawnIntervalMax: " + _spawnIntervalMax);
+//        Debug.Log("_spawnIntervalMin: " + _spawnIntervalMin); //_spawnIntervalMin
+//    }
+
+//    int SetSpawnIntervalMin()
+//    {
+//        if (timeController.IsDay())
+//        {
+//            Debug.Log("IsDay(): ");
+//            return 1;
+//        }
+////mid
+//        else if (timeController.IsEarlyEvening())
+//        {
+//            Debug.Log("IsLateMorning()  or IsEarlyEvening(): ");
+//            return 10;
+//        }
+
+//        //rare
+//        else //if(timeController.IsEarlyMorning())
+//        {
+
+//            Debug.Log("IsEarlyMorning(): ");
+//            return 30;
+//        }
+//    }
+
+//    int SetSpawnIntervalMax()
+//    {
+//        //int _spawnIntervalMax;
+//        if (timeController.IsDay())
+//        {
+//            Debug.Log("IsDay(): ");
+//            return 3;
+//        }
+
+//        //mid
+//        else if (timeController.IsEarlyEvening())
+//        {
+//            Debug.Log("IsLateMorning()  or IsEarlyEvening(): ");
+//            return 30;
+//        }
+
+//        //rare
+//        else //if(timeController.IsEarlyMorning())
+//        {
+
+//            Debug.Log("IsEarlyMorning(): ");
+//            return 70;
+//        }
+//    }
+
     #region Pool
     public override List<Pool> GetPoolPrefabList()
     {
@@ -43,14 +102,9 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     }
     #endregion
 
-    #region Start Functions //called at Start in Base Spawner
-    //public override void StartSettings() //called at Start in Base Spawner
-    //{
-    //    CreateRandomStartTime();
-    //    CreateTimeIntervalBetweenSpawning();
-    //}
+    //#region Start Functions //called at Start in Base Spawner
 
-    #endregion
+    //#endregion
 
     #region Update Functions //InvokeRepeating & CancelInvoke  sit in BaseSpawner
 
@@ -59,10 +113,10 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     {
         if (timeController.IsEndOfWorkingDay())
         {
-            CancelSpawning();  //sits in BaseSpawner
-            //+ DestroyIfEndOfDay() on each gamePRefab
+            CancelSpawning();  //sits in BaseSpawner  //+ DestroyIfEndOfDay() on each gamePRefab
             isTimeForSpawning = true;
         }
+
         if (timeController.IsEarlyMorning())
         {
             if (isTimeForSpawning)
@@ -72,6 +126,55 @@ public class CharactersSpawner : SpawnerWithRotationPosition
             }
         }
     }
+
+       //else if (timeController.IsDay())
+       // {
+       //     CancelSpawning();  //sits in BaseSpawner  //+ DestroyIfEndOfDay() on each gamePRefab
+       //     isTimeForSpawning = true;
+
+       //     if (isTimeForSpawning)
+       //     {
+       //         isTimeForSpawning = false;
+       //         StartSpawningWithIntervals();  //sits in BaseSpawner
+       //     }
+       // }
+
+       // else if (timeController.IsEarlyEvening())
+       // {
+       //     CancelSpawning();  //sits in BaseSpawner  //+ DestroyIfEndOfDay() on each gamePRefab
+       //     isTimeForSpawning = true;
+
+       //     if (isTimeForSpawning)
+       //     {
+       //         isTimeForSpawning = false;
+       //         StartSpawningWithIntervals();  //sits in BaseSpawner
+       //     }
+       // }
+
+
+        //if (timeController.IsLateMorning())
+        //{
+        //    CancelSpawning();  //sits in BaseSpawner  //+ DestroyIfEndOfDay() on each gamePRefab
+        //    isTimeForSpawning = true;
+
+        //    if (isTimeForSpawning)
+        //    {
+        //        isTimeForSpawning = false;
+        //        StartSpawningWithIntervals();  //sits in BaseSpawner
+        //    }
+        //}
+        //if (timeController.IsLateEvening())
+        //{
+        //    CancelSpawning();  //sits in BaseSpawner  //+ DestroyIfEndOfDay() on each gamePRefab
+        //    isTimeForSpawning = true;
+
+        //    if (isTimeForSpawning)
+        //    {
+        //        isTimeForSpawning = false;
+        //        StartSpawningWithIntervals();  //sits in BaseSpawner
+        //    }
+        //}
+  //  }
 
     //public override void CreateRandomStartTime()
     //{

@@ -419,7 +419,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a2b4b1a7da724b34ba2ea9ee184e22f1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.107
+  m_Volume: 0.596
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2055,6 +2055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundSFXAudio: {fileID: 148981495}
   backgroundMusic: {fileID: 420005535}
+  backgroundCrowdNoise: {fileID: 97274221}
   sfx: {fileID: 576567196}
   wavesSound: {fileID: 8300000, guid: 4ca64e0495cf4504faf91484ccc9f57e, type: 3}
   moneySound: {fileID: 8300000, guid: a06b8d10184a2de4b8fc31c4ecfde7b9, type: 3}
@@ -2699,8 +2700,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1513135802}
   - {fileID: 1745842078}
+  - {fileID: 1513135802}
   - {fileID: 1709867273}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -3826,10 +3827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You''ve got the money!
-
-
-    We''ve all got to earn our daily bread somehow'
+  m_text: Good job! You earned 20$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}
   m_sharedMaterial: {fileID: 4835089367266696174, guid: 9b2530006ffe4ba4bbbe24c733238dc3, type: 2}

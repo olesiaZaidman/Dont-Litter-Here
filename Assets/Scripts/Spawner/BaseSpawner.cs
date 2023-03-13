@@ -21,13 +21,13 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected float spawnIntervalMin = 1f;
     protected float spawnIntervalMax = 10f;
 
-    void Start()
-    {
-     //  CreateRandomStartTime();
-      //  CreateTimeIntervalBetweenSpawning();
-     //   StartSpawningWithIntervals();
-      //  Debug.Log("Start");
-    }
+    //void Start()
+    //{
+    // //  CreateRandomStartTime();
+    //  //  CreateTimeIntervalBetweenSpawning();
+    // //   StartSpawningWithIntervals();
+    //  //  Debug.Log("Start");
+    //}
 
     void OnEnable()
     {
