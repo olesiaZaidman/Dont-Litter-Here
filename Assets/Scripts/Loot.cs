@@ -8,12 +8,9 @@ public class Loot : MonoBehaviour
   //  GameObject player;
 
     public static int points;
-   // GoldScanner playerGoldScanner;
-
 
     void Start()
     {
-     //   playerGoldScanner = FindObjectOfType<GoldScanner>();
         ChildrenSetActive(false);
        // player = GameObject.FindWithTag("Player");
     }

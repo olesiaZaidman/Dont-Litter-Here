@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [Header("AudioSource")]
     [SerializeField] AudioSource backgroundSFXAudio;
     [SerializeField] AudioSource backgroundMusic;
+    public AudioSource backgroundCrowdNoise;
     [SerializeField] AudioSource sfx;
 
     [Header("Background")]

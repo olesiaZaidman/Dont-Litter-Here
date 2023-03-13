@@ -15,7 +15,7 @@ public class GoldScanner : MonoBehaviour
     [SerializeField] ParticleSystem rippleFx;
 
     [SerializeField] GameObject loot;
-    float distanceToLoot = 1.5f;
+    float distanceToLoot = 2f;
 
     void Awake()
     {

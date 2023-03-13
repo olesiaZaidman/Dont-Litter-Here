@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    float walkingSpeed = 2f;
-    float runningSpeed = 4f;
+    float walkingSpeed = 2.5f;
+    float runningSpeed = 4.5f;
     float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
     float verticalInput;
 
@@ -47,12 +47,14 @@ public class PlayerController : MonoBehaviour
 
      
         if (GoldScanner.isWorking)
-        {         
+        {
+             walkingSpeed = 2.5f;
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
         }
 
         if (GoldScanner.isScanning)
         {
+             walkingSpeed = 3f;
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;
         }
     }
