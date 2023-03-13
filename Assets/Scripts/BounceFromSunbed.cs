@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class BounceFromSunbed : MonoBehaviour
 {
-
-
-     void Awake()
-    {
-    
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("SunBed"))

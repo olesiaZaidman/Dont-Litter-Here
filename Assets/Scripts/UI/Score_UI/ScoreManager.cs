@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
 
     static int days = 0;
     static int moneyScore = 0;
-    static int dailyWage = 100;
+     static int dailyWage = 100;
     bool isSalaryTime = true;
 
 
@@ -28,8 +28,7 @@ public class ScoreManager : MonoBehaviour
           //  Debug.Log("IsEndOfWorkingDay: " + timeController.IsEndOfWorkingDay());
             if (isSalaryTime)
             {
-                IncreaseMoneyScore(dailyWage);
-                ui.SetScoreTextUI(moneyScore);
+                IncreaseMoneyScoreUpdateUi(dailyWage);
                 IncreaseDaysByOne();
                 isSalaryTime = false;
                 StartCoroutine(ui.ShowSalaryTextRoutine());
@@ -49,9 +48,11 @@ public class ScoreManager : MonoBehaviour
     public float GetMoneyScore()
     { return moneyScore; }
 
-    public float IncreaseMoneyScore(int num)
+    public float IncreaseMoneyScoreUpdateUi(int num)
     {
-        return moneyScore += num;
+        moneyScore += num;
+        ui.SetScoreTextUI(moneyScore);
+        return moneyScore;
     }
 
     public float GetDays()

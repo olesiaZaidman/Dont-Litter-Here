@@ -60,6 +60,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
         if (timeController.IsEndOfWorkingDay())
         {
             CancelSpawning();  //sits in BaseSpawner
+            //+ DestroyIfEndOfDay() on each gamePRefab
             isTimeForSpawning = true;
         }
         if (timeController.IsEarlyMorning())

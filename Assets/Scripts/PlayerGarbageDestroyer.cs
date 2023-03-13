@@ -35,7 +35,14 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
             if (other.gameObject.GetComponent<Litter>())
             { 
                 audioManager.PlaySighOnce(delay);
-               // Cleanliness.Instance.RecalculateCleanRatingPoints();                //Cleanliness.Instance.IncreaseCleanRatingPoints(Cleanliness.Points);
+            }
+
+            if (other.gameObject.GetComponent<Loot>())
+            {
+                
+                 audioManager.PlayGulp();
+                ScoreManager.Instance.IncreaseMoneyScoreUpdateUi(Loot.points); //Add Money Points
+                // audioManager.LootFoundBeepSFX();
             }
 
             DestroyGarbageOnTriggerStay(other);

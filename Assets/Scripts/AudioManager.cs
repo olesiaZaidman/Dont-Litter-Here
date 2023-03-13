@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource backgroundMusic;
     [SerializeField] AudioSource sfx;
 
-
     [Header("Background")]
     [SerializeField] AudioClip wavesSound;
     [SerializeField] AudioClip moneySound;
@@ -18,8 +17,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip[] sighSound;
     [SerializeField] AudioClip whistleSound;
     [SerializeField] AudioClip gulpSound;
-    // [Header("SoundFX")]
 
+    [Header("SoundFX")]
+    [SerializeField] AudioClip lootBeepSound;
+    [SerializeField] AudioClip lootBeepFoundSound;
     float audioVolume = 0.5f;
     bool isPlayed = false;
     private void Start()
@@ -32,6 +33,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    #region Player Sigh
     public void PlaySigh()
     {
         int index = Random.Range(0, sighSound.Length);
@@ -54,7 +56,7 @@ public class AudioManager : MonoBehaviour
         isPlayed = false;
     }
 
-
+    #endregion
 
     public void PlayGulp()
     {
@@ -65,6 +67,7 @@ public class AudioManager : MonoBehaviour
         sfx.PlayOneShot(whistleSound, audioVolume);
     }
 
+    #region MoneySFX
     public void PlayMoneySFXOnce()
     {
         StartCoroutine(PlayMoneySFXRoutine());
@@ -86,6 +89,36 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(_delay);
         isPlayed = false;
     }
+    #endregion
 
+    #region LootSFX
+    public void PlayLootBeepSFXOnce()
+    {
+        StartCoroutine(PlayLootBeepSFXRoutine());
+    }
+
+    public void LootBeepSFX()
+    {
+        //sfx.PlayOneShot(lootBeepSound, audioVolume);
+       // lootBeepSound
+    }
+
+    public void LootFoundBeepSFX()
+    {
+        sfx.PlayOneShot(lootBeepFoundSound, audioVolume);
+    }
+    IEnumerator PlayLootBeepSFXRoutine()
+    {
+        float _delay = 5f;
+
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            LootBeepSFX();
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+    #endregion
 
 }

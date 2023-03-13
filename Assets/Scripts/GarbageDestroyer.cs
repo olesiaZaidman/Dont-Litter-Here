@@ -11,7 +11,7 @@ public class GarbageDestroyer : MonoBehaviour
 
     public void DestroyGarbageOnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Garbage"))      
+        if (other.gameObject.CompareTag("Garbage") || other.gameObject.CompareTag("Loot"))
         {
             other.gameObject.SetActive(false);          // Destroy(other.gameObject);
             //Debug.Log("We destroyed: " + other.gameObject.name);
