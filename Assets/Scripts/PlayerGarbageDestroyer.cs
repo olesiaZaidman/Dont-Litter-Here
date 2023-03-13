@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerGarbageDestroyer : GarbageDestroyer
 {
     AudioManager audioManager;
+ //   GoldScanner playerGoldScanner;
     void Start()
     {
+     //   playerGoldScanner = FindObjectOfType<GoldScanner>();
         audioManager = FindObjectOfType<AudioManager>();
     }
     void OnTriggerStay(Collider other) 
@@ -40,9 +42,10 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
             if (other.gameObject.GetComponent<Loot>())
             {
                 
-                 audioManager.PlayGulp();
+                audioManager.PlayGulp();
                 ScoreManager.Instance.IncreaseMoneyScoreUpdateUi(Loot.points); //Add Money Points
                 // audioManager.LootFoundBeepSFX();
+               // playerGoldScanner.isTargetFound = false;
             }
 
             DestroyGarbageOnTriggerStay(other);

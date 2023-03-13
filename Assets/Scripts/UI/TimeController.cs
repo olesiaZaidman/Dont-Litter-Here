@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {   
-    private float timeMultiplier = 1000;    //it controls how fast time passes in the game
+    private float timeMultiplier = 800;    //it controls how fast time passes in the game
     private float startHour = 5;
     private DateTime currentTime;  //using System; namespace
     private DateTime currentDate = new DateTime(2023, 5, 1); //(int year, int month, int day);

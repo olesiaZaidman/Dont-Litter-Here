@@ -14,9 +14,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] RuntimeAnimatorController dayRuntimeAnim;
     [SerializeField] RuntimeAnimatorController nightRuntimeAnim;
-    [SerializeField] GameObject goldScanner;
-
-    TimeController timeController;
 
     AudioManager audioManager;
 
@@ -28,17 +25,13 @@ public class PlayerController : MonoBehaviour
     public static bool IsResting { get; private set; }
     public static float TimeSittingTiredAnimation { get { return 5f; } }
 
-    [SerializeField]  bool isScanning;
-    [SerializeField]  bool isWorking;
     void Awake()
     {
-        timeController = FindObjectOfType<TimeController>();
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
         audioManager = FindObjectOfType<AudioManager>();
 
         IsCleaningState = false;
-        goldScanner.SetActive(false);
         myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
     }
 
@@ -52,42 +45,19 @@ public class PlayerController : MonoBehaviour
         SitOnIput();
         SetTimeForCleaningAnimation(Fatigue.Instance.GetFatiguePoints());
 
-
-        DetermineWorkingOsScanningState();
-
-        if (isWorking)
+     
+        if (GoldScanner.isWorking)
         {         
-            goldScanner.SetActive(false);
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
         }
 
-        if (isScanning)
+        if (GoldScanner.isScanning)
         {
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;
-            if (IsCleaningState)
-            {
-                goldScanner.SetActive(false);
-            }
-            else
-                goldScanner.SetActive(true);
-
         }
     }
 
-    void DetermineWorkingOsScanningState()
-    {
-        if (timeController.IsEarlyMorning())
-        {
-            isScanning = false;
-            isWorking = true;
-        }
 
-        if (timeController.IsEndOfWorkingDay())
-        {
-            isScanning = true;
-            isWorking = false;
-        }
-    }
 
     #region Clean
     void CleanOnIput()

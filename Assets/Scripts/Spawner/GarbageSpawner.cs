@@ -7,11 +7,11 @@ public class GarbageSpawner : SpawnWithOffset
 {
     //Events for state machine - time of the day or action state
     //OBSERVER PATTERN with Events {TELL DONT ASK}
-    
+
     //BUG:
     //When we restar-SitingWalking litter waits to restart and appears when the character walks away?
     //Invoke Repeating works badly here
-    
+  
     protected override float StartDelayMin { get { return 3f; ; } }
     protected override float StartDelayMax { get { return 15f; } }
 

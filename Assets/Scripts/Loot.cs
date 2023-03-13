@@ -5,26 +5,17 @@ using UnityEngine;
 public class Loot : MonoBehaviour
 {
     //ToDo:Add BounceFromSunbed?
+  //  GameObject player;
 
-
-    //   AudioManager audioManager;
-    //   GameObject player;
-
-    //  AudioSource audioSource;
-    //  [SerializeField] float distanceToPlayer;
     public static int points;
+   // GoldScanner playerGoldScanner;
+
 
     void Start()
     {
-       // audioManager = FindObjectOfType<AudioManager>();
-      //  player = GameObject.FindWithTag("Player");
+     //   playerGoldScanner = FindObjectOfType<GoldScanner>();
         ChildrenSetActive(false);
-      //  points = Random.Range(50,300);
-      //  audioSource = GetComponent<AudioSource>();
-      //  audioSource.playOnAwake = true;
-
-
-
+       // player = GameObject.FindWithTag("Player");
     }
 
     void ChildrenSetActive(bool _isActive)
@@ -45,23 +36,15 @@ public class Loot : MonoBehaviour
 4. Use the distance value to set the audio source pitch (w$$anonymous$$ch w$$anonymous$$ch change
     the pitch & playback speed of your sound effect, I'm not sure how to just change the tempo so the pitch 
     is the same)*/
-    //void Update()
-    //{
-    //    CalculateDistanceToPlayer(player);
-    //}
-
-    //void CalculateDistanceToPlayer(GameObject _player)
-    //{
-    //    Vector3 distance = transform.position - _player.transform.position;
-    //    Debug.Log("distance to player" + distance);
-    //}
+  
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+
             points = Random.Range(50, 300);
-            float delay = 1.5f;
+            float delay = 1f;            
             StartCoroutine(StartLootPickingRoutine(delay));           
         }
     }

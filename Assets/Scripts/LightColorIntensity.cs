@@ -22,7 +22,7 @@ public class LightColorIntensity : MonoBehaviour
     [SerializeField] float hotDayIntensity = 1.6f;
     [SerializeField] float crazyHotDayIntensity = 2.3f;
 
-    float duration = 6.0f;
+    float duration = 7.0f;
     float t = 0f;
 
     TimeController timeController;
@@ -36,35 +36,47 @@ public class LightColorIntensity : MonoBehaviour
         timeController = FindObjectOfType<TimeController>();
     }
 
+    public void InterpolateLightBetweenColorsOnce(Color _startColor, Color _endColor, float _duration)
+    {
+        // Interpolate light color between two colors ONCE
+        
 
+        lt.color = Color.Lerp(_startColor, _endColor, t);
+        if (t < 1)
+        {
+            // increment it at the desired rate every update:
+            t += Time.deltaTime / _duration;
+        }
+
+    }
 
     void Update()
     {
         if (timeController.IsEarlyMorning())  //sunriseTime = 5; && blueHourTime = 7;
         {         
-            InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor);
+            InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor, duration);
         }
 
         if (timeController.IsDay())  // dayTime = 12 && goldenHourTime = 16;
         {
             t = 0;
-            InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor);
+            InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor, duration);
         }
 
         if (timeController.IsEarlyEvening()) // goldenHourTime = 16 &&  sunsetTime= 20;
         {
-            InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);
+            InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor, duration);
         }
 
         if (timeController.IsLateEvening()) // sunsetTime= 20; && nightTime = 23
         {
-            InterpolateLightBetweenColorsOnce(eveningPinkColor, Color.blue);
+            InterpolateLightBetweenColorsOnce(eveningPinkColor, Color.blue, duration);
         }
 
         if (timeController.IsNight()) // nightTime = 00 && sunriseTime = 5;
         {          
-            t = 0;
-          InterpolateLightBetweenColorsOnce(Color.blue, Color.blue);
+          t = 0;
+          InterpolateLightBetweenColorsOnce(Color.blue, Color.blue, duration);
            
         }
 
@@ -205,18 +217,7 @@ public class LightColorIntensity : MonoBehaviour
         lt.color = Color.Lerp(_startColor, _endColor, t);
     }
 
-    public void InterpolateLightBetweenColorsOnce(Color _startColor, Color _endColor)
-    {
-        // Interpolate light color between two colors ONCE
 
-        lt.color = Color.Lerp(_startColor, _endColor, t);
-        if (t < 1)
-        {
-            // increment it at the desired rate every update:
-            t += Time.deltaTime / duration;
-        }
-        
-    }
 
 
 
