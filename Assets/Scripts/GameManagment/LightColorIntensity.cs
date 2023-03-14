@@ -18,9 +18,9 @@ public class LightColorIntensity : MonoBehaviour
     //FF5B58
 
     [Header("Intensity")]
-    [SerializeField] float defaultIntensity = 1f;
-    [SerializeField] float hotDayIntensity = 1.6f;
-    [SerializeField] float crazyHotDayIntensity = 2.3f;
+    float defaultIntensity = 1f;
+    //[SerializeField] float hotDayIntensity = 1.6f;
+    //[SerializeField] float crazyHotDayIntensity = 2.3f;
 
     float duration = 7.0f;
     float t = 0f;
@@ -36,12 +36,11 @@ public class LightColorIntensity : MonoBehaviour
         lt.intensity = defaultIntensity;
         timeController = FindObjectOfType<TimeController>();
     }
-
+    #region Color of Light
     public void InterpolateLightBetweenColorsOnce(Color _startColor, Color _endColor, float _duration)
     {
         // Interpolate light color between two colors ONCE
         
-
         lt.color = Color.Lerp(_startColor, _endColor, t);
         if (t < 1)
         {
@@ -49,27 +48,29 @@ public class LightColorIntensity : MonoBehaviour
             t += Time.deltaTime / _duration;
         }
     }
+    #endregion
 
+    #region Light Intensity
     public void InterpolateLightIntensityOnceUp(float _duration)
     {
         lt.intensity = t_intensity;
-        if (t < _duration)
+        if (t_intensity < _duration)
         {
             // increment it at the desired rate every update:
-            t += Time.deltaTime / _duration;
+            t_intensity += Time.deltaTime / _duration;
         }
     }
 
     public void InterpolateLightIntensityOnceDown(float _duration)
     {
         lt.intensity = t_intensity;
-        if (t < _duration)
+        if (t_intensity < _duration)
         {
             // increment it at the desired rate every update:
-            t -= Time.deltaTime / _duration;
+            t_intensity -= Time.deltaTime / _duration;
         }
     }
-
+    #endregion
     void Update()
     {
         if (timeController.IsEarlyMorning())  //sunriseTime = 5; && blueHourTime = 7;
@@ -77,16 +78,23 @@ public class LightColorIntensity : MonoBehaviour
             InterpolateLightBetweenColorsOnce(Color.blue, defaultYellowColor, duration);
         }
 
+        //if (timeController.IsLateMorning())  // dayTime = 12 && goldenHourTime = 16;
+        //{
+        //    InterpolateLightIntensityOnceUp(2f);
+        //}
+
         if (timeController.IsDay())  // dayTime = 12 && goldenHourTime = 16;
         {
             t = 0;
-           // InterpolateLightIntensityOnceUp(2f);
-            InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor, duration);
+           //InterpolateLightIntensityOnceUp(2f);
+           InterpolateLightBetweenColorsOnce(defaultYellowColor, defaultYellowColor, duration);
         }
+
+
 
         if (timeController.IsEarlyEvening()) // goldenHourTime = 16 &&  sunsetTime= 20;
         {
-          //  InterpolateLightIntensityOnceDown(2f);
+           //InterpolateLightIntensityOnceDown(2f);
             InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor, duration);
         }
 
@@ -101,94 +109,7 @@ public class LightColorIntensity : MonoBehaviour
           InterpolateLightBetweenColorsOnce(Color.blue, Color.blue, duration);
            
         }
-
-        //if (Input.GetKey(KeyCode.P))
-        //{
-        //    xAngle = transform.rotation.eulerAngles.x;
-        //    xAngle += 180;
-        //}
-
-        // A rotation 30 degrees around the y-axis
-
-        //  Quaternion start  = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
-        // Vector3 rotationVectorSt = new Vector3(30, 0, 0);
-        //  Quaternion start  = Quaternion.Euler(rotationVectorSt);
-        //   Quaternion mid = Quaternion.Euler(90, transform.eulerAngles.y, transform.eulerAngles.z);
-
-        //    Quaternion mid2 = Quaternion.Euler(90, transform.eulerAngles.y, transform.eulerAngles.z);
-        //270 = -90
-        //   Quaternion end = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
-
-
-        //     transform.rotation = Quaternion.Slerp(mid2, end, Time.time * speed);
-
-
-        //     Vector3 rotationVectorEnd = new Vector3(155, 0, 0);
-        //  Quaternion end = Quaternion.Euler(rotationVectorEnd);
-
-
-
-        //    transform.rotation = Quaternion.Slerp(mid, end, Time.time * speed);
-        //transform.rotation = Quaternion.Euler(rotationVectorEnd * Time.time * speed);
-        //if (transform.eulerAngles.x > 155)
-        //{ return; }
-        // Quaternion.Lerp
-
-
-
-
-        //   DarkenLight(2.0f);
-        //BrightenLight(2.0f);
-        // set light color
-        // InterpolateLightBetweenColorsBackForth(Color.blue, defaultColor);
-        //  InterpolateLightIntensityOnce();
-
-
-
-        //if (TemperatureManager.isNight)
-        //{
-        //    DarkenLight(5.0f);
-        //}
-        //if (TemperatureManager.isNormalTemp)
-        //{
-        //    InterpolateLightIntensityOnceDown();
-        //}
-
-        //if (TemperatureManager.isHighTemp)
-        //{
-        //    InterpolateLightIntensityOnceUp();
-        //}
-
-        // ChangeSunPosition(10);
-        // transform.Rotate(new Vector3(xAngle, yAngle, 0)); //* speed * Time.deltaTime
-
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    InterpolateLightBetweenColorsOnce(morningBlueColor, defaultYellowColor);
-        //}
-
-        //if (Input.GetKey(KeyCode.W))
-        //{
-        //    InterpolateLightBetweenColorsOnce(defaultYellowColor, eveningPinkColor);
-        //}
-
-        //if (Input.GetKey(KeyCode.Space))
-        //{
-        //    t = 0;
-        //}
-
-        //if (Input.GetKey(KeyCode.E))
-        //{
-        //    InterpolateLightIntensityOnceDown();
-        //}
-
-        //if (Input.GetKey(KeyCode.R))
-        //{
-        //    InterpolateLightIntensityOnceUp();
-        //}
-
     }
-
 
 
     //public void InterpolateLightIntensityBackForth()
@@ -199,64 +120,4 @@ public class LightColorIntensity : MonoBehaviour
     //    lt.intensity = t;
     //}
 
- 
-
-    //void SpeedUp()
-    //{
-    //    if (gradualPoints < maxSpeed)
-    //    {
-    //        float acceleration = (maxSpeed - minSpeed) / time;
-    //        gradualPoints += acceleration * Time.deltaTime;
-    //    }
-    //    else
-    //        gradualPoints = maxSpeed;
-    //}
-
-    void InterpolateLightBetweenColorsBackForth(Color _startColor, Color _endColor)
-    {
-        // Interpolate light color between two colors back and forth
-        float t = Mathf.PingPong(Time.time, duration) / duration;
-        lt.color = Color.Lerp(_startColor, _endColor, t);
-    }
-
-
-
-
-
-    void DarkenLight(float _time)
-    {
-        // Darken the light completely over a period of 2 seconds.
-        lt.color -= (Color.white / _time) * Time.deltaTime;
-    }
-
-    void BrightenLight(float _time)
-    {
-        // Brighten the light completely over a period of 2 seconds.
-        lt.color += (defaultYellowColor / _time) * Time.deltaTime;
-    }
-
-    void SetPositionWithDayTime(int _dayState)
-    {
-        switch (_dayState)
-        {
-            case 1: /// morning
-                Debug.Log("morning");
-                break;
-
-            case 2: //day
-                Debug.Log("day");
-                break;
-
-            case 3: //evening
-                Debug.Log("evening");
-                break; //default state
-
-            case 4: //night
-                Debug.Log("night");
-                break;
-
-            default://default state
-                break;
-        }
-    }
 }

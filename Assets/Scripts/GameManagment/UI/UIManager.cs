@@ -11,8 +11,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI score;
     [SerializeField] TextMeshProUGUI time;
     [SerializeField] TextMeshProUGUI day;
+    [SerializeField] TextMeshProUGUI temperature;
     [SerializeField] TextMeshProUGUI startNavigation;
 
+    //18°C
     [SerializeField] GameObject startText;
     [SerializeField] GameObject garbagePickText;
     [SerializeField] GameObject gameOverText;
@@ -27,8 +29,7 @@ public class UIManager : MonoBehaviour
 
     AudioManager audioManager;
     void Awake()
-    {
-       
+    {     
         audioManager = FindObjectOfType<AudioManager>();
         gameOverText.SetActive(GameManager.isGameOver);
         salaryText.SetActive(false);
@@ -39,7 +40,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         SetScoreTextUI(0);
-        StartCoroutine(ShowStartNavigationRoutine("Press [W] or [S] or arrows to move"));
+    //    StartCoroutine(ShowStartNavigationRoutine("Press [W] or [S] or arrows to move"));
     }
 
     void OnTriggerEnter(Collider other)
@@ -74,7 +75,7 @@ public class UIManager : MonoBehaviour
             ShowFatigueMessage();
         }
 
-      UpdateAndShowStartNavigationMessages();
+    //  UpdateAndShowStartNavigationMessages();
     }
 
 
@@ -193,7 +194,10 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Weather
-
+    public void SetTemperTextUI(int _num)
+    {
+        temperature.SetText(_num.ToString()+ "°C"); 
+    }
     #endregion
 
 

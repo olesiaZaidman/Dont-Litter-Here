@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-
     private float timeMultiplier = 800;    //it controls how fast time passes in the game
     private float startHour = 5;
 
@@ -13,9 +12,9 @@ public class TimeController : MonoBehaviour
     private DateTime currentDate = new DateTime(2023, 5, 1); //(int year, int month, int day);
     //starts on monday
     AudioManager audioManager;
+
     UIManager ui;
     [SerializeField] Light sunLight;
-
     private float endWorkingDayHour = 21;
 
     private float sunriseHour = 5;
@@ -40,12 +39,17 @@ public class TimeController : MonoBehaviour
     public static bool isEvening = false;
     public static bool isNight = false;
 
-    DateTime dt11AM;
-    DateTime timeNow;
+    //HeatWave:
+    TemperatureManager temperatureManager;
+    bool isMaxTempSet = false;
+    float minIntensity = 1f;
+    float maxIntensity = 1.55f;
+
     void Awake()
     {
         ui = FindObjectOfType<UIManager>();
         audioManager = FindObjectOfType<AudioManager>();
+        temperatureManager = FindObjectOfType<TemperatureManager>();
     }
     void Start()
     {
@@ -59,21 +63,16 @@ public class TimeController : MonoBehaviour
         elevenEveningTime = TimeSpan.FromHours(elevenEveningHour);
         nightTime = TimeSpan.FromHours(nightHour);
     }
-
-
-  
-    public bool IsEndOfWorkingDay() //endWorkingDayHour = 21; &&  && elevenTime = 23
-    {
-        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenEveningTime;
-    }
-
+ 
     void Update()
     {
         UpdateTime();
         RotateSun();
-        CreateCrowdNoise();   
+        CreateCrowdNoise();
+        CreateHeatWave();
     }
 
+    #region Time
     private void UpdateTime()
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
@@ -81,7 +80,27 @@ public class TimeController : MonoBehaviour
         { ui.SetTimeTextUI(currentTime); }
     }
 
+    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
+    {
+        //it helps to determine how long untill sunset or sunsrise - and set sun accordingly
+        TimeSpan timeDifference = toTime - fromTime;
+
+        if (timeDifference.TotalSeconds < 0)
+        {
+            //it means transition from one day to another
+            //so we need add up 24 hours to correct the value
+            timeDifference += TimeSpan.FromHours(24);
+        }
+        return timeDifference;
+    }
+    #endregion
+
     #region TimeSpan Bools
+
+    public bool IsEndOfWorkingDay() //endWorkingDayHour = 21; &&  && elevenTime = 23
+    {
+        return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenEveningTime;
+    }
     public bool IsEarlyMorning() //sunriseTime = 5; && blueHourTime = 7;
     {
         return currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < blueHourTime ;
@@ -113,6 +132,59 @@ public class TimeController : MonoBehaviour
     }
 
     #endregion
+
+    #region HeatWave
+
+    float SetIntensityMax(int _temperature)
+    {
+        if (_temperature > 20 && _temperature <= 30)
+        {
+            return 1.35f; 
+        }
+
+        else if (_temperature > 30)
+        {
+            return 1.50f;
+        }
+        else
+            return 1;
+    }
+    private void CreateHeatWave()
+    {
+        if (currentTime.TimeOfDay > TimeSpan.FromHours(10) && currentTime.TimeOfDay < TimeSpan.FromHours(12))
+        {
+            TimeSpan morningHeat = CalculateTimeDifference(TimeSpan.FromHours(10), TimeSpan.FromHours(12));
+            TimeSpan timeSinceMorning = CalculateTimeDifference(TimeSpan.FromHours(10), currentTime.TimeOfDay);
+
+            double percentage = timeSinceMorning.TotalMinutes / morningHeat.TotalMinutes;
+
+            temperatureManager.IncreaseTemperature((float)percentage); //IncreaseTemperature sets internally maax temp of the day
+
+            if (!isMaxTempSet)
+            {
+                isMaxTempSet = true;
+                maxIntensity = SetIntensityMax(temperatureManager.GetMaxTemperatureToday());
+                Debug.Log("maxIntensity toady: "+ maxIntensity);
+            }
+
+            sunLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, (float)percentage);       
+        }
+
+        else if (currentTime.TimeOfDay > TimeSpan.FromHours(15) && currentTime.TimeOfDay < TimeSpan.FromHours(18))
+        {
+            TimeSpan dayCoolDown = CalculateTimeDifference(TimeSpan.FromHours(15), TimeSpan.FromHours(18));
+            TimeSpan timeSinceDay = CalculateTimeDifference(TimeSpan.FromHours(15), currentTime.TimeOfDay);
+
+            double percentage = timeSinceDay.TotalMinutes / dayCoolDown.TotalMinutes;
+            sunLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, (float)percentage);
+            temperatureManager.DecreaseTemperature((float)percentage);
+            isMaxTempSet = false;
+        }
+    }
+
+    #endregion
+
+    #region CrowdNoise
     private void CreateCrowdNoise()
     {
 
@@ -143,7 +215,9 @@ public class TimeController : MonoBehaviour
         }
 
     }
+    #endregion
 
+    #region RotateSun
     private void RotateSun()
     {
         float sunLightRotation;
@@ -168,19 +242,5 @@ public class TimeController : MonoBehaviour
         }
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
     }
-    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
-    {
-        //it helps to determine how long untill sunset or sunsrise - and set sun accordingly
-        TimeSpan timeDifference = toTime - fromTime;
-
-        if (timeDifference.TotalSeconds < 0)
-        {
-            //it means transition from one day to another
-            //so we need add up 24 hours to correct the value
-            timeDifference += TimeSpan.FromHours(24);
-        }
-        return timeDifference;
-    }
-
-
+    #endregion
 }

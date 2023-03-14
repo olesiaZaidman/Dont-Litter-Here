@@ -5,24 +5,33 @@ using UnityEngine;
 public class Fatigue : MonoBehaviour
 {
     //TODO:
-    //2-the higher the temperature the faster Fatigue increases
-    //15-20 slow
-    //20-30 avarage
-    //30+ fast
     //we need to consume water to cool down
     //if we reached Max of Fatigue - we need to sit and wait until we fully reconder
     //in the shadow we recover faster!
 
-
+    TemperatureManager temperatureManager;
     public static Fatigue Instance; // GetFatiguePoints()
     public float MaxEnergyLevelPoints { get { return 100; } }
 
     FatigueIndicatorUI fatigueUI;
 
     int temperatureModifier = 1;
-  //  int points = 1;
-  //  float time = 5;
+    float timeForGraduallFatigueIncreaseIfHot = 150f;
 
+    void SetTemperModifier()
+    {
+        if (temperatureManager.GetTemperature() > 20 && temperatureManager.GetTemperature() <= 30)
+        {
+            temperatureModifier = 2;
+        }
+
+        else if (temperatureManager.GetTemperature() > 30)
+        {
+            temperatureModifier = 3;
+        }
+        else
+            temperatureModifier = 1;
+    }
     float NormalizeValue(float _fillValue)
     {
         float _normalizedValue = _fillValue / MaxEnergyLevelPoints;
@@ -38,16 +47,20 @@ public class Fatigue : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        temperatureManager = FindObjectOfType<TemperatureManager>();
         fatigueUI = FindObjectOfType<FatigueIndicatorUI>();
         FatiguePoints.Initialize(OnUpdateFatigue);
     }
     void Update()
     {
+        SetTemperModifier();
         if (PlayerController.IsTiredState)
         {
-           // Debug.Log("GraduallyDecreaseFill");
             GraduallyDecreaseFill(PlayerController.TimeSittingTiredAnimation);
         }
+
+        if (temperatureModifier > 1)
+        { Fatigue.Instance.GraduallyIncreaseFill(timeForGraduallFatigueIncreaseIfHot); }
     }
 
     //void ChangeFatigueOnButtonPressed() //Tested in Update
@@ -135,7 +148,7 @@ public class Fatigue : MonoBehaviour
         if (FatiguePoints.Get() < MaxEnergyLevelPoints)
         {
             float acceleration = (MaxEnergyLevelPoints - 0) / _time;
-            FatiguePoints.Set(FatiguePoints.Get() + acceleration * Time.deltaTime);   //  fatiguePoints -= acceleration * Time.deltaTime;
+            FatiguePoints.Set(FatiguePoints.Get() + temperatureModifier* acceleration * Time.deltaTime);   //  fatiguePoints -= acceleration * Time.deltaTime;
         }
         else
             FatiguePoints.Set(MaxEnergyLevelPoints);
