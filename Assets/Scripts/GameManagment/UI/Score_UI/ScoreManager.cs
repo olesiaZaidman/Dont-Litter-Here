@@ -13,10 +13,16 @@ public class ScoreManager : MonoBehaviour
     static int dailyWage = 20;
     bool isSalaryTime = true;
 
+    public ScoreManager()
+        /*Constructor is called before any Unity's Initialization Functions*/
+    {
+        Instance = this;
+    }
 
     private void Awake()
     {
-        Instance = this;
+       // Instance = this;
+     //   Debug.Log("Awake in ScoreManager");
         timeController = FindObjectOfType<TimeController>();
         ui = FindObjectOfType<UIManager>();
     }
@@ -57,7 +63,7 @@ public class ScoreManager : MonoBehaviour
         return moneyScore;
     }
 
-    public float GetDays()
+    public int GetDays()
     { return days; }
 
     public float IncreaseDaysByOne()

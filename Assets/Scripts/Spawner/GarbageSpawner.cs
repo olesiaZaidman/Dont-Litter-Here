@@ -27,7 +27,8 @@ public class GarbageSpawner : SpawnWithOffset
     void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
-      //  lR = GetComponent<LitterRate>();
+      //  Debug.Log("GarbageSpawner sits on people- Spawner Awake");
+        //  lR = GetComponent<LitterRate>();
     }
 
     void Update()

@@ -22,6 +22,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
+        //Debug.Log("Charcters Spawner Awake");
     }
 
     private void Update()
@@ -39,8 +40,12 @@ public class CharactersSpawner : SpawnerWithRotationPosition
 
     public override void CreateTimeIntervalBetweenSpawning()
     {
+     //   if (ScoreManager.Instance == null)
+      //  { Debug.Log("ScoreManager.Instance is null"); }
+
         float modifier = 1;
         modifier += ScoreManager.Instance.GetDays();
+
         float _spawnIntervalMax = (float)spawnIntervalMax / modifier;
         _spawnInterval = Random.Range(spawnIntervalMin, (int)_spawnIntervalMax);
         Mathf.Clamp(_spawnInterval, spawnIntervalMin, spawnIntervalMax);
