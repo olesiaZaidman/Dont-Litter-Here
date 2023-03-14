@@ -18,10 +18,10 @@ public class SpawnerWithRotationPosition : BaseSpawner, ISpawnerWithRotationPosi
     [SerializeField] protected float zMaxRange = 4;
     [SerializeField] protected float zMinRange = -14;
 
-    //public SpawnerWithRotationPosition() : base()
-    //{
-    //    _startDelay = 10.0f;
-    //}
+    public override void CreateTimeIntervalBetweenSpawning()
+    {
+        base.CreateTimeIntervalBetweenSpawning();
+    }
 
     public override void Spawn()
     {

@@ -21,20 +21,11 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     protected float spawnIntervalMin = 1f;
     protected float spawnIntervalMax = 10f;
 
-    //void Start()
-    //{
-    // //  CreateRandomStartTime();
-    //  //  CreateTimeIntervalBetweenSpawning();
-    // //   StartSpawningWithIntervals();
-    //  //  Debug.Log("Start");
-    //}
-
     void OnEnable()
     {
         CreateRandomStartTime();
         CreateTimeIntervalBetweenSpawning();
         StartSpawningWithIntervals();
-       // Debug.Log("OnEnable");
     }
 
     void OnDisable()
@@ -66,11 +57,6 @@ public class BaseSpawner : MonoBehaviour, IBaseSpawner
     #endregion 
 
     #region Supposed for Update Functions //CancelInvoke
-    //IN START:
-    //public virtual void StartSpawningWithIntervals()
-    //{
-    //    InvokeRepeating("Spawn", _startDelay, _spawnInterval);
-    //}
 
     public virtual void CancelSpawning()
     {

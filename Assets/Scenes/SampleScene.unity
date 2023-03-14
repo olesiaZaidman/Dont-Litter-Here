@@ -3353,9 +3353,6 @@ MonoBehaviour:
   defaultYellowColor: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   morningBlueColor: {r: 0.41568628, g: 0.30980393, b: 0.98039216, a: 1}
   eveningPinkColor: {r: 1, g: 0.35686275, b: 0.34509805, a: 1}
-  defaultIntensity: 1
-  hotDayIntensity: 1.6
-  crazyHotDayIntensity: 2.3
 --- !u!1001 &724333753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13238,13 +13235,13 @@ MonoBehaviour:
   score: {fileID: 115330920}
   time: {fileID: 1148073083}
   day: {fileID: 735942794}
+  temperature: {fileID: 890295088}
   startNavigation: {fileID: 825197614}
   startText: {fileID: 825197612}
   garbagePickText: {fileID: 802241227}
   gameOverText: {fileID: 277161643}
   salaryText: {fileID: 864675686}
   fatigueText: {fileID: 10361205}
-  numberOfTexts: 0
 --- !u!4 &1745842078
 Transform:
   m_ObjectHideFlags: 0

@@ -164,7 +164,7 @@ public class TimeController : MonoBehaviour
             {
                 isMaxTempSet = true;
                 maxIntensity = SetIntensityMax(temperatureManager.GetMaxTemperatureToday());
-                Debug.Log("maxIntensity toady: "+ maxIntensity);
+               // Debug.Log("maxIntensity toady: "+ maxIntensity);
             }
 
             sunLight.intensity = Mathf.Lerp(minIntensity, maxIntensity, (float)percentage);       

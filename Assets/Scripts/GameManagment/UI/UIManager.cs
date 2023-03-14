@@ -25,7 +25,7 @@ public class UIManager : MonoBehaviour
     static bool isTimeForFatigueMessage = false;
     static bool isStartMessage = false;
     public static bool isGarbageMessage = false;
-    [SerializeField] int numberOfTexts = 0;
+   int numberOfTexts = 0;
 
     AudioManager audioManager;
     void Awake()

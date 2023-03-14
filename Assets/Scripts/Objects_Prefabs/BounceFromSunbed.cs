@@ -12,7 +12,7 @@ public class BounceFromSunbed : MonoBehaviour
             Vector3 offset = new Vector3(transform.position.x, transform.position.y, 0.5f);
             transform.position = pos + offset;
 
-            Debug.Log(gameObject.name+ " has collided with Bouncer SunBed");
+        //    Debug.Log(gameObject.name+ " has collided with Bouncer SunBed");
         }
     }
 

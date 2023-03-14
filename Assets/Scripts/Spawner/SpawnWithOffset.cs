@@ -8,7 +8,7 @@ public class SpawnWithOffset : BaseSpawner, IBaseSpawner
     protected Vector3 spawnOffsetPos;
     protected float yCoordinate = 0f; //-0.1
 
-    float modifier = 1;
+   // float modifier = 1;
     public override void Spawn()
     {
         Vector3 pos = transform.position;
@@ -30,10 +30,10 @@ public class SpawnWithOffset : BaseSpawner, IBaseSpawner
         float modifier = 1;
         modifier += ScoreManager.Instance.GetDays();
         float _spawnIntervalMax = (float)spawnIntervalMax / modifier;
-       // Debug.Log("modifier: " + modifier);
-       // Debug.Log("_spawnIntervalMax: " + (int)_spawnIntervalMax);
         _spawnInterval = Random.Range(spawnIntervalMin, (int)_spawnIntervalMax);
         Mathf.Clamp(_spawnInterval, spawnIntervalMin, spawnIntervalMax);
+       //Debug.Log("Garbage modifier: " + modifier);
+      //  Debug.Log("Garbage _spawnIntervalMax: " + (int)_spawnIntervalMax);
     }
 
 

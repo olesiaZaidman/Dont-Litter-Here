@@ -65,7 +65,7 @@ public class TemperatureManager : MonoBehaviour
             isTempRangeSet = true;
             minTemp = Random.Range(15, 20);
             maxTemp = Random.Range(21, 40);
-            Debug.Log("max Temperature toady: " + maxTemp);
+          //  Debug.Log("max Temperature toady: " + maxTemp);
         }
 
         //Debug.Log("Increasing Temp");
