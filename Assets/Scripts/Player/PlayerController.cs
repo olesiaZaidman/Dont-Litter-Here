@@ -37,6 +37,13 @@ public class PlayerController : MonoBehaviour
 
     void Update() 
     {
+        if (GameManager.isGameOver)
+        {
+            myAnimationController.LoseGame();
+            audioManager.PlaySighOnce(70f);
+            return;
+        }
+
         if (IsCleaningState || IsTiredState) //|| IsResting
         { return; }
 
@@ -57,6 +64,8 @@ public class PlayerController : MonoBehaviour
              walkingSpeed = 3.5f;
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;
         }
+
+        //if()
     }
 
 

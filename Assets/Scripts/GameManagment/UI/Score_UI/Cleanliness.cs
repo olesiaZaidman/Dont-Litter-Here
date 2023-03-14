@@ -64,7 +64,7 @@ public class Cleanliness : MonoBehaviour
 
     void Update()
     {
-        if (UIManager.isGameOver)
+        if (GameManager.isGameOver)
         { return; }
 
         //if (Input.GetKey(KeyCode.I))
@@ -80,8 +80,8 @@ public class Cleanliness : MonoBehaviour
 
         if (CleanRatingPoints.Get() <= 0)
         {
-            UIManager.isGameOver = true;
-            Debug.Log("isGameOver" + UIManager.isGameOver);
+            GameManager.isGameOver = true;
+            Debug.Log("isGameOver" + GameManager.isGameOver);
         }
 
 

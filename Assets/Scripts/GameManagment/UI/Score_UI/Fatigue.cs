@@ -14,7 +14,7 @@ public class Fatigue : MonoBehaviour
     //in the shadow we recover faster!
 
 
-    public static Fatigue Instance;
+    public static Fatigue Instance; // GetFatiguePoints()
     public float MaxEnergyLevelPoints { get { return 100; } }
 
     FatigueIndicatorUI fatigueUI;

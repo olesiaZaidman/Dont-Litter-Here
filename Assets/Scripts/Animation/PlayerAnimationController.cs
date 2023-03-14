@@ -40,6 +40,16 @@ public class PlayerAnimationController : AnimationController
         PlayAnimationIfNeeded("isWalkingBackward", true);
     }
 
+    public void LoseGame()
+    {
+        PlayAnimationIfNeeded("isLoseGame", true);
+    }
+
+    public void WinGameNewRecord()
+    {
+        PlayAnimationIfNeeded("isWinGame", true);
+    }
+
     //public void Run()
     //{
     //    PlayAnimationIfNeeded("isWalkingForward", true); //isRunning
