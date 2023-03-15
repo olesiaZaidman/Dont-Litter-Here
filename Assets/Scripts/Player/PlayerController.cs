@@ -55,13 +55,13 @@ public class PlayerController : MonoBehaviour
      
         if (GoldScanner.isWorking)
         {
-             walkingSpeed = 2.5f;
+            walkingSpeed = 2.5f;
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
         }
 
         if (GoldScanner.isScanning)
         {
-             walkingSpeed = 3.5f;
+            walkingSpeed = 3.5f;
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;
         }
 
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     #region Fatigue
     IEnumerator StartSeatAndRestRoutine(float _delay)
     {
-        audioManager.PlaySighOnce(_delay);
+      //  audioManager.PlaySighOnce(_delay);
         IsTiredState = true;
         myAnimationController.SitAndRestIfNeeded(IsTiredState);      // PlayAnimationIfNeeded("isCleaning", true);
      //   Debug.Log("IsTiredState"+IsTiredState);

@@ -68,6 +68,7 @@ public class TimeController : MonoBehaviour
     {
         UpdateTime();
         RotateSun();
+        ToggleBirdsSoundLevel();
         CreateCrowdNoise();
         CreateHeatWave();
     }
@@ -184,10 +185,28 @@ public class TimeController : MonoBehaviour
 
     #endregion
 
-    #region CrowdNoise
+    #region Noise
+
+    void ToggleBirdsSoundLevel()
+    {           
+        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < TimeSpan.FromHours(9))
+        {
+            TimeSpan morning = CalculateTimeDifference(sunriseTime, TimeSpan.FromHours(9));
+            TimeSpan timeSinceMorning = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
+            double percentage = timeSinceMorning.TotalMinutes / morning.TotalMinutes;
+            audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(1, 0.1f, (float)percentage);
+        }
+
+        else if (currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < TimeSpan.FromHours(22))
+        {
+            TimeSpan endWorkDay = CalculateTimeDifference(endDayTime, TimeSpan.FromHours(22));
+            TimeSpan timeSinceEndWorkDay = CalculateTimeDifference(endDayTime, currentTime.TimeOfDay);
+            double percentage = timeSinceEndWorkDay.TotalMinutes / endWorkDay.TotalMinutes;
+            audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(0.1f, 1, (float)percentage);
+        }
+    }
     private void CreateCrowdNoise()
     {
-
         //check if dayTime between sunrise and dayTime
         if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < dayTime)
         {

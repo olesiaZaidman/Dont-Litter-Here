@@ -5,14 +5,27 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("AudioSource")]
-    [SerializeField] AudioSource backgroundSFXAudio;
     [SerializeField] AudioSource backgroundMusic;
     public AudioSource backgroundCrowdNoise;
-    [SerializeField] AudioSource sfx;
 
-    [Header("Background")]
-    [SerializeField] AudioClip wavesSound;
+    [Header("UISFX")]
+    [SerializeField] AudioSource soundEffectsAudio;
+    [SerializeField] AudioClip clickSound;
+    [SerializeField] AudioClip menuOpenSound;
+    [SerializeField] AudioClip messageSound;
     [SerializeField] AudioClip moneySound;
+    [SerializeField] AudioClip winSound;
+    [SerializeField] AudioClip loseSound;
+
+    [Header("Background Waves")]
+    [SerializeField] AudioSource backgroundAmbientWaves;
+    [SerializeField] AudioClip wavesSound;
+
+    [Header("Background Ambient")]
+    public AudioSource backgroundAmbientBirdsNoise;
+    [SerializeField] AudioClip nightSound;
+    [SerializeField] AudioClip dayBirdsSound;
+    bool isClipSwitched = false;
 
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
@@ -22,23 +35,63 @@ public class AudioManager : MonoBehaviour
     [Header("SoundFX")]
     [SerializeField] AudioClip lootBeepSound;
     [SerializeField] AudioClip lootBeepFoundSound;
-    float audioVolume = 0.5f;
+
+    float audioVolumeHalf = 0.5f;
+    float audioVolumeMax = 1f;
+    float audioVolumeMin= 0.1f;
+
     bool isPlayed = false;
+
+    static AudioManager Instance;
+
+    public AudioManager GetAudioManagerInstance()
+    { return Instance; }
+
+    void Awake()
+    {
+        soundEffectsAudio.volume = audioVolumeHalf;
+        backgroundAmbientBirdsNoise.volume = audioVolumeMax;
+        backgroundAmbientWaves.volume = audioVolumeHalf;
+        //  ManageSingleton();
+
+        //   backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", DataBetweenLevels.volumeLevelMusic);
+        //  backgroundAmbient.volume = PlayerPrefs.GetFloat("VolumeMusic", DataBetweenLevels.volumeLevelMusic);
+        //  soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeEffects", DataBetweenLevels.volumeLevelEffects);
+    }
+
+    void ManageSingleton()
+    {
+        if (Instance != null)
+        {
+            gameObject.SetActive(false); /*we disable it on Awake before we destroy it, 
+                                          * so no component will try to access it*/
+            Destroy(gameObject);
+        }
+
+        else
+        /* we need to transit this AudioPlayer  
+         * through all the rest of the scenes on Load*/
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);  /*the existing AudiPlayer will be passed to another scene*/
+        }
+    }
+
     private void Start()
     {
-      //  backgroundSFXAudio.PlayOneShot(wavesSound, audioVolume);
+        backgroundAmbientBirdsNoise.clip = dayBirdsSound;
     }
-    // Update is called once per frame
+
     void Update()
     {
-        
+        SwitchBetweenAmbientSound();
     }
 
     #region Player Sigh
     public void PlaySigh()
     {
         int index = Random.Range(0, sighSound.Length);
-        sfx.PlayOneShot(sighSound[index], audioVolume);
+        soundEffectsAudio.PlayOneShot(sighSound[index], soundEffectsAudio.volume);
     }
 
     public void PlaySighOnce(float _delay)
@@ -59,13 +112,42 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
+    #region Ambient Night / Day
+    public void PlayNightAmbience()
+    {
+        backgroundAmbientBirdsNoise.PlayOneShot(nightSound, backgroundAmbientBirdsNoise.volume);
+        // Stop()
+    }
+    public void StopPlayNightAmbience()
+    {
+        backgroundAmbientBirdsNoise.Stop();
+    }
+    void SwitchBetweenAmbientSound()
+    {
+        if (GoldScanner.isScanning && isClipSwitched)
+        {
+            isClipSwitched = false;
+            backgroundAmbientBirdsNoise.clip = nightSound;
+            backgroundAmbientBirdsNoise.Play();
+         //   backgroundAmbientWaves.volume = backgroundAmbientBirdsNoise.volume / 2;
+        }
+        else if(GoldScanner.isWorking &&!isClipSwitched)
+        {
+            isClipSwitched = true;
+            backgroundAmbientBirdsNoise.clip = dayBirdsSound;
+            backgroundAmbientBirdsNoise.Play();
+          //  backgroundAmbientWaves.volume = audioVolumeHalf;
+        }
+    }
+
+    #endregion
     public void PlayGulp()
     {
-        sfx.PlayOneShot(gulpSound, audioVolume);
+        soundEffectsAudio.PlayOneShot(gulpSound, soundEffectsAudio.volume);
     }
     public void PlayWhistle()
     {
-        sfx.PlayOneShot(whistleSound, audioVolume);
+        soundEffectsAudio.PlayOneShot(whistleSound, soundEffectsAudio.volume);
     }
 
     #region MoneySFX
@@ -76,7 +158,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMoneySFX()
     {
-        sfx.PlayOneShot(moneySound, audioVolume);
+        soundEffectsAudio.PlayOneShot(moneySound, audioVolumeHalf);
     }
     IEnumerator PlayMoneySFXRoutine()
     {
@@ -101,17 +183,16 @@ public class AudioManager : MonoBehaviour
     public void LootBeepSFX()
     {
         //sfx.PlayOneShot(lootBeepSound, audioVolume);
-       // lootBeepSound
+        // lootBeepSound
     }
 
     public void LootFoundBeepSFX()
     {
-        sfx.PlayOneShot(lootBeepFoundSound, audioVolume);
+        soundEffectsAudio.PlayOneShot(lootBeepFoundSound, audioVolumeHalf);
     }
     IEnumerator PlayLootBeepSFXRoutine()
     {
         float _delay = 5f;
-
         if (!isPlayed)
         {
             isPlayed = true;
@@ -120,6 +201,42 @@ public class AudioManager : MonoBehaviour
         yield return new WaitForSeconds(_delay);
         isPlayed = false;
     }
+    #endregion
+
+    #region UI
+    public void PlayClickSound()
+    {
+        soundEffectsAudio.PlayOneShot(clickSound, soundEffectsAudio.volume);
+    }
+
+    public void PlayMenuSound()
+    {
+        soundEffectsAudio.PlayOneShot(menuOpenSound, soundEffectsAudio.volume);
+    }
+
+    public void PlayMessageSound()
+    {
+        soundEffectsAudio.PlayOneShot(messageSound, soundEffectsAudio.volume);
+    }
+
+    public void PlayMessageSoundOnce()
+    {
+        StartCoroutine(PlayMessageSFXRoutine());
+    }
+
+    IEnumerator PlayMessageSFXRoutine()
+    {
+        float _delay = 5f;
+
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlayMessageSound();
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+
     #endregion
 
 }

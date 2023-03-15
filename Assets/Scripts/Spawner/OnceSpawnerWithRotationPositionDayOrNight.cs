@@ -26,7 +26,7 @@ public class OnceSpawnerWithRotationPositionDayOrNight : OnceSpawnerWithRotation
         {
             isSpawned = false;
             numberOfLootItems = Random.Range(2, 10);
-            Debug.Log("numberOfLootItems: "+ numberOfLootItems);
+         //   Debug.Log("numberOfLootItems: "+ numberOfLootItems);
         }
 
         if (isNight && !isSpawned)
@@ -51,7 +51,7 @@ public class OnceSpawnerWithRotationPositionDayOrNight : OnceSpawnerWithRotation
             ObjectPoolDictionary.Instance.SpawnObjFromPoolDictionaryWithRotation(pool, pos, prefabRotation);
         }
 
-        Debug.Log("Loot is Spawned");
+    //    Debug.Log("Loot is Spawned");
 
     }
 

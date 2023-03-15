@@ -25,8 +25,10 @@ public class UIManager : MonoBehaviour
     static bool isTimeForFatigueMessage = false;
     static bool isStartMessage = false;
     public static bool isGarbageMessage = false;
-   int numberOfTexts = 0;
+    int numberOfTexts = 0;
 
+
+    static bool isMessageWindowOpen = false;
     AudioManager audioManager;
     void Awake()
     {     
@@ -68,6 +70,7 @@ public class UIManager : MonoBehaviour
             salaryText.SetActive(false);
             fatigueText.SetActive(false);
             garbagePickText.SetActive(false);
+            isMessageWindowOpen = false;
         }
 
         if (Fatigue.Instance.GetFatiguePoints() >= 30 && !isTimeForFatigueMessage)
@@ -109,6 +112,7 @@ public class UIManager : MonoBehaviour
     {
         if (!isStartMessage)
         {
+            audioManager.PlayMessageSoundOnce();
             isStartMessage = true;
             float _delay = 5f;
             startNavigation.SetText(_text);
@@ -134,10 +138,17 @@ public class UIManager : MonoBehaviour
     }
     public IEnumerator ShowGarbageTextRoutine()
     {
-        float _delay = 4f;
-        garbagePickText.SetActive(true);
-        yield return new WaitForSeconds(_delay);
-        garbagePickText.SetActive(false);
+        if (!isMessageWindowOpen)
+        {
+            isMessageWindowOpen = true;
+            float _delay = 4f;
+            audioManager.PlayMessageSoundOnce();
+            garbagePickText.SetActive(true);
+            yield return new WaitForSeconds(_delay);
+            garbagePickText.SetActive(false);
+            isMessageWindowOpen = false;
+        }
+
     }
     #endregion
 
@@ -170,11 +181,17 @@ public class UIManager : MonoBehaviour
         StartCoroutine(ShowFatigueTextRoutine());
     }
     public IEnumerator ShowFatigueTextRoutine()
-    {
-        float _delay = 4f;
-        fatigueText.SetActive(true);
-        yield return new WaitForSeconds(_delay);
-        fatigueText.SetActive(false);
+    { 
+        if (!isMessageWindowOpen)
+        {
+            audioManager.PlayMessageSoundOnce();
+            isMessageWindowOpen = true;
+            float _delay = 4f;
+            fatigueText.SetActive(true);
+            yield return new WaitForSeconds(_delay);
+            fatigueText.SetActive(false);
+            isMessageWindowOpen = false;
+        }
     }
     #endregion
 

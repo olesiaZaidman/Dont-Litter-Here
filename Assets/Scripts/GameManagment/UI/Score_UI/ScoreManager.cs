@@ -8,8 +8,9 @@ public class ScoreManager : MonoBehaviour
     TimeController timeController;
     UIManager ui;
 
-    static int days = 0;
     static int moneyScore = 0;
+
+    static int days = 0;
     static int dailyWage = 20;
     bool isSalaryTime = true;
 
@@ -21,10 +22,23 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-       // Instance = this;
-     //   Debug.Log("Awake in ScoreManager");
         timeController = FindObjectOfType<TimeController>();
         ui = FindObjectOfType<UIManager>();
+      //  ManageSingleton();
+    }
+
+    void ManageSingleton()
+    {
+        if (Instance != null)
+        {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     private void Update()
@@ -55,6 +69,11 @@ public class ScoreManager : MonoBehaviour
     #region MoneyScore
     public float GetMoneyScore()
     { return moneyScore; }
+
+    public void ResetMoneyScore()
+    {
+        moneyScore = 0;
+    }
 
     public float IncreaseMoneyScoreUpdateUi(int num)
     {

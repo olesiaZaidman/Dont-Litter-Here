@@ -8,7 +8,7 @@ public class LookAtMouse : MonoBehaviour
 
     void Update()
     {
-        if (PlayerController.IsCleaningState||PlayerController.IsTiredState) //|| PlayerController.IsResting
+        if (PlayerController.IsCleaningState||PlayerController.IsTiredState || GameManager.isMenuOpen) //|| PlayerController.IsResting
         { return; }
 
         RotateAfterMouseCoursor(); 
