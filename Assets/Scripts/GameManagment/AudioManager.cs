@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
     float audioVolumeHalf = 0.5f;
     float audioVolumeMax = 1f;
-    float audioVolumeMin= 0.1f;
+  //  float audioVolumeMin= 0.1f;
 
     bool isPlayed = false;
 
