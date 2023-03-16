@@ -2,78 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : AudioManagerBase
 {
-    [Header("AudioSource")]
-    [SerializeField] AudioSource backgroundMusic;
-    public AudioSource backgroundCrowdNoise;
+    [Header("Music Clips")]
+ //   [SerializeField] AudioSource backgroundMusic;
+   // public AudioSource backgroundCrowdNoise;
     [SerializeField] AudioClip backgroundDayMusic;
     [SerializeField] AudioClip backgroundNightMusic;
 
-    [Header("Background Waves")]
-    [SerializeField] AudioSource backgroundWaves;
+    [Header("Background Wave Clip")]
+  //  [SerializeField] AudioSource backgroundWaves;
     [SerializeField] AudioClip wavesSound;
 
-    [Header("Background Ambient")]
-    public AudioSource backgroundAmbientBirdsNoise;
+    [Header("Background Ambient Clips")]
+   // public AudioSource backgroundAmbientBirdsNoise;
     [SerializeField] AudioClip nightSound;
     [SerializeField] AudioClip dayBirdsSound;
     [SerializeField] AudioClip parkSound;
-    bool isClipSwitched = false;
+  //  bool isClipSwitched = false;
 
 
-    [Header("UISFX")]
-    [SerializeField] AudioSource soundEffectsAudio;
-    [SerializeField] AudioClip clickSound;
-    [SerializeField] AudioClip menuOpenSound;
-    [SerializeField] AudioClip messageSound;
-    [SerializeField] AudioClip moneySound;
-    [SerializeField] AudioClip winSound;
-    [SerializeField] AudioClip loseSound;
+    //[Header("UISFX")]
+    //[SerializeField] AudioSource soundEffectsAudio;
+    //[SerializeField] AudioClip clickSound;
+    //[SerializeField] AudioClip menuOpenSound;
+    //[SerializeField] AudioClip messageSound;
+    //[SerializeField] AudioClip moneySound;
+
 
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
     [SerializeField] AudioClip whistleSound;
     [SerializeField] AudioClip gulpSound;
+    [SerializeField] AudioClip winSound;
+    [SerializeField] AudioClip loseSound;
 
     [Header("SoundFX")]
     [SerializeField] AudioClip lootBeepSound;
     [SerializeField] AudioClip lootBeepFoundSound;
 
-    bool isPlayed = false;
+   // bool isPlayed = false;
 
-    static AudioManager Instance;
+    //static AudioManager Instance;
     TimeController timeController;
-    public AudioManager GetAudioManagerInstance()
-    { return Instance; }
+    //public AudioManager GetAudioManagerInstance()
+    //{ return Instance; }
 
     void Awake()
     {
         //  ManageSingleton();
         timeController = FindObjectOfType<TimeController>();
-        backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
-        backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelMusic);
-        backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
-        soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
+       // backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
+       // backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelMusic);
+    //    backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
+        //soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
     }
 
-    void ManageSingleton()
-    {
-        if (Instance != null)
-        {
-            gameObject.SetActive(false); /*we disable it on Awake before we destroy it, 
-                                          * so no component will try to access it*/
-            Destroy(gameObject);
-        }
+    //void ManageSingleton()
+    //{
+    //    if (Instance != null)
+    //    {
+    //        gameObject.SetActive(false); /*we disable it on Awake before we destroy it, 
+    //                                      * so no component will try to access it*/
+    //        Destroy(gameObject);
+    //    }
 
-        else
-        /* we need to transit this AudioPlayer  
-         * through all the rest of the scenes on Load*/
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);  /*the existing AudiPlayer will be passed to another scene*/
-        }
-    }
+    //    else
+    //    /* we need to transit this AudioPlayer  
+    //     * through all the rest of the scenes on Load*/
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);  /*the existing AudiPlayer will be passed to another scene*/
+    //    }
+    //}
 
     private void Start()
     {
@@ -220,40 +221,6 @@ public class AudioManager : MonoBehaviour
     }
     #endregion
 
-    #region UI
-    public void PlayClickSound()
-    {
-        soundEffectsAudio.PlayOneShot(clickSound, soundEffectsAudio.volume);
-    }
 
-    public void PlayMenuSound()
-    {
-        soundEffectsAudio.PlayOneShot(menuOpenSound, soundEffectsAudio.volume);
-    }
-
-    public void PlayMessageSound()
-    {
-        soundEffectsAudio.PlayOneShot(messageSound, soundEffectsAudio.volume);
-    }
-
-    public void PlayMessageSoundOnce()
-    {
-        StartCoroutine(PlayMessageSFXRoutine());
-    }
-
-    IEnumerator PlayMessageSFXRoutine()
-    {
-        float _delay = 5f;
-
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            PlayMessageSound();
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
-    }
-
-    #endregion
 
 }
