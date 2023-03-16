@@ -18,7 +18,7 @@ public class Fatigue : MonoBehaviour
     int temperatureModifier = 1;
     float timeForGraduallFatigueIncreaseIfHot = 150f;
 
-    [SerializeField] GameObject heatVignette;
+   // [SerializeField] GameObject heatVignette;
 
     void SetTemperModifier()
     {
@@ -58,7 +58,7 @@ public class Fatigue : MonoBehaviour
         temperatureManager = FindObjectOfType<TemperatureManager>();
         fatigueUI = FindObjectOfType<FatigueIndicatorUI>();
         FatiguePoints.Initialize(OnUpdateFatigue);
-        heatVignette.SetActive(false);
+      //  heatVignette.SetActive(false);
     }
     void Update()
     {

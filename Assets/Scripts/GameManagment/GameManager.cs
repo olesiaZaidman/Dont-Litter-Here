@@ -12,8 +12,12 @@ public class GameManager : MonoBehaviour
     AudioManager audioManager;
     // ScoreManager.Instance
 
-    [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject menu;
+    [SerializeField] GameObject menuCanvas;
+    [SerializeField] GameObject volumeCanvas;
+
     public static bool isMenuOpen = false;
+    public static bool isSettingsOpen = false;
     private void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
@@ -22,7 +26,9 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         isMenuOpen = false;
-        settingsMenu.SetActive(false);
+        menu.SetActive(false);
+        menuCanvas.SetActive(false);
+        volumeCanvas.SetActive(false);
     }
 
 
@@ -52,19 +58,32 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isMenuOpen)
+            if (!isMenuOpen && !isSettingsOpen)//Game > Menu 
             {
                 Time.timeScale = 0;
                 audioManager.PlayMenuSound();
-                settingsMenu.SetActive(true);
+                menu.SetActive(true);
                 isMenuOpen = true;
+                menuCanvas.SetActive(true);
+                volumeCanvas.SetActive(false);
             }
-            else if (isMenuOpen)
+
+            else if (isMenuOpen && isSettingsOpen)  // Settings > Menu
+            {
+                audioManager.PlayMenuSound();
+                isSettingsOpen = false;
+                menuCanvas.SetActive(true);
+                volumeCanvas.SetActive(false);
+            }
+
+            else if (isMenuOpen && !isSettingsOpen)//Menu > Game
             {
                 Time.timeScale = 1;
                 audioManager.PlayMenuSound();
-                settingsMenu.SetActive(false);
-                isMenuOpen = false;
+                menu.SetActive(false);
+                menuCanvas.SetActive(false);
+                volumeCanvas.SetActive(false);
+                isMenuOpen = false;                
             }
         }
     }
@@ -73,15 +92,40 @@ public class GameManager : MonoBehaviour
     #region Menu
     public void OnClickResume() //Resume
     {
+        Time.timeScale = 1;
         audioManager.PlayClickSound();
-        settingsMenu.SetActive(false);
-      //  volumeSettingsCanvas.SetActive(false);
+        menu.SetActive(false);
+        isMenuOpen = false;
+    }
+
+    public void OnSettingsClick() //Menu > Settings
+    {
+        audioManager.PlayClickSound();
+
+        if (isMenuOpen && !isSettingsOpen)
+        {
+            isSettingsOpen = true;
+            audioManager.PlayMenuSound();
+            menuCanvas.SetActive(false);
+            volumeCanvas.SetActive(true);
+        }
+    }
+
+    public void OnSettingsClickBack() //Menu > Settings
+    {
+        if (isMenuOpen && isSettingsOpen)  // Settings > Menu
+        {
+            audioManager.PlayMenuSound();
+            isSettingsOpen = false;
+            menuCanvas.SetActive(true);
+            volumeCanvas.SetActive(false);
+        }
     }
 
     public void OnClickVolumeSettings() //Settings
     {
         audioManager.PlayClickSound();
-        settingsMenu.SetActive(false);
+        menu.SetActive(false);
        // volumeSettingsCanvas.SetActive(true);
     }
 
@@ -98,7 +142,7 @@ public class GameManager : MonoBehaviour
     public void OnClickBackMenu()
     {
         audioManager.PlayClickSound();
-        settingsMenu.SetActive(true);
+        menu.SetActive(true);
       //  volumeSettingsCanvas.SetActive(false);
     }
     #endregion

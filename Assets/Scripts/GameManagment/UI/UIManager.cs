@@ -165,7 +165,7 @@ public class UIManager : MonoBehaviour
 
     public void SetScoreTextUI(int _money)
     {
-        score.SetText(_money.ToString());
+        score.SetText(_money.ToString());//ToString("00000")
     }
 
     #endregion
@@ -211,7 +211,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Weather
-    public void SetTemperTextUI(int _num)
+    public void SetTemperatureTextUI(int _num)
     {
         temperature.SetText(_num.ToString()+ "°C"); 
     }

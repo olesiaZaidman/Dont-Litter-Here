@@ -22,7 +22,7 @@ public class TemperatureManager : MonoBehaviour
     void Start()
     {
         SetRandomStartTemperatureToday();
-        ui.SetTemperTextUI(temperature);
+        ui.SetTemperatureTextUI(temperature);
     }
     void Update()
     {
@@ -71,7 +71,7 @@ public class TemperatureManager : MonoBehaviour
         //Debug.Log("Increasing Temp");
         float t = Mathf.Lerp(minTemp, maxTemp, deltaTime);
         temperature = (int)t;
-        ui.SetTemperTextUI(temperature);
+        ui.SetTemperatureTextUI(temperature);
         return temperature;
     }
 
@@ -84,7 +84,7 @@ public class TemperatureManager : MonoBehaviour
         }
         float t = Mathf.Lerp(maxTemp, minTemp, deltaTime);
         temperature = (int)t;
-        ui.SetTemperTextUI(temperature);
+        ui.SetTemperatureTextUI(temperature);
         return temperature;
     }
 }
