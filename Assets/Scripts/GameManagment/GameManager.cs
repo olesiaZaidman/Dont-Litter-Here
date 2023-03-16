@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject volumeCanvas;
 
+
     public static bool isMenuOpen = false;
     public static bool isSettingsOpen = false;
     private void Awake()

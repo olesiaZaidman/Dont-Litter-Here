@@ -15,7 +15,7 @@ public class CharactersSpawner : SpawnerWithRotationPosition
     #region Constructor
     public CharactersSpawner() : base()
     {
-        spawnIntervalMin = 5f;
+        spawnIntervalMin = 10f;
         spawnIntervalMax = 60f;
     }
     #endregion
@@ -40,17 +40,12 @@ public class CharactersSpawner : SpawnerWithRotationPosition
 
     public override void CreateTimeIntervalBetweenSpawning()
     {
-     //   if (ScoreManager.Instance == null)
-      //  { Debug.Log("ScoreManager.Instance is null"); }
-
         float modifier = 1;
         modifier += ScoreManager.Instance.GetDays();
-
+        float _spawnIntervalMin = (float)spawnIntervalMin / modifier;
         float _spawnIntervalMax = (float)spawnIntervalMax / modifier;
-        _spawnInterval = Random.Range(spawnIntervalMin, (int)_spawnIntervalMax);
-        Mathf.Clamp(_spawnInterval, spawnIntervalMin, spawnIntervalMax);
-       // Debug.Log("Characters  modifier: " + modifier);
-     //   Debug.Log("Characters _spawnIntervalMax: " + (int)_spawnIntervalMax);
+        _spawnInterval = Random.Range(_spawnIntervalMin, (int)_spawnIntervalMax);
+        Mathf.Clamp(_spawnInterval, _spawnIntervalMin, spawnIntervalMax);
     }
 
 

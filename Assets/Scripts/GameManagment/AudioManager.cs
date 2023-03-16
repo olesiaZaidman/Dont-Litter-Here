@@ -151,8 +151,8 @@ public class AudioManager : MonoBehaviour
 
         else if (isClipSwitched && GoldScanner.isScanning) //Night GoldScanner.isScanning && 
         {
-            backgroundMusic.clip = backgroundNightMusic;
-            backgroundMusic.Play();
+            //  backgroundMusic.clip = backgroundNightMusic;
+            backgroundMusic.Stop();
             isClipSwitched = false;
         }
     }

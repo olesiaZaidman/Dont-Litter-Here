@@ -14,7 +14,7 @@ public class VolumeDataBetweenLevels : MonoBehaviour
 
      void Awake()
     {
-        volumeLevelMusic = 0.5f;
+        volumeLevelMusic = 1f;
         volumeLevelAmbient = 0.5f;
         volumeLevelSounds = 0.5f;
     }
