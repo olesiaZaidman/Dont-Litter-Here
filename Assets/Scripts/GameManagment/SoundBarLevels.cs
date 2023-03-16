@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class SoundBarLevels : MonoBehaviour
 {
     public AudioSource music;
-    public AudioSource backgroundAmbient;
+    public AudioSource birdsAmbient;
+    public AudioSource wavesAmbient;
     public AudioSource sounds;
 
     public Slider volumeLevelMusic;
@@ -28,7 +29,8 @@ public class SoundBarLevels : MonoBehaviour
     {
      //   TimeController.maxBirdsVolume = volumeLevelAmbient.value;
         music.volume = volumeLevelMusic.value;
-        backgroundAmbient.volume = volumeLevelAmbient.value;
+        birdsAmbient.volume = volumeLevelAmbient.value;
+        wavesAmbient.volume = volumeLevelAmbient.value;
         sounds.volume = volumeLevelSounds.value;
     }
 

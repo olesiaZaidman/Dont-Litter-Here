@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioSettingsData : MonoBehaviour
 {
     [Header("AudioSource")]
+    [SerializeField] AudioSource music;
     [SerializeField] AudioSource sounds;
     [SerializeField] AudioSource waves;
     [SerializeField] AudioSource birds;
@@ -16,7 +17,8 @@ public class AudioSettingsData : MonoBehaviour
     public void SaveVolumeSettingsData()
     {
         VolumeDataBetweenLevels.volumeLevelAmbient = birds.volume;
-        VolumeDataBetweenLevels.volumeLevelMusic = waves.volume;
+        VolumeDataBetweenLevels.volumeLevelAmbient = waves.volume;
+        VolumeDataBetweenLevels.volumeLevelMusic = music.volume;
         VolumeDataBetweenLevels.volumeLevelSounds = sounds.volume;
     }
 }

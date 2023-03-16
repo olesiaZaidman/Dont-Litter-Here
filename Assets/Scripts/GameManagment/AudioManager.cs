@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
     [Header("AudioSource")]
     [SerializeField] AudioSource backgroundMusic;
     public AudioSource backgroundCrowdNoise;
-
+    [SerializeField] AudioClip backgroundDayMusic;
+    [SerializeField] AudioClip backgroundNightMusic;
 
     [Header("Background Waves")]
     [SerializeField] AudioSource backgroundWaves;
@@ -50,7 +51,8 @@ public class AudioManager : MonoBehaviour
     {
         //  ManageSingleton();
         timeController = FindObjectOfType<TimeController>();
-        backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
+        backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
+        backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelMusic);
         backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
         soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
     }
@@ -124,8 +126,10 @@ public class AudioManager : MonoBehaviour
         {
             isClipSwitched = true;
             backgroundAmbientBirdsNoise.clip = dayBirdsSound;
+            backgroundMusic.clip = backgroundDayMusic;
+            backgroundMusic.Play();
             backgroundAmbientBirdsNoise.Play();
-            backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
+           // backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
         }
 
         else if (timeController.IsThisTimeInterval(9, 10) && isClipSwitched) //9 am
@@ -133,22 +137,24 @@ public class AudioManager : MonoBehaviour
             isClipSwitched = false;
             backgroundAmbientBirdsNoise.clip = parkSound;
             backgroundAmbientBirdsNoise.Play();
-            backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
-
+         //   backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
         }
 
-        else if (timeController.IsDay() && !isClipSwitched) //9 am
+
+        else  if (!isClipSwitched && timeController.IsThisTimeInterval(19,20)) //Night GoldScanner.isScanning && 
         {
             isClipSwitched = true;
-        }
-
-        else  if (isClipSwitched && timeController.IsThisTimeInterval(19,20)) //Night GoldScanner.isScanning && 
-        {
-            isClipSwitched = false;
             backgroundAmbientBirdsNoise.clip = nightSound;
             backgroundAmbientBirdsNoise.Play();
             backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
-        }     
+        }
+
+        else if (isClipSwitched && GoldScanner.isScanning) //Night GoldScanner.isScanning && 
+        {
+            backgroundMusic.clip = backgroundNightMusic;
+            backgroundMusic.Play();
+            isClipSwitched = false;
+        }
     }
 
     #endregion
