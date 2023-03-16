@@ -44,7 +44,8 @@ public class TimeController : MonoBehaviour
     bool isMaxTempSet = false;
     float minIntensity = 1f;
     float maxIntensity = 1.55f;
-
+   public static float maxBirdsVolume;
+  //  bool isNewVolumeMax = false;
     void Awake()
     {
         ui = FindObjectOfType<UIManager>();
@@ -68,9 +69,9 @@ public class TimeController : MonoBehaviour
     {
         UpdateTime();
         RotateSun();
-        ToggleBirdsSoundLevel();
-        CreateCrowdNoise();
         CreateHeatWave();
+        //  ToggleBirdsSoundLevel();
+        //  CreateCrowdNoise();
     }
 
     #region Time
@@ -97,7 +98,10 @@ public class TimeController : MonoBehaviour
     #endregion
 
     #region TimeSpan Bools
-
+    public bool IsThisTimeInterval(float _fromTime, float _toTime)
+    {
+        return currentTime.TimeOfDay > TimeSpan.FromHours(_fromTime) && currentTime.TimeOfDay < TimeSpan.FromHours(_toTime);
+    }
     public bool IsEndOfWorkingDay() //endWorkingDayHour = 21; &&  && elevenTime = 23
     {
         return currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < elevenEveningTime;
@@ -131,6 +135,7 @@ public class TimeController : MonoBehaviour
     {
         return currentTime.TimeOfDay > nightTime && currentTime.TimeOfDay < sunriseTime;
     }
+
 
     #endregion
 
@@ -185,55 +190,71 @@ public class TimeController : MonoBehaviour
 
     #endregion
 
-    #region Noise
+    #region Noise // Deactivated
 
-    void ToggleBirdsSoundLevel()
-    {           
-        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < TimeSpan.FromHours(9))
-        {
-            TimeSpan morning = CalculateTimeDifference(sunriseTime, TimeSpan.FromHours(9));
-            TimeSpan timeSinceMorning = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
-            double percentage = timeSinceMorning.TotalMinutes / morning.TotalMinutes;
-            audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(1, 0.1f, (float)percentage);
-        }
+    //void ToggleBirdsSoundLevel()
+    //{           
+    //    if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < TimeSpan.FromHours(9))
+    //    {
+    //        if (!isNewVolumeMax)
+    //        {
+    //            isNewVolumeMax = true;
+    //            maxBirdsVolume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
+    //        }
 
-        else if (currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < TimeSpan.FromHours(22))
-        {
-            TimeSpan endWorkDay = CalculateTimeDifference(endDayTime, TimeSpan.FromHours(22));
-            TimeSpan timeSinceEndWorkDay = CalculateTimeDifference(endDayTime, currentTime.TimeOfDay);
-            double percentage = timeSinceEndWorkDay.TotalMinutes / endWorkDay.TotalMinutes;
-            audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(0.1f, 1, (float)percentage);
-        }
-    }
-    private void CreateCrowdNoise()
-    {
-        //check if dayTime between sunrise and dayTime
-        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < dayTime)
-        {
-            TimeSpan sunriseToDayDuration = CalculateTimeDifference(sunriseTime, dayTime);
-            TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
-            //now we calculate what percentage of the day has passed:
-            double percentage = timeSinceSunrise.TotalMinutes / sunriseToDayDuration.TotalMinutes;
+    //        TimeSpan morning = CalculateTimeDifference(sunriseTime, TimeSpan.FromHours(9));
+    //        TimeSpan timeSinceMorning = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
+    //        double percentage = timeSinceMorning.TotalMinutes / morning.TotalMinutes;
+    //        audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(maxBirdsVolume, 0.1f, (float)percentage);
+    //    }
 
-            audioManager.backgroundCrowdNoise.volume = Mathf.Lerp(0, 1, (float)percentage);
-        }
+    //    else if (currentTime.TimeOfDay > endDayTime && currentTime.TimeOfDay < TimeSpan.FromHours(22))
+    //    {
+    //        if (isNewVolumeMax)
+    //        {
+    //            isNewVolumeMax = false;
+    //            maxBirdsVolume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
+    //        }
+    //        TimeSpan endWorkDay = CalculateTimeDifference(endDayTime, TimeSpan.FromHours(22));
+    //        TimeSpan timeSinceEndWorkDay = CalculateTimeDifference(endDayTime, currentTime.TimeOfDay);
+    //        double percentage = timeSinceEndWorkDay.TotalMinutes / endWorkDay.TotalMinutes;
+    //        audioManager.backgroundAmbientBirdsNoise.volume = Mathf.Lerp(0.1f, maxBirdsVolume, (float)percentage);
+    //    }
+    //}
 
-        //check if dayTime between dayTime and SunSet
-        else if (currentTime.TimeOfDay > dayTime && currentTime.TimeOfDay < sunsetTime)
-        {
-            TimeSpan dayToSunsetDuration = CalculateTimeDifference(dayTime, sunsetTime);
-            TimeSpan timeSinceDay = CalculateTimeDifference(dayTime, currentTime.TimeOfDay);
-            //now we calculate what percentage of the day has passed:
-            double percentage = timeSinceDay.TotalMinutes / dayToSunsetDuration.TotalMinutes;
+    //void ResetVolumeMax()
+    //{ 
+    
+    //}
+    //private void CreateCrowdNoise()
+    //{
+    //    //check if dayTime between sunrise and dayTime
+    //    if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < dayTime)
+    //    {
+    //        TimeSpan sunriseToDayDuration = CalculateTimeDifference(sunriseTime, dayTime);
+    //        TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
+    //        //now we calculate what percentage of the day has passed:
+    //        double percentage = timeSinceSunrise.TotalMinutes / sunriseToDayDuration.TotalMinutes;
 
-            audioManager.backgroundCrowdNoise.volume = Mathf.Lerp(1, 0, (float)percentage);
-        }
-        else //the nighttime
-        {
-            audioManager.backgroundCrowdNoise.volume = 0;
-        }
+    //        audioManager.backgroundCrowdNoise.volume = Mathf.Lerp(0, 1, (float)percentage);
+    //    }
 
-    }
+    //    //check if dayTime between dayTime and SunSet
+    //    else if (currentTime.TimeOfDay > dayTime && currentTime.TimeOfDay < sunsetTime)
+    //    {
+    //        TimeSpan dayToSunsetDuration = CalculateTimeDifference(dayTime, sunsetTime);
+    //        TimeSpan timeSinceDay = CalculateTimeDifference(dayTime, currentTime.TimeOfDay);
+    //        //now we calculate what percentage of the day has passed:
+    //        double percentage = timeSinceDay.TotalMinutes / dayToSunsetDuration.TotalMinutes;
+
+    //        audioManager.backgroundCrowdNoise.volume = Mathf.Lerp(1, 0, (float)percentage);
+    //    }
+    //    else //the nighttime
+    //    {
+    //        audioManager.backgroundCrowdNoise.volume = 0;
+    //    }
+
+    //}
     #endregion
 
     #region RotateSun

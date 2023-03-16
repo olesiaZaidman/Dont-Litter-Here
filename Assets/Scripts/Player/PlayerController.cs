@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
         }
 
-        if (GoldScanner.isScanning)
+        if (GoldScanner.isScanning && !GameManager.isGameOver)
         {
             walkingSpeed = 3.5f;
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;

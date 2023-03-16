@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     // ScoreManager.Instance
 
     [SerializeField] GameObject menu;
+    [SerializeField] GameObject uiGameStats;
     [SerializeField] GameObject menuCanvas;
     [SerializeField] GameObject volumeCanvas;
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         isMenuOpen = false;
+        uiGameStats.SetActive(true);
         menu.SetActive(false);
         menuCanvas.SetActive(false);
         volumeCanvas.SetActive(false);
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 audioManager.PlayMenuSound();
                 menu.SetActive(true);
+                uiGameStats.SetActive(false);
                 isMenuOpen = true;
                 menuCanvas.SetActive(true);
                 volumeCanvas.SetActive(false);
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1;
                 audioManager.PlayMenuSound();
                 menu.SetActive(false);
+                uiGameStats.SetActive(true);
                 menuCanvas.SetActive(false);
                 volumeCanvas.SetActive(false);
                 isMenuOpen = false;                
@@ -95,6 +99,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         audioManager.PlayClickSound();
         menu.SetActive(false);
+        uiGameStats.SetActive(true);
         isMenuOpen = false;
     }
 
@@ -132,8 +137,8 @@ public class GameManager : MonoBehaviour
     public void OnClickExitGame()
     {
         audioManager.PlayClickSound();
-        SceneManager.LoadScene(0);
-        //  Application.Quit();
+      //  SceneManager.LoadScene(0);
+       Application.Quit();
     }
 
     #endregion

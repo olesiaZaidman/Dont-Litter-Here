@@ -8,6 +8,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource backgroundMusic;
     public AudioSource backgroundCrowdNoise;
 
+
+    [Header("Background Waves")]
+    [SerializeField] AudioSource backgroundWaves;
+    [SerializeField] AudioClip wavesSound;
+
+    [Header("Background Ambient")]
+    public AudioSource backgroundAmbientBirdsNoise;
+    [SerializeField] AudioClip nightSound;
+    [SerializeField] AudioClip dayBirdsSound;
+    [SerializeField] AudioClip parkSound;
+    bool isClipSwitched = false;
+
+
     [Header("UISFX")]
     [SerializeField] AudioSource soundEffectsAudio;
     [SerializeField] AudioClip clickSound;
@@ -16,16 +29,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip moneySound;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip loseSound;
-
-    [Header("Background Waves")]
-    [SerializeField] AudioSource backgroundAmbientWaves;
-    [SerializeField] AudioClip wavesSound;
-
-    [Header("Background Ambient")]
-    public AudioSource backgroundAmbientBirdsNoise;
-    [SerializeField] AudioClip nightSound;
-    [SerializeField] AudioClip dayBirdsSound;
-    bool isClipSwitched = false;
 
     [Header("Player")]
     [SerializeField] AudioClip[] sighSound;
@@ -36,27 +39,20 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip lootBeepSound;
     [SerializeField] AudioClip lootBeepFoundSound;
 
-    float audioVolumeHalf = 0.5f;
-    float audioVolumeMax = 1f;
-  //  float audioVolumeMin= 0.1f;
-
     bool isPlayed = false;
 
     static AudioManager Instance;
-
+    TimeController timeController;
     public AudioManager GetAudioManagerInstance()
     { return Instance; }
 
     void Awake()
     {
-        soundEffectsAudio.volume = audioVolumeHalf;
-        backgroundAmbientBirdsNoise.volume = audioVolumeMax;
-        backgroundAmbientWaves.volume = audioVolumeHalf;
         //  ManageSingleton();
-
-        //   backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", DataBetweenLevels.volumeLevelMusic);
-        //  backgroundAmbient.volume = PlayerPrefs.GetFloat("VolumeMusic", DataBetweenLevels.volumeLevelMusic);
-        //  soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeEffects", DataBetweenLevels.volumeLevelEffects);
+        timeController = FindObjectOfType<TimeController>();
+        backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
+        backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
+        soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
     }
 
     void ManageSingleton()
@@ -124,20 +120,35 @@ public class AudioManager : MonoBehaviour
     }
     void SwitchBetweenAmbientSound()
     {
-        if (GoldScanner.isScanning && isClipSwitched)
-        {
-            isClipSwitched = false;
-            backgroundAmbientBirdsNoise.clip = nightSound;
-            backgroundAmbientBirdsNoise.Play();
-         //   backgroundAmbientWaves.volume = backgroundAmbientBirdsNoise.volume / 2;
-        }
-        else if(GoldScanner.isWorking &&!isClipSwitched)
+        if (GoldScanner.isWorking && !isClipSwitched && timeController.IsThisTimeInterval(5, 6)) //Start of Day
         {
             isClipSwitched = true;
             backgroundAmbientBirdsNoise.clip = dayBirdsSound;
             backgroundAmbientBirdsNoise.Play();
-          //  backgroundAmbientWaves.volume = audioVolumeHalf;
+            backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
         }
+
+        else if (timeController.IsThisTimeInterval(9, 10) && isClipSwitched) //9 am
+        {
+            isClipSwitched = false;
+            backgroundAmbientBirdsNoise.clip = parkSound;
+            backgroundAmbientBirdsNoise.Play();
+            backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
+
+        }
+
+        else if (timeController.IsDay() && !isClipSwitched) //9 am
+        {
+            isClipSwitched = true;
+        }
+
+        else  if (isClipSwitched && timeController.IsThisTimeInterval(19,20)) //Night GoldScanner.isScanning && 
+        {
+            isClipSwitched = false;
+            backgroundAmbientBirdsNoise.clip = nightSound;
+            backgroundAmbientBirdsNoise.Play();
+            backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
+        }     
     }
 
     #endregion
@@ -158,7 +169,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMoneySFX()
     {
-        soundEffectsAudio.PlayOneShot(moneySound, audioVolumeHalf);
+        soundEffectsAudio.PlayOneShot(moneySound, soundEffectsAudio.volume);
     }
     IEnumerator PlayMoneySFXRoutine()
     {
@@ -188,7 +199,7 @@ public class AudioManager : MonoBehaviour
 
     public void LootFoundBeepSFX()
     {
-        soundEffectsAudio.PlayOneShot(lootBeepFoundSound, audioVolumeHalf);
+        soundEffectsAudio.PlayOneShot(lootBeepFoundSound, soundEffectsAudio.volume);
     }
     IEnumerator PlayLootBeepSFXRoutine()
     {
