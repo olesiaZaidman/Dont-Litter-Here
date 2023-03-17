@@ -16,8 +16,10 @@ public class AudioManagerBase : MonoBehaviour
 
     protected bool isClipSwitched = false;
 
+    [Header("Player")]
+    [SerializeField] protected AudioClip[] sighSound;
 
-    [Header("UISFX Clips")]
+    [Header("UI SoundFX Clips")]
     [SerializeField] protected AudioClip clickSound;
     [SerializeField] protected  AudioClip menuOpenSound;
     [SerializeField] protected AudioClip messageSound;
@@ -93,5 +95,28 @@ public class AudioManagerBase : MonoBehaviour
 
     #endregion
 
+    #region Player Sigh
+    public void PlaySigh()
+    {
+        int index = Random.Range(0, sighSound.Length);
+        soundEffectsAudio.PlayOneShot(sighSound[index], soundEffectsAudio.volume);
+    }
 
+    public void PlaySighOnce(float _delay)
+    {
+        StartCoroutine(PlaySighRoutine(_delay));
+    }
+
+    IEnumerator PlaySighRoutine(float _delay)
+    {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlaySigh();
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+
+    #endregion
 }

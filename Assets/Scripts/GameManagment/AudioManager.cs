@@ -5,34 +5,19 @@ using UnityEngine;
 public class AudioManager : AudioManagerBase
 {
     [Header("Music Clips")]
- //   [SerializeField] AudioSource backgroundMusic;
-   // public AudioSource backgroundCrowdNoise;
     [SerializeField] AudioClip backgroundDayMusic;
     [SerializeField] AudioClip backgroundNightMusic;
 
     [Header("Background Wave Clip")]
-  //  [SerializeField] AudioSource backgroundWaves;
     [SerializeField] AudioClip wavesSound;
 
     [Header("Background Ambient Clips")]
-   // public AudioSource backgroundAmbientBirdsNoise;
     [SerializeField] AudioClip nightSound;
     [SerializeField] AudioClip dayBirdsSound;
     [SerializeField] AudioClip parkSound;
-  //  bool isClipSwitched = false;
-
-
-    //[Header("UISFX")]
-    //[SerializeField] AudioSource soundEffectsAudio;
-    //[SerializeField] AudioClip clickSound;
-    //[SerializeField] AudioClip menuOpenSound;
-    //[SerializeField] AudioClip messageSound;
-    //[SerializeField] AudioClip moneySound;
 
 
     [Header("Player")]
-    [SerializeField] AudioClip[] sighSound;
-    [SerializeField] AudioClip whistleSound;
     [SerializeField] AudioClip gulpSound;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip loseSound;
@@ -41,40 +26,14 @@ public class AudioManager : AudioManagerBase
     [SerializeField] AudioClip lootBeepSound;
     [SerializeField] AudioClip lootBeepFoundSound;
 
-   // bool isPlayed = false;
-
-    //static AudioManager Instance;
     TimeController timeController;
-    //public AudioManager GetAudioManagerInstance()
-    //{ return Instance; }
+
 
     void Awake()
     {
-        //  ManageSingleton();
-        timeController = FindObjectOfType<TimeController>();
-       // backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
-       // backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelMusic);
-    //    backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
-        //soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
+        timeController = FindObjectOfType<TimeController>();     
     }
 
-    //void ManageSingleton()
-    //{
-    //    if (Instance != null)
-    //    {
-    //        gameObject.SetActive(false); /*we disable it on Awake before we destroy it, 
-    //                                      * so no component will try to access it*/
-    //        Destroy(gameObject);
-    //    }
-
-    //    else
-    //    /* we need to transit this AudioPlayer  
-    //     * through all the rest of the scenes on Load*/
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);  /*the existing AudiPlayer will be passed to another scene*/
-    //    }
-    //}
 
     private void Start()
     {
@@ -86,30 +45,6 @@ public class AudioManager : AudioManagerBase
         SwitchBetweenAmbientSound();
     }
 
-    #region Player Sigh
-    public void PlaySigh()
-    {
-        int index = Random.Range(0, sighSound.Length);
-        soundEffectsAudio.PlayOneShot(sighSound[index], soundEffectsAudio.volume);
-    }
-
-    public void PlaySighOnce(float _delay)
-    {
-        StartCoroutine(PlaySighRoutine(_delay));
-    }
-
-    IEnumerator PlaySighRoutine(float _delay)
-    {
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            PlaySigh();
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
-    }
-
-    #endregion
 
     #region Ambient Night / Day
     public void PlayNightAmbience()
@@ -163,10 +98,6 @@ public class AudioManager : AudioManagerBase
     {
         soundEffectsAudio.PlayOneShot(gulpSound, soundEffectsAudio.volume);
     }
-    public void PlayWhistle()
-    {
-        soundEffectsAudio.PlayOneShot(whistleSound, soundEffectsAudio.volume);
-    }
 
     #region MoneySFX
     public void PlayMoneySFXOnce()
@@ -214,7 +145,7 @@ public class AudioManager : AudioManagerBase
         if (!isPlayed)
         {
             isPlayed = true;
-            LootBeepSFX();
+            LootBeepSFX(); //LootFoundBeepSFX?
         }
         yield return new WaitForSeconds(_delay);
         isPlayed = false;

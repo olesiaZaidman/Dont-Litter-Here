@@ -51,7 +51,7 @@ public class ScoreManager : MonoBehaviour
                 IncreaseMoneyScoreUpdateUi(dailyWage);
                 IncreaseDaysByOne();
                 isSalaryTime = false;
-                Debug.Log("You workked days: " + days);
+               // Debug.Log("You worked days: " + days);
                 StartCoroutine(ui.ShowSalaryTextRoutine());
 
             }

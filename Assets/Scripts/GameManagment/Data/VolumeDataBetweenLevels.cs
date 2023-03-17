@@ -9,19 +9,21 @@ public class VolumeDataBetweenLevels : MonoBehaviour
     public static float volumeLevelAmbient;
     public static float volumeLevelSounds;
 
-    //[Header("Score")]
-    //public static int currentScore;
+    public static float defualtVolumeLevelMusic = 1f;
+    public static float defualtVolumeLevelAmbient = 0.5f;
+    public static float defualtVolumeLevelSounds = 0.5f;
 
-     void Awake()
+
+    void Awake()
     {
-        volumeLevelMusic = 1f;
-        volumeLevelAmbient = 0.5f;
-        volumeLevelSounds = 0.5f;
+        UpdateSoundData();
+      //  Debug.Log("VolumeDataBetweenLevels");
     }
 
 
-    public static void UpdateSoundData() // we call it in gamemanager's Update
+    public static void UpdateSoundData() // we call it when Press Button
     {
+        Debug.Log("UpdateSoundData");
         PlayerPrefs.SetFloat("VolumeMusic", volumeLevelMusic);
         PlayerPrefs.SetFloat("VolumeSounds", volumeLevelSounds);
         PlayerPrefs.SetFloat("VolumeAmbient", volumeLevelAmbient);

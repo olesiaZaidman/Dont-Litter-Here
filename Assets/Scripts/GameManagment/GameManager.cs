@@ -17,12 +17,4 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    //public void OnClickExitGame()
-    //{
-    //    audioManager.PlayClickSound();
-    //  //  SceneManager.LoadScene(0);
-    //   Application.Quit();
-    //}
-
-
 }

@@ -11,8 +11,11 @@ public class SoundBarLevels : MonoBehaviour
     public AudioSource sounds;
 
     public Slider volumeLevelMusic;
+    /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Music Volume Slider */
     public Slider volumeLevelAmbient;
+    /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Ambient Volume Slider */
     public Slider volumeLevelSounds;
+    /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Sound Volume Slider */
 
     void Awake()
     {
@@ -36,8 +39,8 @@ public class SoundBarLevels : MonoBehaviour
 
     void SetVolumeLevel()
     {
-        volumeLevelMusic.value = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
-        volumeLevelSounds.value = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
-        volumeLevelAmbient.value = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
+        volumeLevelMusic.value = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.defualtVolumeLevelMusic);
+        volumeLevelSounds.value = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.defualtVolumeLevelSounds);
+        volumeLevelAmbient.value = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.defualtVolumeLevelAmbient);
     }
 }

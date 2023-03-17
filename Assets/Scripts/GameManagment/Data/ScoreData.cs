@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ScoreData : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //[Header("Score")]
+    //public static int currentScore;
     void Start()
     {
         
