@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AudioManagerBase : MonoBehaviour
 {
+    //TODO:
+    //Make waves and birds abmbients sounds separtly from other sounds singleton
+
     [Header("AudioSource")]
     [Header("Music")]
     [SerializeField] protected AudioSource backgroundMusic;
