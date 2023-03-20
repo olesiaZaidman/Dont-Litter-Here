@@ -13,6 +13,15 @@ public class LevelManager : MonoBehaviour
 
     Color yellowColor = new Color(1f, 0.8509804f, 0f, 1f); //FFD900 yellow
     bool isClicked = false;
+    [Header("Effects")]
+    [SerializeField]  GameObject lights;
+    [SerializeField] GameObject playerLight;
+    [SerializeField] GameObject signsLight;
+    [Header("Submenu Canvases")]
+    [SerializeField]  GameObject submenuPanelCanvas;
+    [SerializeField]  GameObject submenuDataPersistence;
+
+
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManagerBase>();
@@ -47,8 +56,12 @@ public class LevelManager : MonoBehaviour
             {
                 player.StandUpAnimation();
             }
-
-            StartCoroutine(WaitAndLoad("Game", _sceneLoadDelay));
+            lights.SetActive(true);
+           
+            signsLight.SetActive(true);
+            //  StartCoroutine(WaitAndLoad("Game", _sceneLoadDelay));
+            StartCoroutine(WaitAndOpenDataCanvas(_sceneLoadDelay));
+           
         }
 
     }
@@ -83,4 +96,15 @@ public class LevelManager : MonoBehaviour
 
         SceneManager.LoadScene(_sceneName);
     }
+
+    IEnumerator WaitAndOpenDataCanvas(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        playerLight.SetActive(true);
+        audioManager.PlayMenuSound();
+        submenuPanelCanvas.SetActive(false);
+        submenuDataPersistence.SetActive(true);
+    }
+
+   
 }

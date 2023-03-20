@@ -322,7 +322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &159890649
 Transform:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ Transform:
   - {fileID: 828037115}
   - {fileID: 365163039}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172793514
 GameObject:
@@ -371,7 +371,7 @@ Transform:
   - {fileID: 590247989}
   - {fileID: 626112225}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &189560346
 GameObject:
@@ -696,7 +696,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &232573039
 MonoBehaviour:
@@ -1153,7 +1153,7 @@ Transform:
   - {fileID: 6651287994781080960}
   - {fileID: 8287562442165894627}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &282118699 stripped
 Transform:
@@ -1264,12 +1264,12 @@ GameObject:
   - component: {fileID: 365163039}
   - component: {fileID: 365163040}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Point Light_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &365163039
 Transform:
   m_ObjectHideFlags: 0
@@ -1559,13 +1559,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467110930}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &467110933
 MonoBehaviour:
@@ -1580,6 +1580,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButtonText: {fileID: 485890397}
+  lights: {fileID: 159890648}
+  playerLight: {fileID: 365163038}
+  signsLight: {fileID: 828037113}
+  submenuPanelCanvas: {fileID: 1603010372328910396}
+  submenuDataPersistence: {fileID: 3126835030666579533}
 --- !u!114 &467110934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2275,7 +2280,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 590247990}
         m_TargetAssemblyTypeName: UIStartMenu, Assembly-CSharp
-        m_MethodName: OnSettingsClickBack
+        m_MethodName: OnClickBackFromData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3146,7 +3151,7 @@ GameObject:
   - component: {fileID: 828037115}
   - component: {fileID: 828037114}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light_Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5046,7 +5051,7 @@ Transform:
   - {fileID: 3880655544064938598}
   - {fileID: 1083431839293864083}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312642723 stripped
 GameObject:
@@ -5803,7 +5808,7 @@ Transform:
   - {fileID: 281565173}
   - {fileID: 1315588601}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1470949607 stripped
 Transform:
@@ -8948,6 +8953,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnSettingsClick
       objectReference: {fileID: 0}
+    - target: {fileID: 1555344125378675801, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555344125378675801, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1577103006850405718, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -8960,13 +8973,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 12.500061
       objectReference: {fileID: 0}
+    - target: {fileID: 2842187741216881257, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842187741216881257, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3830317193363759051, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 12.500061
       objectReference: {fileID: 0}
     - target: {fileID: 4462301148237023681, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5169310486647643719, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_fontSize
@@ -9027,6 +9048,18 @@ PrefabInstance:
     - target: {fileID: 6127046271255170528, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315415831675403127, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729942564282003290, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729942564282003290, guid: de1a422462727a64a9904b472ce290e9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6774574196386033224, guid: de1a422462727a64a9904b472ce290e9, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9529,7 +9562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3744436457970285511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10474,9 +10507,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 467110933}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LoadGame
+      - m_Target: {fileID: 590247990}
+        m_TargetAssemblyTypeName: UIStartMenu, Assembly-CSharp
+        m_MethodName: OnClickStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10556,9 +10589,21 @@ PrefabInstance:
       value: UI_MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
+      propertyPath: lights
+      value: 
+      objectReference: {fileID: 159890648}
+    - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
       propertyPath: mainMenu
       value: 
       objectReference: {fileID: 7162813180945789176}
+    - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
+      propertyPath: signsLight
+      value: 
+      objectReference: {fileID: 828037113}
+    - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
+      propertyPath: playerLight
+      value: 
+      objectReference: {fileID: 365163038}
     - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
       propertyPath: backButtonText
       value: 
@@ -10587,6 +10632,10 @@ PrefabInstance:
       propertyPath: submenuSettingsCanvas
       value: 
       objectReference: {fileID: 7375585028552852448}
+    - target: {fileID: 8615308777992372866, guid: 427969da370ac654eb07a3cf6e321592, type: 3}
+      propertyPath: submenuDataPersistence
+      value: 
+      objectReference: {fileID: 3126835030666579533}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

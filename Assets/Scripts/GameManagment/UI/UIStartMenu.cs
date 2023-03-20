@@ -6,7 +6,12 @@ using TMPro;
 public class UIStartMenu : MonoBehaviour
 {
     AudioManagerBase audioManager;
-   // ColorCollection colorPalette;
+    // ColorCollection colorPalette;
+
+    [Header("Effects")]
+    [SerializeField]  GameObject lights;
+    [SerializeField] GameObject playerLight;
+    [SerializeField] GameObject signsLight;
 
     [Header("Main Menu")]
     [SerializeField] protected GameObject mainMenu;
@@ -14,14 +19,9 @@ public class UIStartMenu : MonoBehaviour
     [Header("Submenu Canvases")]
     [SerializeField] protected GameObject submenuPanelCanvas;
     [SerializeField] protected GameObject submenuSettingsCanvas;
+    [SerializeField] protected GameObject submenuDataPersistence;
 
-   // [SerializeField] TextMeshProUGUI startButtonText;
-    //[SerializeField] TextMeshProUGUI settingsButtonText;
-    //[SerializeField] TextMeshProUGUI quitButtonText;
-    //[SerializeField] TextMeshProUGUI creditsButtonText;
-    //[SerializeField] TextMeshProUGUI backButtonText;
-
-    //List<TextMeshProUGUI> buttonTexts = new List<TextMeshProUGUI>();
+    //[SerializeField] TextMeshProUGUI[] buttonTexts;  OR List<TextMeshProUGUI> buttonTexts = new List<TextMeshProUGUI>();
 
     public static bool isSettingsOpen = false;
     private void Awake()
@@ -62,6 +62,9 @@ public class UIStartMenu : MonoBehaviour
     public virtual void UIStartSetUp()
     {
         isSettingsOpen = false;
+        lights.SetActive(false);
+        playerLight.SetActive(false);
+        signsLight.SetActive(false);
         mainMenu.SetActive(true);
         submenuPanelCanvas.SetActive(true);
         submenuSettingsCanvas.SetActive(false);
@@ -109,12 +112,27 @@ public class UIStartMenu : MonoBehaviour
 
     //[GAME STARTS at Level Manager]
 
-    //public void OnClickStartGame()
-    ///*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
-    //{
-    //    audioManager.PlayClickSound();
-    //    SceneManager.LoadScene(1);
-    //}
+
+    #endregion
+
+    #region DataPersistent
+    public void OnClickStartGame()
+    /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
+    {
+        VolumeDataBetweenLevels.UpdateSoundData();
+        audioManager.PlayClickSound();
+        SceneManager.LoadScene(1);
+    }
+
+    public virtual void OnClickBackFromData()
+    {
+        audioManager.PlayClickSound();
+        submenuPanelCanvas.SetActive(true);
+        submenuDataPersistence.SetActive(false);
+        lights.SetActive(false);
+        playerLight.SetActive(false);
+        signsLight.SetActive(false);
+    }
     #endregion
 
     #region Credits

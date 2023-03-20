@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SoundBarLevels : MonoBehaviour
+public class SoundBarLevelsOnSlider : MonoBehaviour
 {
     public AudioSource music;
     public AudioSource birdsAmbient;
