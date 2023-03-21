@@ -35,7 +35,7 @@ public class GamePlayUI : UIStartMenu
 
     #region User_UI
 
-    void OpenMenuOnInput()
+    public override void OpenMenuOnInput()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {

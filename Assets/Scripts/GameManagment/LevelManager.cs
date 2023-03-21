@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
     PlayerBase player;
 
     Color yellowColor = new Color(1f, 0.8509804f, 0f, 1f); //FFD900 yellow
-    bool isClicked = false;
+ //   bool isClicked = false;
     [Header("Effects")]
     [SerializeField]  GameObject lights;
     [SerializeField] GameObject playerLight;
@@ -30,41 +30,11 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        isClicked = false;
+      //  isClicked = false;
         if (startButtonText != null)
         { startButtonText.color = Color.white; }
     }
-    public void LoadGame() /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
-    {
-        if (!isClicked)
-        {
-            VolumeDataBetweenLevels.UpdateSoundData();
-            float _sceneLoadDelay = 3f;
-            isClicked = true;
-            startButtonText.color = yellowColor;         // colorPalette.ChangeTextColour(startButtonText, colorPalette.GetYellow());  
-            if (ScoreManager.Instance != null)
-            {
-                ScoreManager.Instance.ResetMoneyScore();
-            }
-            if (audioManager != null)
-            {
-                audioManager.PlayClickSound();
-                audioManager.PlaySigh();
-            }
-
-            if (player != null)
-            {
-                player.StandUpAnimation();
-            }
-            lights.SetActive(true);
-           
-            signsLight.SetActive(true);
-            //  StartCoroutine(WaitAndLoad("Game", _sceneLoadDelay));
-            StartCoroutine(WaitAndOpenDataCanvas(_sceneLoadDelay));
-           
-        }
-
-    }
+   
 
     public void LoadMainMenu()
     {
@@ -97,14 +67,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(_sceneName);
     }
 
-    IEnumerator WaitAndOpenDataCanvas(float _delay)
-    {
-        yield return new WaitForSeconds(_delay);
-        playerLight.SetActive(true);
-        audioManager.PlayMenuSound();
-        submenuPanelCanvas.SetActive(false);
-        submenuDataPersistence.SetActive(true);
-    }
+
 
    
 }

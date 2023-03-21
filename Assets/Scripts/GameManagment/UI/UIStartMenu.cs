@@ -6,10 +6,11 @@ using TMPro;
 public class UIStartMenu : MonoBehaviour
 {
     AudioManagerBase audioManager;
+    PlayerBase player;
     // ColorCollection colorPalette;
 
     [Header("Effects")]
-    [SerializeField]  GameObject lights;
+    [SerializeField] GameObject lights;
     [SerializeField] GameObject playerLight;
     [SerializeField] GameObject signsLight;
 
@@ -22,16 +23,54 @@ public class UIStartMenu : MonoBehaviour
     [SerializeField] protected GameObject submenuDataPersistence;
 
     //[SerializeField] TextMeshProUGUI[] buttonTexts;  OR List<TextMeshProUGUI> buttonTexts = new List<TextMeshProUGUI>();
-
+    bool isClicked = false;
+    bool isPlayerStanding = false;
     public static bool isSettingsOpen = false;
+
+    bool isDataNameColorPickerOpen = false;
+
+
     private void Awake()
     {
-      //  colorPalette = FindObjectOfType<ColorCollection>();
+        //  colorPalette = FindObjectOfType<ColorCollection>();
+        player = FindObjectOfType<PlayerBase>();
         audioManager = FindObjectOfType<AudioManagerBase>();
         UIStartSetUp();
+        //     CreateListOfButtonTexts();
+        //  ResetColorOfButtonTexts(buttonTexts, colorPalette.GetWhite());
+    }
 
-   //     CreateListOfButtonTexts();
-      //  ResetColorOfButtonTexts(buttonTexts, colorPalette.GetWhite());
+
+    void Update()
+    {
+        OpenMenuOnInput();
+    }
+
+    public virtual void OpenMenuOnInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isSettingsOpen)
+            {
+                audioManager.PlayMenuSound();
+                isSettingsOpen = false;
+                submenuPanelCanvas.SetActive(true);
+                submenuSettingsCanvas.SetActive(false);
+            }
+
+            if (isDataNameColorPickerOpen)
+            {
+                isDataNameColorPickerOpen = false;
+                isClicked = false;
+                audioManager.PlayClickSound();
+                submenuPanelCanvas.SetActive(true);
+                submenuDataPersistence.SetActive(false);
+                lights.SetActive(false);
+                playerLight.SetActive(false);
+                signsLight.SetActive(false);
+            }
+
+        }
     }
 
     #region Button Texts
@@ -62,6 +101,7 @@ public class UIStartMenu : MonoBehaviour
     public virtual void UIStartSetUp()
     {
         isSettingsOpen = false;
+        isDataNameColorPickerOpen = false;
         lights.SetActive(false);
         playerLight.SetActive(false);
         signsLight.SetActive(false);
@@ -79,7 +119,7 @@ public class UIStartMenu : MonoBehaviour
 
         if (!isSettingsOpen)
         {
-         //   ChangeColorOfButtonText(settingsButtonText, colorPalette.GetYellow());
+            //   ChangeColorOfButtonText(settingsButtonText, colorPalette.GetYellow());
             isSettingsOpen = true;
             audioManager.PlayMenuSound();
             submenuPanelCanvas.SetActive(false);
@@ -98,20 +138,89 @@ public class UIStartMenu : MonoBehaviour
             submenuSettingsCanvas.SetActive(false);
         }
     }
-   
+
 
     #endregion
 
-    #region Start & Quit
+    #region Quit
     public void OnClickExitGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
-    {       
+    {
         audioManager.PlayClickSound();
         //  SceneManager.LoadScene(0);
         Application.Quit();
     }
+    #endregion
+
+    #region Data_ColorPickerCanvas
 
     //[GAME STARTS at Level Manager]
+    public void OnClickLoadNameColorPickerCanvas() /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
+    {
+        float _loadDelay;
+        isDataNameColorPickerOpen = true;
 
+        if (!isClicked)
+        {
+            VolumeDataBetweenLevels.UpdateSoundData();
+            if (audioManager != null)
+            {
+                audioManager.PlayClickSound();
+            }
+
+            isClicked = true;
+            if (ScoreManager.Instance != null)
+            {
+                ScoreManager.Instance.ResetMoneyScore();
+            }
+            lights.SetActive(true);
+            signsLight.SetActive(true);
+
+            if (!isPlayerStanding)
+            {
+                _loadDelay = 3f;
+                isPlayerStanding = true;
+                if (audioManager != null)
+                {
+                    audioManager.PlaySigh();
+                }
+
+                if (player != null)
+                {
+                    player.StandUpAnimation();
+
+                }
+            }
+            else
+            { _loadDelay = 0.5f; }
+
+            StartCoroutine(WaitAndOpenDataCanvas(_loadDelay));
+        }
+
+    }
+
+    IEnumerator WaitAndOpenDataCanvas(float _delay)
+    {
+        yield return new WaitForSeconds(_delay);
+        playerLight.SetActive(true);
+        audioManager.PlayMenuSound();
+        submenuPanelCanvas.SetActive(false);
+        submenuDataPersistence.SetActive(true);
+    }
+
+    public virtual void OnClickBackFromData()
+    {
+        if (isDataNameColorPickerOpen)
+        {
+            isDataNameColorPickerOpen = false;
+            isClicked = false;
+            audioManager.PlayClickSound();
+            submenuPanelCanvas.SetActive(true);
+            submenuDataPersistence.SetActive(false);
+            lights.SetActive(false);
+            playerLight.SetActive(false);
+            signsLight.SetActive(false);
+        }
+    }
 
     #endregion
 
@@ -119,20 +228,25 @@ public class UIStartMenu : MonoBehaviour
     public void OnClickStartGame()
     /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
     {
+        //    startButtonText.color = yellowColor;   OR colorPalette.ChangeTextColour(startButtonText, colorPalette.GetYellow());  
+
         VolumeDataBetweenLevels.UpdateSoundData();
         audioManager.PlayClickSound();
         SceneManager.LoadScene(1);
+
+
+        //  StartCoroutine(WaitAndLoad("Game", _sceneLoadDelay));
     }
 
-    public virtual void OnClickBackFromData()
-    {
-        audioManager.PlayClickSound();
-        submenuPanelCanvas.SetActive(true);
-        submenuDataPersistence.SetActive(false);
-        lights.SetActive(false);
-        playerLight.SetActive(false);
-        signsLight.SetActive(false);
-    }
+
+
+    //IEnumerator WaitAndLoad(string _sceneName, float _delay)
+    //{
+    //    yield return new WaitForSeconds(_delay);
+
+    //    SceneManager.LoadScene(_sceneName);
+    //}
+
     #endregion
 
     #region Credits
@@ -148,5 +262,19 @@ public class UIStartMenu : MonoBehaviour
         SceneManager.LoadScene(0); //load Main menu
     }
     #endregion
+
+
+    //public void LoadMainMenu()
+    //{
+    //    audioManager.PlayClickSound();
+    //    SceneManager.LoadScene("MainMenu"); //by name
+    //}
+
+    //public void LoadFinalScore()
+    //{
+    //    float _sceneLoadDelay = 3.5f;
+    //    audioManager.PlayClickSound();
+    //    StartCoroutine(WaitAndLoad("FinalScore", _sceneLoadDelay));
+    //}
 
 }
