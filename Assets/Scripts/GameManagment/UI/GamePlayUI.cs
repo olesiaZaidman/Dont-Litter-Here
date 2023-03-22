@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GamePlayUI : UIStartMenu
 {
@@ -120,5 +125,29 @@ public class GamePlayUI : UIStartMenu
     }
     #endregion
 
-  
+    public void OnQuitToRatingButtonClick()
+    {
+        float _sceneLoadDelay = 1f;
+        InputEntriesHandler.AddEntryToTheList();
+        int ratingScene = 3;
+        StartCoroutine(LoadGameRoutine(_sceneLoadDelay, ratingScene));
+    }
+
+    IEnumerator LoadGameRoutine(float _delay, int _scene)
+    {
+        yield return new WaitForSeconds(_delay);
+
+        SceneManager.LoadScene(_scene);
+    }
+
+    public void OnExitButtonClick()
+    {
+        HighScoreManager.Instance.SavePlayerData();
+
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+#endif
+    }
+
 }

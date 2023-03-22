@@ -30,8 +30,11 @@ public class UIManager : MonoBehaviour
 
     static bool isMessageWindowOpen = false;
     AudioManager audioManager;
+    public static UIManager Instance;
+
     void Awake()
-    {     
+    {
+        Instance = this;
         audioManager = FindObjectOfType<AudioManager>();
         gameOverText.SetActive(GameManager.isGameOver);
         salaryText.SetActive(false);
@@ -41,7 +44,9 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        SetScoreTextUI(0);
+        ScoreManager.Instance.ResetMoneyPoints();
+        SetScoreTextUI(HighScoreManager.Instance.CurrentScore);
+
     //    StartCoroutine(ShowStartNavigationRoutine("Press [W] or [S] or arrows to move"));
     }
 
@@ -58,7 +63,9 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.isGameOver)
         {
-            ShowGameOverText();
+            ShowGameOverText(GameManager.isGameOver);
+            HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
+
         }
 
         if ((Input.GetKey(KeyCode.Space)))
@@ -163,9 +170,9 @@ public class UIManager : MonoBehaviour
         salaryText.SetActive(false);
     }
 
-    public void SetScoreTextUI(int _money)
+    public void SetScoreTextUI(int _moneyPoints)
     {
-        score.SetText(_money.ToString());//ToString("00000")
+        score.SetText(_moneyPoints.ToString());//ToString("00000")
     }
 
     #endregion
@@ -195,10 +202,47 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    #region Game Over
-    public void ShowGameOverText()
+    #region Score
+
+    [SerializeField] TextMeshProUGUI bestPlayerName;
+    [SerializeField] TextMeshProUGUI bestScore;
+    public void DisplayBestPlayerName(string _name)
     {
-        gameOverText.SetActive(GameManager.isGameOver);
+        bestPlayerName.text = _name;
+    }
+
+    public void DisplayScore(int _score)
+    {
+        bestScore.text = _score.ToString();
+    }
+    public void ShowBestPlayerScoreUIInfo()
+    {
+        if (HighScoreManager.Instance != null)
+        {
+            HighScoreElement topPlayer = HighScoreHandler.GetTopPlayer();
+
+            if (topPlayer != null)
+            {
+                HighScoreManager.Instance.bestScorePlayerName = topPlayer.playerName;
+                HighScoreManager.Instance.bestScore = topPlayer.score;
+                DisplayBestPlayerName(HighScoreManager.Instance.bestScorePlayerName);
+                DisplayScore(HighScoreManager.Instance.bestScore);
+            }
+            //else
+            //{
+            //    DisplayBestPlayerName("");
+            //    DisplayScore(0);
+            //}
+
+        }
+    }
+    #endregion
+
+
+    #region Game Over
+    public void ShowGameOverText(bool _isGameOver)
+    {
+        gameOverText.SetActive(_isGameOver);
     }
     #endregion
 

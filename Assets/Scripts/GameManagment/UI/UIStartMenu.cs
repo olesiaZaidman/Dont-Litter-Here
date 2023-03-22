@@ -29,6 +29,7 @@ public class UIStartMenu : MonoBehaviour
 
     bool isDataNameColorPickerOpen = false;
 
+    private InputUINameSaver inputNameSaver;
 
     private void Awake()
     {
@@ -36,6 +37,8 @@ public class UIStartMenu : MonoBehaviour
         player = FindObjectOfType<PlayerBase>();
         audioManager = FindObjectOfType<AudioManagerBase>();
         UIStartSetUp();
+        inputNameSaver = FindObjectOfType<InputUINameSaver>();
+
         //     CreateListOfButtonTexts();
         //  ResetColorOfButtonTexts(buttonTexts, colorPalette.GetWhite());
     }
@@ -170,7 +173,7 @@ public class UIStartMenu : MonoBehaviour
             isClicked = true;
             if (ScoreManager.Instance != null)
             {
-                ScoreManager.Instance.ResetMoneyScore();
+                ScoreManager.Instance.ResetMoneyPoints();
             }
             lights.SetActive(true);
             signsLight.SetActive(true);
@@ -230,6 +233,10 @@ public class UIStartMenu : MonoBehaviour
     {
         //    startButtonText.color = yellowColor;   OR colorPalette.ChangeTextColour(startButtonText, colorPalette.GetYellow());  
 
+        if (inputNameSaver != null)
+        {
+            HighScoreManager.Instance.CurentPlayerNameSelected(inputNameSaver.GetInputName());
+        }
         VolumeDataBetweenLevels.UpdateSoundData();
         audioManager.PlayClickSound();
         SceneManager.LoadScene(1);
@@ -246,6 +253,21 @@ public class UIStartMenu : MonoBehaviour
 
     //    SceneManager.LoadScene(_sceneName);
     //}
+
+    //IEnumerator LoadGameRoutine(float _delay, int _scene)
+    //{
+    //    yield return new WaitForSeconds(_delay);
+
+    //    SceneManager.LoadScene(_scene);
+    //}
+
+    //public void OnMenuButtonClickLoadStartScene()
+    //{
+    //    int startScene = 0;
+    //    StartCoroutine(LoadGameRoutine(sceneLoadDelay, startScene));
+    //}
+
+
 
     #endregion
 

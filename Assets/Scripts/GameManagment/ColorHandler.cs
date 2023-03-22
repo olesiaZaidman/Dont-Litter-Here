@@ -7,8 +7,6 @@ public class ColorHandler : MonoBehaviour
     [SerializeField] Material[] availableColorsMat;
     [SerializeField] Color[] colors; //alternative approach 
     TShirtColor playerTShirt;
-    ButtonColorPicker colorPicker;
-
     Color selectedColor;
 
     public Color GetColor(int i)
@@ -18,12 +16,8 @@ public class ColorHandler : MonoBehaviour
     void Awake()
     {
         playerTShirt = FindObjectOfType<TShirtColor>();
-        colorPicker = FindObjectOfType<ButtonColorPicker>();
 
-        if (colorPicker != null)
-        {
             SetSelectedColor(GetColor(0));
-        }
     }
 
     void Start()

@@ -62,6 +62,16 @@ public class ButtonColorPicker : MonoBehaviour
     {
         SetSelectedMaterial(7);
     }
+
+    public void OnClickButtonColor8()
+    {
+        SetSelectedMaterial(8);
+    }
+
+    public void OnClickButtonColor9()
+    {
+        SetSelectedMaterial(9);
+    }
     #endregion
 
     void SetSelectedMaterial(int i)

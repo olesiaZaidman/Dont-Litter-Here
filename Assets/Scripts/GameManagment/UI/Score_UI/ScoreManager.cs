@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     TimeController timeController;
     UIManager ui;
 
-    static int moneyScore = 0;
+ //   static int moneyScore = 0;
 
     static int days = 0;
     static int dailyWage = 20;
@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
           //  Debug.Log("IsEndOfWorkingDay: " + timeController.IsEndOfWorkingDay());
             if (isSalaryTime)
             {
-                IncreaseMoneyScoreUpdateUi(dailyWage);
+                AddMoneyPoint(dailyWage);
                 IncreaseDaysByOne();
                 isSalaryTime = false;
                // Debug.Log("You worked days: " + days);
@@ -67,20 +67,21 @@ public class ScoreManager : MonoBehaviour
 
 
     #region MoneyScore
-    public float GetMoneyScore()
-    { return moneyScore; }
+    public float GetMoneyPoints()
+    { return HighScoreManager.Instance.CurrentScore; }
 
-    public void ResetMoneyScore()
+    public void ResetMoneyPoints()
     {
-        moneyScore = 0;
+        HighScoreManager.Instance.CurrentScore = 0;// moneyScore = 0;
     }
 
-    public float IncreaseMoneyScoreUpdateUi(int num)
+    public void AddMoneyPoint(int _point)
     {
-        moneyScore += num;
-        ui.SetScoreTextUI(moneyScore);
-        return moneyScore;
+        HighScoreManager.Instance.CurrentScore += _point;//  moneyScore += _point;
+        ui.SetScoreTextUI(HighScoreManager.Instance.CurrentScore);// ui.SetScoreTextUI(moneyScore);
+        HighScoreManager.Instance.SetHighScoreIfGreater(HighScoreManager.Instance.CurrentScore);
     }
+
 
     public int GetDays()
     { return days; }
@@ -89,10 +90,10 @@ public class ScoreManager : MonoBehaviour
     {
         return days += 1;
     }
-    public float DecreaseMoneyScore(int num)
-    {
-        return moneyScore -= num;
-    }
+    //public float DecreaseMoneyScore(int num)
+    //{
+    //    return moneyScore -= num;
+    //}
     #endregion
 
 }
