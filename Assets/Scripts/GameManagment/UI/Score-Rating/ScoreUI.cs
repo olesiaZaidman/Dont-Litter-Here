@@ -16,7 +16,7 @@ public class ScoreUI : MonoBehaviour
     {
         var scores = HighScoreHandler.highScoresList.ToArray();
 
-        int numberOfResults = Mathf.Clamp(scores.Length, 0, 5);
+        int numberOfResults = Mathf.Clamp(scores.Length, 0, 5); //max we can have 5
 
         for (int i = 0; i < numberOfResults; i++)  // for (int i = 0; i < scores.Length; i++)
         {
