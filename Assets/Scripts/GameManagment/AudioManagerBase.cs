@@ -19,12 +19,16 @@ public class AudioManagerBase : MonoBehaviour
 
     protected bool isClipSwitched = false;
 
+    [Header("Audio Clips")]
     [Header("Player")]
-    [SerializeField] protected AudioClip[] sighSound;
+    [SerializeField] protected AudioClip[] sighSounds;
+
+    [Header("Background Wave Clip")]
+    [SerializeField] AudioClip wavesSound;
 
     [Header("UI SoundFX Clips")]
     [SerializeField] protected AudioClip clickSound;
-    [SerializeField] protected  AudioClip menuOpenSound;
+    [SerializeField] protected AudioClip menuOpenSound;
     [SerializeField] protected AudioClip messageSound;
     [SerializeField] protected AudioClip moneySound;
 
@@ -38,10 +42,20 @@ public class AudioManagerBase : MonoBehaviour
     void Awake()
     {
         //  ManageSingleton();
-        backgroundMusic.volume = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.volumeLevelMusic);
-        backgroundWaves.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelMusic);
-        backgroundAmbientBirdsNoise.volume = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.volumeLevelAmbient);
-        soundEffectsAudio.volume = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.volumeLevelSounds);
+       // PlayAudioClip(backgroundWaves, wavesSound);
+    }
+
+    void Update()
+    {
+        UpdateVolumeLevels();
+    }
+
+    void UpdateVolumeLevels() 
+    {
+        backgroundMusic.volume = VolumeDataBetweenLevels.GetVolumeMusic();
+        backgroundWaves.volume = VolumeDataBetweenLevels.GetVolumeAmbient();
+        backgroundAmbientBirdsNoise.volume = VolumeDataBetweenLevels.GetVolumeAmbient();
+        soundEffectsAudio.volume = VolumeDataBetweenLevels.GetVolumeSounds();
     }
 
     //void ManageSingleton()
@@ -62,38 +76,119 @@ public class AudioManagerBase : MonoBehaviour
     //    }
     //}
 
+    #region AbstractMethods
+    public void PlayAudioClip(AudioSource _audioSource, AudioClip _clip)
+    {
+        if (_audioSource != null)
+        {
+            if (_clip != null)
+            {
+                _audioSource.PlayOneShot(_clip);
+            }
+        }
+    }
+    public void PlayRandomAudioClip(AudioSource _audioSource, AudioClip[] _clips)
+    {
+        int index = Random.Range(0, _clips.Length);
+        if (_audioSource != null)
+        {
+            if (_clips[index] != null)
+            {
+                _audioSource.PlayOneShot(_clips[index]);
+            }
+        }
+    }
+    public void PlayRandomAudioClip(AudioSource _audioSource, AudioClip[] _clips, float _volume)
+    {
+        int index = Random.Range(0, _clips.Length);
+        if (_audioSource != null)
+        {
+            if (_clips[index] != null) //(index <= _clips.Length)?
+            {
+                _audioSource.PlayOneShot(_clips[index], _volume);
+            }
+        }
+    }
+
+    public void PlayAudioClip(AudioSource _audioSource, AudioClip _clip, float _volume)
+    {
+        if (_audioSource != null)
+        {
+            if (_clip != null)
+            {
+                _audioSource.PlayOneShot(_clip, _volume);
+            }
+        }
+    }
+
+    public void PlayAudioClipOnce(AudioSource _audioSource, AudioClip _clip, float _delay)
+    {
+        StartCoroutine(PlayDelayedAudioClipRoutine(_audioSource, _clip, _delay));
+    }
+
+    public void PlayRandomAudioClipOnce(AudioSource _audioSource, AudioClip[] _clips, float _delay)
+    {
+        StartCoroutine(PlayRandomDelayedAudioClipRoutine(_audioSource, _clips, _delay));
+    }
+    public void PlayAudioClipOnce(AudioSource _audioSource, AudioClip _clip, float _volume, float _delay)
+    {
+        StartCoroutine(PlayDelayedAudioClipRoutine(_audioSource, _clip, _volume, _delay));
+    }
+
+    IEnumerator PlayDelayedAudioClipRoutine(AudioSource _audioSource, AudioClip _clip, float _delay)
+    {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlayAudioClip(_audioSource, _clip);
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+
+    IEnumerator PlayRandomDelayedAudioClipRoutine(AudioSource _audioSource, AudioClip[] _clips, float _delay)
+    {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlayRandomAudioClip(_audioSource, _clips);
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+    IEnumerator PlayDelayedAudioClipRoutine(AudioSource _audioSource, AudioClip _clip, float _volume, float _delay)
+    {
+        if (!isPlayed)
+        {
+            isPlayed = true;
+            PlayAudioClip(_audioSource, _clip, _volume);
+        }
+        yield return new WaitForSeconds(_delay);
+        isPlayed = false;
+    }
+    #endregion
+
     #region UI
     public void PlayClickSound()
     {
-        soundEffectsAudio.PlayOneShot(clickSound, soundEffectsAudio.volume);
+        //   PlayAudioClip(soundEffectsAudio, clickSound, VolumeDataBetweenLevels.GetVolumeSounds());
+        PlayAudioClip(soundEffectsAudio, clickSound);
     }
 
     public void PlayMenuSound()
     {
-        soundEffectsAudio.PlayOneShot(menuOpenSound, soundEffectsAudio.volume);
+        PlayAudioClip(soundEffectsAudio, menuOpenSound);
     }
 
     public void PlayMessageSound()
     {
-        soundEffectsAudio.PlayOneShot(messageSound, soundEffectsAudio.volume);
+        PlayAudioClip(soundEffectsAudio, messageSound);
     }
 
     public void PlayMessageSoundOnce()
     {
-        StartCoroutine(PlayMessageSFXRoutine());
-    }
-
-    IEnumerator PlayMessageSFXRoutine()
-    {
         float _delay = 5f;
-
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            PlayMessageSound();
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
+        PlayAudioClipOnce(soundEffectsAudio, messageSound, _delay);
     }
 
     #endregion
@@ -101,24 +196,12 @@ public class AudioManagerBase : MonoBehaviour
     #region Player Sigh
     public void PlaySigh()
     {
-        int index = Random.Range(0, sighSound.Length);
-        soundEffectsAudio.PlayOneShot(sighSound[index], soundEffectsAudio.volume);
+        PlayRandomAudioClip(soundEffectsAudio, sighSounds, soundEffectsAudio.volume);
     }
 
     public void PlaySighOnce(float _delay)
     {
-        StartCoroutine(PlaySighRoutine(_delay));
-    }
-
-    IEnumerator PlaySighRoutine(float _delay)
-    {
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            PlaySigh();
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
+        PlayRandomAudioClipOnce(soundEffectsAudio, sighSounds, _delay);
     }
 
     #endregion

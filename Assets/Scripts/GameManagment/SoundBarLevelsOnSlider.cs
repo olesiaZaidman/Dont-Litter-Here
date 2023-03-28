@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class SoundBarLevelsOnSlider : MonoBehaviour
 {
-    public AudioSource music;
-    public AudioSource birdsAmbient;
-    public AudioSource wavesAmbient;
-    public AudioSource sounds;
-
     public Slider volumeLevelMusic;
     /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Music Volume Slider */
     public Slider volumeLevelAmbient;
@@ -17,30 +12,28 @@ public class SoundBarLevelsOnSlider : MonoBehaviour
     public Slider volumeLevelSounds;
     /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Sound Volume Slider */
 
-    void Awake()
+    void Start()
     {
         SetVolumeLevel();
-       // TimeController.maxBirdsVolume = volumeLevelAmbient.value;
     }
-    void Update()
-    {
-        TweakVolumeLevel();
-    }
-
-
-    void TweakVolumeLevel() //Updates Slider
-    {
-     //   TimeController.maxBirdsVolume = volumeLevelAmbient.value;
-        music.volume = volumeLevelMusic.value;
-        birdsAmbient.volume = volumeLevelAmbient.value;
-        wavesAmbient.volume = volumeLevelAmbient.value;
-        sounds.volume = volumeLevelSounds.value;
-    }
-
     void SetVolumeLevel()
     {
-        volumeLevelMusic.value = PlayerPrefs.GetFloat("VolumeMusic", VolumeDataBetweenLevels.defualtVolumeLevelMusic);
-        volumeLevelSounds.value = PlayerPrefs.GetFloat("VolumeSounds", VolumeDataBetweenLevels.defualtVolumeLevelSounds);
-        volumeLevelAmbient.value = PlayerPrefs.GetFloat("VolumeAmbient", VolumeDataBetweenLevels.defualtVolumeLevelAmbient);
+        volumeLevelMusic.value = VolumeDataBetweenLevels.GetVolumeMusic();
+        volumeLevelSounds.value = VolumeDataBetweenLevels.GetVolumeSounds();
+        volumeLevelAmbient.value =  VolumeDataBetweenLevels.GetVolumeAmbient();
     }
+
+    void Update()
+    {
+        SetVolumeLevels();
+    }
+
+
+    void SetVolumeLevels() //Updates Slider
+    {
+        VolumeDataBetweenLevels.SetVolumeMusic(volumeLevelMusic.value);
+        VolumeDataBetweenLevels.SetVolumeSounds(volumeLevelSounds.value);
+        VolumeDataBetweenLevels.SetVolumeAmbient(volumeLevelAmbient.value);
+    }
+
 }

@@ -6,9 +6,9 @@ public class TShirtColor : MonoBehaviour
 {
     [SerializeField] Material tshirtMaterial;
 
-     void Start()
+    void Start()
     {
-            
+        tshirtMaterial.color = HighScoreManager.currentPlayerColor;
     }
     void Update()
     {
@@ -22,5 +22,7 @@ public class TShirtColor : MonoBehaviour
     public void ChangeColor(Color _color)
     {
         tshirtMaterial.color = _color;
+        //      tshirtMaterial.color=HighScoreManager.Instance.currentPlayerColor?;
+
     }
 }

@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
         audioManager = FindObjectOfType<AudioManager>();
-        gameOverText.SetActive(GameManager.isGameOver);
+        gameOverText.SetActive(GameOverHandler.isGameOver);
         salaryText.SetActive(false);
         fatigueText.SetActive(false);
         garbagePickText.SetActive(false);
@@ -61,9 +61,9 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.isGameOver)
+        if (GameOverHandler.isGameOver)
         {
-            ShowGameOverText(GameManager.isGameOver);
+            ShowGameOverText(GameOverHandler.isGameOver);
             HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
 
         }
@@ -198,42 +198,6 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(_delay);
             fatigueText.SetActive(false);
             isMessageWindowOpen = false;
-        }
-    }
-    #endregion
-
-    #region Score
-
-    [SerializeField] TextMeshProUGUI bestPlayerName;
-    [SerializeField] TextMeshProUGUI bestScore;
-    public void DisplayBestPlayerName(string _name)
-    {
-        bestPlayerName.text = _name;
-    }
-
-    public void DisplayScore(int _score)
-    {
-        bestScore.text = _score.ToString();
-    }
-    public void ShowBestPlayerScoreUIInfo()
-    {
-        if (HighScoreManager.Instance != null)
-        {
-            HighScoreElement topPlayer = HighScoreHandler.GetTopPlayer();
-
-            if (topPlayer != null)
-            {
-                HighScoreManager.Instance.bestScorePlayerName = topPlayer.playerName;
-                HighScoreManager.Instance.bestScore = topPlayer.score;
-                DisplayBestPlayerName(HighScoreManager.Instance.bestScorePlayerName);
-                DisplayScore(HighScoreManager.Instance.bestScore);
-            }
-            //else
-            //{
-            //    DisplayBestPlayerName("");
-            //    DisplayScore(0);
-            //}
-
         }
     }
     #endregion

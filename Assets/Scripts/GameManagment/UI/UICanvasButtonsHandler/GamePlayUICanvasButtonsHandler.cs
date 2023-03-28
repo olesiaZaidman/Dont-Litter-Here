@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
-public class GamePlayUI : UIStartMenu
+public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
 {
-    TimeController timeController;
+   // TimeController timeController;
     AudioManager audioManager;
 
     [Header("Game Stats UI_BeachRating_Fatigue_etc")]
@@ -19,7 +19,7 @@ public class GamePlayUI : UIStartMenu
     public static bool isMenuOpen = false;
     private void Awake()
     {
-        timeController = FindObjectOfType<TimeController>();
+       // timeController = FindObjectOfType<TimeController>();
         audioManager = FindObjectOfType<AudioManager>();
         UIStartSetUp();
     }
@@ -108,7 +108,7 @@ public class GamePlayUI : UIStartMenu
         /*&& UI_Menu_Canvas > Settings_Panels > Panel_Settings > Back_Button */
         if (isMenuOpen && isSettingsOpen) 
         {
-            VolumeDataBetweenLevels.UpdateSoundData();
+           // VolumeDataBetweenLevels.UpdateSoundData();
             audioManager.PlayMenuSound();
             isSettingsOpen = false;
             submenuPanelCanvas.SetActive(true);
@@ -127,10 +127,10 @@ public class GamePlayUI : UIStartMenu
 
     public void OnQuitToRatingButtonClick()
     {
+        Time.timeScale = 1;
         float _sceneLoadDelay = 1f;
-        InputEntriesHandler.AddEntryToTheList();
-        int ratingScene = 3;
-        StartCoroutine(LoadGameRoutine(_sceneLoadDelay, ratingScene));
+        string _sceneName = "FinalLeaderboard";
+        StartCoroutine(LoadGameRoutine(_sceneLoadDelay, _sceneName));
     }
 
     IEnumerator LoadGameRoutine(float _delay, int _scene)
@@ -140,14 +140,18 @@ public class GamePlayUI : UIStartMenu
         SceneManager.LoadScene(_scene);
     }
 
-    public void OnExitButtonClick()
+    IEnumerator LoadGameRoutine(float _delay, string _sceneName)
     {
-        HighScoreManager.Instance.SavePlayerData();
+        yield return new WaitForSeconds(_delay);
 
-#if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
-#else
-#endif
+        SceneManager.LoadScene(_sceneName);
+    }
+
+    public void OnClickFinishGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        audioManager.PlayClickSound();
+        SceneManager.LoadScene("FinalLeaderboard");
+        HighScoreManager.Instance.SavePlayerData();
     }
 
 }

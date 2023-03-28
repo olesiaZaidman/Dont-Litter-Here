@@ -43,7 +43,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (timeController.IsEndOfWorkingDay() && !GameManager.isGameOver)
+        if (timeController.IsEndOfWorkingDay() && !GameOverHandler.isGameOver)
         {
           //  Debug.Log("IsEndOfWorkingDay: " + timeController.IsEndOfWorkingDay());
             if (isSalaryTime)

@@ -64,7 +64,7 @@ public class BeachRating : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.isGameOver)
+        if (GameOverHandler.isGameOver)
         { return; }
 
         //if (Input.GetKey(KeyCode.I))
@@ -80,8 +80,8 @@ public class BeachRating : MonoBehaviour
 
         if (CleanRatingPoints.Get() <= 0)
         {
-            GameManager.isGameOver = true;
-            Debug.Log("isGameOver" + GameManager.isGameOver);
+            GameOverHandler.isGameOver = true;
+            Debug.Log("isGameOver" + GameOverHandler.isGameOver);
         }
 
 

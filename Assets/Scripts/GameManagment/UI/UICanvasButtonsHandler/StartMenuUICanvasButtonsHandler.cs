@@ -1,10 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-public class UIStartMenu : MonoBehaviour
+public class StartMenuUICanvasButtonsHandler : MonoBehaviour
 {
+    /*// TODO
+    change text color after lieck with 
+    startButtonText.color = yellowColor; 
+    OR colorPalette.ChangeTextColour(startButtonText, colorPalette.GetYellow());  
+*/
+
+
+
     AudioManagerBase audioManager;
     PlayerBase player;
     // ColorCollection colorPalette;
@@ -38,7 +49,7 @@ public class UIStartMenu : MonoBehaviour
         audioManager = FindObjectOfType<AudioManagerBase>();
         UIStartSetUp();
         inputNameSaver = FindObjectOfType<InputUINameSaver>();
-
+        Time.timeScale = 1;
         //     CreateListOfButtonTexts();
         //  ResetColorOfButtonTexts(buttonTexts, colorPalette.GetWhite());
     }
@@ -141,16 +152,33 @@ public class UIStartMenu : MonoBehaviour
             submenuSettingsCanvas.SetActive(false);
         }
     }
-
-
     #endregion
 
     #region Quit
-    public void OnClickExitGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    public void OnClickQuitGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
     {
         audioManager.PlayClickSound();
         //  SceneManager.LoadScene(0);
         Application.Quit();
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+#endif
+    }
+
+    public void OnClickExitGameLoadMainMenu()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        audioManager.PlayClickSound();
+        SceneManager.LoadScene("MainMenu");
+        isPlayerStanding = false;
+        isClicked = false;
+
+    }
+
+    public void OnExitButtonClick()
+    {
+        SceneManager.LoadScene("FinalLeaderboard");
+        HighScoreManager.Instance.SavePlayerData();
     }
     #endregion
 
@@ -164,7 +192,7 @@ public class UIStartMenu : MonoBehaviour
 
         if (!isClicked)
         {
-            VolumeDataBetweenLevels.UpdateSoundData();
+           // VolumeDataBetweenLevels.UpdateSoundData();
             if (audioManager != null)
             {
                 audioManager.PlayClickSound();
@@ -182,6 +210,7 @@ public class UIStartMenu : MonoBehaviour
             {
                 _loadDelay = 3f;
                 isPlayerStanding = true;
+
                 if (audioManager != null)
                 {
                     audioManager.PlaySigh();
@@ -190,7 +219,6 @@ public class UIStartMenu : MonoBehaviour
                 if (player != null)
                 {
                     player.StandUpAnimation();
-
                 }
             }
             else
@@ -228,20 +256,24 @@ public class UIStartMenu : MonoBehaviour
     #endregion
 
     #region DataPersistent
-    public void OnClickStartGame()
+    public void OnClickSavePlayerDetails()
     /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
     {
-        //    startButtonText.color = yellowColor;   OR colorPalette.ChangeTextColour(startButtonText, colorPalette.GetYellow());  
-
+        InputEntriesHandler.AddEntryToTheList();
         if (inputNameSaver != null)
         {
-            HighScoreManager.Instance.CurentPlayerNameSelected(inputNameSaver.GetInputName());
+            HighScoreManager.Instance.CurentPlayerNameSelected(inputNameSaver.GetInputPlayerName());
+            /*GetInputPlayerName: gets playerName from inputField.text (playerName=inputField.text)*/
+            /* CurentPlayerNameSelected sets this name from input to currentPlayerName (currentPlayerName = _name)*/
         }
-        VolumeDataBetweenLevels.UpdateSoundData();
+
+        //TO DO: should CurentPlayerColorSelected be triggered in OnClickSavePlayerDetails in UIStartMenu?
+        //instead to be in  SetSelectedColor  in ColorHandler?
+
+
+       // VolumeDataBetweenLevels.UpdateSoundData();
         audioManager.PlayClickSound();
-        SceneManager.LoadScene(1);
-
-
+        SceneManager.LoadScene("Game");
         //  StartCoroutine(WaitAndLoad("Game", _sceneLoadDelay));
     }
 
@@ -281,7 +313,7 @@ public class UIStartMenu : MonoBehaviour
     public virtual void OnClickBackFromCredits()
     {
         audioManager.PlayClickSound();
-        SceneManager.LoadScene(0); //load Main menu
+        SceneManager.LoadScene("MainMenu");
     }
     #endregion
 

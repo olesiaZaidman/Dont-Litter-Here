@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
     void Update() 
     {
-        if (GameManager.isGameOver)
+        if (GameOverHandler.isGameOver)
         {
             myAnimationController.LoseGame();
             audioManager.PlaySighOnce(70f);
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
         }
 
-        if (GoldScanner.isScanning && !GameManager.isGameOver)
+        if (GoldScanner.isScanning && !GameOverHandler.isGameOver)
         {
             walkingSpeed = 3.5f;
             myAnimator.runtimeAnimatorController = nightRuntimeAnim as RuntimeAnimatorController;

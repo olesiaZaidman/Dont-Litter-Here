@@ -8,13 +8,20 @@ public class PlayerBase : MonoBehaviour
     void Awake()
     {
         myAnimator = GetComponent<Animator>();
+       // IdleAnimation(); it doesn't work
     }
 
+    //isIdle
+
+    public void IdleAnimation()
+    {
+        myAnimator.SetBool("isIdle", true);
+    }
     public void StandUpAnimation()
     {
         myAnimator.SetBool("isStanding", true);
-        StartCoroutine(IdleUpAnimation(2f));
-
+        myAnimator.SetBool("isIdle", false);
+        StartCoroutine(IdleUpAnimation(2f));                           
     }
 
     IEnumerator IdleUpAnimation(float _delay)

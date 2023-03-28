@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/FinalMenuScoreRating.unity
+    path: Assets/Scenes/FinalLeaderboard.unity
     guid: 44af986a37f11194695caed49388e1ee
   m_configObjects: {}

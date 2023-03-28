@@ -8,14 +8,10 @@ public class AudioManager : AudioManagerBase
     [SerializeField] AudioClip backgroundDayMusic;
     [SerializeField] AudioClip backgroundNightMusic;
 
-    [Header("Background Wave Clip")]
-    [SerializeField] AudioClip wavesSound;
-
     [Header("Background Ambient Clips")]
     [SerializeField] AudioClip nightSound;
     [SerializeField] AudioClip dayBirdsSound;
     [SerializeField] AudioClip parkSound;
-
 
     [Header("Player")]
     [SerializeField] AudioClip gulpSound;
@@ -96,62 +92,36 @@ public class AudioManager : AudioManagerBase
     #endregion
     public void PlayGulp()
     {
-        soundEffectsAudio.PlayOneShot(gulpSound, soundEffectsAudio.volume);
+        PlayAudioClip(soundEffectsAudio, gulpSound, soundEffectsAudio.volume);
     }
 
     #region MoneySFX
     public void PlayMoneySFXOnce()
     {
-        StartCoroutine(PlayMoneySFXRoutine());
+        float _delay = 5f;
+        PlayAudioClipOnce(soundEffectsAudio, moneySound, soundEffectsAudio.volume, _delay);
     }
 
     public void PlayMoneySFX()
     {
-        soundEffectsAudio.PlayOneShot(moneySound, soundEffectsAudio.volume);
+        PlayAudioClip(soundEffectsAudio, moneySound, soundEffectsAudio.volume);
     }
-    IEnumerator PlayMoneySFXRoutine()
-    {
-        float _delay = 5f;
-
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            PlayMoneySFX();
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
-    }
+ 
     #endregion
 
     #region LootSFX
     public void PlayLootBeepSFXOnce()
     {
-        StartCoroutine(PlayLootBeepSFXRoutine());
-    }
-
-    public void LootBeepSFX()
-    {
-        //sfx.PlayOneShot(lootBeepSound, audioVolume);
-        // lootBeepSound
+        float _delay = 5f;
+        PlayAudioClipOnce(soundEffectsAudio, lootBeepFoundSound, soundEffectsAudio.volume, _delay);
     }
 
     public void LootFoundBeepSFX()
     {
-        soundEffectsAudio.PlayOneShot(lootBeepFoundSound, soundEffectsAudio.volume);
+        PlayAudioClip(soundEffectsAudio, lootBeepFoundSound, soundEffectsAudio.volume);
     }
-    IEnumerator PlayLootBeepSFXRoutine()
-    {
-        float _delay = 5f;
-        if (!isPlayed)
-        {
-            isPlayed = true;
-            LootBeepSFX(); //LootFoundBeepSFX?
-        }
-        yield return new WaitForSeconds(_delay);
-        isPlayed = false;
-    }
-    #endregion
 
+    #endregion
 
 
 }

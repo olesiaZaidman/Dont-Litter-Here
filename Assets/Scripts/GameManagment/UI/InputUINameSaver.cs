@@ -9,7 +9,7 @@ public class InputUINameSaver : MonoBehaviour
     [Header("Input")]
     public TextMeshProUGUI inputField;
 
-    public string GetInputName()
+    public string GetInputPlayerName()
     {
         string playerName = inputField.text;
         return playerName;

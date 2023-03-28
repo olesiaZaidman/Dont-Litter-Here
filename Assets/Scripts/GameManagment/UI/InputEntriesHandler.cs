@@ -5,8 +5,8 @@ using UnityEngine;
 public class InputEntriesHandler : MonoBehaviour
 {
     [Header("Input")]
-    [SerializeField] InputEntry input;
-    static string filename = "randomPlayerScores.json";
+    [SerializeField] InputEntry inputField;
+    static string filename = "dontLitterHereRandomPlayerScores.json";
     static List<InputEntry> entries = new List<InputEntry>();
 
     void Start()

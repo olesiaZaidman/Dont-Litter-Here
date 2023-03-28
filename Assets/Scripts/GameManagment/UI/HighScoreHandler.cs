@@ -6,7 +6,7 @@ public class HighScoreHandler : MonoBehaviour
 {
     public static List<HighScoreElement> highScoresList = new List<HighScoreElement>();
     static int maxCountEntries = 5;
-    static string filename = "highScores.json";
+    static string filename = "dontLitterHereHighScores.json";
     void Start()
     {
         LoadHighScores();

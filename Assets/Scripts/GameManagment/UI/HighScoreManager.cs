@@ -4,11 +4,13 @@ using UnityEngine;
 using System.IO;
 
 public class HighScoreManager : MonoBehaviour
+    //Rename to PlayerDataManager
 {
     public static HighScoreManager Instance;
     public string bestScorePlayerName;
     public int bestScore;
     public static string currentPlayerName;
+    public static Color currentPlayerColor;
     int _currentScore;
 
     public int CurrentScore //used to be moneyScore
@@ -39,6 +41,11 @@ public class HighScoreManager : MonoBehaviour
     public void CurentPlayerNameSelected(string _name)
     {
         currentPlayerName = _name;
+    }
+
+    public void CurentPlayerColorSelected(Color _color)
+    {
+        currentPlayerColor = _color;
     }
     #endregion
 
