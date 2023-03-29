@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
     TimeController timeController;
-    UIManager ui;
+    UIGameStatsManager ui;
 
  //   static int moneyScore = 0;
 
@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         timeController = FindObjectOfType<TimeController>();
-        ui = FindObjectOfType<UIManager>();
+        ui = FindObjectOfType<UIGameStatsManager>();
       //  ManageSingleton();
     }
 
@@ -64,17 +64,11 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-
-
     #region MoneyScore
     public float GetMoneyPoints()
     { return HighScoreManager.Instance.CurrentScore; }
 
-    public void ResetMoneyPoints()
-    {
-        HighScoreManager.Instance.CurrentScore = 0;// moneyScore = 0;
-    }
-
+ 
     public void AddMoneyPoint(int _point)
     {
         HighScoreManager.Instance.CurrentScore += _point;//  moneyScore += _point;

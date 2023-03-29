@@ -34,14 +34,14 @@ public class AudioManagerBase : MonoBehaviour
 
     protected bool isPlayed = false;
 
-    //static AudioManagerBase Instance;
+   //static AudioManagerBase Instance;
 
     //public AudioManagerBase GetAudioManagerInstance()
     //{ return Instance; }
 
     void Awake()
     {
-        //  ManageSingleton();
+        // ManageSingleton();
        // PlayAudioClip(backgroundWaves, wavesSound);
     }
 

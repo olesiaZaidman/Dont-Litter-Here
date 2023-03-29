@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TemperatureManager : MonoBehaviour
 {
-    UIManager ui;
+    UIGameStatsManager ui;
    // TimeController timeController;
 
     int temperature;
@@ -16,7 +16,7 @@ public class TemperatureManager : MonoBehaviour
    // bool isStartTempSet = false;
     void Awake()
     {
-        ui = FindObjectOfType<UIManager>();
+        ui = FindObjectOfType<UIGameStatsManager>();
      //   timeController = FindObjectOfType<TimeController>();
     }
     void Start()

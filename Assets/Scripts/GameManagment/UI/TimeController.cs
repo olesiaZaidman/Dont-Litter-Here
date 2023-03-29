@@ -13,7 +13,7 @@ public class TimeController : MonoBehaviour
     //starts on monday
     AudioManager audioManager;
 
-    UIManager ui;
+    UIGameStatsManager ui;
     [SerializeField] Light sunLight;
     private float endWorkingDayHour = 21;
 
@@ -48,7 +48,7 @@ public class TimeController : MonoBehaviour
   //  bool isNewVolumeMax = false;
     void Awake()
     {
-        ui = FindObjectOfType<UIManager>();
+        ui = FindObjectOfType<UIGameStatsManager>();
         audioManager = FindObjectOfType<AudioManager>();
         temperatureManager = FindObjectOfType<TemperatureManager>();
     }

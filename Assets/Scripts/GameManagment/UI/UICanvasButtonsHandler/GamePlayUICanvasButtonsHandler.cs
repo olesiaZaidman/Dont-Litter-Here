@@ -10,7 +10,6 @@ using TMPro;
 
 public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
 {
-   // TimeController timeController;
     AudioManager audioManager;
 
     [Header("Game Stats UI_BeachRating_Fatigue_etc")]
@@ -19,7 +18,6 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     public static bool isMenuOpen = false;
     private void Awake()
     {
-       // timeController = FindObjectOfType<TimeController>();
         audioManager = FindObjectOfType<AudioManager>();
         UIStartSetUp();
     }
@@ -77,7 +75,8 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     }
 
     #endregion
-    #region Menu
+
+    #region Menu Canvas
     public void OnClickResume() //Resume
     /*UI_Menu_Canvas > Panel_Menu > Continue_Button */
     /*&& UI_Menu_Canvas > Panel_Menu > Back_Button */
@@ -103,6 +102,24 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
         }
     }
 
+    public void OnClickFinishGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        Time.timeScale = 1;
+        audioManager.PlayClickSound();
+        SceneManager.LoadScene("FinalLeaderboard");
+        HighScoreManager.Instance.SavePlayerData();
+    }
+
+    public void OnQuitToRatingButtonClick()
+    {
+        Time.timeScale = 1;
+        float _sceneLoadDelay = 1f;
+        string _sceneName = "FinalLeaderboard";
+        StartCoroutine(WaitAndLoadGameRoutine(_sceneLoadDelay, _sceneName));
+    }
+
+    #endregion
+    #region Settings Canvas
     public override void OnSettingsClickBack() // Settings > Menu
     {
         /*&& UI_Menu_Canvas > Settings_Panels > Panel_Settings > Back_Button */
@@ -116,7 +133,7 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
         }
     }
 
-    public void OnClickBackMenu()
+    public void OnClickBackMenu() // Settings > Menu
     {
         /*UI_Start_Menu_Canvas > Settings_Panels > Panel_Settings > Back_Button */
         audioManager.PlayClickSound();
@@ -125,33 +142,5 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     }
     #endregion
 
-    public void OnQuitToRatingButtonClick()
-    {
-        Time.timeScale = 1;
-        float _sceneLoadDelay = 1f;
-        string _sceneName = "FinalLeaderboard";
-        StartCoroutine(LoadGameRoutine(_sceneLoadDelay, _sceneName));
-    }
-
-    IEnumerator LoadGameRoutine(float _delay, int _scene)
-    {
-        yield return new WaitForSeconds(_delay);
-
-        SceneManager.LoadScene(_scene);
-    }
-
-    IEnumerator LoadGameRoutine(float _delay, string _sceneName)
-    {
-        yield return new WaitForSeconds(_delay);
-
-        SceneManager.LoadScene(_sceneName);
-    }
-
-    public void OnClickFinishGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
-    {
-        audioManager.PlayClickSound();
-        SceneManager.LoadScene("FinalLeaderboard");
-        HighScoreManager.Instance.SavePlayerData();
-    }
-
+  
 }

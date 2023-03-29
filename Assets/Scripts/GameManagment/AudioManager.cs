@@ -123,5 +123,17 @@ public class AudioManager : AudioManagerBase
 
     #endregion
 
+    #region WinLose
+    public void PlayLoose()
+    {
+        PlayAudioClip(backgroundMusic, loseSound);
+    }
+
+    public void PlayWin()
+    {
+        PlayAudioClip(backgroundMusic, winSound);
+    }
+
+    #endregion
 
 }

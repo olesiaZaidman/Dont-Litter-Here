@@ -19,6 +19,12 @@ public class HighScoreManager : MonoBehaviour
         set { _currentScore = value; }
     }
 
+    public HighScoreManager()
+    /*Constructor is called before any Unity's Initialization Functions*/
+    {
+        Instance = this;
+    }
+
     void Awake()
     {
         if (Instance != null)
@@ -26,8 +32,6 @@ public class HighScoreManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        Instance = this;
         DontDestroyOnLoad(gameObject);
         LoadPlayerData();
     }
@@ -61,6 +65,7 @@ public class HighScoreManager : MonoBehaviour
         {
             NewBestPlayerNameSaved(currentPlayerName);//to acces static variable put the class!
             NewBestScoreSaved(_score);
+            GameOverHandler.isNewRecord = true;
         }
     }
     #endregion

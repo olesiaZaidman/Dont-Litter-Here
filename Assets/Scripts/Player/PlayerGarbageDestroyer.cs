@@ -5,12 +5,11 @@ using UnityEngine;
 public class PlayerGarbageDestroyer : GarbageDestroyer
 {
     AudioManager audioManager;
-    UIManager uiManager;
+
     void Start()
     {
      //   playerGoldScanner = FindObjectOfType<GoldScanner>();
         audioManager = FindObjectOfType<AudioManager>();
-        uiManager = FindObjectOfType<UIManager>();
     }
     void OnTriggerStay(Collider other) 
     {
@@ -21,10 +20,10 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
     {
         if (other.gameObject.CompareTag("Garbage"))
         {
-            if (!UIManager.isGarbageMessage)
+            if (!GameInputInstructions.isGarbageMessage)
             {
-                UIManager.isGarbageMessage = true;
-                uiManager.ShowGarbageMessage();
+                GameInputInstructions.isGarbageMessage = true;
+                GameInputInstructions.Instance.ShowGarbageMessage();
             }
         }
         DestroyGarbageOnCleaningAnimationState(other);
