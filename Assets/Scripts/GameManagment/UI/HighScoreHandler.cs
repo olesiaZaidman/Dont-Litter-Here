@@ -45,16 +45,16 @@ public class HighScoreHandler : MonoBehaviour
             }
         }
     }
+    //NOT USING CURRENTLY:
+    //public static HighScoreElement GetTopPlayer()
+    //{
+    //    if (highScoresList != null && highScoresList.Count > 0)
+    //    {
+    //        Debug.Log(highScoresList[0].playerName);
+    //        return highScoresList[0];
+    //    }
+    //    else return null;
+    //    //new HighScoreElement("", 0);
 
-    public static HighScoreElement GetTopPlayer()
-    {
-        if (highScoresList != null && highScoresList.Count > 0)
-        {
-            Debug.Log(highScoresList[0].playerName);
-            return highScoresList[0];
-        }
-        else return null;
-        //new HighScoreElement("", 0);
-
-    }
+    //}
 }

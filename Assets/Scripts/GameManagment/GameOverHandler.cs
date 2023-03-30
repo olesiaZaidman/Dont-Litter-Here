@@ -51,7 +51,7 @@ public class GameOverHandler : MonoBehaviour
             isGameFinished = true;
             HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
             /*AddHighScoreIfPossiable Adds the data 'name-score' to the highScoresList*/
-            UIGameStatsManager.Instance.ShowGameOverText(GameOverHandler.isGameOver);
+            UIGameStatsManager.Instance.ShowGameOverText(isGameOver);
             StartCoroutine(WaitAndLoadGameRoutine(4f, "FinalLeaderboard"));
             if (audioManager != null)
             {

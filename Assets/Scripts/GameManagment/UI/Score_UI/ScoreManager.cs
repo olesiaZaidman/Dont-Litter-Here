@@ -66,7 +66,9 @@ public class ScoreManager : MonoBehaviour
 
     #region MoneyScore
     public float GetMoneyPoints()
-    { return HighScoreManager.Instance.CurrentScore; }
+    { 
+        return HighScoreManager.Instance.CurrentScore; 
+    }
 
  
     public void AddMoneyPoint(int _point)

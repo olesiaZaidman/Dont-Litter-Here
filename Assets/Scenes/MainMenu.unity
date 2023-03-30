@@ -4378,8 +4378,9 @@ GameObject:
   - component: {fileID: 1780332234}
   - component: {fileID: 1780332233}
   - component: {fileID: 1780332232}
+  - component: {fileID: 1780332235}
   m_Layer: 0
-  m_Name: EnterNameInputField (TMP)
+  m_Name: EnterNameInputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4473,7 +4474,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1780332235}
+        m_TargetAssemblyTypeName: ClearInputPlaceholder, Assembly-CSharp
+        m_MethodName: ClearPlaceholder
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -4489,11 +4502,11 @@ MonoBehaviour:
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_CaretColor: {r: 0.13318205, g: 1, b: 0, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
   m_Text: 
-  m_CaretBlinkRate: 0.85
+  m_CaretBlinkRate: 0.94
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_RichText: 1
@@ -4542,6 +4555,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780332230}
   m_CullTransparentMesh: 1
+--- !u!114 &1780332235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780332230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e4d6a671d83ea4ebda3e6524658629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1781210329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4758,8 +4783,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1859120388}
-  - component: {fileID: 1859120387}
   - component: {fileID: 1859120386}
+  - component: {fileID: 1859120389}
   m_Layer: 0
   m_Name: Part_1_InputHandler
   m_TagString: Untagged
@@ -4782,19 +4807,6 @@ MonoBehaviour:
   inputField:
     playerName: 
     score: 0
---- !u!114 &1859120387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859120385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2f68d47b3b642545b7f0b9ec66ff18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 1421942498}
 --- !u!4 &1859120388
 Transform:
   m_ObjectHideFlags: 0
@@ -4810,6 +4822,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1859120389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859120385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f68d47b3b642545b7f0b9ec66ff18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 1483332377}
 --- !u!1 &1864781701
 GameObject:
   m_ObjectHideFlags: 0
@@ -7618,7 +7643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3203723897207732518
 RectTransform:
   m_ObjectHideFlags: 0
