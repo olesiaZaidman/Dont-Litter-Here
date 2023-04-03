@@ -13,9 +13,7 @@ public class LeaderboardUI : MonoBehaviour
 
     void CreateNewRowOfPlayerScoreRating()
     {
-        var scores = PlayerDataHandler.playersListInOrder.ToArray();
-        // var scores = PlayerDataHandler.playersListInOrder.ToArray(); //playersEntriesList or playersListInOrder
-
+        var scores = PlayerDataHandler.playersEntriesList.ToArray();
 
         int numberOfResults = Mathf.Clamp(scores.Length, 0, 5); //max we can have 5
 
@@ -41,13 +39,10 @@ public class LeaderboardUI : MonoBehaviour
                     rankString = rank.ToString() + "th";
                     break;
             }
-            //  int playerScore = scores[i].score;          //for Test: Random.Range(0,100);
-            //  string playerName = scores[i].playerName; //for Test: "--";
-            row.rankText.text = rankString;            //row.rankText.text = (i + 1).ToString();
-            row.nameText.text = scores[i].playerName;  //  row.nameText.text = scores[i].playerName.ToString();
-            row.scoreText.text = scores[i].score.ToString();     //   row.scoreText.text = scores[i].score.ToString();
 
-            // _rowEntries.Add(row);
+            row.rankText.text = rankString;            
+            row.nameText.text = scores[i].playerName; 
+            row.scoreText.text = scores[i].score.ToString();    
         }
     }
 }

@@ -32,22 +32,9 @@ public class GameOverHandler : MonoBehaviour
         // ResetMoneyPoints();
     }
 
-     void Update()
+    void Update()
     {
 
-        //if (GameOverHandler.isGameOver)
-        //{
-        //    uiManager.ShowGameOverText(GameOverHandler.isGameOver);
-        //    GameOverHandler.Instance.GameOver();
-        //}
-
-        //if ((Input.GetKey(KeyCode.Space)))
-        //{
-        //    uiManager.StopCoroutine(uiManager.ShowSalaryTextRoutine());
-        //    uiManager.salaryTextPanel.SetActive(false);
-        //}
-        //  UpdateAndShowStartNavigationMessages();
-       
     }
 
     public void ResetMoneyPoints()
@@ -65,9 +52,6 @@ public class GameOverHandler : MonoBehaviour
             isGameFinished = true;
 
             PlayerDataHandler.SaveDataEntryToTheList();
-
-         //   HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(PlayerDataHandler.currentPlayerName, PlayerDataHandler.CurrentScore));
-            /*AddHighScoreIfPossiable Adds the data 'name-score' to the highScoresList*/
             UIGameStatsManager.Instance.ShowGameOverText(isGameOver);
             StartCoroutine(WaitAndLoadGameRoutine(4f, "FinalLeaderboard"));
             if (audioManager != null)
@@ -85,9 +69,7 @@ public class GameOverHandler : MonoBehaviour
         {
 
             Debug.Log("NewRecord");
-            isRecordUpdated = true; 
-         //   HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(PlayerDataHandler.currentPlayerName, PlayerDataHandler.CurrentScore));
-            /*AddHighScoreIfPossiable Adds the data 'name-score' to the highScoresList*/
+            isRecordUpdated = true;
 
             if (audioManager != null)
             {
