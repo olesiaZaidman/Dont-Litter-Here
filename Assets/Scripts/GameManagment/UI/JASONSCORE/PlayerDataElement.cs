@@ -1,6 +1,6 @@
 [System.Serializable]
 
-public class PlayerDataElement 
+public class PlayerDataElement //: IComparable
 {
     public string playerName;
     public int score;
@@ -11,4 +11,5 @@ public class PlayerDataElement
         this.playerName = _name;
         this.score = _score;
     }
+
 }

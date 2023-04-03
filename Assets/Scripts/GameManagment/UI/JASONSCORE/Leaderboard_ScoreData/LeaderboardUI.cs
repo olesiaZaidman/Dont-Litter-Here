@@ -13,7 +13,9 @@ public class LeaderboardUI : MonoBehaviour
 
     void CreateNewRowOfPlayerScoreRating()
     {
-        var scores = PlayerDataHandler.playersEntriesList.ToArray();
+        var scores = PlayerDataHandler.playersListInOrder.ToArray();
+        // var scores = PlayerDataHandler.playersListInOrder.ToArray(); //playersEntriesList or playersListInOrder
+
 
         int numberOfResults = Mathf.Clamp(scores.Length, 0, 5); //max we can have 5
 

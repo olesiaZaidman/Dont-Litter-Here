@@ -2,41 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 public class PlayerDataHandler : MonoBehaviour
 {
-  //  public static PlayerDataHandler Instance;
     public static string currentPlayerName;
     public static Color currentPlayerColor;
     public static int _currentScore;
 
     public static List<PlayerDataElement> playersEntriesList = new List<PlayerDataElement>();
-    static string filename = "dontLitterHerePlayersEntries.json";
-    /* C:/Users/Olesia/AppData/LocalLow/olesiaZaidman/Don't Litter Here!/dontLitterHerePlayersEntries.json*/
-    
-    static int maxLeaderboardEntries = 5;
-    //public PlayerDataHandler()
-    //{
-    //    //Instance = this;
-    //}
+    public static List<PlayerDataElement> playersListInOrder = new List<PlayerDataElement>();
 
+    static string filename = "dontLitterHerePlayersEntries.json";
+
+    /* C:/Users/Olesia/AppData/LocalLow/olesiaZaidman/Don't Litter Here!/dontLitterHerePlayersEntries.json*/
+
+    static int maxLeaderboardEntries = 5;
+  
     public static int CurrentScore //used to be moneyScore
     {
         get { return _currentScore; }
         set { _currentScore = value; }
     }
-    void Awake()
-    {
-        //if (Instance != null)
-        //{
-        //    Destroy(gameObject);
-        //    return;
-        //}
-        //DontDestroyOnLoad(gameObject);
-    }
 
     void Start()
     {
-           LoadData();
+        LoadData();
+        SortList();
     }
 
     #region PlayerName
@@ -73,10 +64,25 @@ public class PlayerDataHandler : MonoBehaviour
     public static void SaveDataEntryToTheList()
     {
        playersEntriesList.Add(new PlayerDataElement(currentPlayerName, CurrentScore));
-        Debug.Log("Current entry Added to the list. PlayerName: " + currentPlayerName + " CurrentScore: " + CurrentScore);
-        SaveData();
+       SortList();
+
+        // playersEntriesList.Sort(PlayerDataHandler.sorter);
+
+        // playersEntriesList.Sort();
+
+        /*  public void Sort(int index, int count, IComparer<T> comparer);
+        public void Sort();
+        public void Sort(IComparer<T> comparer);*/
+
+       Debug.Log("Current entry Added to the list. PlayerName: " + currentPlayerName + " CurrentScore: " + CurrentScore);
+       SaveData();
     }
 
+    public static void SortList()
+    {
+        playersListInOrder = playersEntriesList.OrderByDescending(x => x.score).ToList();
+        Debug.Log("List is sorted. playersListInOrder[0]:" + "  Name" + playersListInOrder[0].playerName + "  Score" + playersListInOrder[0].score+ "  Name"+ playersListInOrder[1].playerName + "  playersListInOrder[1]:" + playersListInOrder[1].score);
+    }
     public static void AddHighScoreIfPossiable(PlayerDataElement element)
     {
         //for (int i = 0; i < maxLeaderboardEntries; i++)
