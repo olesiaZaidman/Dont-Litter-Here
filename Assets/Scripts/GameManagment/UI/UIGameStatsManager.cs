@@ -33,7 +33,7 @@ public class UIGameStatsManager : MonoBehaviour
 
     private void Start()
     {
-        SetScoreTextUI(HighScoreManager.Instance.CurrentScore);
+        SetScoreTextUI(PlayerDataHandler.CurrentScore);
 
     //    StartCoroutine(ShowStartNavigationRoutine("Press [W] or [S] or arrows to move"));
     }
@@ -42,21 +42,25 @@ public class UIGameStatsManager : MonoBehaviour
 
     void Update()
     {
-        ChangeTextColorIfNeeded(scoreText, GameOverHandler.isNewRecord);
+        //ChangeTextColorIfNeeded(temperatureText,  colorPalette.GetRed(), colorPalette.GetWhite(), GameOverHandler.isNewRecord); temperatureText
+        ChangeTextColorIfNeeded(scoreText, colorPalette.GetYellow(), colorPalette.GetWhite(), GameOverHandler.isNewRecord);
+
+        if (GameOverHandler.isNewRecord)
+        {
+            GameOverHandler.Instance.NewRecord();
+        }
 
         if (GameOverHandler.isGameOver)
         {
-            ShowGameOverText(GameOverHandler.isGameOver);
-            HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
-
+           ShowGameOverText(GameOverHandler.isGameOver);
+           GameOverHandler.Instance.GameOver();
         }
 
         if ((Input.GetKey(KeyCode.Space)))
         {
-            StopCoroutine(ShowSalaryTextRoutine());
-            salaryTextPanel.SetActive(false);
+           StopCoroutine(ShowSalaryTextRoutine());
+           salaryTextPanel.SetActive(false);
         }
-        //  UpdateAndShowStartNavigationMessages();
     }
 
 
@@ -76,15 +80,15 @@ public class UIGameStatsManager : MonoBehaviour
         scoreText.SetText(_moneyPoints.ToString());//ToString("00000")
     }
 
-    public void ChangeTextColorIfNeeded(TextMeshProUGUI _text, bool _isChange)
+    public void ChangeTextColorIfNeeded(TextMeshProUGUI _text, Color _colorWhenChange, Color _defaultColor, bool _isChange)
     {
         if (_isChange)
         {
-            colorPalette.ChangeTextColour(_text, colorPalette.GetYellow());
+            colorPalette.ChangeTextColour(_text, _colorWhenChange);
         }
         else if (!_isChange)
         {
-            colorPalette.ChangeTextColour(_text, colorPalette.GetWhite());
+            colorPalette.ChangeTextColour(_text, _defaultColor);
         }           
     }
 

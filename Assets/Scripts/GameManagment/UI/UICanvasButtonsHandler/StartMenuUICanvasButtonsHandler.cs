@@ -28,7 +28,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
     [Header("Submenu Canvases")]
     [SerializeField] protected GameObject submenuPanelCanvas;
     [SerializeField] protected GameObject submenuSettingsCanvas;
-    [SerializeField] protected GameObject submenuDataPersistence;
+    [SerializeField] GameObject submenuDataPersistence;
 
     //[SerializeField] TextMeshProUGUI[] buttonTexts;  OR List<TextMeshProUGUI> buttonTexts = new List<TextMeshProUGUI>();
     bool isClicked = false;
@@ -175,7 +175,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
     public void OnExitButtonClick()
     {
         SceneManager.LoadScene("FinalLeaderboard");
-        HighScoreManager.Instance.SavePlayerData();
+        PlayerDataHandler.SaveDataEntryToTheList();
     }
     #endregion
 
@@ -259,15 +259,16 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
 
     #region DataPersistent
     public void OnClickSavePlayerDetails()
-    /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
+    /*UI_Start_Menu_Canvas > 3_Panel_DataPersistent_NameColorPicker >  Start_Button */
     {
-        InputEntriesHandler.AddEntryToTheList();
         if (inputNameSaver != null)
         {
-            HighScoreManager.Instance.CurentPlayerNameSelected(inputNameSaver.GetInputPlayerName());
+            PlayerDataHandler.CurentPlayerNameSelected(inputNameSaver.GetInputPlayerName());
             /*GetInputPlayerName: gets playerName from inputField.text (playerName=inputField.text)*/
             /* CurentPlayerNameSelected sets this name from input to currentPlayerName (currentPlayerName = _name)*/
         }
+        GameOverHandler.Instance.ResetMoneyPoints();
+      //  InputEntriesHandler.AddEntryToTheList();
 
         //TO DO: should CurentPlayerColorSelected be triggered in OnClickSavePlayerDetails in UIStartMenu?
         //instead to be in  SetSelectedColor  in ColorHandler?

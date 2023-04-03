@@ -8,7 +8,7 @@ public class TShirtColor : MonoBehaviour
 
     void Start()
     {
-        tshirtMaterial.color = HighScoreManager.currentPlayerColor;
+        tshirtMaterial.color = PlayerDataHandler.currentPlayerColor;
     }
     void Update()
     {

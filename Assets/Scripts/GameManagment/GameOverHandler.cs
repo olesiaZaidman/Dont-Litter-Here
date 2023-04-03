@@ -18,7 +18,7 @@ public class GameOverHandler : MonoBehaviour
 
     public static GameOverHandler Instance;
     AudioManager audioManager;
-
+    UIGameStatsManager uiManager;
     private void Awake()
     {
         isNewRecord = false;
@@ -28,28 +28,45 @@ public class GameOverHandler : MonoBehaviour
         isGameOver = false;
         Instance = this;
         audioManager = FindObjectOfType<AudioManager>();
-        ResetMoneyPoints();
+        uiManager = FindObjectOfType<UIGameStatsManager>();
+        // ResetMoneyPoints();
     }
 
      void Update()
     {
-        GameOver();
-        NewRecord();
+
+        //if (GameOverHandler.isGameOver)
+        //{
+        //    uiManager.ShowGameOverText(GameOverHandler.isGameOver);
+        //    GameOverHandler.Instance.GameOver();
+        //}
+
+        //if ((Input.GetKey(KeyCode.Space)))
+        //{
+        //    uiManager.StopCoroutine(uiManager.ShowSalaryTextRoutine());
+        //    uiManager.salaryTextPanel.SetActive(false);
+        //}
+        //  UpdateAndShowStartNavigationMessages();
+       
     }
 
     public void ResetMoneyPoints()
     {
         Debug.Log("CurrentScore is reset to 0");
-        HighScoreManager.Instance.CurrentScore = 0;// moneyScore = 0;
+        PlayerDataHandler.CurrentScore = 0;// moneyScore = 0;
     }
 
 
-    public void GameOver() //DeathZone calls this method
+    public void GameOver() //UIGameStatsManager calls this method in  Update()
     {
         if (isGameOver && !isGameFinished)
         {
+            Debug.Log("GameOver");
             isGameFinished = true;
-            HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
+
+            PlayerDataHandler.SaveDataEntryToTheList();
+
+         //   HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(PlayerDataHandler.currentPlayerName, PlayerDataHandler.CurrentScore));
             /*AddHighScoreIfPossiable Adds the data 'name-score' to the highScoresList*/
             UIGameStatsManager.Instance.ShowGameOverText(isGameOver);
             StartCoroutine(WaitAndLoadGameRoutine(4f, "FinalLeaderboard"));
@@ -61,12 +78,15 @@ public class GameOverHandler : MonoBehaviour
         }
     }
 
-    public void NewRecord() 
+    public void NewRecord()  //UIGameStatsManager calls this method in  Update()
     {
+
         if (isNewRecord & !isRecordUpdated)
         {
+
+            Debug.Log("NewRecord");
             isRecordUpdated = true; 
-            HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(HighScoreManager.currentPlayerName, HighScoreManager.Instance.CurrentScore));
+         //   HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(PlayerDataHandler.currentPlayerName, PlayerDataHandler.CurrentScore));
             /*AddHighScoreIfPossiable Adds the data 'name-score' to the highScoresList*/
 
             if (audioManager != null)

@@ -75,6 +75,11 @@ public class ColorCollection : MonoBehaviour
         return whiteColor;
     }
 
+    public Color GetRed()
+    {
+        return redRating;
+    }
+
     public Color GetTansparentGrey()
     {
         return transparentGrey;

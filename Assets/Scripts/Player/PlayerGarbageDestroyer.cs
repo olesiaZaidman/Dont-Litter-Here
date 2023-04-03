@@ -56,7 +56,7 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
             {
                 
                 audioManager.PlayGulp();
-                ScoreManager.Instance.AddMoneyPoint(Loot.points); //Add Money Points
+                ScoreManager.Instance.AddMoneyPoints(Loot.points); //Add Money Points
                 // audioManager.LootFoundBeepSFX();
                // playerGoldScanner.isTargetFound = false;
             }

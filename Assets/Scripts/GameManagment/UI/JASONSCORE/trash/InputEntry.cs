@@ -9,8 +9,7 @@ public class InputEntry
     //constructor:
     public InputEntry(string _name, int _score)
     {
-        playerName = _name;
-        //this.playerName = _name;
+        this.playerName = _name;
         this.score = _score;
     }
 }

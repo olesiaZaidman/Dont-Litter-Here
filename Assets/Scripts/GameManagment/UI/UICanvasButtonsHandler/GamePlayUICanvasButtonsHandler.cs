@@ -14,7 +14,7 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
 
     [Header("Game Stats UI_BeachRating_Fatigue_etc")]
     [SerializeField] GameObject uiGameStats;
-
+    [SerializeField] GameObject areYouSure;
     public static bool isMenuOpen = false;
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     {
         isMenuOpen = false;
         uiGameStats.SetActive(true);
+        areYouSure.SetActive(false);
         mainMenu.SetActive(false);
         submenuPanelCanvas.SetActive(false);
         submenuSettingsCanvas.SetActive(false);
@@ -107,8 +108,24 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
         Time.timeScale = 1;
         audioManager.PlayClickSound();
         SceneManager.LoadScene("FinalLeaderboard");
-        HighScoreManager.Instance.SavePlayerData();
+        PlayerDataHandler.SaveDataEntryToTheList();
     }
+
+    public void OnClickQuitSure()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        audioManager.PlayClickSound();
+        areYouSure.SetActive(true);
+        submenuPanelCanvas.SetActive(false);
+    }
+
+
+    public void OnClickNotSureBAckToGame()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        audioManager.PlayClickSound();
+        areYouSure.SetActive(false);
+        submenuPanelCanvas.SetActive(true);
+    }
+
 
     public void OnQuitToRatingButtonClick()
     {

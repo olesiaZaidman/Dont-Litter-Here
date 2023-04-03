@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreUI : MonoBehaviour
+public class LeaderboardUI : MonoBehaviour
 {
-
     public GridRowsUi rowUI;
-  //  public ScoreHandler scoreHAndler;
+
     void Start()
     {
         CreateNewRowOfPlayerScoreRating();
@@ -14,7 +13,7 @@ public class ScoreUI : MonoBehaviour
 
     void CreateNewRowOfPlayerScoreRating()
     {
-        var scores = HighScoreHandler.highScoresList.ToArray();
+        var scores = PlayerDataHandler.playersEntriesList.ToArray();
 
         int numberOfResults = Mathf.Clamp(scores.Length, 0, 5); //max we can have 5
 

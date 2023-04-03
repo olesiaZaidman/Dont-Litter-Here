@@ -10,22 +10,12 @@ public class InputUINameSaver : MonoBehaviour
 {
 
     [Header("Input")]
-   // private TMP_InputField inputField;
-  [SerializeField] TextMeshProUGUI inputField;
-    //private void Start()
-    //{
-    //    inputField = GetComponent<TMP_InputField>();
-    //    inputField.text = "";
-    //}
+    [SerializeField] TextMeshProUGUI inputField;
 
     public string GetInputPlayerName()
     {
+        Debug.Log("GetInputPlayerName");
         string playerName = inputField.text;
         return playerName;
     }
-
-    //public void OnSelect(PointerEventData eventData)
-    //{
-    //    inputField.placeholder.GetComponent<TextMeshProUGUI>().text = "";
-    //}
 }

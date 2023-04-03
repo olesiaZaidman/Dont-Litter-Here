@@ -11,25 +11,33 @@ public class UIBestScore : MonoBehaviour
  
     [SerializeField] TextMeshProUGUI yourScoreText;
 
-    private void Start()
+    void Start()
     {
         // ShowBestPlayerScoreUIInfo();
         ShowYourScoreUIInfo();
     }
     public void DisplayScore(int _score)
     {
-        yourScoreText.text = _score.ToString();
+        if (yourScoreText != null)
+        {
+            yourScoreText.text = _score.ToString();
+        }
+        else Debug.Log("yourScoreText is null");
     }
     public void ShowYourScoreUIInfo()
     {
-        if (HighScoreManager.Instance != null)
-        {
-                DisplayScore(HighScoreManager.Instance.CurrentScore);
-        }
-        else
-        {
-            DisplayScore(0);
-        }
+        Debug.Log("UIBestScore - ShowYourScoreUIInfo");
+     //   if (PlayerDataHandler.Instance != null)
+       // {
+            DisplayScore(PlayerDataHandler.CurrentScore);
+            Debug.Log("UIBestScore - ShowYourScoreUIInfo - DisplayScore: " + PlayerDataHandler.CurrentScore);
+       // }
+        //else
+        //{
+        //    Debug.Log("No PlayerDataHandler Instance");
+
+        //    DisplayScore(0);
+        //}
     }
 
     //public void ShowBestPlayerScoreUIInfo()

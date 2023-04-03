@@ -33,7 +33,7 @@ public class ColorHandler : MonoBehaviour
     {
         selectedColor = _color;
         playerTShirt.ChangeColor(_color);
-        HighScoreManager.Instance.CurentPlayerColorSelected(selectedColor);
+        PlayerDataHandler.CurentPlayerColorSelected(selectedColor);
         /* CurentPlayerColorSelected sets this color from buttonclick 
          * to currentPlayerColor (currentPlayerColor = _color)*/
 
