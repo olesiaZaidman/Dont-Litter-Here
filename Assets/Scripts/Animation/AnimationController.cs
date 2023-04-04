@@ -21,7 +21,7 @@ public class AnimationController
         PlayAnimationIfNeeded("isWalkingForward", true);
     }
 
-    public void StopWalking()
+    public  void StopWalking()
     {
         PlayAnimationIfNeeded("isWalkingForward", false);
     }

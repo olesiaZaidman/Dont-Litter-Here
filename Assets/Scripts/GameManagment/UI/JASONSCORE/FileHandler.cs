@@ -57,6 +57,12 @@ public static class FileHandler
         //"/randomPlayerScores.json"
     }
 
+
+    /*To use UnityWebRequest to save and load data in JSON format, 
+     * you can modify the WriteFile and ReadFile functions in FileHandler class to use UnityWebRequest 
+     * instead of FileStream and StreamReader. 
+     * Here's how you can modify the code:*/
+
     private static void WriteFile(string path, string content)
     {
         FileStream fileStream = new FileStream(path, FileMode.Create);
@@ -79,6 +85,7 @@ public static class FileHandler
         return "";
     }
 }
+
 
 public static class JsonHelper
 {

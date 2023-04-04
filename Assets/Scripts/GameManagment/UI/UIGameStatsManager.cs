@@ -18,7 +18,7 @@ public class UIGameStatsManager : MonoBehaviour
     [SerializeField] GameObject gameOverTextPanel;
 
     ColorCollection colorPalette;
-
+    TemperatureManager temperatureManager;
     AudioManager audioManager;
     public static UIGameStatsManager Instance;
 
@@ -27,6 +27,7 @@ public class UIGameStatsManager : MonoBehaviour
         Instance = this;
         audioManager = FindObjectOfType<AudioManager>();
         colorPalette = FindObjectOfType<ColorCollection>();
+        temperatureManager = FindObjectOfType<TemperatureManager>();
         salaryTextPanel.SetActive(false);
         gameOverTextPanel.SetActive(GameOverHandler.isGameOver);        
     }
@@ -34,21 +35,19 @@ public class UIGameStatsManager : MonoBehaviour
     private void Start()
     {
         SetScoreTextUI(PlayerDataHandler.CurrentScore);
-
-    //    StartCoroutine(ShowStartNavigationRoutine("Press [W] or [S] or arrows to move"));
     }
 
  
 
     void Update()
     {
-        //ChangeTextColorIfNeeded(temperatureText,  colorPalette.GetRed(), colorPalette.GetWhite(), GameOverHandler.isNewRecord); temperatureText
-        ChangeTextColorIfNeeded(scoreText, colorPalette.GetYellow(), colorPalette.GetWhite(), GameOverHandler.isNewRecord);
+        ChangeTextColorIfNeeded(temperatureText,  colorPalette.GetRed(), colorPalette.GetWhite(), temperatureManager.GetTemperature() > 29);   
+     //   ChangeTextColorIfNeeded(scoreText, colorPalette.GetYellow(), colorPalette.GetWhite(), GameOverHandler.isNewRecord);
 
-        if (GameOverHandler.isNewRecord)
-        {
-            GameOverHandler.Instance.NewRecord();
-        }
+        //if (GameOverHandler.isNewRecord)
+        //{
+        //    GameOverHandler.Instance.NewRecord();
+        //}
 
         if (GameOverHandler.isGameOver)
         {

@@ -46,7 +46,7 @@ public class PlayerDataHandler : MonoBehaviour
 
     static void SaveData()
     {
-     //   Debug.Log("SaveData in PlayerDataHandler");
+        //   Debug.Log("SaveData in PlayerDataHandler");
         FileHandler.SaveToJSON<PlayerDataElement>(playersEntriesList, filename);
     }
 

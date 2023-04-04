@@ -169,7 +169,13 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         isPlayerStanding = false;
         isClicked = false;
+    }
 
+    public void OnClickRestart()  /*UI_Start_Menu_Canvas > Panel_Menu >  Quit_Button */
+    {
+        audioManagerBase.PlayClickSound();
+        GameOverHandler.Instance.ResetMoneyPoints();
+        SceneManager.LoadScene("Game");
     }
 
     public void OnExitButtonClick()

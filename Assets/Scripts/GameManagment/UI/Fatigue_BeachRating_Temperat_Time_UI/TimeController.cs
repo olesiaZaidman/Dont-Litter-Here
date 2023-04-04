@@ -157,10 +157,10 @@ public class TimeController : MonoBehaviour
     }
     private void CreateHeatWave()
     {
-        if (currentTime.TimeOfDay > TimeSpan.FromHours(10) && currentTime.TimeOfDay < TimeSpan.FromHours(12))
+        if (currentTime.TimeOfDay > TimeSpan.FromHours(9) && currentTime.TimeOfDay < TimeSpan.FromHours(12))
         {
-            TimeSpan morningHeat = CalculateTimeDifference(TimeSpan.FromHours(10), TimeSpan.FromHours(12));
-            TimeSpan timeSinceMorning = CalculateTimeDifference(TimeSpan.FromHours(10), currentTime.TimeOfDay);
+            TimeSpan morningHeat = CalculateTimeDifference(TimeSpan.FromHours(9), TimeSpan.FromHours(12));
+            TimeSpan timeSinceMorning = CalculateTimeDifference(TimeSpan.FromHours(9), currentTime.TimeOfDay);
 
             double percentage = timeSinceMorning.TotalMinutes / morningHeat.TotalMinutes;
 

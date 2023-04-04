@@ -8,6 +8,21 @@ public class PlayerAnimationController : AnimationController
     {
        
     }
+    //public void WalkForwardInCertainStyle(bool _isConditionForDifferentWalk)
+    //{
+    //    if (_isConditionForDifferentWalk)
+    //    {
+    //        PlayAnimationIfNeeded("isWalkingTired", true);
+    //    }
+    //    else
+    //    PlayAnimationIfNeeded("isWalkingForward", true);
+    //}
+
+    //public override void StopWalking()
+    //{
+    //    PlayAnimationIfNeeded("isWalkingForward", false);
+    //    PlayAnimationIfNeeded("isWalkingTired", false);
+    //}
 
     public void CleanPickUpIfNeeded(bool _isPlaying)
     {

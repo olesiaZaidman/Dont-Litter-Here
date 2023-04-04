@@ -18,24 +18,25 @@ public class Fatigue : MonoBehaviour
     int temperatureModifier = 1;
     float timeForGraduallFatigueIncreaseIfHot = 150f;
 
-   // [SerializeField] GameObject heatVignette;
+  [SerializeField] GameObject heatVignette;
 
     void SetTemperModifier()
     {
-        if (temperatureManager.GetTemperature() > 20 && temperatureManager.GetTemperature() <= 30)
+        if (temperatureManager.GetTemperature() > 20 && temperatureManager.GetTemperature() <= 29)
         {
-           // heatVignette.SetActive(true);
+            // heatVignette.SetActive(true);
+            heatVignette.SetActive(false);
             temperatureModifier = 2;
         }
 
-        else if (temperatureManager.GetTemperature() > 30)
+        else if (temperatureManager.GetTemperature() > 29)
         {
             temperatureModifier = 3;
-          //  heatVignette.SetActive(true);
+            heatVignette.SetActive(true);
         }
         else
         {
-           // heatVignette.SetActive(false);
+           heatVignette.SetActive(false);
             temperatureModifier = 1;
         }
          

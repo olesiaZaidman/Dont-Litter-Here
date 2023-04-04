@@ -5,7 +5,6 @@ using UnityEngine;
 public class TemperatureManager : MonoBehaviour
 {
     UIGameStatsManager ui;
-   // TimeController timeController;
 
     int temperature;
     float minTemp;
@@ -13,36 +12,17 @@ public class TemperatureManager : MonoBehaviour
     public static bool isNormalTemp = false;
     public static bool isHighTemp = false;
     bool isTempRangeSet = false;
-   // bool isStartTempSet = false;
     void Awake()
     {
         ui = FindObjectOfType<UIGameStatsManager>();
-     //   timeController = FindObjectOfType<TimeController>();
+
     }
     void Start()
     {
         SetRandomStartTemperatureToday();
         ui.SetTemperatureTextUI(temperature);
     }
-    void Update()
-    {
-        //if (timeController != null)
-        //{
-        //    if (timeController.IsEarlyMorning())
-        //    {
-        //        if (!isStartTempSet)
-        //        {
-        //            isStartTempSet = true;
-        //            temperature = SetRandomStartTemperatureToday();
-        //        }
-        //    }
-        //    if (timeController.IsEndOfWorkingDay())
-        //    {
-        //        isStartTempSet = false;
-
-        //    }
-        //}
-    }
+   
     public int GetTemperature()
     {
         return temperature;
@@ -50,7 +30,7 @@ public class TemperatureManager : MonoBehaviour
 
     public int SetRandomStartTemperatureToday()
     {
-        return temperature = Random.Range(15, 20);
+        return temperature = Random.Range(14, 20);
     }
 
     public int GetMaxTemperatureToday()
@@ -63,9 +43,9 @@ public class TemperatureManager : MonoBehaviour
         if (!isTempRangeSet)
         {
             isTempRangeSet = true;
-            minTemp = Random.Range(15, 20);
+            minTemp = Random.Range(temperature, 20);
             maxTemp = Random.Range(21, 40);
-          //  Debug.Log("max Temperature toady: " + maxTemp);
+            Debug.Log("max Temperature today: " + maxTemp);
         }
 
         //Debug.Log("Increasing Temp");
@@ -80,7 +60,7 @@ public class TemperatureManager : MonoBehaviour
         if (isTempRangeSet)
         {
             isTempRangeSet = false;
-            minTemp = Random.Range(15, 20);
+            minTemp = Random.Range(14, 20);
         }
         float t = Mathf.Lerp(maxTemp, minTemp, deltaTime);
         temperature = (int)t;

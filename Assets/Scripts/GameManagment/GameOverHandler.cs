@@ -18,7 +18,7 @@ public class GameOverHandler : MonoBehaviour
 
     public static GameOverHandler Instance;
     AudioManager audioManager;
-    UIGameStatsManager uiManager;
+ //   UIGameStatsManager uiManager;
     private void Awake()
     {
         isNewRecord = false;
@@ -28,14 +28,10 @@ public class GameOverHandler : MonoBehaviour
         isGameOver = false;
         Instance = this;
         audioManager = FindObjectOfType<AudioManager>();
-        uiManager = FindObjectOfType<UIGameStatsManager>();
+      //  uiManager = FindObjectOfType<UIGameStatsManager>();
         // ResetMoneyPoints();
     }
 
-    void Update()
-    {
-
-    }
 
     public void ResetMoneyPoints()
     {
@@ -62,22 +58,22 @@ public class GameOverHandler : MonoBehaviour
         }
     }
 
-    public void NewRecord()  //UIGameStatsManager calls this method in  Update()
-    {
+    //public void NewRecord()  //UIGameStatsManager calls this method in  Update()
+    //{
 
-        if (isNewRecord & !isRecordUpdated)
-        {
+    //    if (isNewRecord & !isRecordUpdated)
+    //    {
 
-            Debug.Log("NewRecord");
-            isRecordUpdated = true;
+    //        Debug.Log("NewRecord");
+    //        isRecordUpdated = true;
 
-            if (audioManager != null)
-            {
-                audioManager.PlayWin();
-            }
-            StartCoroutine(NewRecordCooldDownRoutine(3f));
-        }
-    }
+    //        if (audioManager != null)
+    //        {
+    //            audioManager.PlayWin();
+    //        }
+    //        StartCoroutine(NewRecordCooldDownRoutine(3f));
+    //    }
+    //}
 
     IEnumerator NewRecordCooldDownRoutine(float _delay)
     {

@@ -19,6 +19,7 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     private void Awake()
     {
         audioManager = FindObjectOfType<AudioManager>();
+
         UIStartSetUp();
     }
 
@@ -35,6 +36,7 @@ public class GamePlayUICanvasButtonsHandler : StartMenuUICanvasButtonsHandler
     void Update()
     {
         OpenMenuOnInput();
+
     }
 
     #region User_UI

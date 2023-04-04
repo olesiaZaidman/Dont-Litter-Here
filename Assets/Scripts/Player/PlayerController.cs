@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     float runningSpeed = 4.5f;
     float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
     float verticalInput;
-
+  //  TemperatureManager temperatureManager;
     Animator myAnimator;
     PlayerAnimationController myAnimationController;
 
@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+
+       // temperatureManager = FindObjectOfType<TemperatureManager>();
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
         audioManager = FindObjectOfType<AudioManager>();
@@ -43,6 +45,12 @@ public class PlayerController : MonoBehaviour
             audioManager.PlaySighOnce(70f);
             return;
         }
+
+        //if (GameOverHandler.isNewRecord)
+        //{
+        //    myAnimationController.WinGameNewRecord();
+        //    return;
+        //}
 
         if (IsCleaningState || IsTiredState) //|| IsResting
         { return; }
@@ -156,6 +164,22 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Move
+
+    /*    TemperatureManager temperatureManager;
+    temperatureManager = FindObjectOfType<TemperatureManager>();
+    temperatureManager.GetTemperature() > 29
+     public void ChangeWalkAnimationIfNeeded(bool _isChange)
+    {
+        if (_isChange)
+        {
+            //oneAnimation
+        }
+        else if (!_isChange)
+        {
+             //anotherAnimation
+        }           
+    }
+     */
     void MoveForwardBackward()
     {
         float customEpsilon = 0.001f;
@@ -168,7 +192,7 @@ public class PlayerController : MonoBehaviour
             myAnimationController.WalkForward();
             myAnimator.SetFloat("moveSpeed", walkingSpeed);              
 
-            if (Input.GetKey(KeyCode.LeftShift) && GoldScanner.isWorking && Fatigue.Instance.GetFatiguePoints()< Fatigue.Instance.MaxEnergyLevelPoints)
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) && GoldScanner.isWorking && Fatigue.Instance.GetFatiguePoints()< Fatigue.Instance.MaxEnergyLevelPoints)
             {
                 myAnimationController.WalkForward();
                 myAnimator.SetFloat("moveSpeed", runningSpeed); 
