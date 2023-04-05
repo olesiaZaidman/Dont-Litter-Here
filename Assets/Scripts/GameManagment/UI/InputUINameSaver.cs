@@ -14,7 +14,7 @@ public class InputUINameSaver : MonoBehaviour
 
     public string GetInputPlayerName()
     {
-        Debug.Log("GetInputPlayerName");
+      //  Debug.Log("GetInputPlayerName");
         string playerName = inputField.text;
         return playerName;
     }

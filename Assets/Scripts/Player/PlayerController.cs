@@ -67,12 +67,12 @@ public class PlayerController : MonoBehaviour
             if (temperatureManager.GetTemperature() > 29)
             {
                 walkingSpeed = 1f;
-                Debug.Log(walkingSpeed);
+              //  Debug.Log(walkingSpeed);
             }
             else 
             { 
                 walkingSpeed = 2.5f;
-                Debug.Log(walkingSpeed);
+              //  Debug.Log(walkingSpeed);
             }
         }
 

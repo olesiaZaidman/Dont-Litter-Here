@@ -38,8 +38,8 @@ public class SitBehaviour : StateMachineBehaviour
         }
 
         animator.SetFloat("SitAnimation", sitAnimation, 0.3f, Time.deltaTime);
-        Debug.Log("stateInfo.normalizedTime: " + stateInfo.normalizedTime);
-        Debug.Log("stateInfo.length: " + stateInfo.length);
+      //  Debug.Log("stateInfo.normalizedTime: " + stateInfo.normalizedTime);
+     //   Debug.Log("stateInfo.length: " + stateInfo.length);
     }
 
     void ResetDefault() //Animator animator

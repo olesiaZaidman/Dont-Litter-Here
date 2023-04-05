@@ -26,11 +26,11 @@ public class UIBestScore : MonoBehaviour
     }
     public void ShowYourScoreUIInfo()
     {
-        Debug.Log("UIBestScore - ShowYourScoreUIInfo");
+    //    Debug.Log("UIBestScore - ShowYourScoreUIInfo");
      //   if (PlayerDataHandler.Instance != null)
        // {
             DisplayScore(PlayerDataHandler.CurrentScore);
-            Debug.Log("UIBestScore - ShowYourScoreUIInfo - DisplayScore: " + PlayerDataHandler.CurrentScore);
+       //     Debug.Log("UIBestScore - ShowYourScoreUIInfo - DisplayScore: " + PlayerDataHandler.CurrentScore);
        // }
         //else
         //{

@@ -45,7 +45,7 @@ public class TemperatureManager : MonoBehaviour
             isTempRangeSet = true;
             minTemp = Random.Range(temperature, 20);
             maxTemp = Random.Range(21, 40);
-            Debug.Log("max Temperature today: " + maxTemp);
+            //Debug.Log("max Temperature today: " + maxTemp);
         }
 
         //Debug.Log("Increasing Temp");

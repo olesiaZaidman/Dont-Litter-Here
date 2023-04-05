@@ -35,7 +35,7 @@ public class GameOverHandler : MonoBehaviour
 
     public void ResetMoneyPoints()
     {
-        Debug.Log("CurrentScore is reset to 0");
+       // Debug.Log("CurrentScore is reset to 0");
         PlayerDataHandler.CurrentScore = 0;// moneyScore = 0;
     }
 
@@ -44,7 +44,7 @@ public class GameOverHandler : MonoBehaviour
     {
         if (isGameOver && !isGameFinished)
         {
-            Debug.Log("GameOver");
+        //    Debug.Log("GameOver");
             isGameFinished = true;
 
             PlayerDataHandler.SaveDataEntryToTheList();

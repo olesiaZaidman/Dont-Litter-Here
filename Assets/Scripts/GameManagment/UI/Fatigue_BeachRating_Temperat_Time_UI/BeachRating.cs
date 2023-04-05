@@ -81,7 +81,7 @@ public class BeachRating : MonoBehaviour
         if (CleanRatingPoints.Get() <= 0)
         {
             GameOverHandler.isGameOver = true;
-            Debug.Log("isGameOver" + GameOverHandler.isGameOver);
+           // Debug.Log("isGameOver" + GameOverHandler.isGameOver);
         }
 
 

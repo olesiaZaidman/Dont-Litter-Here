@@ -21,7 +21,7 @@ public class LitterRate : MonoBehaviour
             if (walkSitInterface.GetIsSitting())
             {
                 litterRate = Random.Range(1, 5);
-                Debug.Log(gameObject.name + " litterRate - GetIsSitting: " + litterRate);
+           //     Debug.Log(gameObject.name + " litterRate - GetIsSitting: " + litterRate);
               //  return litterRate;
             }
             return litterRate;
@@ -31,7 +31,7 @@ public class LitterRate : MonoBehaviour
             if (sunBathInterface.GetIsSunBathing())
             {
                 litterRate = Random.Range(1, 5);
-                Debug.Log(gameObject.name + " litterRate -GetIsSunBathing: " + litterRate);
+              //  Debug.Log(gameObject.name + " litterRate -GetIsSunBathing: " + litterRate);
               //  return litterRate;
             }
             return litterRate;
@@ -40,7 +40,7 @@ public class LitterRate : MonoBehaviour
         else
         {
             litterRate = Random.Range(10, 20);
-            Debug.Log(gameObject.name + " litterRate: Default Walking" + litterRate);
+          //  Debug.Log(gameObject.name + " litterRate: Default Walking" + litterRate);
             return litterRate;
         }
     }

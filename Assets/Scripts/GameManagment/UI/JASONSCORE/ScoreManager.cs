@@ -85,8 +85,8 @@ public class ScoreManager : MonoBehaviour
 
         PlayerDataHandler.CurrentScore += _point;//  moneyScore += _point;
         ui.SetScoreTextUI(PlayerDataHandler.CurrentScore);// ui.SetScoreTextUI(moneyScore);
-        Debug.Log("Added money points:" + _point);
-        Debug.Log("CurrentScore:" + PlayerDataHandler.CurrentScore);
+    //    Debug.Log("Added money points:" + _point);
+    //    Debug.Log("CurrentScore:" + PlayerDataHandler.CurrentScore);
        // HighScoreHandler.AddHighScoreIfPossiable(new HighScoreElement(PlayerDataHandler.currentPlayerName, PlayerDataHandler.CurrentScore));
       //  BestPlayerDataHandler.Instance.SetHighScoreIfGreater(PlayerDataHandler.CurrentScore);
     }
