@@ -1173,6 +1173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarsFX
       objectReference: {fileID: 0}
+    - target: {fileID: 3277893967854743556, guid: 4438f70c916e9914caf4f0e9eb1124f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8906553083904232651, guid: 4438f70c916e9914caf4f0e9eb1124f7, type: 3}
       propertyPath: m_RootOrder
       value: 11

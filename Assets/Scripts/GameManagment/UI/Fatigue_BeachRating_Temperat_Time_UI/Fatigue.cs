@@ -61,6 +61,11 @@ public class Fatigue : MonoBehaviour
         FatiguePoints.Initialize(OnUpdateFatigue);
       //  heatVignette.SetActive(false);
     }
+
+    void Start()
+    {
+        ZeroDownFatigue();
+    }
     void Update()
     {
         SetTemperModifier();

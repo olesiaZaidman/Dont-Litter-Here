@@ -100,8 +100,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Z) && Fatigue.Instance.GetFatiguePoints() < Fatigue.Instance.MaxEnergyLevelPoints && Fatigue.Instance.GetFatiguePoints() > 0)
         {
             // IsResting = true;
-            float delay = 40f;
-            audioManager.PlaySighOnce(delay);
+         //   float delay = 40f;
+        //    audioManager.PlaySighOnce(delay);
             myAnimationController.SitAndRestIfNeeded(true);
             Fatigue.Instance.GraduallyDecreaseFill(TimeSittingTiredAnimation);
         }
