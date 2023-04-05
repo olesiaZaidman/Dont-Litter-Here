@@ -289,7 +289,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
     public void OnClickCredits() /*UI_Start_Menu_Canvas > Panel_Menu >  Credits_Button*/
     {
         audioManagerBase.PlayClickSound();
-        //   SceneManager.LoadScene("Credits"); 
+         SceneManager.LoadScene("Credits"); 
     }
 
     public virtual void OnClickBackToMainFromCredits()

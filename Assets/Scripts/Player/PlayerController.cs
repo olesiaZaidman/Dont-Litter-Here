@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     float runningSpeed = 4.5f;
     float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
     float verticalInput;
-  //  TemperatureManager temperatureManager;
+    TemperatureManager temperatureManager;
     Animator myAnimator;
     PlayerAnimationController myAnimationController;
 
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
 
-       // temperatureManager = FindObjectOfType<TemperatureManager>();
+        temperatureManager = FindObjectOfType<TemperatureManager>();
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
         audioManager = FindObjectOfType<AudioManager>();
@@ -62,9 +62,18 @@ public class PlayerController : MonoBehaviour
 
      
         if (GoldScanner.isWorking)
-        {
-            walkingSpeed = 2.5f;
+        {           
             myAnimator.runtimeAnimatorController = dayRuntimeAnim as RuntimeAnimatorController;
+            if (temperatureManager.GetTemperature() > 29)
+            {
+                walkingSpeed = 1f;
+                Debug.Log(walkingSpeed);
+            }
+            else 
+            { 
+                walkingSpeed = 2.5f;
+                Debug.Log(walkingSpeed);
+            }
         }
 
         if (GoldScanner.isScanning && !GameOverHandler.isGameOver)

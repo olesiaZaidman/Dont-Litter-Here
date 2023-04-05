@@ -47,10 +47,10 @@ public class ScoreManager : MonoBehaviour
     {
 
         //TEST:
-        if ((Input.GetKey(KeyCode.M)))
-        {
-            AddMoneyPoints(10);
-        }
+        //if ((Input.GetKey(KeyCode.M)))
+        //{
+        //    AddMoneyPoints(10);
+        //}
 
         if (timeController.IsEndOfWorkingDay() && !GameOverHandler.isGameOver)
         {
