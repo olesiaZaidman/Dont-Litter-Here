@@ -53,16 +53,13 @@ public class PlayerGarbageDestroyer : GarbageDestroyer
             }
 
             if (other.gameObject.GetComponent<Loot>())
-            {
-                
+            {              
                 audioManager.PlayGulp();
                 ScoreManager.Instance.AddMoneyPoints(Loot.points); //Add Money Points
                 // audioManager.LootFoundBeepSFX();
                // playerGoldScanner.isTargetFound = false;
             }
-
-            DestroyGarbageOnTriggerStay(other);
-           
+            DestroyGarbageOnTriggerStay(other);           
         }
     }
 }

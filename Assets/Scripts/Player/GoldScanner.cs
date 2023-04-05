@@ -14,7 +14,7 @@ public class GoldScanner : MonoBehaviour
 
     [SerializeField] ParticleSystem rippleFx;
 
-    [SerializeField] GameObject loot;
+    GameObject loot;
     float distanceToLoot = 2f;
 
     void Awake()
@@ -26,6 +26,11 @@ public class GoldScanner : MonoBehaviour
 
     void Update()
     {
+        if (GameOverHandler.isGameOver)
+        {            
+            return;
+        }
+
         DetermineWorkingOsScanningState();
         TurnGoldScannerOn();
 
@@ -93,7 +98,7 @@ public class GoldScanner : MonoBehaviour
             goldScanner.SetActive(false);
         }
 
-        if (isScanning)
+        if (isScanning && !GameOverHandler.isGameOver)
         {
             if (PlayerController.IsCleaningState)
             {

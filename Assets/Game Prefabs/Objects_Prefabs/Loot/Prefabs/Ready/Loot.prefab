@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7512cf40fbd479148ac8703669f4213f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beepAudioSource: {fileID: 3137661059087941087}
 --- !u!82 &3137661059087941087
 AudioSource:
   m_ObjectHideFlags: 0

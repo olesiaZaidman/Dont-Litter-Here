@@ -10,7 +10,7 @@ public class MoveForwardWithAnimationController : MoveForwardBase, IWalkSit
 
     [SerializeField] protected bool isSitting = false;
     [SerializeField] protected bool isWalking = true;
-
+    [SerializeField] protected bool isSwimming = false;
     [SerializeField] protected float timerValue;
     protected float timeToSit;
     protected float timeToWalk;
@@ -35,7 +35,10 @@ public class MoveForwardWithAnimationController : MoveForwardBase, IWalkSit
     {
         return isWalking;
     }
-
+    public bool GetIsSwimming()
+    {
+        return isSwimming;
+    }
 
     public void GetAnimatorControler()
     {
@@ -118,10 +121,12 @@ public class MoveForwardWithAnimationController : MoveForwardBase, IWalkSit
         if (other.gameObject.CompareTag("Sea"))
         {
             myAnimationController.Swim();
+            isSwimming = true;
         }
 
         if (other.gameObject.CompareTag("SeaBeachBorder"))
         {
+            isSwimming = false;
             isWalking = true;
             isSitting = false;
             timerValue = timeToWalk;

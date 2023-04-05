@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
         if (GameOverHandler.isGameOver)
         {
             myAnimationController.LoseGame();
-         //   audioManager.PlaySighOnce(70f);
             return;
         }
 
@@ -49,6 +48,12 @@ public class PlayerController : MonoBehaviour
         //{
         //    myAnimationController.WinGameNewRecord();
         //    return;
+        //}
+
+        //TEST:
+        //if ((Input.GetKey(KeyCode.M)))
+        //{
+        //    GameOverHandler.isGameOver = true;
         //}
 
         if (IsCleaningState || IsTiredState) //|| IsResting

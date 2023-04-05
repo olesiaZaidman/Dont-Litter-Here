@@ -21,7 +21,7 @@ public class KinematicSitting : MonoBehaviour
                 rb.isKinematic = false;
             }
 
-            if (moveController.GetIsSitting())
+            if (moveController.GetIsSitting() || moveController.GetIsSwimming())
             {
                 rb.isKinematic = true;
             }

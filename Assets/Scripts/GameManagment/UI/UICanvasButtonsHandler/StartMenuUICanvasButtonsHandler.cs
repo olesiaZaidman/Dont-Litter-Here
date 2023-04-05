@@ -15,7 +15,6 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
 */
     AudioManagerBase audioManagerBase;
     PlayerBase player;
-    // ColorCollection colorPalette;
 
     [Header("Effects")]
     [SerializeField] GameObject lights;
@@ -30,7 +29,6 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
     [SerializeField] protected GameObject submenuSettingsCanvas;
     [SerializeField] GameObject submenuDataPersistence;
 
-    //[SerializeField] TextMeshProUGUI[] buttonTexts;  OR List<TextMeshProUGUI> buttonTexts = new List<TextMeshProUGUI>();
     bool isClicked = false;
     bool isPlayerStanding = false;
     public static bool isSettingsOpen = false;
@@ -41,14 +39,12 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
 
     private void Awake()
     {
-        //  colorPalette = FindObjectOfType<ColorCollection>();
         player = FindObjectOfType<PlayerBase>();
         audioManagerBase = FindObjectOfType<AudioManagerBase>();
         UIStartSetUp();
+        submenuDataPersistence.SetActive(false);
         inputNameSaver = FindObjectOfType<InputUINameSaver>();
         Time.timeScale = 1;
-        //     CreateListOfButtonTexts();
-        //  ResetColorOfButtonTexts(buttonTexts, colorPalette.GetWhite());
     }
 
 
@@ -67,6 +63,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
                 isSettingsOpen = false;
                 submenuPanelCanvas.SetActive(true);
                 submenuSettingsCanvas.SetActive(false);
+              //  submenuDataPersistence.SetActive(false);
             }
 
             if (isDataNameColorPickerOpen)
@@ -76,6 +73,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
                 audioManagerBase.PlayClickSound();
                 submenuPanelCanvas.SetActive(true);
                 submenuDataPersistence.SetActive(false);
+                // submenuSettingsCanvas.SetActive(false);
                 lights.SetActive(false);
                 playerLight.SetActive(false);
                 signsLight.SetActive(false);
@@ -84,30 +82,6 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         }
     }
 
-    #region Button Texts
-    //void CreateListOfButtonTexts()
-    //{
-    // //   buttonTexts.Add(startButtonText);
-    //    buttonTexts.Add(settingsButtonText);
-    //    buttonTexts.Add(quitButtonText);
-    //    buttonTexts.Add(creditsButtonText);
-    //    buttonTexts.Add(backButtonText);
-    //}
-
-    //void ResetColorOfButtonTexts(List<TextMeshProUGUI> _collection, Color _color)
-    //{
-    //    foreach (var butText in _collection)
-    //    {
-    //        colorPalette.ChangeTextColour(butText, _color);
-    //    }
-    //}
-
-    //void ChangeColorOfButtonText(TextMeshProUGUI _text, Color _color) //colorPalette.GetYellow()
-    //{
-    //    colorPalette.ChangeTextColour(_text, _color);
-    //}
-
-    #endregion
 
     public virtual void UIStartSetUp()
     {
@@ -117,6 +91,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         playerLight.SetActive(false);
         signsLight.SetActive(false);
         mainMenu.SetActive(true);
+
         submenuPanelCanvas.SetActive(true);
         submenuSettingsCanvas.SetActive(false);
     }
@@ -128,12 +103,14 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         /*UI_Start_Menu_Canvas > Panel_Menu > Settings_Button */
         audioManagerBase.PlayClickSound();
 
-        if (!isSettingsOpen)
+        if (!isSettingsOpen && !isDataNameColorPickerOpen)
         {
             //   ChangeColorOfButtonText(settingsButtonText, colorPalette.GetYellow());
             isSettingsOpen = true;
             audioManagerBase.PlayMenuSound();
+
             submenuPanelCanvas.SetActive(false);
+            submenuDataPersistence.SetActive(false);
             submenuSettingsCanvas.SetActive(true);
         }
     }
@@ -188,7 +165,8 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
     #region Data_ColorPickerCanvas
 
     //[GAME STARTS at Level Manager]
-    public void OnClickLoadNameColorPickerCanvas() /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
+    public void OnClickLoadNameColorPickerCanvas() 
+        /*UI_Start_Menu_Canvas > Panel_Menu >  Start_Button */
     {
         //TODO
         //REstart Animation after whole game loop
@@ -196,45 +174,47 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         float _loadDelay;
         isDataNameColorPickerOpen = true;
 
-        if (!isClicked)
+        if (!isSettingsOpen)
         {
-           // VolumeDataBetweenLevels.UpdateSoundData();
-            if (audioManagerBase != null)
+            if (!isClicked)
             {
-                audioManagerBase.PlayClickSound();
-            }
-
-            isClicked = true;
-
-            if (ScoreManager.Instance != null)
-            {
-                GameOverHandler.Instance.ResetMoneyPoints();
-            }
-
-            lights.SetActive(true);
-            signsLight.SetActive(true);
-
-            if (!isPlayerStanding)
-            {
-                _loadDelay = 3f;
-                isPlayerStanding = true;
-
+                // VolumeDataBetweenLevels.UpdateSoundData();
                 if (audioManagerBase != null)
                 {
-                    audioManagerBase.PlaySigh();
+                    audioManagerBase.PlayClickSound();
                 }
 
-                if (player != null)
+                isClicked = true;
+
+                if (ScoreManager.Instance != null)
                 {
-                    player.StandUpAnimation();
+                    GameOverHandler.Instance.ResetMoneyPoints();
                 }
+
+                lights.SetActive(true);
+                signsLight.SetActive(true);
+
+                if (!isPlayerStanding)
+                {
+                    _loadDelay = 3f;
+                    isPlayerStanding = true;
+
+                    if (audioManagerBase != null)
+                    {
+                        audioManagerBase.PlaySigh();
+                    }
+
+                    if (player != null)
+                    {
+                        player.StandUpAnimation();
+                    }
+                }
+                else
+                { _loadDelay = 0.5f; }
+
+                StartCoroutine(WaitAndOpenDataCanvas(_loadDelay));
             }
-            else
-            { _loadDelay = 0.5f; }
-
-            StartCoroutine(WaitAndOpenDataCanvas(_loadDelay));
-        }
-
+        }        
     }
 
     IEnumerator WaitAndOpenDataCanvas(float _delay)
@@ -243,6 +223,7 @@ public class StartMenuUICanvasButtonsHandler : MonoBehaviour
         playerLight.SetActive(true);
         audioManagerBase.PlayMenuSound();
         submenuPanelCanvas.SetActive(false);
+        submenuSettingsCanvas.SetActive(false);
         submenuDataPersistence.SetActive(true);
     }
 

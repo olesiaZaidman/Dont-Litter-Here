@@ -8,11 +8,20 @@ public class Loot : MonoBehaviour
   //  GameObject player;
 
     public static int points;
+    [SerializeField] AudioSource beepAudioSource;
 
     void Start()
     {
         ChildrenSetActive(false);
        // player = GameObject.FindWithTag("Player");
+    }
+
+    private void Update()
+    {
+        if (GameOverHandler.isGameOver)
+        { 
+            beepAudioSource.Stop();
+        }
     }
 
     void ChildrenSetActive(bool _isActive)

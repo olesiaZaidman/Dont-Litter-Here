@@ -2574,50 +2574,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 102816415349592024, guid: 8a03ef992eb36f74aa398f9fa3c237ee, type: 3}
   m_PrefabInstance: {fileID: 1485862841}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &867082849
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 867082851}
-  - component: {fileID: 867082850}
-  m_Layer: 0
-  m_Name: GAME_SETTINGS
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &867082850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867082849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c4223f69435e54e80db168067133c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &867082851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867082849}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &868868362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8241,7 +8197,6 @@ MonoBehaviour:
   goldScanner: {fileID: 1838243307}
   isRippleEffect: 0
   rippleFx: {fileID: 1722763693}
-  loot: {fileID: 0}
 --- !u!1 &563571458540267992
 GameObject:
   m_ObjectHideFlags: 0
@@ -10518,10 +10473,8 @@ MonoBehaviour:
   backgroundAmbientBirdsNoise: {fileID: 3271978386471741721}
   soundEffectsAudio: {fileID: 8375132487360184708}
   sighSounds:
-  - {fileID: 8300000, guid: 4a3db183420d2864984a279cc854542b, type: 3}
   - {fileID: 8300000, guid: 8f5fcb9fb70950549a1dcf0df6f55bc4, type: 3}
   - {fileID: 8300000, guid: fab42a09570541d49a557a985a08f4af, type: 3}
-  - {fileID: 8300000, guid: 215f2c3261dc438438514063b933cb2e, type: 3}
   - {fileID: 8300000, guid: 85ebb934fa69b944c8432c1976754272, type: 3}
   wavesSound: {fileID: 8300000, guid: 4ca64e0495cf4504faf91484ccc9f57e, type: 3}
   clickSound: {fileID: 8300000, guid: c5004b812f6fcce418e54a1cb39916e0, type: 3}
