@@ -45,17 +45,17 @@ public class GameInputInstructions : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ShowStartNavigationRoutine());
+     //   StartCoroutine(ShowStartNavigationRoutine());
     }
     void Update()
     {
         //    if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)
         //|| Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            startText.SetActive(false);
-            StopCoroutine(ShowStartNavigationRoutine());
-        }
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    startText.SetActive(false);
+        //    StopCoroutine(ShowStartNavigationRoutine());
+        //}
 
         if (Input.GetKey(KeyCode.Space))
         {

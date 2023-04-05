@@ -24,6 +24,7 @@ public class ScoreManager : MonoBehaviour
     {
         timeController = FindObjectOfType<TimeController>();
         ui = FindObjectOfType<UIGameStatsManager>();
+        RestartDays();
         //  ManageSingleton();
     }
 
@@ -91,7 +92,10 @@ public class ScoreManager : MonoBehaviour
       //  BestPlayerDataHandler.Instance.SetHighScoreIfGreater(PlayerDataHandler.CurrentScore);
     }
 
-
+    public void RestartDays()
+    {  days = 0;
+       // Debug.Log("We restarted days");
+    }
     public int GetDays()
     { return days; }
 

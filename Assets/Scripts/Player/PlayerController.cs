@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     float walkingSpeed = 2.5f;
     float runningSpeed = 4.5f;
-    float maxTimeOfRunning = 5f; //the longer the time the longer we can run around map
+    float maxTimeOfRunning = 10f; //the longer the time, the longer we can run around map
     float verticalInput;
     TemperatureManager temperatureManager;
     Animator myAnimator;
@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-
         temperatureManager = FindObjectOfType<TemperatureManager>();
         myAnimator = GetComponent<Animator>();
         myAnimationController = new PlayerAnimationController(myAnimator);
@@ -42,7 +41,7 @@ public class PlayerController : MonoBehaviour
         if (GameOverHandler.isGameOver)
         {
             myAnimationController.LoseGame();
-            audioManager.PlaySighOnce(70f);
+         //   audioManager.PlaySighOnce(70f);
             return;
         }
 
@@ -101,7 +100,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Z) && Fatigue.Instance.GetFatiguePoints() < Fatigue.Instance.MaxEnergyLevelPoints && Fatigue.Instance.GetFatiguePoints() > 0)
         {
             // IsResting = true;
-            float delay = 10f;
+            float delay = 40f;
             audioManager.PlaySighOnce(delay);
             myAnimationController.SitAndRestIfNeeded(true);
             Fatigue.Instance.GraduallyDecreaseFill(TimeSittingTiredAnimation);
@@ -173,22 +172,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Move
-
-    /*    TemperatureManager temperatureManager;
-    temperatureManager = FindObjectOfType<TemperatureManager>();
-    temperatureManager.GetTemperature() > 29
-     public void ChangeWalkAnimationIfNeeded(bool _isChange)
-    {
-        if (_isChange)
-        {
-            //oneAnimation
-        }
-        else if (!_isChange)
-        {
-             //anotherAnimation
-        }           
-    }
-     */
     void MoveForwardBackward()
     {
         float customEpsilon = 0.001f;
