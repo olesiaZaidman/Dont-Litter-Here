@@ -43,10 +43,20 @@ public class AudioManager : AudioManagerBase
 
 
     #region Ambient Night / Day
+
+    public void PlayNightSFX(AudioSource _audioSource, AudioClip _clip)
+    {
+        _audioSource.PlayOneShot(_clip, _audioSource.volume);
+    }
+
+    public void StopPlayNightSFX(AudioSource _audioSource)
+    {
+        _audioSource.Stop();
+    }
+
     public void PlayNightAmbience()
     {
         backgroundAmbientBirdsNoise.PlayOneShot(nightSound, backgroundAmbientBirdsNoise.volume);
-        // Stop()
     }
     public void StopPlayNightAmbience()
     {
@@ -57,11 +67,17 @@ public class AudioManager : AudioManagerBase
         if (GoldScanner.isWorking && !isClipSwitched && timeController.IsThisTimeInterval(5, 6)) //Start of Day
         {
             isClipSwitched = true;
+
             backgroundAmbientBirdsNoise.clip = dayBirdsSound;
+
+            backgroundWaves.clip = wavesSound;
+            backgroundAmbientBirdsNoise.Play();
+
             backgroundMusic.clip = backgroundDayMusic;
             backgroundMusic.Play();
-            backgroundAmbientBirdsNoise.Play();
-           // backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
+
+            backgroundWaves.clip = wavesSound;
+            backgroundWaves.Play();
         }
 
         else if (timeController.IsThisTimeInterval(9, 10) && isClipSwitched) //9 am
@@ -69,7 +85,6 @@ public class AudioManager : AudioManagerBase
             isClipSwitched = false;
             backgroundAmbientBirdsNoise.clip = parkSound;
             backgroundAmbientBirdsNoise.Play();
-         //   backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
         }
 
 
@@ -78,12 +93,16 @@ public class AudioManager : AudioManagerBase
             isClipSwitched = true;
             backgroundAmbientBirdsNoise.clip = nightSound;
             backgroundAmbientBirdsNoise.Play();
+
+            backgroundWaves.clip = wavesSoundNight;
+            backgroundWaves.Play();
+
+
             backgroundAmbientBirdsNoise.volume = backgroundAmbientBirdsNoise.volume;
         }
 
         else if (isClipSwitched && GoldScanner.isScanning) //Night GoldScanner.isScanning && 
         {
-            //  backgroundMusic.clip = backgroundNightMusic;
             backgroundMusic.Stop();
             isClipSwitched = false;
         }

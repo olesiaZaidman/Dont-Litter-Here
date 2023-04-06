@@ -24,8 +24,8 @@ public class AudioManagerBase : MonoBehaviour
     [SerializeField] protected AudioClip[] sighSounds;
 
     [Header("Background Wave Clip")]
-    [SerializeField] AudioClip wavesSound;
-
+    [SerializeField] protected AudioClip wavesSound;
+    [SerializeField] protected AudioClip wavesSoundNight;
     [Header("UI SoundFX Clips")]
     [SerializeField] protected AudioClip clickSound;
     [SerializeField] protected AudioClip menuOpenSound;
@@ -33,18 +33,7 @@ public class AudioManagerBase : MonoBehaviour
     [SerializeField] protected AudioClip moneySound;
 
     protected bool isPlayed = false;
-
-   //static AudioManagerBase Instance;
-
-    //public AudioManagerBase GetAudioManagerInstance()
-    //{ return Instance; }
-
-    void Awake()
-    {
-        // ManageSingleton();
-       // PlayAudioClip(backgroundWaves, wavesSound);
-    }
-
+ 
     void Update()
     {
         UpdateVolumeLevels();
@@ -58,23 +47,6 @@ public class AudioManagerBase : MonoBehaviour
         soundEffectsAudio.volume = VolumeDataBetweenLevels.GetVolumeSounds();
     }
 
-    //void ManageSingleton()
-    //{
-    //    if (Instance != null)
-    //    {
-    //        gameObject.SetActive(false); /*we disable it on Awake before we destroy it, 
-    //                                      * so no component will try to access it*/
-    //        Destroy(gameObject);
-    //    }
-
-    //    else
-    //    /* we need to transit this AudioPlayer  
-    //     * through all the rest of the scenes on Load*/
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);  /*the existing AudiPlayer will be passed to another scene*/
-    //    }
-    //}
 
     #region AbstractMethods
     public void PlayAudioClip(AudioSource _audioSource, AudioClip _clip)

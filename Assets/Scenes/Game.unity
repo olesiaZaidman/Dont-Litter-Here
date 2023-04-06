@@ -548,6 +548,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4139275511736129566, guid: 62403b5f8d1330d4c945a16da7729a1d, type: 3}
+      propertyPath: wavesSoundNight
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e98fdc98de52b247bfd43583678d3d5, type: 3}
     - target: {fileID: 4293347589671100525, guid: 62403b5f8d1330d4c945a16da7729a1d, type: 3}
       propertyPath: volumeLevelMusic
       value: 
