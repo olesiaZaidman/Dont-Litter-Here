@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7269261417300484934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3694546856728598828}
+  - component: {fileID: 2344245899248240832}
+  - component: {fileID: 8638091494475603228}
+  - component: {fileID: 6233700705425372377}
+  m_Layer: 0
+  m_Name: GAME_Data
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3694546856728598828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269261417300484934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2344245899248240832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269261417300484934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692c11261f2699e45b3aeb165bfd2caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8638091494475603228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269261417300484934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee596ab9ac26f9149b1f2591f3ffaf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6233700705425372377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269261417300484934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7fd38bdefca7e04d9668202bf74e321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yellowColor: {r: 0, g: 0, b: 0, a: 0}
+  whiteColor: {r: 0, g: 0, b: 0, a: 0}
+  transparentGrey: {r: 0, g: 0, b: 0, a: 0}
+  transparentWhite: {r: 0, g: 0, b: 0, a: 0}
+  transparentGreyHighlight: {r: 0, g: 0, b: 0, a: 0}
+  transparentGreyPressed: {r: 0, g: 0, b: 0, a: 0}
+  transparentGreyDisabled: {r: 0, g: 0, b: 0, a: 0}
+  blueRating: {r: 0, g: 0, b: 0, a: 0}
+  orangeRating: {r: 0, g: 0, b: 0, a: 0}
+  redRating: {r: 0, g: 0, b: 0, a: 0}
+  redShadow: {r: 0, g: 0, b: 0, a: 0}
+  whiteShadow: {r: 0, g: 0, b: 0, a: 0}
+  orangeFatigue: {r: 0, g: 0, b: 0, a: 0}
+  redFatigue: {r: 0, g: 0, b: 0, a: 0}
+  violetDusk: {r: 0, g: 0, b: 0, a: 0}
+  dayLightYellow: {r: 0, g: 0, b: 0, a: 0}
+  blueNight: {r: 0, g: 0, b: 0, a: 0}
+  redSunset: {r: 0, g: 0, b: 0, a: 0}
