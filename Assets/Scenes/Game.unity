@@ -343,6 +343,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2809065537784158501, guid: b50f2640dcb1a2449ba621202f6e656e, type: 3}
   m_PrefabInstance: {fileID: 4529552756236392877}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2089110258 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5815990668720308483, guid: d2f3956337e5e9f469bddb175924ddb2, type: 3}
+  m_PrefabInstance: {fileID: 8180156335103968571}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &543450652791126054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1020435591257147054, guid: 19d4b8a58fa544348a378416f043ef9b, type: 3}
@@ -845,6 +850,10 @@ PrefabInstance:
       propertyPath: heatVignette
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8809572646466410995, guid: cfcffad9132ce0242a8ca139f2b0f135, type: 3}
+      propertyPath: heatVignette
+      value: 
+      objectReference: {fileID: 2089110258}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -905,6 +914,10 @@ PrefabInstance:
     - target: {fileID: 2347626691131962896, guid: 966384b8dca5df94d962f1ccc94acb0a, type: 3}
       propertyPath: m_Name
       value: Scene_Prefabs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453833359620037806, guid: 966384b8dca5df94d962f1ccc94acb0a, type: 3}
+      propertyPath: m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1040,13 +1053,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1618367603960986085, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
+      objectReference: {fileID: 0}
     - target: {fileID: 2150774584445043193, guid: b11242edfee668041a402f7a538364a3, type: 3}
       propertyPath: uiGameStats
       value: 
       objectReference: {fileID: 6642078171177274204}
+    - target: {fileID: 3246961890108129725, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701562000675449171, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
+      objectReference: {fileID: 0}
     - target: {fileID: 5830039794214928114, guid: b11242edfee668041a402f7a538364a3, type: 3}
       propertyPath: m_Name
       value: UI_Handler_CanvasButtonsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6729897236515659432, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703876936689498201, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
+      objectReference: {fileID: 0}
+    - target: {fileID: 8812155266662981629, guid: b11242edfee668041a402f7a538364a3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 12.499939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

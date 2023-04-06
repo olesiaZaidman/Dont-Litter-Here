@@ -11615,6 +11615,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 215f2c3261dc438438514063b933cb2e, type: 3}
   - {fileID: 8300000, guid: 85ebb934fa69b944c8432c1976754272, type: 3}
   wavesSound: {fileID: 8300000, guid: 4ca64e0495cf4504faf91484ccc9f57e, type: 3}
+  wavesSoundNight: {fileID: 0}
   clickSound: {fileID: 8300000, guid: c5004b812f6fcce418e54a1cb39916e0, type: 3}
   menuOpenSound: {fileID: 8300000, guid: 388f1b616ae28f24b8736e2819e28627, type: 3}
   messageSound: {fileID: 8300000, guid: 0f7a03f22ee9f5b48bd0b206fe570ad9, type: 3}
