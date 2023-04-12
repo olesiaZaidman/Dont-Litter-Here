@@ -34,16 +34,20 @@ public class GoldScanner : MonoBehaviour
         DetermineWorkingOsScanningState();
         TurnGoldScannerOn();
 
-        loot = FindClosestTarget();
-        if (loot != null)
+        if (isScanning)
         {
-            isRippleEffect = IsInTargetInRange(loot, distanceToLoot);
-
-            if (isRippleEffect)
+            loot = FindClosestTarget();
+            if (loot != null)
             {
-                rippleFx.Play();
-            }  
+                isRippleEffect = IsInTargetInRange(loot, distanceToLoot);
+
+                if (isRippleEffect)
+                {
+                    rippleFx.Play();
+                }
+            }
         }
+
     }
 
     public GameObject FindClosestTarget()
