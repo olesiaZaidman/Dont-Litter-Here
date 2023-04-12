@@ -57,6 +57,10 @@ PrefabInstance:
       value: towel-beach -blue
       objectReference: {fileID: 0}
     - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5470310648725315713, guid: c4f7c151dbeeb5a42a6fe1694f278f36, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
