@@ -1161,6 +1161,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7584212273332203300, guid: 966384b8dca5df94d962f1ccc94acb0a, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7584212273332203300, guid: 966384b8dca5df94d962f1ccc94acb0a, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GoldScanner : MonoBehaviour
 {
+    int interval = 3;
     public static bool isScanning { get; private set; }
     public static bool isWorking { get; private set; }
 
@@ -31,8 +32,12 @@ public class GoldScanner : MonoBehaviour
             return;
         }
 
-        DetermineWorkingOsScanningState();
-        TurnGoldScannerOn();
+        if (Time.frameCount % interval == 0)
+        {
+            DetermineWorkingOsScanningState();
+            TurnGoldScannerOn();
+        }
+
 
         if (isScanning)
         {
